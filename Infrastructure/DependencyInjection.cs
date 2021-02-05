@@ -1,6 +1,7 @@
 ﻿using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Infrastructure.Files;
 using GovernmentSystem.Infrastructure.Identity;
+using GovernmentSystem.Infrastructure.Identity.IdentityEntities;
 using GovernmentSystem.Infrastructure.Persistence;
 using GovernmentSystem.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -28,13 +29,20 @@ namespace GovernmentSystem.Infrastructure
                         b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
             }
 
-            //services
-            //    .AddDefaultIdentity<ApplicationUser>()
-            //    .AddRoles<IdentityRole>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
-            //services.AddIdentityServer()
-            //    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
-            //services.AddAuthentication().AddIdentityServerJwt();
+
+            var builder = services.AddIdentityCore<ApplicationUser>(opt =>
+            {
+                // configure identity options
+                opt.Password.RequireDigit = true;
+                opt.Password.RequireLowercase = true;
+                opt.Password.RequireNonAlphanumeric = true;
+                opt.Password.RequireUppercase = true;
+                opt.Password.RequiredLength = 6;
+                opt.Password.RequiredUniqueChars = 1;
+            });
+
+            builder = new IdentityBuilder(builder.UserType, builder.RoleType, builder.Services);
+            builder.AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddAuthorization(options =>
             {
@@ -48,6 +56,7 @@ namespace GovernmentSystem.Infrastructure
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
+            services.AddTransient<IUploadDocument, UploadDocument>();
 
             return services;
         }

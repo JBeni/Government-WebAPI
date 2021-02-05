@@ -1,5 +1,5 @@
 ﻿using GovernmentSystem.Domain.Entities;
-using GovernmentSystem.Infrastructure.Identity;
+using GovernmentSystem.Infrastructure.Identity.IdentityEntities;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Linq;
@@ -9,9 +9,12 @@ namespace GovernmentSystem.Infrastructure.Persistence
 {
     public static class ApplicationDbContextSeed
     {
-        public static async Task SeedDefaultUserAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task SeedDefaultUserAsync(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
-            var administratorRole = new IdentityRole("Administrator");
+            var administratorRole = new ApplicationRole
+            {
+                Name = "Administrator"
+            };
 
             if (roleManager.Roles.All(r => r.Name != administratorRole.Name))
             {

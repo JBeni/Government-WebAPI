@@ -1,5 +1,6 @@
 ﻿using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Application.Common.Models;
+using GovernmentSystem.Infrastructure.Identity.IdentityEntities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,7 @@ namespace GovernmentSystem.Infrastructure.Identity
             _authorizationService = authorizationService;
         }
 
-        public async Task<bool> AuthorizeAsync(string userId, string policyName)
+        public async Task<bool> AuthorizeAsync(int userId, string policyName)
         {
             var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
             var principal = await _userClaimsPrincipalFactory.CreateAsync(user);
@@ -30,7 +31,7 @@ namespace GovernmentSystem.Infrastructure.Identity
             return result.Succeeded;
         }
 
-        public async Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password)
+        public async Task<(Result Result, int UserId)> CreateUserAsync(string userName, string password)
         {
             var user = new ApplicationUser
             {
@@ -42,7 +43,7 @@ namespace GovernmentSystem.Infrastructure.Identity
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<Result> DeleteUserAsync(string userId)
+        public async Task<Result> DeleteUserAsync(int userId)
         {
             var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
 
@@ -60,13 +61,13 @@ namespace GovernmentSystem.Infrastructure.Identity
             return result.ToApplicationResult();
         }
 
-        public async Task<string> GetUserNameAsync(string userId)
+        public async Task<string> GetUserNameAsync(int userId)
         {
             var user = await _userManager.Users.FirstAsync(u => u.Id == userId);
             return user.UserName;
         }
 
-        public async Task<bool> IsInRoleAsync(string userId, string role)
+        public async Task<bool> IsInRoleAsync(int userId, string role)
         {
             var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
             return await _userManager.IsInRoleAsync(user, role);
