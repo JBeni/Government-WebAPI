@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace GovernmentSystem.WebUI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiversion}/[controller]")]
     public abstract class ApiControllerBase : ControllerBase
     {
         private ISender _mediator;
