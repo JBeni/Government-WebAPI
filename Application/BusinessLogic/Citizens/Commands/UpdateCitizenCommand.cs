@@ -6,7 +6,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Citizens.Commands
+namespace GovernmentSystem.Application.BusinessLogic.Citizens.Commands
 {
     public class UpdateCitizenCommand : IRequest
     {

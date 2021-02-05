@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Citizens.Queries
+namespace GovernmentSystem.Application.BusinessLogic.Citizens.Queries
 {
     public class CitizenDto : IMapFrom<Citizen>
     {
