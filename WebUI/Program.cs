@@ -1,4 +1,4 @@
-using GovernmentSystem.Infrastructure.Identity;
+using GovernmentSystem.Infrastructure.Identity.IdentityEntities;
 using GovernmentSystem.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -23,18 +23,20 @@ namespace GovernmentSystem.WebUI
 
                 try
                 {
-                    var context = services.GetRequiredService<ApplicationDbContext>();
+                    //var context = services.GetRequiredService<ApplicationDbContext>();
 
-                    if (context.Database.IsSqlServer())
-                    {
-                        context.Database.Migrate();
-                    }
+                    //if (context.Database.IsSqlServer())
+                    //{
+                    //    context.Database.Migrate();
+                    //}
 
-                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    //var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                    //var roleManager = services.GetRequiredService<RoleManager<ApplicationRole>>();
 
-                    await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager, roleManager);
-                    await ApplicationDbContextSeed.SeedSampleDataAsync(context);
+                    // Not working at the moment
+
+                    //await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager, roleManager);
+                    //await ApplicationDbContextSeed.SeedSampleDataAsync(context);
                 }
                 catch (Exception ex)
                 {

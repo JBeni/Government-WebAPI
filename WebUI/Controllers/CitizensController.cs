@@ -1,5 +1,5 @@
-﻿using GovernmentSystem.Application.Citizens.Commands;
-using GovernmentSystem.Application.Citizens.Queries;
+﻿using GovernmentSystem.Application.BusinessLogic.Citizens.Commands;
+using GovernmentSystem.Application.BusinessLogic.Citizens.Queries;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Common.Security;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace GovernmentSystem.WebUI.Controllers
 {
     [Authorize]
-    public class CitizenController : ApiControllerBase
+    public class CitizensController : ApiControllerBase
     {
         [HttpGet]
         public async Task<ActionResult<PaginatedList<CitizenDto>>> GetCitizensWithPagination([FromBody] GetCitizensWithPaginationQuery query)
