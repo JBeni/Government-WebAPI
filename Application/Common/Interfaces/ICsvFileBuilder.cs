@@ -1,4 +1,4 @@
-﻿using GovernmentSystem.Application.Citizens.Queries;
+﻿using GovernmentSystem.Application.BusinessLogic.Citizens.Queries;
 using System.Collections.Generic;
 
 namespace GovernmentSystem.Application.Common.Interfaces

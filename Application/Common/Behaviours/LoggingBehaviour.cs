@@ -23,10 +23,10 @@ namespace GovernmentSystem.Application.Common.Behaviours
         public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
             var requestname = typeof(TRequest).Name;
-            var userId = _currentUserService.UserId ?? string.Empty;
+            var userId = _currentUserService.UserId;
             string userName = string.Empty;
 
-            if (!string.IsNullOrEmpty(userId))
+            if (userId != 0)
             {
                 userName = await _identityService.GetUserNameAsync(userId);
             }
