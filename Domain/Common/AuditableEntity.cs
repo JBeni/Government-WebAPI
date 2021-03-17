@@ -2,7 +2,7 @@
 
 namespace GovernmentSystem.Domain.Common
 {
-    public abstract class AuditableEntity
+    public abstract class AuditableEntity : BaseEntity
     {
         public DateTime Created { get; set; }
         public string CreatedBy { get; set; }
