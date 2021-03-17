@@ -1,5 +1,5 @@
 ﻿using CsvHelper;
-using GovernmentSystem.Application.BusinessLogic.Citizens.Queries;
+using GovernmentSystem.Application.BusinessLogic.Handlers.Citizens.Queries;
 using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Infrastructure.Files.Maps;
 using System.Collections.Generic;
