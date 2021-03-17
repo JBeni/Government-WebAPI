@@ -1,10 +1,7 @@
 ﻿using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Domain.Common;
 using GovernmentSystem.Domain.Entities;
-using GovernmentSystem.Infrastructure.Identity.IdentityEntities;
 using GovernmentSystem.Infrastructure.Persistence.Configurations;
-using GovernmentSystem.Infrastructure.Persistence.Configurations.IdentityEntities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;
@@ -13,8 +10,7 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Infrastructure.Persistence
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int, ApplicationUserClaim, 
-                                            ApplicationUserRole, ApplicationUserLogin, ApplicationRoleClaim, ApplicationUserToken>, IApplicationDbContext
+    public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
@@ -58,15 +54,6 @@ namespace GovernmentSystem.Infrastructure.Persistence
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            builder.ApplyConfiguration(new ApplicationUserConfiguration());
-            builder.ApplyConfiguration(new ApplicationUserRoleConfiguration());
-            builder.ApplyConfiguration(new ApplicationUserClaimConfiguration());
-            builder.ApplyConfiguration(new ApplicationUserLoginConfiguration());
-            builder.ApplyConfiguration(new ApplicationUserTokenConfiguration());
-            builder.ApplyConfiguration(new ApplicationRoleConfiguration());
-            builder.ApplyConfiguration(new ApplicationRoleClaimConfiguration());
-
-            // revisit this later
             builder.ApplyConfiguration(new CitizenConfiguration());
         }
     }
