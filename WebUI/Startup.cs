@@ -1,6 +1,6 @@
 using FluentValidation.AspNetCore;
 using GovernmentSystem.Application;
-using GovernmentSystem.Application.BusinessLogic.Citizens.Queries;
+using GovernmentSystem.Application.BusinessLogic.Citizens.Handlers.Queries;
 using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Infrastructure;
 using GovernmentSystem.Infrastructure.Persistence;
@@ -28,7 +28,6 @@ namespace GovernmentSystem.WebUI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationLayer();
@@ -57,9 +56,9 @@ namespace GovernmentSystem.WebUI
                 options.DefaultApiVersion = new ApiVersion(1, 0);
                 options.ApiVersionReader = new HeaderApiVersionReader("API-Version");
 
-                options.Conventions.Controller<CitizensController>()
-                    .HasApiVersion(1, 0)
-                    .Action(f => f.GetCitizensWithPagination(new GetCitizensWithPaginationQuery())).MapToApiVersion(1, 0);
+                //options.Conventions.Controller<CitizensController>()
+                //    .HasApiVersion(1, 0)
+                //    .Action(f => f.GetCitizensWithPagination(new GetCitizensWithPaginationQuery())).MapToApiVersion(1, 0);
             });
 
             services.AddSwaggerGen(c =>
@@ -68,7 +67,6 @@ namespace GovernmentSystem.WebUI
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -81,7 +79,6 @@ namespace GovernmentSystem.WebUI
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

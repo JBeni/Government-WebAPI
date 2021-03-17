@@ -1,8 +1,4 @@
-using GovernmentSystem.Infrastructure.Identity.IdentityEntities;
-using GovernmentSystem.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -23,6 +19,10 @@ namespace GovernmentSystem.WebUI
 
                 try
                 {
+                    var tr = new Random().Next(8, 10);
+
+                    var tra = new Random().Next(8, 9);
+
                     //var context = services.GetRequiredService<ApplicationDbContext>();
 
                     //if (context.Database.IsSqlServer())

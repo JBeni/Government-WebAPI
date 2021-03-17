@@ -1,45 +1,31 @@
-﻿using GovernmentSystem.Application.BusinessLogic.Citizens.Commands;
-using GovernmentSystem.Application.BusinessLogic.Citizens.Queries;
-using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Common.Security;
+﻿using GovernmentSystem.Application.BusinessLogic.Handlers.Citizens.Commands;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace GovernmentSystem.WebUI.Controllers
 {
-    [Authorize]
     public class CitizensController : ApiControllerBase
     {
-        [HttpGet]
-        public async Task<ActionResult<PaginatedList<CitizenDto>>> GetCitizensWithPagination([FromBody] GetCitizensWithPaginationQuery query)
+
+        [HttpPost("create")]
+        public async Task<IActionResult> Create(CreateCitizenCommand command)
         {
-            return await Mediator.Send(query);
+            var result = await Mediator.Send(command);
+            return Ok(result);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<int>> Create(CreateCitizenCommand command)
+        [HttpPut("update")]
+        public async Task<IActionResult> Update(UpdateCitizenCommand command)
         {
-            return await Mediator.Send(command);
+            var result = await Mediator.Send(command);
+            return Ok(result);
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int id, UpdateCitizenCommand command)
+        [HttpPut("delete")]
+        public async Task<IActionResult> Delete(DeleteCitizenCommand command)
         {
-            if (id != command.Id)
-            {
-                return BadRequest();
-            }
-
-            await Mediator.Send(command);
-
-            return NoContent();
-        }
-
-        [HttpDelete]
-        public async Task<ActionResult> Delete(int id)
-        {
-            await Mediator.Send(new DeleteCitizenCommand { Id = id });
-            return NoContent();
+            var result = await Mediator.Send(command);
+            return Ok(result);
         }
     }
 }
