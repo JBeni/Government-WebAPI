@@ -1,8 +1,8 @@
-﻿using GovernmentSystem.Application.Common.Interfaces;
+﻿using GovernmentSystem.Application.BusinessLogic.Interfaces;
+using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Infrastructure.Files;
 using GovernmentSystem.Infrastructure.Persistence;
 using GovernmentSystem.Infrastructure.Services;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,7 +34,7 @@ namespace GovernmentSystem.Infrastructure
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
-            services.AddTransient<IDateTime, DateTimeService>();
+            services.AddTransient<ICitizenService, CitizenService>();
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
