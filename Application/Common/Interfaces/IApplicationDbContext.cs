@@ -1,4 +1,4 @@
-﻿using GovernmentSystem.Domain.Entities;
+﻿using GovernmentSystem.Domain.Entities.Citizen;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;

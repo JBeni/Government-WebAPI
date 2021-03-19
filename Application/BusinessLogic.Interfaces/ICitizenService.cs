@@ -1,6 +1,6 @@
 ﻿using GovernmentSystem.Application.BusinessLogic.Handlers.Citizens.Commands;
 using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Domain.Entities;
+using GovernmentSystem.Domain.Entities.Citizen;
 using System.Threading;
 using System.Threading.Tasks;
 

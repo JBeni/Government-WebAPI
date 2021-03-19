@@ -1,4 +1,5 @@
 ﻿using GovernmentSystem.Domain.Entities;
+using GovernmentSystem.Domain.Entities.Citizen;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

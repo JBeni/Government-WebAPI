@@ -2,11 +2,11 @@
 using GovernmentSystem.Application.Common.Mappings;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using GovernmentSystem.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
+using GovernmentSystem.Domain.Entities.Citizen;
 
 namespace GovernmentSystem.Application.BusinessLogic.Handlers.Citizens.Queries
 {

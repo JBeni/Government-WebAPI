@@ -1,6 +1,7 @@
 ﻿using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Domain.Common;
 using GovernmentSystem.Domain.Entities;
+using GovernmentSystem.Domain.Entities.Citizen;
 using GovernmentSystem.Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;

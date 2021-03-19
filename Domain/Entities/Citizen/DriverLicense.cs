@@ -1,11 +1,6 @@
 ﻿using GovernmentSystem.Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace GovernmentSystem.Domain.Entities
+namespace GovernmentSystem.Domain.Entities.Citizen
 {
     public class DriverLicense : ValidityEntity
     {

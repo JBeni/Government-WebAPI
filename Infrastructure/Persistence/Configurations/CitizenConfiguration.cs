@@ -1,4 +1,5 @@
 ﻿using GovernmentSystem.Domain.Entities;
+using GovernmentSystem.Domain.Entities.Citizen;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

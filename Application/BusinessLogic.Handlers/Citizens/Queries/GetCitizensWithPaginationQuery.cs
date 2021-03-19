@@ -3,12 +3,12 @@ using GovernmentSystem.Application.Common.Mappings;
 using GovernmentSystem.Application.Common.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using GovernmentSystem.Domain.Entities;
 using FluentValidation;
 using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using GovernmentSystem.Domain.Entities.Citizen;
 
 namespace GovernmentSystem.Application.BusinessLogic.Citizens.Handlers.Queries
 {
