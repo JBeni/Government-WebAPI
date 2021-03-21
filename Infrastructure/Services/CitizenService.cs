@@ -1,8 +1,7 @@
-﻿using GovernmentSystem.Application.BusinessLogic.Handlers.Citizens.Commands;
-using GovernmentSystem.Application.BusinessLogic.Interfaces;
+﻿using GovernmentSystem.Application.Handlers.Citizens.Commands;
+using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Domain.Entities;
 using GovernmentSystem.Domain.Entities.Citizen;
 using System;
 using System.Linq;
@@ -22,7 +21,8 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> AddCitizen(CreateCitizenCommand command, CancellationToken cancellationToken)
         {
-            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.CNP == command.CNP);
+            var userCNP = GenerateCNP(command.DateOfBirth, command.Gender);
+            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.CNP == userCNP);
             if (citizen != null)
             {
                 throw new Exception("The citizen already exists");
@@ -32,26 +32,14 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 FirstName = command.FirstName,
                 LastName = command.LastName,
-                DateOfBirth = command.DateOfBirth
+                CNP = userCNP,
+                Age = command.Age,
+                Gender = command.Gender,
+                DateOfBirth = command.DateOfBirth,
+                PlaceOfBirth = command.PlaceOfBirth,
             };
 
             _dbContext.Citizens.Add(entity);
-            await _dbContext.SaveChangesAsync(cancellationToken);
-
-            return RequestResponse.Success();
-        }
-
-        public async Task<RequestResponse> UpdateCitizen(UpdateCitizenCommand command, CancellationToken cancellationToken)
-        {
-            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.CNP == command.CNP);
-            if (citizen == null)
-            {
-                throw new Exception("The citizen does not exists");
-            }
-
-            citizen.FirstName = command.FirstName;
-
-            _dbContext.Citizens.Update(citizen);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             return RequestResponse.Success();
@@ -73,18 +61,37 @@ namespace GovernmentSystem.Infrastructure.Services
             return RequestResponse.Success();
         }
 
-        public string GenerateCNP(Citizen citizen)
+        public string GenerateCNP(DateTime dateOfBirth, string userGender)
         {
-            var birthYear = citizen.DateOfBirth.ToString("yy");
-            var birthMonth = citizen.DateOfBirth.ToString("MM");
-            var birthDay = citizen.DateOfBirth.Day;
-            var gender = (citizen.Gender == "Male" ? "1" : "2").ToString();
+            var birthYear = dateOfBirth.ToString("yy");
+            var birthMonth = dateOfBirth.ToString("MM");
+            var birthDay = dateOfBirth.Day;
+            var gender = (userGender == "Male" ? "1" : "2").ToString();
 
             var userCNP = $"{gender}{birthYear}{birthMonth}{birthDay}{new Random().Next(0, 10)}" +
                 $"{new Random().Next(0, 10)}{new Random().Next(0, 10)}{new Random().Next(0, 10)}" +
                 $"{new Random().Next(0, 10)}{new Random().Next(0, 10)}";
 
             return userCNP;
+        }
+
+        public async Task<RequestResponse> UpdateCitizen(UpdateCitizenCommand command, CancellationToken cancellationToken)
+        {
+            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.CNP == command.CNP);
+            if (citizen == null)
+            {
+                throw new Exception("The citizen does not exists");
+            }
+
+            citizen.IdentityCard = command.IdentityCard;
+            citizen.Passport = command.Passport;
+            citizen.DriverLicense = command.DriverLicense;
+            citizen.CityHallResidence = command.CityHallResidence;
+
+            _dbContext.Citizens.Update(citizen);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+
+            return RequestResponse.Success();
         }
     }
 }
