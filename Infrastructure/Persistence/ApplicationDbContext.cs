@@ -2,6 +2,7 @@
 using GovernmentSystem.Domain.Common;
 using GovernmentSystem.Domain.Entities;
 using GovernmentSystem.Domain.Entities.Citizen;
+using GovernmentSystem.Domain.Entities.CityHallEntity;
 using GovernmentSystem.Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -26,7 +27,13 @@ namespace GovernmentSystem.Infrastructure.Persistence
         }
 
         public DbSet<Citizen> Citizens { get; set; }
-
+        public DbSet<MedicalCenter> MedicalCenters { get; set; }
+        public DbSet<CityHall> CityHalls { get; set; }
+        public DbSet<Property> Properties { get; set; }
+        public DbSet<CitizenRequest> CitizenRequests { get; set; }
+        public DbSet<ReportProblem> ReportProblems { get; set; }
+        public DbSet<MedicalAppointment> MedicalAppointments { get; set; }
+        public DbSet<CitizenMedicalHistory> CitizenMedicalHistory { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -35,12 +42,12 @@ namespace GovernmentSystem.Infrastructure.Persistence
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy = _currentUserService.UserId.ToString();
-                        entry.Entity.Created = _dateTime.Now;
+                        entry.Entity.DbEntryCreatedBy = _currentUserService.UserId.ToString();
+                        entry.Entity.DbEntryCreated = _dateTime.Now;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedBy = _currentUserService.UserId.ToString();
-                        entry.Entity.LastModified = _dateTime.Now;
+                        entry.Entity.DbEntryLastModifiedBy = _currentUserService.UserId.ToString();
+                        entry.Entity.DbEntryLastModified = _dateTime.Now;
                         break;
                 }
             }
@@ -52,7 +59,6 @@ namespace GovernmentSystem.Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             builder.ApplyConfiguration(new CitizenConfiguration());
