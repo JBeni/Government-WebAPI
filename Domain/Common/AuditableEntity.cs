@@ -4,9 +4,9 @@ namespace GovernmentSystem.Domain.Common
 {
     public abstract class AuditableEntity
     {
-        public DateTime Created { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime? LastModified { get; set; }
-        public string LastModifiedBy { get; set; }
+        public DateTime DbEntryCreated { get; set; }
+        public string DbEntryCreatedBy { get; set; }
+        public DateTime? DbEntryLastModified { get; set; }
+        public string DbEntryLastModifiedBy { get; set; }
     }
 }
