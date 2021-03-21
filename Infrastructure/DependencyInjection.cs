@@ -1,4 +1,4 @@
-﻿using GovernmentSystem.Application.BusinessLogic.Interfaces;
+﻿using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Infrastructure.Files;
 using GovernmentSystem.Infrastructure.Persistence;
@@ -35,6 +35,13 @@ namespace GovernmentSystem.Infrastructure
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             services.AddTransient<ICitizenService, CitizenService>();
+            services.AddTransient<IMedicalCenterService, MedicalCenterService>();
+            services.AddTransient<ICityHallService, CityHallService>();
+            services.AddTransient<IPropertyService, PropertyService>();
+            services.AddTransient<ICitizenRequestService, CitizenRequestService>();
+            services.AddTransient<IReportProblemService, ReportProblemService>();
+            services.AddTransient<IAppointmentService, AppointmentService>();
+            services.AddTransient<ICitizenMedicalHistoryService, CitizenMedicalHistoryService>();
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
