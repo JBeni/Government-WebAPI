@@ -1,4 +1,4 @@
-﻿using GovernmentSystem.Application.BusinessLogic.Handlers.Citizens.Commands;
+﻿using GovernmentSystem.Application.Handlers.Citizens.Commands;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

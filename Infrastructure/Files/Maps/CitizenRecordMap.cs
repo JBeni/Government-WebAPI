@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration;
 using System.Globalization;
-using GovernmentSystem.Application.BusinessLogic.Handlers.Citizens.Queries;
+using GovernmentSystem.Application.Handlers.Citizens.Queries;
 
 namespace GovernmentSystem.Infrastructure.Files.Maps
 {

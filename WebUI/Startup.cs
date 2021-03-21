@@ -1,17 +1,14 @@
 using FluentValidation.AspNetCore;
 using GovernmentSystem.Application;
-using GovernmentSystem.Application.BusinessLogic.Citizens.Handlers.Queries;
 using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Infrastructure;
 using GovernmentSystem.Infrastructure.Persistence;
-using GovernmentSystem.WebUI.Controllers;
 using GovernmentSystem.WebUI.Filters;
 using GovernmentSystem.WebUI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using Microsoft.AspNetCore.Mvc.Versioning.Conventions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
