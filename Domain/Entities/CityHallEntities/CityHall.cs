@@ -1,8 +1,6 @@
-﻿using GovernmentSystem.Domain.Entities.CityHallEntities;
-
-namespace GovernmentSystem.Domain.Entities
+﻿namespace GovernmentSystem.Domain.Entities.CityHallEntities
 {
-    public class Police
+    public class CityHall
     {
         public string Identifier { get; set; }
         public string Name { get; set; }

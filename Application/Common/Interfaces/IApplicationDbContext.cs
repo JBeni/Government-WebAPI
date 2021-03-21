@@ -1,6 +1,6 @@
-﻿using GovernmentSystem.Domain.Entities;
-using GovernmentSystem.Domain.Entities.Citizen;
-using GovernmentSystem.Domain.Entities.CityHallEntity;
+﻿using GovernmentSystem.Domain.Entities.CitizenEntities;
+using GovernmentSystem.Domain.Entities.CityHallEntities;
+using GovernmentSystem.Domain.Entities.MedicalEntities;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;

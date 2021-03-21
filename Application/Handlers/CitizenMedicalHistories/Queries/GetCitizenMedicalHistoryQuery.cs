@@ -5,8 +5,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Domain.Entities;
 using System.Collections.Generic;
+using GovernmentSystem.Domain.Entities.MedicalEntities;
 
 namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Queries
 {

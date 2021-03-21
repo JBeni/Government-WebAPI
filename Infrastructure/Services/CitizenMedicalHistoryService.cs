@@ -5,7 +5,7 @@ using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Commands;
 using GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Queries;
 using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities;
+using GovernmentSystem.Domain.Entities.MedicalEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

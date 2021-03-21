@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Domain.Entities.CityHallEntity;
+using GovernmentSystem.Domain.Entities.CityHallEntities;
 
 namespace GovernmentSystem.Application.Handlers.Citizens.Commands
 {

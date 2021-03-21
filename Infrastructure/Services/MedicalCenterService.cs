@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using GovernmentSystem.Domain.Entities.MedicalEntities;
 
 namespace GovernmentSystem.Infrastructure.Services
 {

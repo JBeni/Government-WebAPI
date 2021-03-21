@@ -1,8 +1,8 @@
 ﻿using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Domain.Common;
-using GovernmentSystem.Domain.Entities;
-using GovernmentSystem.Domain.Entities.Citizen;
-using GovernmentSystem.Domain.Entities.CityHallEntity;
+using GovernmentSystem.Domain.Entities.CitizenEntities;
+using GovernmentSystem.Domain.Entities.CityHallEntities;
+using GovernmentSystem.Domain.Entities.MedicalEntities;
 using GovernmentSystem.Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;

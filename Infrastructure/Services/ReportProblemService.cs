@@ -2,11 +2,11 @@
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Domain.Entities;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using GovernmentSystem.Domain.Entities.CitizenEntities;
 
 namespace GovernmentSystem.Infrastructure.Services
 {

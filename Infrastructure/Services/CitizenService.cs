@@ -2,7 +2,7 @@
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Domain.Entities.Citizen;
+using GovernmentSystem.Domain.Entities.CitizenEntities;
 using System;
 using System.Linq;
 using System.Threading;

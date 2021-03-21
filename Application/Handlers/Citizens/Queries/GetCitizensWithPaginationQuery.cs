@@ -8,7 +8,7 @@ using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using GovernmentSystem.Domain.Entities.Citizen;
+using GovernmentSystem.Domain.Entities.CitizenEntities;
 
 namespace GovernmentSystem.Application.Handlers.Citizens.Queries
 {

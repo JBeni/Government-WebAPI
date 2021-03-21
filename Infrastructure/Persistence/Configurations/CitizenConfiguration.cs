@@ -1,5 +1,4 @@
-﻿using GovernmentSystem.Domain.Entities;
-using GovernmentSystem.Domain.Entities.Citizen;
+﻿using GovernmentSystem.Domain.Entities.CitizenEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,7 +8,7 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Citizen> builder)
         {
-            builder.HasKey(x => x.CNP);
+            builder.HasKey(x => x.Id);
 
             builder.Property(t => t.FirstName)
                 .HasMaxLength(150)

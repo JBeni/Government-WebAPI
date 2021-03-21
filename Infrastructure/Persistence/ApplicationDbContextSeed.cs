@@ -1,5 +1,4 @@
-﻿using GovernmentSystem.Domain.Entities;
-using GovernmentSystem.Domain.Entities.Citizen;
+﻿using GovernmentSystem.Domain.Entities.CitizenEntities;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,7 +30,6 @@ namespace GovernmentSystem.Infrastructure.Persistence
 
         public static async Task SeedSampleDataAsync(ApplicationDbContext context)
         {
-            // Seed, if necessary
             if (!context.Citizens.Any())
             {
                 context.Citizens.Add(
@@ -46,7 +44,6 @@ namespace GovernmentSystem.Infrastructure.Persistence
                         DateOfBirth = new DateTime(1990, 9, 25)
                     }
                 );
-
                 await context.SaveChangesAsync();
             }
         }
