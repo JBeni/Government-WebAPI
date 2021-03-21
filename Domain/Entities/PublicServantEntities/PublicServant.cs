@@ -6,7 +6,8 @@ namespace GovernmentSystem.Domain.Entities.PublicServantEntities
     public class PublicServant : BaseEntity
     {
         public string CNP { get; set; }
-        public string FullName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string DutyRole { get; set; }
         public int ContractYears { get; set; }
 
