@@ -11,7 +11,6 @@ namespace GovernmentSystem.Domain.Entities.Citizen
         public string CNP { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
-        public string Type { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime DateOfDeath { get; set; }
         public Address PlaceOfBirth { get; set; }
