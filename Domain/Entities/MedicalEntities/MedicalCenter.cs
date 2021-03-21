@@ -6,6 +6,6 @@ namespace GovernmentSystem.Domain.Entities.MedicalEntities
     {
         public string Identifier { get; set; }
 
-        public ICollection<MedicalOperation> MedicalOperation { get; set; }
+        public ICollection<MedicalProcedure> MedicalOperation { get; set; }
     }
 }

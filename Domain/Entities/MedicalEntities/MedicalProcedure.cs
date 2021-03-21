@@ -2,7 +2,7 @@
 
 namespace GovernmentSystem.Domain.Entities.MedicalEntities
 {
-    public class MedicalOperation
+    public class MedicalProcedure
     {
         public ICollection<MedicalCenter> MedicalCenter { get; set; }
     }
