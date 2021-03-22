@@ -21,7 +21,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> AddProperty(CreatePropertyCommand command, CancellationToken cancellationToken)
         {
-            var property = _dbContext.Properties.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var property = _dbContext.Properties.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
             if (property != null)
             {
                 throw new Exception("The property already exists");
@@ -38,7 +38,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> DeleteProperty(DeletePropertyCommand command, CancellationToken cancellationToken)
         {
-            var property = _dbContext.Properties.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var property = _dbContext.Properties.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
             if (property == null)
             {
                 throw new Exception("The property does not exists");
@@ -51,7 +51,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> UpdateProperty(UpdatePropertyCommand command, CancellationToken cancellationToken)
         {
-            var property = _dbContext.Properties.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var property = _dbContext.Properties.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
             if (property == null)
             {
                 throw new Exception("The property does not exists");

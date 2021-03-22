@@ -21,7 +21,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> AddCitizen(CreateCitizenCommand command, CancellationToken cancellationToken)
         {
-            var userCNP = GenerateCNP(command.DateOfBirth, command.Gender);
+            var userCNP = GenerateCNP(command.DateOfBirth.BirthDate, command.Gender);
             var citizen = _dbContext.Citizens.SingleOrDefault(x => x.CNP == userCNP);
             if (citizen != null)
             {
@@ -35,8 +35,8 @@ namespace GovernmentSystem.Infrastructure.Services
                 CNP = userCNP,
                 Age = command.Age,
                 Gender = command.Gender,
-                DateOfBirth = command.DateOfBirth,
-                PlaceOfBirth = command.PlaceOfBirth,
+                DateOfBirth = command.DateOfBirth.BirthDate,
+                //PlaceOfBirth = command.DateOfBirth.BirthPlace,
             };
 
             _dbContext.Citizens.Add(entity);

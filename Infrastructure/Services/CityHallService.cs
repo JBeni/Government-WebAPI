@@ -21,7 +21,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> AddCityHall(CreateCityHallCommand command, CancellationToken cancellationToken)
         {
-            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
             if (cityHall != null)
             {
                 throw new Exception("The city hall already exists");
@@ -29,7 +29,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
             var entity = new CityHall
             {
-                Identifier = command.Identifier,
+                UniqueIdentifier = command.UniqueIdentifier,
                 Name = command.Name,
                 Address = command.Address,
             };
@@ -42,7 +42,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> DeleteCityHall(DeleteCityHallCommand command, CancellationToken cancellationToken)
         {
-            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
             if (cityHall == null)
             {
                 throw new Exception("The city hall does not exists");
@@ -58,7 +58,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> UpdateCityHall(UpdateCityHallCommand command, CancellationToken cancellationToken)
         {
-            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
             if (cityHall == null)
             {
                 throw new Exception("The city hall does not exists");

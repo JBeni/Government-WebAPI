@@ -21,7 +21,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> AddMedicalCenter(CreateMedicalCenterCommand command, CancellationToken cancellationToken)
         {
-            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
             if (medicalCenter != null)
             {
                 throw new Exception("The medical center already exists");
@@ -38,7 +38,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> DeleteMedicalCenter(DeleteMedicalCenterCommand command, CancellationToken cancellationToken)
         {
-            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
             if (medicalCenter == null)
             {
                 throw new Exception("The medical center does not exists");
@@ -51,7 +51,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> UpdateMedicalCenter(UpdateMedicalCenterCommand command, CancellationToken cancellationToken)
         {
-            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
             if (medicalCenter == null)
             {
                 throw new Exception("The medical center does not exists");

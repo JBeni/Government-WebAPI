@@ -27,7 +27,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> AddCitizenMedicalHistory(CreateCitizenMedicalHistoryCommand command, CancellationToken cancellationToken)
         {
-            var citizenMedicalHistory = _dbContext.CitizenMedicalHistory.SingleOrDefault(x => x.Id == command.Id);
+            var citizenMedicalHistory = _dbContext.CitizenMedicalHistories.SingleOrDefault(x => x.Id == command.Id);
             if (citizenMedicalHistory != null)
             {
                 throw new Exception("The citizen medical history request already exists");
@@ -37,27 +37,27 @@ namespace GovernmentSystem.Infrastructure.Services
             {
             };
 
-            _dbContext.CitizenMedicalHistory.Add(entity);
+            _dbContext.CitizenMedicalHistories.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
 
         public async Task<RequestResponse> DeleteCitizenMedicalHistory(DeleteCitizenMedicalHistoryCommand command, CancellationToken cancellationToken)
         {
-            var citizenMedicalHistory = _dbContext.CitizenMedicalHistory.SingleOrDefault(x => x.Id == command.Id);
+            var citizenMedicalHistory = _dbContext.CitizenMedicalHistories.SingleOrDefault(x => x.Id == command.Id);
             if (citizenMedicalHistory == null)
             {
                 throw new Exception("The citizen medical history request does not exists");
             }
 
-            _dbContext.CitizenMedicalHistory.Remove(citizenMedicalHistory);
+            _dbContext.CitizenMedicalHistories.Remove(citizenMedicalHistory);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
 
         public List<MedicalHistoryResponse> GetCitizenMedicalHistory(GetCitizenMedicalHistoryQuery query)
         {
-            var result = _dbContext.CitizenMedicalHistory
+            var result = _dbContext.CitizenMedicalHistories
                     .OrderBy(x => x.Id)
                     .ProjectTo<MedicalHistoryResponse>(_mapper.ConfigurationProvider)
                     .ToList();
@@ -66,14 +66,14 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> UpdateCitizenMedicalHistory(UpdateCitizenMedicalHistoryCommand command, CancellationToken cancellationToken)
         {
-            var citizenMedicalHistory = _dbContext.CitizenMedicalHistory.SingleOrDefault(x => x.Id == command.Id);
+            var citizenMedicalHistory = _dbContext.CitizenMedicalHistories.SingleOrDefault(x => x.Id == command.Id);
             if (citizenMedicalHistory == null)
             {
                 throw new Exception("The citizen medical history request does not exists");
             }
             //citizenMedicalHistory.Some = "";
 
-            _dbContext.CitizenMedicalHistory.Update(citizenMedicalHistory);
+            _dbContext.CitizenMedicalHistories.Update(citizenMedicalHistory);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
