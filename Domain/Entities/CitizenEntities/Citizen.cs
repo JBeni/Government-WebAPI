@@ -14,12 +14,13 @@ namespace GovernmentSystem.Domain.Entities.CitizenEntities
         public string Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime DateOfDeath { get; set; }
-        public Address PlaceOfBirth { get; set; }
+        public BirthCertificate BirthCertificate { get; set; }
 
         public IdentityCard IdentityCard { get; set; }
         public Passport Passport { get; set; }
         public DriverLicense DriverLicense { get; set; }
 
+        public Address HomeAddress { get; set; }
         public CityHall CityHallResidence { get; set; }
         public MedicalCenter MedicalCenter { get; set; }
         public PublicServantGP PublicServantGP { get; set; }
