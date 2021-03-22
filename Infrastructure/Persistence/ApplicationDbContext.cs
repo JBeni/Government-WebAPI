@@ -1,8 +1,10 @@
 ﻿using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Domain.Common;
+using GovernmentSystem.Domain.Entities;
 using GovernmentSystem.Domain.Entities.CitizenEntities;
 using GovernmentSystem.Domain.Entities.CityHallEntities;
 using GovernmentSystem.Domain.Entities.MedicalEntities;
+using GovernmentSystem.Domain.Entities.PublicServantEntities;
 using GovernmentSystem.Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -26,14 +28,31 @@ namespace GovernmentSystem.Infrastructure.Persistence
             _dateTime = dateTime;
         }
 
+        public DbSet<BirthCertificate> BirthCertificates { get; set; }
         public DbSet<Citizen> Citizens { get; set; }
-        public DbSet<MedicalCenter> MedicalCenters { get; set; }
+        public DbSet<CitizenRequest> CitizenRequests { get; set; }
+        public DbSet<DriverLicense> DriverLicenses { get; set; }
+        public DbSet<DriverLicenseCategory> DriverLicenseCategories { get; set; }
+        public DbSet<IdentityCard> IdentityCards { get; set; }
+        public DbSet<Passport> Passports { get; set; }
+        public DbSet<ReportProblem> ReportProblems { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<AddressType> AddressTypes { get; set; }
         public DbSet<CityHall> CityHalls { get; set; }
         public DbSet<Property> Properties { get; set; }
-        public DbSet<CitizenRequest> CitizenRequests { get; set; }
-        public DbSet<ReportProblem> ReportProblems { get; set; }
+        public DbSet<PropertyType> PropertyTypes { get; set; }
+        public DbSet<PublicServantCityHall> PublicServantCityHalls { get; set; }
+        public DbSet<CitizenMedicalHistory> CitizenMedicalHistories { get; set; }
         public DbSet<MedicalAppointment> MedicalAppointments { get; set; }
-        public DbSet<CitizenMedicalHistory> CitizenMedicalHistory { get; set; }
+        public DbSet<MedicalCenter> MedicalCenters { get; set; }
+        public DbSet<MedicalCenterProcedure> MedicalCenterProcedures { get; set; }
+        public DbSet<MedicalPaymentHistory> MedicalPaymentHistories { get; set; }
+        public DbSet<MedicalProcedure> MedicalProcedures { get; set; }
+        public DbSet<PublicServantGP> PublicServantGPs { get; set; }
+        public DbSet<PublicServantPolice> PublicServantPolices { get; set; }
+        public DbSet<PublicServantSFO> PublicServantSFOs { get; set; }
+        public DbSet<PoliceStation> PoliceStations { get; set; }
+        public DbSet<SeriousFraudOffice> SeriousFraudOffices { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
