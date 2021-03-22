@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.Properties.Commands
 {
     public class CreatePropertyCommand : IRequest<RequestResponse>
     {
-        public string Identifier { get; set; }
+        public string UniqueIdentifier { get; set; }
     }
 
     public class CreatePropertyCommandHandler : IRequestHandler<CreatePropertyCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.Properties.Commands
     {
         public CreatePropertyCommandValidator()
         {
-            RuleFor(v => v.Identifier)
+            RuleFor(v => v.UniqueIdentifier)
                 .NotEmpty()
                 .NotNull();
         }

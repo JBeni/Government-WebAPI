@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Commands
 {
     public class CreateMedicalCenterCommand : IRequest<RequestResponse>
     {
-        public string Identifier { get; set; }
+        public string UniqueIdentifier { get; set; }
     }
 
     public class CreateMedicalCentersCommandHandler : IRequestHandler<CreateMedicalCenterCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Commands
     {
         public CreateMedicalCenterCommandValidator()
         {
-            RuleFor(v => v.Identifier)
+            RuleFor(v => v.UniqueIdentifier)
                 .NotEmpty()
                 .NotNull();
         }
