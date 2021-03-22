@@ -1,8 +1,10 @@
-﻿namespace GovernmentSystem.Domain.Entities.CityHallEntities
+﻿using GovernmentSystem.Domain.Common;
+
+namespace GovernmentSystem.Domain.Entities.CityHallEntities
 {
-    public class Property
+    public class Property : BaseEntity
     {
-        public string Identifier { get; set; }
+        public string UniqueIdentifier { get; set; }
         public long Size { get; set; }
         public string UnitOfMeasure { get; set; }
         public string ValueAtBuying { get; set; }
