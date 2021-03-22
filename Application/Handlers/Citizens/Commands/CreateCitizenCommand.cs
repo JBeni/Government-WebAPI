@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Domain.Entities.CityHallEntities;
+using GovernmentSystem.Domain.Entities.CitizenEntities;
 
 namespace GovernmentSystem.Application.Handlers.Citizens.Commands
 {
@@ -15,7 +16,7 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
         public string LastName { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public BirthCertificate DateOfBirth { get; set; }
         public Address PlaceOfBirth { get; set; }
     }
 
