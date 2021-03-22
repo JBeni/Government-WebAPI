@@ -7,10 +7,11 @@ namespace GovernmentSystem.Domain.Entities.MedicalEntities
 {
     public class MedicalCenter : BaseEntity
     {
+        public string UniqueIdentifier { get; set; }
         public string CenterName { get; set; }
         public DateTime ConstructionDate { get; set; }
 
         public Address Address { get; set; }
-        public ICollection<MedicalProcedure> MedicalOperation { get; set; }
+        public ICollection<MedicalProcedure> MedicalProcedures { get; set; }
     }
 }

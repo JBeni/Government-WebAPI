@@ -6,6 +6,7 @@ namespace GovernmentSystem.Domain.Entities.MedicalEntities
 {
     public class CitizenMedicalHistory : BaseEntity
     {
+        public string UniqueIdentifier { get; set; }
         public string Symptoms { get; set; }
         public string HealthProblem { get; set; }
         public DateTime DateOfDiagnostic { get; set; }
