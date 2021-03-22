@@ -11,6 +11,5 @@ namespace GovernmentSystem.Domain.Entities.CityHallEntities
         public DateTime ConstructionDate { get; set; }
 
         public Address Address { get; set; }
-        public ICollection<Property> Properties { get; set; }
     }
 }

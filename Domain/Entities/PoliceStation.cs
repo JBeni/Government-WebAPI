@@ -4,12 +4,13 @@ using System;
 
 namespace GovernmentSystem.Domain.Entities
 {
-    public class SeriousFraudOffice : BaseEntity
+    public class PoliceStation : BaseEntity
     {
         public string UniqueIdentifier { get; set; }
-        public string OfficeName { get; set; }
+        public string StationName { get; set; }
         public DateTime ConstructionDate { get; set; }
 
         public Address Address { get; set; }
+        public CityHall CityHall { get; set; }
     }
 }
