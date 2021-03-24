@@ -2,6 +2,7 @@
 using GovernmentSystem.Application.Handlers.DriverLicenses.Commands;
 using GovernmentSystem.Application.Handlers.DriverLicenses.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -26,7 +27,7 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public List<DriverLicensesResponse> GetDriverLicenses(GetDriverLicensesQuery query)
+        public List<DriverLicenseResponse> GetDriverLicenses(GetDriverLicensesQuery query)
         {
             throw new NotImplementedException();
         }
