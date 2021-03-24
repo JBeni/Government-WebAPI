@@ -25,7 +25,7 @@ namespace GovernmentSystem.Infrastructure.Services
             _mapper = mapper;
         }
 
-        public async Task<RequestResponse> AddCitizenMedicalHistory(CreateCitizenMedicalHistoryCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> CreateCitizenMedicalHistory(CreateCitizenMedicalHistoryCommand command, CancellationToken cancellationToken)
         {
             var citizenMedicalHistory = _dbContext.CitizenMedicalHistories.SingleOrDefault(x => x.Id == command.Id);
             if (citizenMedicalHistory != null)
@@ -55,13 +55,23 @@ namespace GovernmentSystem.Infrastructure.Services
             return RequestResponse.Success();
         }
 
-        public List<MedicalHistoryResponse> GetCitizenMedicalHistory(GetCitizenMedicalHistoryQuery query)
+        public List<MedicalHistoriesResponse> GetCitizenMedicalHistories(GetCitizenMedicalHistoriesQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MedicalHistoryResponse> GetCitizenMedicalHistory(GetCitizenMedicalHistoriesQuery query)
         {
             var result = _dbContext.CitizenMedicalHistories
                     .OrderBy(x => x.Id)
                     .ProjectTo<MedicalHistoryResponse>(_mapper.ConfigurationProvider)
                     .ToList();
             return result;
+        }
+
+        public MedicalHistoryResponse GetCitizenMedicalHistoryById(GetCitizenMedicalHistoryByIdQuery query)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<RequestResponse> UpdateCitizenMedicalHistory(UpdateCitizenMedicalHistoryCommand command, CancellationToken cancellationToken)

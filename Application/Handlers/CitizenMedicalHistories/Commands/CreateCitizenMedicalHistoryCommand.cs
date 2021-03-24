@@ -26,7 +26,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Commands
         {
             try
             {
-                return await _citizenMedicalHistoryService.AddCitizenMedicalHistory(request, cancellationToken);
+                return await _citizenMedicalHistoryService.CreateCitizenMedicalHistory(request, cancellationToken);
             }
             catch (Exception ex)
             {
