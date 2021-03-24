@@ -7,6 +7,8 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using GovernmentSystem.Application.Handlers.Properties.Queries;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
@@ -19,7 +21,7 @@ namespace GovernmentSystem.Infrastructure.Services
             _dbContext = dbContext;
         }
 
-        public async Task<RequestResponse> AddProperty(CreatePropertyCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> CreateProperty(CreatePropertyCommand command, CancellationToken cancellationToken)
         {
             var property = _dbContext.Properties.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
             if (property != null)
@@ -47,6 +49,16 @@ namespace GovernmentSystem.Infrastructure.Services
             _dbContext.Properties.Add(property);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
+        }
+
+        public List<PropertiesResponse> GetProperties(GetPropertiesQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PropertyResponse GetPropertyById(GetPropertyByIdQuery query)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<RequestResponse> UpdateProperty(UpdatePropertyCommand command, CancellationToken cancellationToken)

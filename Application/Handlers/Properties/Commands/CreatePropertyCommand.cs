@@ -26,7 +26,7 @@ namespace GovernmentSystem.Application.Handlers.Properties.Commands
         {
             try
             {
-                return await _propertyService.AddProperty(request, cancellationToken);
+                return await _propertyService.CreateProperty(request, cancellationToken);
             }
             catch (Exception ex)
             {
