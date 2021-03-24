@@ -10,6 +10,7 @@ using GovernmentSystem.Domain.Entities.MedicalEntities;
 using GovernmentSystem.Application.Handlers.MedicalCenterById.Queries;
 using System.Collections.Generic;
 using GovernmentSystem.Application.Handlers.MedicalCenters.Queries;
+using GovernmentSystem.Application.Responses;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
@@ -57,7 +58,7 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public List<MedicalCentersResponse> GetMedicalCenters(GetMedicalCentersQuery query)
+        public List<MedicalCenterResponse> GetMedicalCenters(GetMedicalCentersQuery query)
         {
             throw new NotImplementedException();
         }

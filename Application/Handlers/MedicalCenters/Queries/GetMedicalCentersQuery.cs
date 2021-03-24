@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.MedicalEntities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.MedicalCenters.Queries
 {
-    public class GetMedicalCentersQuery : IRequest<List<MedicalCentersResponse>>
+    public class GetMedicalCentersQuery : IRequest<List<MedicalCenterResponse>>
     {
         public string County { get; set; }
     }
 
-    public class GetMedicalCentersQueryHandler : IRequestHandler<GetMedicalCentersQuery, List<MedicalCentersResponse>>
+    public class GetMedicalCentersQueryHandler : IRequestHandler<GetMedicalCentersQuery, List<MedicalCenterResponse>>
     {
         private readonly IMedicalCenterService _medicalCenterService;
 
@@ -24,7 +22,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Queries
             _medicalCenterService = medicalCenterService;
         }
 
-        public Task<List<MedicalCentersResponse>> Handle(GetMedicalCentersQuery request, CancellationToken cancellationToken)
+        public Task<List<MedicalCenterResponse>> Handle(GetMedicalCentersQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,17 +33,6 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Queries
             {
                 throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
             }
-        }
-    }
-
-    public class MedicalCentersResponse : IMapFrom<MedicalCenter>
-    {
-        public string UniqueIdentifier { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<MedicalCenter, MedicalCentersResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }
