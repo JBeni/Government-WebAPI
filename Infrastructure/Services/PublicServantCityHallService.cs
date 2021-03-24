@@ -2,6 +2,7 @@
 using GovernmentSystem.Application.Handlers.PublicServantCityHalls.Commands;
 using GovernmentSystem.Application.Handlers.PublicServantCityHalls.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -21,12 +22,12 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public PublicServantCityHallByIdResponse GetPublicServantCityHallById(GetPublicServantCityHallByIdQuery query)
+        public PublicServantCityHallResponse GetPublicServantCityHallById(GetPublicServantCityHallByIdQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public List<PublicServantCityHallsResponse> GetPublicServantCityHalls(GetPublicServantCityHallsQuery query)
+        public List<PublicServantCityHallResponse> GetPublicServantCityHalls(GetPublicServantCityHallsQuery query)
         {
             throw new NotImplementedException();
         }
