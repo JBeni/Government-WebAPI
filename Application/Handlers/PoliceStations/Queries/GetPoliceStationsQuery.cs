@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.PoliceStations.Queries
 {
-    public class GetPoliceStationsQuery : IRequest<List<PoliceStationsResponse>>
+    public class GetPoliceStationsQuery : IRequest<List<PoliceStationResponse>>
     {
         public string County { get; set; }
     }
 
-    public class GetPoliceStationsQueryHandler : IRequestHandler<GetPoliceStationsQuery, List<PoliceStationsResponse>>
+    public class GetPoliceStationsQueryHandler : IRequestHandler<GetPoliceStationsQuery, List<PoliceStationResponse>>
     {
         private readonly IPoliceStationService _policeStationService;
 
@@ -24,7 +22,7 @@ namespace GovernmentSystem.Application.Handlers.PoliceStations.Queries
             _policeStationService = policeStationService;
         }
 
-        public Task<List<PoliceStationsResponse>> Handle(GetPoliceStationsQuery request, CancellationToken cancellationToken)
+        public Task<List<PoliceStationResponse>> Handle(GetPoliceStationsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,17 +33,6 @@ namespace GovernmentSystem.Application.Handlers.PoliceStations.Queries
             {
                 throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
             }
-        }
-    }
-
-    public class PoliceStationsResponse : IMapFrom<PoliceStation>
-    {
-        public string UniqueIdentifier { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<PoliceStation, PoliceStationsResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }

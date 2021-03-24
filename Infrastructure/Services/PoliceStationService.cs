@@ -2,6 +2,7 @@
 using GovernmentSystem.Application.Handlers.PoliceStations.Commands;
 using GovernmentSystem.Application.Handlers.PoliceStations.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -26,7 +27,7 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public List<PoliceStationsResponse> GetPoliceStations(GetPoliceStationsQuery query)
+        public List<PoliceStationResponse> GetPoliceStations(GetPoliceStationsQuery query)
         {
             throw new NotImplementedException();
         }
