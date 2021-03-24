@@ -7,6 +7,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using GovernmentSystem.Domain.Entities.MedicalEntities;
+using GovernmentSystem.Application.Handlers.MedicalCenterById.Queries;
+using System.Collections.Generic;
+using GovernmentSystem.Application.Handlers.MedicalCenters.Queries;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
@@ -19,7 +22,7 @@ namespace GovernmentSystem.Infrastructure.Services
             _dbContext = dbContext;
         }
 
-        public async Task<RequestResponse> AddMedicalCenter(CreateMedicalCenterCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> CreateMedicalCenter(CreateMedicalCenterCommand command, CancellationToken cancellationToken)
         {
             var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
             if (medicalCenter != null)
@@ -47,6 +50,16 @@ namespace GovernmentSystem.Infrastructure.Services
             _dbContext.MedicalCenters.Update(medicalCenter);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
+        }
+
+        public MedicalCenterResponse GetMedicalCenterById(GetMedicalCenterByIdQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MedicalCentersResponse> GetMedicalCenters(GetMedicalCentersQuery query)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<RequestResponse> UpdateMedicalCenter(UpdateMedicalCenterCommand command, CancellationToken cancellationToken)

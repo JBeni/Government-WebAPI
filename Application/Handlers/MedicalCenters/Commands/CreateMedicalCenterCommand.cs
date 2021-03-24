@@ -26,7 +26,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Commands
         {
             try
             {
-                return await _medicalCenterService.AddMedicalCenter(request, cancellationToken);
+                return await _medicalCenterService.CreateMedicalCenter(request, cancellationToken);
             }
             catch (Exception ex)
             {
