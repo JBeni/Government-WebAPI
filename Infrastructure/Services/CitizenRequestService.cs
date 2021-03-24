@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using GovernmentSystem.Domain.Entities.CitizenEntities;
 using GovernmentSystem.Application.Handlers.CitizenRequests.Queries;
 using System.Collections.Generic;
+using GovernmentSystem.Application.Responses;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
@@ -58,7 +59,7 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public List<CitizenRequestsResponse> GetCitizenRequests(GetCitizenRequestsQuery query)
+        public List<CitizenRequestResponse> GetCitizenRequests(GetCitizenRequestsQuery query)
         {
             throw new NotImplementedException();
         }

@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.CitizenRequests.Queries
 {
-    public class GetCitizenRequestsQuery : IRequest<List<CitizenRequestsResponse>>
+    public class GetCitizenRequestsQuery : IRequest<List<CitizenRequestResponse>>
     {
         public int Id { get; set; }
     }
 
-    public class GetCitizenRequestsQueryHandler : IRequestHandler<GetCitizenRequestsQuery, List<CitizenRequestsResponse>>
+    public class GetCitizenRequestsQueryHandler : IRequestHandler<GetCitizenRequestsQuery, List<CitizenRequestResponse>>
     {
         private readonly ICitizenRequestService _citizenRequestService;
 
@@ -24,7 +22,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenRequests.Queries
             _citizenRequestService = citizenRequestService;
         }
 
-        public Task<List<CitizenRequestsResponse>> Handle(GetCitizenRequestsQuery request, CancellationToken cancellationToken)
+        public Task<List<CitizenRequestResponse>> Handle(GetCitizenRequestsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,15 +33,6 @@ namespace GovernmentSystem.Application.Handlers.CitizenRequests.Queries
             {
                 throw new Exception("There was an error retrieving the medical history of citizen", ex);
             }
-        }
-    }
-
-    public class CitizenRequestsResponse : IMapFrom<CitizenRequest>
-    {
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<CitizenRequest, CitizenRequestsResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }

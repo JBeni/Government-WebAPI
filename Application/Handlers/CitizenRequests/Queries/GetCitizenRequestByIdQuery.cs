@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Threading;
@@ -34,15 +32,6 @@ namespace GovernmentSystem.Application.Handlers.CitizenRequests.Queries
             {
                 throw new Exception("There was an error retrieving the medical history of citizen", ex);
             }
-        }
-    }
-
-    public class CitizenRequestResponse : IMapFrom<CitizenRequest>
-    {
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<CitizenRequest, CitizenRequestResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }
