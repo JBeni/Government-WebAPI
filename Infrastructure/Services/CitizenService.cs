@@ -50,7 +50,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> DeleteCitizen(DeleteCitizenCommand command, CancellationToken cancellationToken)
         {
-            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.CNP == command.CNP);
+            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (citizen == null)
             {
                 throw new Exception("The citizen does not exists");
@@ -95,7 +95,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> UpdateCitizen(UpdateCitizenCommand command, CancellationToken cancellationToken)
         {
-            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.CNP == command.CNP);
+            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (citizen == null)
             {
                 throw new Exception("The citizen does not exists");

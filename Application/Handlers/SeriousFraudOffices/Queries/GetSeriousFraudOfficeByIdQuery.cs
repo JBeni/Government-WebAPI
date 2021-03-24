@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Queries
 {
     public class GetSeriousFraudOfficeByIdQuery : IRequest<SeriousFraudOfficeResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetSeriousFraudOfficeByIdQueryHandler : IRequestHandler<GetSeriousFraudOfficeByIdQuery, SeriousFraudOfficeResponse>

@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands
     {
         public DeleteSeriousFraudOfficeCommandValidator()
         {
-            RuleFor(v => v.Identifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

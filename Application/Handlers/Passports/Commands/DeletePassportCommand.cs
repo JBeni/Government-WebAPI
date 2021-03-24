@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.Passports.Commands
 {
     public class DeletePassportCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeletePassportsCommandHandler : IRequestHandler<DeletePassportCommand, RequestResponse>
@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.Passports.Commands
     {
         public DeletePassportCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

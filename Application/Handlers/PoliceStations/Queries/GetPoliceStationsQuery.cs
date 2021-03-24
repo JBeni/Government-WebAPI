@@ -10,7 +10,6 @@ namespace GovernmentSystem.Application.Handlers.PoliceStations.Queries
 {
     public class GetPoliceStationsQuery : IRequest<List<PoliceStationResponse>>
     {
-        public string County { get; set; }
     }
 
     public class GetPoliceStationsQueryHandler : IRequestHandler<GetPoliceStationsQuery, List<PoliceStationResponse>>

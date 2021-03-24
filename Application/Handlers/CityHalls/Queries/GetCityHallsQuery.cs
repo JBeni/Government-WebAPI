@@ -10,7 +10,6 @@ namespace GovernmentSystem.Application.Handlers.CityHalls.Queries
 {
     public class GetCityHallsQuery : IRequest<List<CityHallResponse>>
     {
-        public string County { get; set; }
     }
 
     public class GetCityHallsQueryHandler : IRequestHandler<GetCityHallsQuery, List<CityHallResponse>>

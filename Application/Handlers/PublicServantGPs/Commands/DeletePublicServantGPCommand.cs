@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Commands
 {
     public class DeletePublicServantGPCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeletePublicServantGPsCommandHandler : IRequestHandler<DeletePublicServantGPCommand, RequestResponse>
@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Commands
     {
         public DeletePublicServantGPCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

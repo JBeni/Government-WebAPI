@@ -10,7 +10,6 @@ namespace GovernmentSystem.Application.Handlers.MedicalAppointments.Queries
 {
     public class GetMedicalAppointmentsQuery : IRequest<List<MedicalAppointmentResponse>>
     {
-        public string County { get; set; }
     }
 
     public class GetMedicalAppointmentsQueryHandler : IRequestHandler<GetMedicalAppointmentsQuery, List<MedicalAppointmentResponse>>

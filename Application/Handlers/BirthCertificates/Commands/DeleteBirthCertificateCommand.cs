@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.BirthCertificates.Commands
 {
     public class DeleteBirthCertificateCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeleteBirthCertificateCommandHandler : IRequestHandler<DeleteBirthCertificateCommand, RequestResponse>
@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.BirthCertificates.Commands
     {
         public DeleteBirthCertificateCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

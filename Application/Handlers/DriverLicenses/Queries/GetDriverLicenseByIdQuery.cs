@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Queries
 {
     public class GetDriverLicenseByIdQuery : IRequest<DriverLicenseResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetDriverLicenseByIdQueryHandler : IRequestHandler<GetDriverLicenseByIdQuery, DriverLicenseResponse>

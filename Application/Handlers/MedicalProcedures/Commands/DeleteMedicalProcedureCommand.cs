@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalProcedures.Commands
 {
     public class DeleteMedicalProcedureCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeleteMedicalProceduresCommandHandler : IRequestHandler<DeleteMedicalProcedureCommand, RequestResponse>
@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalProcedures.Commands
     {
         public DeleteMedicalProcedureCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenterProcedures.Queries
 {
     public class GetMedicalCenterProcedureByIdQuery : IRequest<MedicalCenterProcedureResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetMedicalCenterProcedureByIdQueryHandler : IRequestHandler<GetMedicalCenterProcedureByIdQuery, MedicalCenterProcedureResponse>

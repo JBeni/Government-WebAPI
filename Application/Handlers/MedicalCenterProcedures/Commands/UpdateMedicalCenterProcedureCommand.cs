@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Domain.Entities.MedicalEntities;
 using MediatR;
 using System;
 using System.Threading;
@@ -11,6 +12,8 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenterProcedures.Commands
     public class UpdateMedicalCenterProcedureCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
+        public MedicalCenter MedicalCenter { get; set; }
+        public MedicalProcedure MedicalProcedure { get; set; }
     }
 
     public class UpdateMedicalCenterProcedureCommandHandler : IRequestHandler<UpdateMedicalCenterProcedureCommand, RequestResponse>
@@ -39,9 +42,9 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenterProcedures.Commands
     {
         public UpdateMedicalCenterProcedureCommandValidator()
         {
-            RuleFor(v => v.Identifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
+            RuleFor(v => v.MedicalCenter).NotEmpty().NotNull();
+            RuleFor(v => v.MedicalProcedure).NotEmpty().NotNull();
         }
     }
 }

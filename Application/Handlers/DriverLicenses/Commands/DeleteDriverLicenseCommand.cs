@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
     {
         public DeleteDriverLicenseCommandValidator()
         {
-            RuleFor(v => v.Identifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

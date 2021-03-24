@@ -10,7 +10,6 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Queries
 {
     public class GetPublicServantSFOsQuery : IRequest<List<PublicServantSFOResponse>>
     {
-        public string County { get; set; }
     }
 
     public class GetPublicServantSFOsQueryHandler : IRequestHandler<GetPublicServantSFOsQuery, List<PublicServantSFOResponse>>

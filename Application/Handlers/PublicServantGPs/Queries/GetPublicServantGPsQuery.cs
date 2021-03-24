@@ -10,7 +10,6 @@ namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Queries
 {
     public class GetPublicServantGPsQuery : IRequest<List<PublicServantGPResponse>>
     {
-        public string County { get; set; }
     }
 
     public class GetPublicServantGPsQueryHandler : IRequestHandler<GetPublicServantGPsQuery, List<PublicServantGPResponse>>

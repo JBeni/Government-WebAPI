@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalAppointments.Queries
 {
     public class GetMedicalAppointmentByIdQuery : IRequest<MedicalAppointmentResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetMedicalAppointmentByIdQueryHandler : IRequestHandler<GetMedicalAppointmentByIdQuery, MedicalAppointmentResponse>

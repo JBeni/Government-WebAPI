@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.Addresses.Queries
 {
     public class GetAddressByTypeQuery : IRequest<List<AddressResponse>>
     {
-        public string County { get; set; }
+        public string Type { get; set; }
     }
 
     public class GetAddressByTypeQueryHandler : IRequestHandler<GetAddressByTypeQuery, List<AddressResponse>>

@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.PoliceStations.Commands
 {
     public class DeletePoliceStationCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeletePoliceStationsCommandHandler : IRequestHandler<DeletePoliceStationCommand, RequestResponse>
@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.PoliceStations.Commands
     {
         public DeletePoliceStationCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

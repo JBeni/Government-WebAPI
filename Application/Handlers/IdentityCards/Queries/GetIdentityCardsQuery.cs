@@ -10,7 +10,6 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Queries
 {
     public class GetIdentityCardsQuery : IRequest<List<IdentityCardResponse>>
     {
-        public string County { get; set; }
     }
 
     public class GetIdentityCardsQueryHandler : IRequestHandler<GetIdentityCardsQuery, List<IdentityCardResponse>>

@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Commands
     {
         public DeleteIdentityCardCommandValidator()
         {
-            RuleFor(v => v.Identifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

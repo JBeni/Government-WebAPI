@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.Properties.Commands
 {
     public class DeletePropertyCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeletePropertyCommandHandler : IRequestHandler<DeletePropertyCommand, RequestResponse>
@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.Properties.Commands
     {
         public DeletePropertyCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenterProcedures.Commands
     {
         public DeleteMedicalCenterProcedureCommandValidator()
         {
-            RuleFor(v => v.Identifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

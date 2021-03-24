@@ -11,6 +11,8 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Commands
     public class CreateIdentityCardCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
+        public string Series { get; set; }
+        public string Type { get; set; }
     }
 
     public class CreateIdentityCardCommandHandler : IRequestHandler<CreateIdentityCardCommand, RequestResponse>
@@ -39,9 +41,9 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Commands
     {
         public CreateIdentityCardCommandValidator()
         {
-            RuleFor(v => v.Identifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).Null();
+            RuleFor(v => v.Series).NotEmpty().NotNull();
+            RuleFor(v => v.Type).NotEmpty().NotNull();
         }
     }
 }

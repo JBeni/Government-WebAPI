@@ -10,7 +10,6 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Queries
 {
     public class GetMedicalCentersQuery : IRequest<List<MedicalCenterResponse>>
     {
-        public string County { get; set; }
     }
 
     public class GetMedicalCentersQueryHandler : IRequestHandler<GetMedicalCentersQuery, List<MedicalCenterResponse>>

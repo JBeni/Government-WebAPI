@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Queries
 {
     public class GetPublicServantGPByIdQuery : IRequest<PublicServantGPResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetPublicServantGPByIdQueryHandler : IRequestHandler<GetPublicServantGPByIdQuery, PublicServantGPResponse>

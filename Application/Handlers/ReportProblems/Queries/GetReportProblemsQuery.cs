@@ -10,7 +10,6 @@ namespace GovernmentSystem.Application.Handlers.ReportProblems.Queries
 {
     public class GetReportProblemsQuery : IRequest<List<ReportProblemResponse>>
     {
-        public string County { get; set; }
     }
 
     public class GetReportProblemsQueryHandler : IRequestHandler<GetReportProblemsQuery, List<ReportProblemResponse>>

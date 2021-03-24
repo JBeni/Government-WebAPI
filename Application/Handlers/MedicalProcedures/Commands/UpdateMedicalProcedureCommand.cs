@@ -10,7 +10,11 @@ namespace GovernmentSystem.Application.Handlers.MedicalProcedures.Commands
 {
     public class UpdateMedicalProcedureCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
+        public long Price { get; set; }
+        public string ProcedureName { get; set; }
+        public string ProcedureDuration { get; set; }
+        public string AdditionalInformation { get; set; }
     }
 
     public class UpdateMedicalProceduresCommandHandler : IRequestHandler<UpdateMedicalProcedureCommand, RequestResponse>
@@ -39,9 +43,11 @@ namespace GovernmentSystem.Application.Handlers.MedicalProcedures.Commands
     {
         public UpdateMedicalProcedureCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
+            RuleFor(v => v.Price).NotEmpty().NotNull();
+            RuleFor(v => v.ProcedureName).NotEmpty().NotNull();
+            RuleFor(v => v.ProcedureDuration).NotEmpty().NotNull();
+            RuleFor(v => v.AdditionalInformation).NotEmpty().NotNull();
         }
     }
 }

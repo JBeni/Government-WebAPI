@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.ReportProblems.Queries
 {
     public class GetReportProblemByIdQuery : IRequest<ReportProblemResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetReportProblemByIdQueryHandler : IRequestHandler<GetReportProblemByIdQuery, ReportProblemResponse>

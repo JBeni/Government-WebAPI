@@ -10,7 +10,6 @@ namespace GovernmentSystem.Application.Handlers.Properties.Queries
 {
     public class GetPropertiesQuery : IRequest<List<PropertyResponse>>
     {
-        public string County { get; set; }
     }
 
     public class GetPropertiesQueryHandler : IRequestHandler<GetPropertiesQuery, List<PropertyResponse>>

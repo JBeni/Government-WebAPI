@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.Appointments.Commands
     {
         public DeleteMedicalAppointmentCommandValidator()
         {
-            RuleFor(v => v.Identifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

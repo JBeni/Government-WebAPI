@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Queries
 {
     public class GetIdentityCardByIdQuery : IRequest<IdentityCardResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetIdentityCardByIdQueryHandler : IRequestHandler<GetIdentityCardByIdQuery, IdentityCardResponse>

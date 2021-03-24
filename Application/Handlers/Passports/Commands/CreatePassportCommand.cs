@@ -10,7 +10,10 @@ namespace GovernmentSystem.Application.Handlers.Passports.Commands
 {
     public class CreatePassportCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
+        public long PassportNumber { get; set; }
+        public string Type { get; set; }
+        public string Country { get; set; }
     }
 
     public class CreatePassportsCommandHandler : IRequestHandler<CreatePassportCommand, RequestResponse>
@@ -39,9 +42,10 @@ namespace GovernmentSystem.Application.Handlers.Passports.Commands
     {
         public CreatePassportCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).Null();
+            RuleFor(v => v.PassportNumber).NotEmpty().NotNull();
+            RuleFor(v => v.Type).NotEmpty().NotNull();
+            RuleFor(v => v.Country).NotEmpty().NotNull();
         }
     }
 }

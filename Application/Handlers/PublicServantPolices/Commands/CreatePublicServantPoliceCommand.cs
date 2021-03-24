@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Domain.Entities;
 using MediatR;
 using System;
 using System.Threading;
@@ -10,7 +11,15 @@ namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Commands
 {
     public class CreatePublicServantPoliceCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
+        public string CNP { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string DutyRole { get; set; }
+        public int ContractYears { get; set; }
+        public DateTime HireStartDate { get; set; }
+        public DateTime HireEndDate { get; set; }
+        public PoliceStation PoliceStation { get; set; }
     }
 
     public class CreatePublicServantPolicesCommandHandler : IRequestHandler<CreatePublicServantPoliceCommand, RequestResponse>
@@ -39,9 +48,15 @@ namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Commands
     {
         public CreatePublicServantPoliceCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).Null();
+            RuleFor(v => v.CNP).NotEmpty().NotNull();
+            RuleFor(v => v.FirstName).NotEmpty().NotNull();
+            RuleFor(v => v.LastName).NotEmpty().NotNull();
+            RuleFor(v => v.DutyRole).NotEmpty().NotNull();
+            RuleFor(v => v.ContractYears).NotEmpty().NotNull();
+            RuleFor(v => v.HireStartDate).NotEmpty().NotNull();
+            RuleFor(v => v.HireEndDate).NotEmpty().NotNull();
+            RuleFor(v => v.PoliceStation).NotEmpty().NotNull();
         }
     }
 }

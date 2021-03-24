@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands
 {
     public class DeleteMedicalPaymentHistoryCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeleteMedicalPaymentHistorysCommandHandler : IRequestHandler<DeleteMedicalPaymentHistoryCommand, RequestResponse>
@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands
     {
         public DeleteMedicalPaymentHistoryCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

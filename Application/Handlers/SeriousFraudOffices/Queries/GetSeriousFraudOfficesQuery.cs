@@ -10,7 +10,6 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Queries
 {
     public class GetSeriousFraudOfficesQuery : IRequest<List<SeriousFraudOfficeResponse>>
     {
-        public string County { get; set; }
     }
 
     public class GetSeriousFraudOfficesQueryHandler : IRequestHandler<GetSeriousFraudOfficesQuery, List<SeriousFraudOfficeResponse>>

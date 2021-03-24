@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Commands
 {
     public class DeleteMedicalCenterCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeleteMedicalCenterCommandHandler : IRequestHandler<DeleteMedicalCenterCommand, RequestResponse>
@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Commands
     {
         public DeleteMedicalCenterCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

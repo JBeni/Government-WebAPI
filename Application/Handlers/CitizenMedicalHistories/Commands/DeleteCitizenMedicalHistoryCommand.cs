@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Commands
     {
         public DeleteCitizenMedicalHistoryCommandValidator()
         {
-            RuleFor(v => v.Identifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

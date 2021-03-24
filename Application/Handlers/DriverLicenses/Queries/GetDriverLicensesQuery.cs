@@ -10,7 +10,6 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Queries
 {
     public class GetDriverLicensesQuery : IRequest<List<DriverLicenseResponse>>
     {
-        public string County { get; set; }
     }
 
     public class GetDriverLicensesQueryHandler : IRequestHandler<GetDriverLicensesQuery, List<DriverLicenseResponse>>

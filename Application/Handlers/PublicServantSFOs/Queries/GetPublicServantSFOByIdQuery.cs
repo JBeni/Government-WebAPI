@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Queries
 {
     public class GetPublicServantSFOByIdQuery : IRequest<PublicServantSFOResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetPublicServantSFOQueryHandler : IRequestHandler<GetPublicServantSFOByIdQuery, PublicServantSFOResponse>

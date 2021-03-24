@@ -11,8 +11,9 @@ namespace GovernmentSystem.Application.Handlers.CityHalls.Commands
 {
     public class UpdateCityHallCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
-        public string Name { get; set; }
+        public Guid Identifier { get; set; }
+        public string CityHallName { get; set; }
+        public DateTime ConstructionDate { get; set; }
         public Address Address { get; set; }
     }
 
@@ -42,9 +43,11 @@ namespace GovernmentSystem.Application.Handlers.CityHalls.Commands
     {
         public UpdateCityHallCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
+            RuleFor(v => v.CityHallName).NotEmpty().NotNull();
+            RuleFor(v => v.ConstructionDate).NotEmpty().NotNull();
+            RuleFor(v => v.Address).NotEmpty().NotNull();
+
         }
     }
 }

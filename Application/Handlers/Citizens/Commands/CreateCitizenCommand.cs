@@ -12,6 +12,7 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
 {
     public class CreateCitizenCommand : IRequest<RequestResponse>
     {
+        public Guid Identifier { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
@@ -47,9 +48,13 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
     {
         public CreateCitizenCommandValidator()
         {
-            RuleFor(v => v.DateOfBirth)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).Null();
+            RuleFor(v => v.FirstName).NotEmpty().NotNull();
+            RuleFor(v => v.LastName).NotEmpty().NotNull();
+            RuleFor(v => v.Age).NotEmpty().NotNull();
+            RuleFor(v => v.Gender).NotEmpty().NotNull();
+            RuleFor(v => v.DateOfBirth).NotEmpty().NotNull();
+            RuleFor(v => v.PlaceOfBirth).NotEmpty().NotNull();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> CreateCityHall(CreateCityHallCommand command, CancellationToken cancellationToken)
         {
-            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
+            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (cityHall != null)
             {
                 throw new Exception("The city hall already exists");
@@ -32,8 +32,8 @@ namespace GovernmentSystem.Infrastructure.Services
 
             var entity = new CityHall
             {
-                UniqueIdentifier = command.UniqueIdentifier,
-                Name = command.Name,
+                Identifier = command.Identifier,
+                CityHallName = command.CityHallName,
                 Address = command.Address,
             };
 
@@ -45,7 +45,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> DeleteCityHall(DeleteCityHallCommand command, CancellationToken cancellationToken)
         {
-            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
+            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (cityHall == null)
             {
                 throw new Exception("The city hall does not exists");
@@ -71,13 +71,13 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> UpdateCityHall(UpdateCityHallCommand command, CancellationToken cancellationToken)
         {
-            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
+            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (cityHall == null)
             {
                 throw new Exception("The city hall does not exists");
             }
 
-            cityHall.Name = command.Name;
+            cityHall.CityHallName = command.CityHallName;
             cityHall.Address = command.Address;
 
             _dbContext.CityHalls.Update(cityHall);

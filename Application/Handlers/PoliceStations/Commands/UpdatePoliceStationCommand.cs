@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Domain.Entities.CityHallEntities;
 using MediatR;
 using System;
 using System.Threading;
@@ -10,7 +11,11 @@ namespace GovernmentSystem.Application.Handlers.PoliceStations.Commands
 {
     public class UpdatePoliceStationCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
+        public string StationName { get; set; }
+        public DateTime ConstructionDate { get; set; }
+        public Address Address { get; set; }
+        public CityHall CityHall { get; set; }
     }
 
     public class UpdatePoliceStationsCommandHandler : IRequestHandler<UpdatePoliceStationCommand, RequestResponse>
@@ -39,9 +44,11 @@ namespace GovernmentSystem.Application.Handlers.PoliceStations.Commands
     {
         public UpdatePoliceStationCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
+            RuleFor(v => v.StationName).NotEmpty().NotNull();
+            RuleFor(v => v.ConstructionDate).NotEmpty().NotNull();
+            RuleFor(v => v.Address).NotEmpty().NotNull();
+            RuleFor(v => v.CityHall).NotEmpty().NotNull();
         }
     }
 }

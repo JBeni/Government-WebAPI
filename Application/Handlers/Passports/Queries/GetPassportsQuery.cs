@@ -10,7 +10,6 @@ namespace GovernmentSystem.Application.Handlers.Passports.Queries
 {
     public class GetPassportsQuery : IRequest<List<PassportResponse>>
     {
-        public string County { get; set; }
     }
 
     public class GetPassportsQueryHandler : IRequestHandler<GetPassportsQuery, List<PassportResponse>>

@@ -5,12 +5,16 @@ using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using GovernmentSystem.Domain.Entities.CityHallEntities;
 
 namespace GovernmentSystem.Application.Handlers.MedicalCenters.Commands
 {
     public class UpdateMedicalCenterCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
+        public string CenterName { get; set; }
+        public DateTime ConstructionDate { get; set; }
+        public Address Address { get; set; }
     }
 
     public class UpdateMedicalCenterCommandHandler : IRequestHandler<UpdateMedicalCenterCommand, RequestResponse>
@@ -39,9 +43,10 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Commands
     {
         public UpdateMedicalCenterCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
+            RuleFor(v => v.CenterName).NotEmpty().NotNull();
+            RuleFor(v => v.ConstructionDate).NotEmpty().NotNull();
+            RuleFor(v => v.Address).NotEmpty().NotNull();
         }
     }
 }

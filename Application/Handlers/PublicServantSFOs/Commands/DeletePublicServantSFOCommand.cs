@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
     {
         public DeletePublicServantSFOHandlerValidator()
         {
-            RuleFor(v => v.Identifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

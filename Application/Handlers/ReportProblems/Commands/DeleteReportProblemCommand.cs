@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.ReportProblems.Commands
     {
         public DeleteReportProblemCommandValidator()
         {
-            RuleFor(v => v.Identifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

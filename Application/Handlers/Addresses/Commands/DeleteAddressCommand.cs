@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.Addresses.Commands
 {
     public class DeleteAddressCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeleteAddressCommandHandler : IRequestHandler<DeleteAddressCommand, RequestResponse>
@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.Addresses.Commands
     {
         public DeleteAddressCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

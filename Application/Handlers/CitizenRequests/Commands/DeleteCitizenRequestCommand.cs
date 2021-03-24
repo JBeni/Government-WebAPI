@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenRequests.Commands
     {
         public DeleteCitizenRequestCommandValidator()
         {
-            RuleFor(v => v.Identifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

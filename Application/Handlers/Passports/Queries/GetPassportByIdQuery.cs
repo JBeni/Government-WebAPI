@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.Passports.Queries
 {
     public class GetPassportByIdQuery : IRequest<PassportResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetPassportByIdQueryHandler : IRequestHandler<GetPassportByIdQuery, PassportResponse>

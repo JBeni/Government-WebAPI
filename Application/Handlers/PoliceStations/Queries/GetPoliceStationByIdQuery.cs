@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.PoliceStations.Queries
 {
     public class GetPoliceStationByIdQuery : IRequest<PoliceStationResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetPoliceStationByIdQueryHandler : IRequestHandler<GetPoliceStationByIdQuery, PoliceStationResponse>

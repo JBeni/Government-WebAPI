@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Queries
 {
     public class GetMedicalPaymentHistoryByIdQuery : IRequest<MedicalPaymentHistoryResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetMedicalPaymentHistoryByIdQueryHandler : IRequestHandler<GetMedicalPaymentHistoryByIdQuery, MedicalPaymentHistoryResponse>

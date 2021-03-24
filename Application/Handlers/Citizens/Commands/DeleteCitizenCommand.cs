@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
 {
     public class DeleteCitizenCommand : IRequest<RequestResponse>
     {
-        public string CNP { get; set; }
+        public Guid Identifier { get; set; }
         public DateTime DateOfDeath { get; set; }
     }
 
@@ -40,9 +40,7 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
     {
         public DeleteCitizenCommandValidator()
         {
-            RuleFor(v => v.CNP)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

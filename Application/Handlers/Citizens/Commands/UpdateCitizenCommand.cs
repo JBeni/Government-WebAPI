@@ -12,7 +12,7 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
 {
     public class UpdateCitizenCommand : IRequest<RequestResponse>
     {
-        public string CNP { get; set; }
+        public Guid Identifier { get; set; }
         public IdentityCard IdentityCard { get; set; }
         public Passport Passport { get; set; }
         public DriverLicense DriverLicense { get; set; }
@@ -45,9 +45,11 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
     {
         public UpdateCitizenCommandValidator()
         {
-            RuleFor(v => v.CNP)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
+            RuleFor(v => v.IdentityCard).NotEmpty().NotNull();
+            RuleFor(v => v.Passport).NotEmpty().NotNull();
+            RuleFor(v => v.DriverLicense).NotEmpty().NotNull();
+            RuleFor(v => v.CityHallResidence).NotEmpty().NotNull();
         }
     }
 }

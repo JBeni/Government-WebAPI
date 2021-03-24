@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantCityHalls.Queries
 {
     public class GetPublicServantCityHallByIdQuery : IRequest<PublicServantCityHallResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetPublicServantCityHallByIdQueryHandler : IRequestHandler<GetPublicServantCityHallByIdQuery, PublicServantCityHallResponse>

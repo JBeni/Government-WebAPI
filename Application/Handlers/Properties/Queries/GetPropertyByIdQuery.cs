@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.Properties.Queries
 {
     public class GetPropertyByIdQuery : IRequest<PropertyResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetPropertyByIdQueryHandler : IRequestHandler<GetPropertyByIdQuery, PropertyResponse>

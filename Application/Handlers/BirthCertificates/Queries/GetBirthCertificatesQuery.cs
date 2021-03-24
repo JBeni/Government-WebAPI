@@ -10,7 +10,6 @@ namespace GovernmentSystem.Application.Handlers.BirthCertificates.Queries
 {
     public class GetBirthCertificatesQuery : IRequest<List<BirthCertificateResponse>>
     {
-        public string County { get; set; }
     }
 
     public class GetBirthCertificatesQueryHandler : IRequestHandler<GetBirthCertificatesQuery, List<BirthCertificateResponse>>

@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.CityHalls.Commands
 {
     public class DeleteCityHallCommand : IRequest<RequestResponse>
     {
-        public string UniqueIdentifier { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeleteCityHallCommandHandler : IRequestHandler<DeleteCityHallCommand, RequestResponse>
@@ -39,9 +39,7 @@ namespace GovernmentSystem.Application.Handlers.CityHalls.Commands
     {
         public DeleteCityHallCommandValidator()
         {
-            RuleFor(v => v.UniqueIdentifier)
-                .NotEmpty()
-                .NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
         }
     }
 }

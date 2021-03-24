@@ -9,7 +9,7 @@ namespace GovernmentSystem.Application.Handlers.BirthCertificates.Queries
 {
     public class GetBirthCertificateByIdQuery : IRequest<BirthCertificateResponse>
     {
-        public string County { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetBirthCertificateByIdQueryHandler : IRequestHandler<GetBirthCertificateByIdQuery, BirthCertificateResponse>
