@@ -7,6 +7,8 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using GovernmentSystem.Application.Handlers.CityHalls.Queries;
+using System.Collections.Generic;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
@@ -19,7 +21,7 @@ namespace GovernmentSystem.Infrastructure.Services
             _dbContext = dbContext;
         }
 
-        public async Task<RequestResponse> AddCityHall(CreateCityHallCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> CreateCityHall(CreateCityHallCommand command, CancellationToken cancellationToken)
         {
             var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.UniqueIdentifier == command.UniqueIdentifier);
             if (cityHall != null)
@@ -54,6 +56,16 @@ namespace GovernmentSystem.Infrastructure.Services
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             return RequestResponse.Success();
+        }
+
+        public CityHallResponse GetCityHallById(GetCityHallByIdQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CityHallsResponse> GetCityHalls(GetCityHallsQuery query)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<RequestResponse> UpdateCityHall(UpdateCityHallCommand command, CancellationToken cancellationToken)

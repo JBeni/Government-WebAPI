@@ -4,31 +4,30 @@ using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Domain.Entities.CityHallEntities;
 using MediatR;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.CityHalls.Queries
 {
-    public class GetCityHallsQuery : IRequest<List<CityHallsResponse>>
+    public class GetCityHallByIdQuery : IRequest<CityHallResponse>
     {
         public string County { get; set; }
     }
 
-    public class GetCityHallsQueryHandler : IRequestHandler<GetCityHallsQuery, List<CityHallsResponse>>
+    public class GetCityHallByIdQueryHandler : IRequestHandler<GetCityHallByIdQuery, CityHallResponse>
     {
         private readonly ICityHallService _cityHallService;
 
-        public GetCityHallsQueryHandler(ICityHallService cityHallService)
+        public GetCityHallByIdQueryHandler(ICityHallService cityHallService)
         {
             _cityHallService = cityHallService;
         }
 
-        public Task<List<CityHallsResponse>> Handle(GetCityHallsQuery request, CancellationToken cancellationToken)
+        public Task<CityHallResponse> Handle(GetCityHallByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                var result = _cityHallService.GetCityHalls(request);
+                var result = _cityHallService.GetCityHallById(request);
                 return Task.FromResult(result);
             }
             catch (Exception ex)
@@ -38,13 +37,13 @@ namespace GovernmentSystem.Application.Handlers.CityHalls.Queries
         }
     }
 
-    public class CityHallsResponse : IMapFrom<CityHall>
+    public class CityHallResponse : IMapFrom<CityHall>
     {
         public string UniqueIdentifier { get; set; }
 
         public void Mapping(Profile profile)
         {
-            //profile.CreateMap<CityHall, CityHallsResponse>()
+            //profile.CreateMap<CityHall, CityHallResponse>()
             //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }

@@ -29,7 +29,7 @@ namespace GovernmentSystem.Application.Handlers.CityHalls.Commands
         {
             try
             {
-                return await _cityHallService.AddCityHall(request, cancellationToken);
+                return await _cityHallService.CreateCityHall(request, cancellationToken);
             }
             catch (Exception ex)
             {
