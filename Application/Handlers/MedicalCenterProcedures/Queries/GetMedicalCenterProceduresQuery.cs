@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.MedicalEntities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.MedicalCenterProcedures.Queries
 {
-    public class GetMedicalCenterProceduresQuery : IRequest<List<MedicalCenterProceduresResponse>>
+    public class GetMedicalCenterProceduresQuery : IRequest<List<MedicalCenterProcedureResponse>>
     {
         public string County { get; set; }
     }
 
-    public class GetMedicalCenterProceduresQueryHandler : IRequestHandler<GetMedicalCenterProceduresQuery, List<MedicalCenterProceduresResponse>>
+    public class GetMedicalCenterProceduresQueryHandler : IRequestHandler<GetMedicalCenterProceduresQuery, List<MedicalCenterProcedureResponse>>
     {
         private readonly IMedicalCenterProcedureService _medicalCenterProcedureService;
 
@@ -24,7 +22,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenterProcedures.Queries
             _medicalCenterProcedureService = medicalCenterProcedureService;
         }
 
-        public Task<List<MedicalCenterProceduresResponse>> Handle(GetMedicalCenterProceduresQuery request, CancellationToken cancellationToken)
+        public Task<List<MedicalCenterProcedureResponse>> Handle(GetMedicalCenterProceduresQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,17 +33,6 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenterProcedures.Queries
             {
                 throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
             }
-        }
-    }
-
-    public class MedicalCenterProceduresResponse : IMapFrom<MedicalCenterProcedure>
-    {
-        public string UniqueIdentifier { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<MedicalCenterProcedure, MedicalCenterProceduresResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }
