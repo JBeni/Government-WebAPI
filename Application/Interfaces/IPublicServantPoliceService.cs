@@ -4,6 +4,7 @@ using GovernmentSystem.Application.Handlers.PublicServantPolices.Commands;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using GovernmentSystem.Application.Responses;
 
 namespace GovernmentSystem.Application.Interfaces
 {
@@ -11,8 +12,8 @@ namespace GovernmentSystem.Application.Interfaces
     {
         Task<RequestResponse> CreatePublicServantPolice(CreatePublicServantPoliceCommand command, CancellationToken cancellationToken);
         Task<RequestResponse> DeletePublicServantPolice(DeletePublicServantPoliceCommand command, CancellationToken cancellationToken);
-        PublicServantPoliceByIdResponse GetPublicServantPoliceById(GetPublicServantPoliceByIdQuery query);
-        List<PublicServantPolicesResponse> GetPublicServantPolices(GetPublicServantPolicesQuery query);
+        PublicServantPoliceResponse GetPublicServantPoliceById(GetPublicServantPoliceByIdQuery query);
+        List<PublicServantPoliceResponse> GetPublicServantPolices(GetPublicServantPolicesQuery query);
         Task<RequestResponse> UpdatePublicServantPolice(UpdatePublicServantPoliceCommand command, CancellationToken cancellationToken);
     }
 }

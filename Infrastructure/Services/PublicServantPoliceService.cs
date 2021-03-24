@@ -2,6 +2,7 @@
 using GovernmentSystem.Application.Handlers.PublicServantPolices.Commands;
 using GovernmentSystem.Application.Handlers.PublicServantPolices.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -21,12 +22,12 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public PublicServantPoliceByIdResponse GetPublicServantPoliceById(GetPublicServantPoliceByIdQuery query)
+        public PublicServantPoliceResponse GetPublicServantPoliceById(GetPublicServantPoliceByIdQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public List<PublicServantPolicesResponse> GetPublicServantPolices(GetPublicServantPolicesQuery query)
+        public List<PublicServantPoliceResponse> GetPublicServantPolices(GetPublicServantPolicesQuery query)
         {
             throw new NotImplementedException();
         }

@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.PublicServantEntities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Threading;
@@ -9,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Queries
 {
-    public class GetPublicServantPoliceByIdQuery : IRequest<PublicServantPoliceByIdResponse>
+    public class GetPublicServantPoliceByIdQuery : IRequest<PublicServantPoliceResponse>
     {
         public string County { get; set; }
     }
 
-    public class GetPublicServantPoliceByIdQueryHandler : IRequestHandler<GetPublicServantPoliceByIdQuery, PublicServantPoliceByIdResponse>
+    public class GetPublicServantPoliceByIdQueryHandler : IRequestHandler<GetPublicServantPoliceByIdQuery, PublicServantPoliceResponse>
     {
         private readonly IPublicServantPoliceService _publicServantPoliceService;
 
@@ -23,7 +21,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Queries
             _publicServantPoliceService = publicServantPoliceService;
         }
 
-        public Task<PublicServantPoliceByIdResponse> Handle(GetPublicServantPoliceByIdQuery request, CancellationToken cancellationToken)
+        public Task<PublicServantPoliceResponse> Handle(GetPublicServantPoliceByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -34,17 +32,6 @@ namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Queries
             {
                 throw new Exception("There was an error retrieving the public servant of police by Id", ex);
             }
-        }
-    }
-
-    public class PublicServantPoliceByIdResponse : IMapFrom<PublicServantPolice>
-    {
-        public string UniqueIdentifier { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<PublicServantPolice, PublicServantPoliceByIdResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }
