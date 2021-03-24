@@ -1,21 +1,19 @@
 ﻿using GovernmentSystem.Application.Interfaces;
-using AutoMapper;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using GovernmentSystem.Application.Common.Mappings;
 using System.Collections.Generic;
-using GovernmentSystem.Domain.Entities.MedicalEntities;
+using GovernmentSystem.Application.Responses;
 
 namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Queries
 {
-    public class GetCitizenMedicalHistoriesQuery : IRequest<List<MedicalHistoriesResponse>>
+    public class GetCitizenMedicalHistoriesQuery : IRequest<List<CitizenMedicalHistoryResponse>>
     {
         public int Id { get; set; }
     }
 
-    public class GetCitizenMedicalHistoriesQueryHandler : IRequestHandler<GetCitizenMedicalHistoriesQuery, List<MedicalHistoriesResponse>>
+    public class GetCitizenMedicalHistoriesQueryHandler : IRequestHandler<GetCitizenMedicalHistoriesQuery, List<CitizenMedicalHistoryResponse>>
     {
         private readonly ICitizenMedicalHistoryService _citizenMedicalHistoryService;
 
@@ -24,7 +22,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Queries
             _citizenMedicalHistoryService = citizenMedicalHistoryService;
         }
 
-        public Task<List<MedicalHistoriesResponse>> Handle(GetCitizenMedicalHistoriesQuery request, CancellationToken cancellationToken)
+        public Task<List<CitizenMedicalHistoryResponse>> Handle(GetCitizenMedicalHistoriesQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,15 +33,6 @@ namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Queries
             {
                 throw new Exception("There was an error retrieving the medical history of citizen", ex);
             }
-        }
-    }
-
-    public class MedicalHistoriesResponse : IMapFrom<CitizenMedicalHistory>
-    {
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<CitizenMedicalHistory, MedicalHistoriesResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }

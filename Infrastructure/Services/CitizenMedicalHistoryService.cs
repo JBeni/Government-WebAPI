@@ -5,6 +5,7 @@ using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Commands;
 using GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using GovernmentSystem.Domain.Entities.MedicalEntities;
 using System;
 using System.Collections.Generic;
@@ -55,21 +56,18 @@ namespace GovernmentSystem.Infrastructure.Services
             return RequestResponse.Success();
         }
 
-        public List<MedicalHistoriesResponse> GetCitizenMedicalHistories(GetCitizenMedicalHistoriesQuery query)
-        {
-            throw new NotImplementedException();
-        }
 
-        public List<MedicalHistoryResponse> GetCitizenMedicalHistory(GetCitizenMedicalHistoriesQuery query)
+
+        public List<CitizenMedicalHistoryResponse> GetCitizenMedicalHistories(GetCitizenMedicalHistoriesQuery query)
         {
             var result = _dbContext.CitizenMedicalHistories
                     .OrderBy(x => x.Id)
-                    .ProjectTo<MedicalHistoryResponse>(_mapper.ConfigurationProvider)
+                    .ProjectTo<CitizenMedicalHistoryResponse>(_mapper.ConfigurationProvider)
                     .ToList();
             return result;
         }
 
-        public MedicalHistoryResponse GetCitizenMedicalHistoryById(GetCitizenMedicalHistoryByIdQuery query)
+        public CitizenMedicalHistoryResponse GetCitizenMedicalHistoryById(GetCitizenMedicalHistoryByIdQuery query)
         {
             throw new NotImplementedException();
         }
