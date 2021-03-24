@@ -2,6 +2,7 @@
 using GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands;
 using GovernmentSystem.Application.Handlers.SeriousFraudOffices.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -21,12 +22,12 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public SeriousFraudOfficeByIdResponse GetSeriousFraudOfficeById(GetSeriousFraudOfficeByIdQuery query)
+        public SeriousFraudOfficeResponse GetSeriousFraudOfficeById(GetSeriousFraudOfficeByIdQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public List<SeriousFraudOfficesResponse> GetSeriousFraudOffices(GetSeriousFraudOfficesQuery query)
+        public List<SeriousFraudOfficeResponse> GetSeriousFraudOffices(GetSeriousFraudOfficesQuery query)
         {
             throw new NotImplementedException();
         }

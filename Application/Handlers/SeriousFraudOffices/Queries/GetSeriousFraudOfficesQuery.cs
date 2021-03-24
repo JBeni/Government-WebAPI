@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Queries
 {
-    public class GetSeriousFraudOfficesQuery : IRequest<List<SeriousFraudOfficesResponse>>
+    public class GetSeriousFraudOfficesQuery : IRequest<List<SeriousFraudOfficeResponse>>
     {
         public string County { get; set; }
     }
 
-    public class GetSeriousFraudOfficesQueryHandler : IRequestHandler<GetSeriousFraudOfficesQuery, List<SeriousFraudOfficesResponse>>
+    public class GetSeriousFraudOfficesQueryHandler : IRequestHandler<GetSeriousFraudOfficesQuery, List<SeriousFraudOfficeResponse>>
     {
         private readonly ISeriousFraudOfficeService _seriousFraudOfficeService;
 
@@ -24,7 +22,7 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Queries
             _seriousFraudOfficeService = seriousFraudOfficeService;
         }
 
-        public Task<List<SeriousFraudOfficesResponse>> Handle(GetSeriousFraudOfficesQuery request, CancellationToken cancellationToken)
+        public Task<List<SeriousFraudOfficeResponse>> Handle(GetSeriousFraudOfficesQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,17 +33,6 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Queries
             {
                 throw new Exception("There was an error retrieving the serious fraud offices", ex);
             }
-        }
-    }
-
-    public class SeriousFraudOfficesResponse : IMapFrom<SeriousFraudOffice>
-    {
-        public string UniqueIdentifier { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<SeriousFraudOffice, SeriousFraudOfficesResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }
