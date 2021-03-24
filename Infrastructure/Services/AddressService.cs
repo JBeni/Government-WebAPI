@@ -3,6 +3,7 @@ using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Handlers.Addresses.Commands;
 using GovernmentSystem.Application.Handlers.Addresses.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -29,22 +30,22 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public List<AddressByCountyResponse> GetAddressByCounty(GetAddressByCountyQuery query)
+        public List<AddressResponse> GetAddressByCounty(GetAddressByCountyQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public AddressByIdResponse GetAddressById(GetAddressByIdQuery query)
+        public AddressResponse GetAddressById(GetAddressByIdQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public List<AddressByTypeResponse> GetAddressByType(GetAddressByTypeQuery query)
+        public List<AddressResponse> GetAddressByType(GetAddressByTypeQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public List<AddressesResponse> GetAddresses(GetAddressesQuery query)
+        public List<AddressResponse> GetAddresses(GetAddressesQuery query)
         {
             throw new NotImplementedException();
         }

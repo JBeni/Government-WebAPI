@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.Addresses.Queries
 {
-    public class GetAddressByTypeQuery : IRequest<List<AddressByTypeResponse>>
+    public class GetAddressByTypeQuery : IRequest<List<AddressResponse>>
     {
         public string County { get; set; }
     }
 
-    public class GetAddressByTypeQueryHandler : IRequestHandler<GetAddressByTypeQuery, List<AddressByTypeResponse>>
+    public class GetAddressByTypeQueryHandler : IRequestHandler<GetAddressByTypeQuery, List<AddressResponse>>
     {
         private readonly IAddressService _addressService;
 
@@ -24,7 +22,7 @@ namespace GovernmentSystem.Application.Handlers.Addresses.Queries
             _addressService = addressService;
         }
 
-        public Task<List<AddressByTypeResponse>> Handle(GetAddressByTypeQuery request, CancellationToken cancellationToken)
+        public Task<List<AddressResponse>> Handle(GetAddressByTypeQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,17 +33,6 @@ namespace GovernmentSystem.Application.Handlers.Addresses.Queries
             {
                 throw new Exception("", ex);
             }
-        }
-    }
-
-    public class AddressByTypeResponse : IMapFrom<Address>
-    {
-        public string UniqueIdentifier { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<Address, AddressByTypeResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }
