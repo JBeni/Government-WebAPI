@@ -33,7 +33,7 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
         {
             try
             {
-                var result = await _citizenService.AddCitizen(request, cancellationToken);
+                var result = await _citizenService.CreateCitizen(request, cancellationToken);
                 return result;
             }
             catch (Exception ex)

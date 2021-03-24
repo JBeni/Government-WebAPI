@@ -4,6 +4,7 @@ using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
 
 namespace GovernmentSystem.Application.Handlers.Citizens.Commands
 {
@@ -32,6 +33,16 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
             {
                 return RequestResponse.Failure(ex);
             }
+        }
+    }
+
+    public class DeleteCitizenCommandValidator : AbstractValidator<DeleteCitizenCommand>
+    {
+        public DeleteCitizenCommandValidator()
+        {
+            RuleFor(v => v.CNP)
+                .NotEmpty()
+                .NotNull();
         }
     }
 }

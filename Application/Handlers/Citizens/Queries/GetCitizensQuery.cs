@@ -1,36 +1,50 @@
-﻿using GovernmentSystem.Application.Common.Interfaces;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
+﻿using AutoMapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using GovernmentSystem.Application.Interfaces;
+using System;
+using GovernmentSystem.Domain.Entities.CitizenEntities;
+using GovernmentSystem.Application.Common.Mappings;
 
 namespace GovernmentSystem.Application.Handlers.Citizens.Queries
 {
-    public class GetCitizensQuery : IRequest<List<CitizenDto>>
+    public class GetCitizensQuery : IRequest<List<CitizensResponse>>
     {
     }
 
-    public class GetCitizensQueryHandler : IRequestHandler<GetCitizensQuery, List<CitizenDto>>
+    public class GetCitizensQueryHandler : IRequestHandler<GetCitizensQuery, List<CitizensResponse>>
     {
-        private readonly IApplicationDbContext _context;
-        private readonly IMapper _mapper;
+        private readonly ICitizenService _citizenService;
 
-        public GetCitizensQueryHandler(IApplicationDbContext context, IMapper mapper)
+        public GetCitizensQueryHandler(ICitizenService citizenService)
         {
-            _context = context;
-            _mapper = mapper;
+            _citizenService = citizenService;
         }
 
-        public async Task<List<CitizenDto>> Handle(GetCitizensQuery request, CancellationToken cancellationToken)
+        public Task<List<CitizensResponse>> Handle(GetCitizensQuery request, CancellationToken cancellationToken)
         {
-            return await _context.Citizens
-                    .ProjectTo<CitizenDto>(_mapper.ConfigurationProvider)
-                    .OrderBy(t => t.FirstName)
-                    .ToListAsync(cancellationToken);
+            try
+            {
+                var result = _citizenService.GetCitizens(request);
+                return Task.FromResult(result);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
+            }
+        }
+    }
+
+    public class CitizensResponse : IMapFrom<Citizen>
+    {
+        public string UniqueIdentifier { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            //profile.CreateMap<Citizen, CitizensResponse>()
+            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }

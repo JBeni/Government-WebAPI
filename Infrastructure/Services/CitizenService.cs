@@ -7,6 +7,8 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using GovernmentSystem.Application.Handlers.Citizens.Queries;
+using System.Collections.Generic;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
@@ -19,7 +21,7 @@ namespace GovernmentSystem.Infrastructure.Services
             _dbContext = dbContext;
         }
 
-        public async Task<RequestResponse> AddCitizen(CreateCitizenCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> CreateCitizen(CreateCitizenCommand command, CancellationToken cancellationToken)
         {
             var userCNP = GenerateCNP(command.DateOfBirth.BirthDate, command.Gender);
             var citizen = _dbContext.Citizens.SingleOrDefault(x => x.CNP == userCNP);
@@ -61,6 +63,11 @@ namespace GovernmentSystem.Infrastructure.Services
             return RequestResponse.Success();
         }
 
+        public ExportCitizensVm ExportCitizensQuery(ExportCitizensQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
         public string GenerateCNP(DateTime dateOfBirth, string userGender)
         {
             var birthYear = dateOfBirth.ToString("yy");
@@ -73,6 +80,16 @@ namespace GovernmentSystem.Infrastructure.Services
                 $"{new Random().Next(0, 10)}{new Random().Next(0, 10)}";
 
             return userCNP;
+        }
+
+        public CitizenResponse GetCitizenById(GetCitizenByIdQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CitizensResponse> GetCitizens(GetCitizensQuery query)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<RequestResponse> UpdateCitizen(UpdateCitizenCommand command, CancellationToken cancellationToken)
