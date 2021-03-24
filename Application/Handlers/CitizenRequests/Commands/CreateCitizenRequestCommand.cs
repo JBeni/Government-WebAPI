@@ -34,7 +34,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenRequests.Commands
         {
             try
             {
-                return await _citizenRequestService.AddCitizenRequest(request, cancellationToken);
+                return await _citizenRequestService.CreateCitizenRequest(request, cancellationToken);
             }
             catch (Exception ex)
             {

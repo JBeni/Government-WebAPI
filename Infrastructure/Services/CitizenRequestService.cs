@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using GovernmentSystem.Domain.Entities.CitizenEntities;
+using GovernmentSystem.Application.Handlers.CitizenRequests.Queries;
+using System.Collections.Generic;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
@@ -19,7 +21,7 @@ namespace GovernmentSystem.Infrastructure.Services
             _dbContext = dbContext;
         }
 
-        public async Task<RequestResponse> AddCitizenRequest(CreateCitizenRequestCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> CreateCitizenRequest(CreateCitizenRequestCommand command, CancellationToken cancellationToken)
         {
             var citizenRequest = _dbContext.CitizenRequests.SingleOrDefault(x => x.Id == command.Id);
             if (citizenRequest != null)
@@ -49,6 +51,16 @@ namespace GovernmentSystem.Infrastructure.Services
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             return RequestResponse.Success();
+        }
+
+        public CitizenRequestResponse GetCitizenRequestById(GetCitizenRequestByIdQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CitizenRequestsResponse> GetCitizenRequests(GetCitizenRequestsQuery query)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<RequestResponse> UpdateCitizenRequest(UpdateCitizenRequestCommand command, CancellationToken cancellationToken)
