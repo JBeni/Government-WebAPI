@@ -2,6 +2,7 @@
 using GovernmentSystem.Application.Handlers.MedicalProcedures.Commands;
 using GovernmentSystem.Application.Handlers.MedicalProcedures.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -26,7 +27,7 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public List<MedicalProceduresResponse> GetMedicalProcedures(GetMedicalProceduresQuery query)
+        public List<MedicalProcedureResponse> GetMedicalProcedures(GetMedicalProceduresQuery query)
         {
             throw new NotImplementedException();
         }
