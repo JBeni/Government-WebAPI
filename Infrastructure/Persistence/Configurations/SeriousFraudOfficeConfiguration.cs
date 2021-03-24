@@ -1,0 +1,18 @@
+﻿using GovernmentSystem.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace GovernmentSystem.Infrastructure.Persistence.Configurations
+{
+    public class SeriousFraudOfficeConfiguration : IEntityTypeConfiguration<SeriousFraudOffice>
+    {
+        public void Configure(EntityTypeBuilder<SeriousFraudOffice> builder)
+        {
+            builder.HasKey(x => x.Identifier);
+
+            builder.Property(t => t.Address)
+                .HasMaxLength(150)
+                .IsRequired();
+        }
+    }
+}
