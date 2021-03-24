@@ -2,6 +2,7 @@
 using GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands;
 using GovernmentSystem.Application.Handlers.PublicServantSFOs.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -21,12 +22,12 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public PublicServantSFOByIdResponse GetPublicServantSFOById(GetPublicServantSFOByIdQuery query)
+        public PublicServantSFOResponse GetPublicServantSFOById(GetPublicServantSFOByIdQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public List<PublicServantSFOsResponse> GetPublicServantSFOs(GetPublicServantSFOsQuery query)
+        public List<PublicServantSFOResponse> GetPublicServantSFOs(GetPublicServantSFOsQuery query)
         {
             throw new NotImplementedException();
         }

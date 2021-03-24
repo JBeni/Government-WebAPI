@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.PublicServantEntities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Queries
 {
-    public class GetPublicServantSFOsQuery : IRequest<List<PublicServantSFOsResponse>>
+    public class GetPublicServantSFOsQuery : IRequest<List<PublicServantSFOResponse>>
     {
         public string County { get; set; }
     }
 
-    public class GetPublicServantSFOsQueryHandler : IRequestHandler<GetPublicServantSFOsQuery, List<PublicServantSFOsResponse>>
+    public class GetPublicServantSFOsQueryHandler : IRequestHandler<GetPublicServantSFOsQuery, List<PublicServantSFOResponse>>
     {
         private readonly IPublicServantSFOService _publicServantSFOService;
 
@@ -24,7 +22,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Queries
             _publicServantSFOService = publicServantSFOService;
         }
 
-        public Task<List<PublicServantSFOsResponse>> Handle(GetPublicServantSFOsQuery request, CancellationToken cancellationToken)
+        public Task<List<PublicServantSFOResponse>> Handle(GetPublicServantSFOsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,17 +33,6 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Queries
             {
                 throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
             }
-        }
-    }
-
-    public class PublicServantSFOsResponse : IMapFrom<PublicServantSFO>
-    {
-        public string UniqueIdentifier { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<ReportProblem, PublicServantSFOResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }

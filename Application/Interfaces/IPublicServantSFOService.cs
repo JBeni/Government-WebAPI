@@ -1,6 +1,7 @@
 ﻿using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands;
 using GovernmentSystem.Application.Handlers.PublicServantSFOs.Queries;
+using GovernmentSystem.Application.Responses;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,8 +12,8 @@ namespace GovernmentSystem.Application.Interfaces
     {
         Task<RequestResponse> CreatePublicServantSFO(CreatePublicServantSFOCommand command, CancellationToken cancellationToken);
         Task<RequestResponse> DeletePublicServantSFO(DeletePublicServantSFOCommand command, CancellationToken cancellationToken);
-        PublicServantSFOByIdResponse GetPublicServantSFOById(GetPublicServantSFOByIdQuery query);
-        List<PublicServantSFOsResponse> GetPublicServantSFOs(GetPublicServantSFOsQuery query);
+        PublicServantSFOResponse GetPublicServantSFOById(GetPublicServantSFOByIdQuery query);
+        List<PublicServantSFOResponse> GetPublicServantSFOs(GetPublicServantSFOsQuery query);
         Task<RequestResponse> UpdatePublicServantSFO(UpdatePublicServantSFOCommand command, CancellationToken cancellationToken);
     }
 }
