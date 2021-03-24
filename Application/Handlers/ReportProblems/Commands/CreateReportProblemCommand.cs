@@ -26,7 +26,7 @@ namespace GovernmentSystem.Application.Handlers.ReportProblems.Commands
         {
             try
             {
-                return await _reportProblemService.AddReportProblem(request, cancellationToken);
+                return await _reportProblemService.CreateReportProblem(request, cancellationToken);
             }
             catch (Exception ex)
             {

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using GovernmentSystem.Domain.Entities.CitizenEntities;
+using GovernmentSystem.Application.Handlers.ReportProblems.Queries;
+using System.Collections.Generic;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
@@ -19,7 +21,7 @@ namespace GovernmentSystem.Infrastructure.Services
             _dbContext = dbContext;
         }
  
-        public async Task<RequestResponse> AddReportProblem(CreateReportProblemCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> CreateReportProblem(CreateReportProblemCommand command, CancellationToken cancellationToken)
         {
             var reportProblem = _dbContext.ReportProblems.SingleOrDefault(x => x.Id == command.Id);
             if (reportProblem != null)
@@ -47,6 +49,16 @@ namespace GovernmentSystem.Infrastructure.Services
             _dbContext.ReportProblems.Add(reportProblem);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
+        }
+
+        public ReportProblemByIdResponse GetReportProblemById(GetReportProblemByIdQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ReportProblemsResponse> GetReportProblems(GetReportProblemsQuery query)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<RequestResponse> UpdateReportProblem(UpdateReportProblemCommand command, CancellationToken cancellationToken)
