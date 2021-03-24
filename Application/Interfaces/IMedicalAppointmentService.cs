@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GovernmentSystem.Application.Handlers.MedicalAppointments.Queries;
 using System.Collections.Generic;
+using GovernmentSystem.Application.Responses;
 
 namespace GovernmentSystem.Application.Interfaces
 {
@@ -12,7 +13,7 @@ namespace GovernmentSystem.Application.Interfaces
         Task<RequestResponse> CreateMedicalAppointment(CreateMedicalAppointmentCommand command, CancellationToken cancellationToken);
         Task<RequestResponse> DeleteMedicalAppointment(DeleteMedicalAppointmentCommand command, CancellationToken cancellationToken);
         MedicalAppointmentResponse GetMedicalAppointmentById(GetMedicalAppointmentByIdQuery query);
-        List<MedicalAppointmentsResponse> GetMedicalAppointments(GetMedicalAppointmentsQuery query);
+        List<MedicalAppointmentResponse> GetMedicalAppointments(GetMedicalAppointmentsQuery query);
         Task<RequestResponse> UpdateMedicalAppointment(UpdateMedicalAppointmentCommand command, CancellationToken cancellationToken);
     }
 }

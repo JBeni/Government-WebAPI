@@ -3,6 +3,7 @@ using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Handlers.Appointments.Commands;
 using GovernmentSystem.Application.Handlers.MedicalAppointments.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using GovernmentSystem.Domain.Entities.MedicalEntities;
 using System;
 using System.Collections.Generic;
@@ -56,7 +57,7 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public List<MedicalAppointmentsResponse> GetMedicalAppointments(GetMedicalAppointmentsQuery query)
+        public List<MedicalAppointmentResponse> GetMedicalAppointments(GetMedicalAppointmentsQuery query)
         {
             throw new NotImplementedException();
         }
