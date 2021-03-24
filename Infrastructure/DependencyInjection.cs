@@ -34,14 +34,29 @@ namespace GovernmentSystem.Infrastructure
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
-            services.AddTransient<ICitizenService, CitizenService>();
-            services.AddTransient<IMedicalCenterService, MedicalCenterService>();
-            services.AddTransient<ICityHallService, CityHallService>();
-            services.AddTransient<IPropertyService, PropertyService>();
-            services.AddTransient<ICitizenRequestService, CitizenRequestService>();
-            services.AddTransient<IReportProblemService, ReportProblemService>();
-            services.AddTransient<IAppointmentService, AppointmentService>();
+            services.AddTransient<IAddressService, AddressService>();
+            services.AddTransient<IBirthCertificateService, BirthCertificateService>();
             services.AddTransient<ICitizenMedicalHistoryService, CitizenMedicalHistoryService>();
+            services.AddTransient<ICitizenRequestService, CitizenRequestService>();
+            services.AddTransient<ICitizenService, CitizenService>();
+            services.AddTransient<ICityHallService, CityHallService>();
+            services.AddTransient<ICommonService, CommonService>();
+            services.AddTransient<IDriverLicenseService, DriverLicenseService>();
+            services.AddTransient<IIdentityCardService, IdentityCardService>();
+            services.AddTransient<IMedicalAppointmentService, MedicalAppointmentService>();
+            services.AddTransient<IMedicalCenterProcedureService, MedicalCenterProcedureService>();
+            services.AddTransient<IMedicalCenterService, MedicalCenterService>();
+            services.AddTransient<IMedicalPaymentHistoryService, MedicalPaymentHistoryService>();
+            services.AddTransient<IMedicalProcedureService, MedicalProcedureService>();
+            services.AddTransient<IPassportService, PassportService>();
+            services.AddTransient<IPoliceStationService, PoliceStationService>();
+            services.AddTransient<IPropertyService, PropertyService>();
+            services.AddTransient<IPublicServantCityHallService, PublicServantCityHallService>();
+            services.AddTransient<IPublicServantGPService, PublicServantGPService>();
+            services.AddTransient<IPublicServantPoliceService, PublicServantPoliceService>();
+            services.AddTransient<IPublicServantSFOService, PublicServantSFOService>();
+            services.AddTransient<IReportProblemService, ReportProblemService>();
+            services.AddTransient<ISeriousFraudOfficeService, SeriousFraudOfficeService>();
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
