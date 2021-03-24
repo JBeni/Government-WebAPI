@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using GovernmentSystem.Domain.Entities.CitizenEntities;
 using GovernmentSystem.Application.Handlers.ReportProblems.Queries;
 using System.Collections.Generic;
+using GovernmentSystem.Application.Responses;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
@@ -51,12 +52,12 @@ namespace GovernmentSystem.Infrastructure.Services
             return RequestResponse.Success();
         }
 
-        public ReportProblemByIdResponse GetReportProblemById(GetReportProblemByIdQuery query)
+        public ReportProblemResponse GetReportProblemById(GetReportProblemByIdQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public List<ReportProblemsResponse> GetReportProblems(GetReportProblemsQuery query)
+        public List<ReportProblemResponse> GetReportProblems(GetReportProblemsQuery query)
         {
             throw new NotImplementedException();
         }

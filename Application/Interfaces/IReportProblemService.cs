@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GovernmentSystem.Application.Handlers.ReportProblems.Queries;
 using System.Collections.Generic;
+using GovernmentSystem.Application.Responses;
 
 namespace GovernmentSystem.Application.Interfaces
 {
@@ -11,8 +12,8 @@ namespace GovernmentSystem.Application.Interfaces
     {
         Task<RequestResponse> CreateReportProblem(CreateReportProblemCommand command, CancellationToken cancellationToken);
         Task<RequestResponse> DeleteReportProblem(DeleteReportProblemCommand command, CancellationToken cancellationToken);
-        ReportProblemByIdResponse GetReportProblemById(GetReportProblemByIdQuery query);
-        List<ReportProblemsResponse> GetReportProblems(GetReportProblemsQuery query);
+        ReportProblemResponse GetReportProblemById(GetReportProblemByIdQuery query);
+        List<ReportProblemResponse> GetReportProblems(GetReportProblemsQuery query);
         Task<RequestResponse> UpdateReportProblem(UpdateReportProblemCommand command, CancellationToken cancellationToken);
     }
 }
