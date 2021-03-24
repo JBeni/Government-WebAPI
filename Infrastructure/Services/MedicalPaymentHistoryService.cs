@@ -2,6 +2,7 @@
 using GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands;
 using GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -21,7 +22,7 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public List<MedicalPaymentHistoriesResponse> GetMedicalPaymentHistories(GetMedicalPaymentHistoriesQuery query)
+        public List<MedicalPaymentHistoryResponse> GetMedicalPaymentHistories(GetMedicalPaymentHistoriesQuery query)
         {
             throw new NotImplementedException();
         }
