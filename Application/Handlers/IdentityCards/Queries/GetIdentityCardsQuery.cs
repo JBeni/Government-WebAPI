@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.IdentityCards.Queries
 {
-    public class GetIdentityCardsQuery : IRequest<List<IdentityCardsResponse>>
+    public class GetIdentityCardsQuery : IRequest<List<IdentityCardResponse>>
     {
         public string County { get; set; }
     }
 
-    public class GetIdentityCardsQueryHandler : IRequestHandler<GetIdentityCardsQuery, List<IdentityCardsResponse>>
+    public class GetIdentityCardsQueryHandler : IRequestHandler<GetIdentityCardsQuery, List<IdentityCardResponse>>
     {
         private readonly IIdentityCardService _identityCardService;
 
@@ -24,7 +22,7 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Queries
             _identityCardService = identityCardService;
         }
 
-        public Task<List<IdentityCardsResponse>> Handle(GetIdentityCardsQuery request, CancellationToken cancellationToken)
+        public Task<List<IdentityCardResponse>> Handle(GetIdentityCardsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,17 +33,6 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Queries
             {
                 throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
             }
-        }
-    }
-
-    public class IdentityCardsResponse : IMapFrom<IdentityCard>
-    {
-        public string UniqueIdentifier { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<IdentityCard, IdentityCardsResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }

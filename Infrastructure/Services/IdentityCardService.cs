@@ -2,6 +2,7 @@
 using GovernmentSystem.Application.Handlers.IdentityCards.Commands;
 using GovernmentSystem.Application.Handlers.IdentityCards.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -26,7 +27,7 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public List<IdentityCardsResponse> GetIdentityCards(GetIdentityCardsQuery query)
+        public List<IdentityCardResponse> GetIdentityCards(GetIdentityCardsQuery query)
         {
             throw new NotImplementedException();
         }
