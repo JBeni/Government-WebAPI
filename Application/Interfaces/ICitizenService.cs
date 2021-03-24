@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GovernmentSystem.Application.Handlers.Citizens.Queries;
 using System.Collections.Generic;
+using GovernmentSystem.Application.Responses;
 
 namespace GovernmentSystem.Application.Interfaces
 {
@@ -15,7 +16,7 @@ namespace GovernmentSystem.Application.Interfaces
         string GenerateCNP(DateTime dateOfBirth, string userGender);
         ExportCitizensVm ExportCitizensQuery(ExportCitizensQuery query);
         CitizenResponse GetCitizenById(GetCitizenByIdQuery query);
-        List<CitizensResponse> GetCitizens(GetCitizensQuery query);
+        List<CitizenResponse> GetCitizens(GetCitizensQuery query);
         Task<RequestResponse> UpdateCitizen(UpdateCitizenCommand command, CancellationToken cancellationToken);
     }
 }
