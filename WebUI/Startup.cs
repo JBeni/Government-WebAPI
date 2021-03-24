@@ -4,6 +4,7 @@ using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Infrastructure;
 using GovernmentSystem.Infrastructure.Persistence;
 using GovernmentSystem.WebUI.Filters;
+using GovernmentSystem.WebUI.Model;
 using GovernmentSystem.WebUI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Stripe;
 
 namespace GovernmentSystem.WebUI
 {
@@ -40,6 +42,10 @@ namespace GovernmentSystem.WebUI
 
             services.AddControllers(options =>
                 options.Filters.Add<ApiExceptionFilterAttribute>()).AddFluentValidation();
+
+            // Configure Stripe Payment Gateway
+            StripeConfiguration.ApiKey = Configuration.GetSection("StripeKeys")["SecretKey"];
+            services.Configure<StripeSettings>(Configuration.GetSection("StripeKeys"));
 
             // Customise default API behaviour
             services.Configure<ApiBehaviorOptions>(options =>
