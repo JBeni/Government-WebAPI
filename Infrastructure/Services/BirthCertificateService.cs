@@ -3,6 +3,7 @@ using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Handlers.BirthCertificates.Commands;
 using GovernmentSystem.Application.Handlers.BirthCertificates.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -29,7 +30,7 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public BirthCertificateByIdResponse GetBirthCertificateById(GetBirthCertificateByIdQuery query)
+        public BirthCertificateResponse GetBirthCertificateById(GetBirthCertificateByIdQuery query)
         {
             throw new NotImplementedException();
         }

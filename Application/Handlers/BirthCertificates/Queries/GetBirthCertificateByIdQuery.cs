@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Threading;
@@ -9,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.BirthCertificates.Queries
 {
-    public class GetBirthCertificateByIdQuery : IRequest<BirthCertificateByIdResponse>
+    public class GetBirthCertificateByIdQuery : IRequest<BirthCertificateResponse>
     {
         public string County { get; set; }
     }
 
-    public class GetBirthCertificateByIdQueryHandler : IRequestHandler<GetBirthCertificateByIdQuery, BirthCertificateByIdResponse>
+    public class GetBirthCertificateByIdQueryHandler : IRequestHandler<GetBirthCertificateByIdQuery, BirthCertificateResponse>
     {
         private readonly IBirthCertificateService _birthCertificateService;
 
@@ -23,7 +21,7 @@ namespace GovernmentSystem.Application.Handlers.BirthCertificates.Queries
             _birthCertificateService = birthCertificateService;
         }
 
-        public Task<BirthCertificateByIdResponse> Handle(GetBirthCertificateByIdQuery request, CancellationToken cancellationToken)
+        public Task<BirthCertificateResponse> Handle(GetBirthCertificateByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -34,17 +32,6 @@ namespace GovernmentSystem.Application.Handlers.BirthCertificates.Queries
             {
                 throw new Exception("", ex);
             }
-        }
-    }
-
-    public class BirthCertificateByIdResponse : IMapFrom<BirthCertificate>
-    {
-        public string UniqueIdentifier { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<BirthCertificate, BirthCertificateByIdResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }
