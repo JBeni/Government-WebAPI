@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Threading;
@@ -34,17 +32,6 @@ namespace GovernmentSystem.Application.Handlers.CityHalls.Queries
             {
                 throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
             }
-        }
-    }
-
-    public class CityHallResponse : IMapFrom<CityHall>
-    {
-        public string UniqueIdentifier { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<CityHall, CityHallResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }

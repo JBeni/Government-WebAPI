@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GovernmentSystem.Application.Handlers.CityHalls.Queries;
 using System.Collections.Generic;
+using GovernmentSystem.Application.Responses;
 
 namespace GovernmentSystem.Application.Interfaces
 {
@@ -12,7 +13,7 @@ namespace GovernmentSystem.Application.Interfaces
         Task<RequestResponse> CreateCityHall(CreateCityHallCommand command, CancellationToken cancellationToken);
         Task<RequestResponse> DeleteCityHall(DeleteCityHallCommand command, CancellationToken cancellationToken);
         CityHallResponse GetCityHallById(GetCityHallByIdQuery query);
-        List<CityHallsResponse> GetCityHalls(GetCityHallsQuery query);
+        List<CityHallResponse> GetCityHalls(GetCityHallsQuery query);
         Task<RequestResponse> UpdateCityHall(UpdateCityHallCommand command, CancellationToken cancellationToken);
     }
 }

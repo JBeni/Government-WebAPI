@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GovernmentSystem.Application.Handlers.CityHalls.Queries;
 using System.Collections.Generic;
+using GovernmentSystem.Application.Responses;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
@@ -63,7 +64,7 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public List<CityHallsResponse> GetCityHalls(GetCityHallsQuery query)
+        public List<CityHallResponse> GetCityHalls(GetCityHallsQuery query)
         {
             throw new NotImplementedException();
         }

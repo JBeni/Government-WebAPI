@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.CityHalls.Queries
 {
-    public class GetCityHallsQuery : IRequest<List<CityHallsResponse>>
+    public class GetCityHallsQuery : IRequest<List<CityHallResponse>>
     {
         public string County { get; set; }
     }
 
-    public class GetCityHallsQueryHandler : IRequestHandler<GetCityHallsQuery, List<CityHallsResponse>>
+    public class GetCityHallsQueryHandler : IRequestHandler<GetCityHallsQuery, List<CityHallResponse>>
     {
         private readonly ICityHallService _cityHallService;
 
@@ -24,7 +22,7 @@ namespace GovernmentSystem.Application.Handlers.CityHalls.Queries
             _cityHallService = cityHallService;
         }
 
-        public Task<List<CityHallsResponse>> Handle(GetCityHallsQuery request, CancellationToken cancellationToken)
+        public Task<List<CityHallResponse>> Handle(GetCityHallsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,17 +33,6 @@ namespace GovernmentSystem.Application.Handlers.CityHalls.Queries
             {
                 throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
             }
-        }
-    }
-
-    public class CityHallsResponse : IMapFrom<CityHall>
-    {
-        public string UniqueIdentifier { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<CityHall, CityHallsResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }
