@@ -6,7 +6,7 @@ namespace GovernmentSystem.Application.Responses
 {
     public class AddressResponse : IMapFrom<Address>
     {
-        public string UniqueIdentifier { get; set; }
+        public string Identifier { get; set; }
         public string ZipCode { get; set; }
         public string Street { get; set; }
         public string County { get; set; }
@@ -16,7 +16,7 @@ namespace GovernmentSystem.Application.Responses
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Address, AddressResponse>()
-                .ForMember(d => d.UniqueIdentifier, opt => opt.MapFrom(s => s.UniqueIdentifier))
+                .ForMember(d => d.Identifier, opt => opt.MapFrom(s => s.Identifier))
                 .ForMember(d => d.ZipCode, opt => opt.MapFrom(s => s.ZipCode))
                 .ForMember(d => d.Street, opt => opt.MapFrom(s => s.Street))
                 .ForMember(d => d.County, opt => opt.MapFrom(s => s.County))

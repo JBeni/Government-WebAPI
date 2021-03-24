@@ -4,7 +4,6 @@ namespace GovernmentSystem.Domain.Entities.CityHallEntities
 {
     public class Address : BaseEntity
     {
-        public string UniqueIdentifier { get; set; }
         public string ZipCode { get; set; }
         public string Street { get; set; }
         public string County { get; set; }

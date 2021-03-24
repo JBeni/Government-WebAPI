@@ -6,7 +6,6 @@ namespace GovernmentSystem.Domain.Entities
 {
     public class SeriousFraudOffice : BaseEntity
     {
-        public string UniqueIdentifier { get; set; }
         public string OfficeName { get; set; }
         public DateTime ConstructionDate { get; set; }
 

@@ -4,7 +4,6 @@ namespace GovernmentSystem.Domain.Entities.CityHallEntities
 {
     public class Property : BaseEntity
     {
-        public string UniqueIdentifier { get; set; }
         public long Size { get; set; }
         public string UnitOfMeasure { get; set; }
         public string ValueAtBuying { get; set; }

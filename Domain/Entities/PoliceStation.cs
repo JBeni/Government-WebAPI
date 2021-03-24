@@ -6,7 +6,6 @@ namespace GovernmentSystem.Domain.Entities
 {
     public class PoliceStation : BaseEntity
     {
-        public string UniqueIdentifier { get; set; }
         public string StationName { get; set; }
         public DateTime ConstructionDate { get; set; }
 

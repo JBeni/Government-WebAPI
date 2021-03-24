@@ -6,7 +6,6 @@ namespace GovernmentSystem.Domain.Entities.MedicalEntities
 {
     public class MedicalPaymentHistory : BaseEntity
     {
-        public string UniqueIdentifier { get; set; }
         public long AmountPaid { get; set; }
         public long AmountToPay { get; set; }
         public DateTime DateOfPayment { get; set; }

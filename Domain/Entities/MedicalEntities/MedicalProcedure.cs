@@ -5,7 +5,6 @@ namespace GovernmentSystem.Domain.Entities.MedicalEntities
 {
     public class MedicalProcedure : BaseEntity
     {
-        public string UniqueIdentifier { get; set; }
         public long Price { get; set; }
         public string ProcedureName { get; set; }
         public string ProcedureDuration { get; set; }
