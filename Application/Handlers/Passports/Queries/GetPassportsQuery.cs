@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.Passports.Queries
 {
-    public class GetPassportsQuery : IRequest<List<PassportsResponse>>
+    public class GetPassportsQuery : IRequest<List<PassportResponse>>
     {
         public string County { get; set; }
     }
 
-    public class GetPassportsQueryHandler : IRequestHandler<GetPassportsQuery, List<PassportsResponse>>
+    public class GetPassportsQueryHandler : IRequestHandler<GetPassportsQuery, List<PassportResponse>>
     {
         private readonly IPassportService _passportService;
 
@@ -24,7 +22,7 @@ namespace GovernmentSystem.Application.Handlers.Passports.Queries
             _passportService = passportService;
         }
 
-        public Task<List<PassportsResponse>> Handle(GetPassportsQuery request, CancellationToken cancellationToken)
+        public Task<List<PassportResponse>> Handle(GetPassportsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,17 +33,6 @@ namespace GovernmentSystem.Application.Handlers.Passports.Queries
             {
                 throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
             }
-        }
-    }
-
-    public class PassportsResponse : IMapFrom<Passport>
-    {
-        public string UniqueIdentifier { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<Passport, PassportsResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }

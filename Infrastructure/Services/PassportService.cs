@@ -2,6 +2,7 @@
 using GovernmentSystem.Application.Handlers.Passports.Commands;
 using GovernmentSystem.Application.Handlers.Passports.Queries;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -26,7 +27,7 @@ namespace GovernmentSystem.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public List<PassportsResponse> GetPassports(GetPassportsQuery query)
+        public List<PassportResponse> GetPassports(GetPassportsQuery query)
         {
             throw new NotImplementedException();
         }
