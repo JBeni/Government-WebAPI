@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using GovernmentSystem.Application.Handlers.Properties.Queries;
+using GovernmentSystem.Application.Responses;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
@@ -51,7 +52,7 @@ namespace GovernmentSystem.Infrastructure.Services
             return RequestResponse.Success();
         }
 
-        public List<PropertiesResponse> GetProperties(GetPropertiesQuery query)
+        public List<PropertyResponse> GetProperties(GetPropertiesQuery query)
         {
             throw new NotImplementedException();
         }

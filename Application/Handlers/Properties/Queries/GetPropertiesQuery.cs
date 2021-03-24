@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
+﻿using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Application.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.Properties.Queries
 {
-    public class GetPropertiesQuery : IRequest<List<PropertiesResponse>>
+    public class GetPropertiesQuery : IRequest<List<PropertyResponse>>
     {
         public string County { get; set; }
     }
 
-    public class GetPropertiesQueryHandler : IRequestHandler<GetPropertiesQuery, List<PropertiesResponse>>
+    public class GetPropertiesQueryHandler : IRequestHandler<GetPropertiesQuery, List<PropertyResponse>>
     {
         private readonly IPropertyService _propertyService;
 
@@ -24,7 +22,7 @@ namespace GovernmentSystem.Application.Handlers.Properties.Queries
             _propertyService = propertyService;
         }
 
-        public Task<List<PropertiesResponse>> Handle(GetPropertiesQuery request, CancellationToken cancellationToken)
+        public Task<List<PropertyResponse>> Handle(GetPropertiesQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,17 +33,6 @@ namespace GovernmentSystem.Application.Handlers.Properties.Queries
             {
                 throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
             }
-        }
-    }
-
-    public class PropertiesResponse : IMapFrom<Property>
-    {
-        public string UniqueIdentifier { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            //profile.CreateMap<Property, PropertiesResponse>()
-            //    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }

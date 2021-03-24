@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using GovernmentSystem.Application.Handlers.Properties.Queries;
+using GovernmentSystem.Application.Responses;
 
 namespace GovernmentSystem.Application.Interfaces
 {
@@ -12,7 +13,7 @@ namespace GovernmentSystem.Application.Interfaces
         Task<RequestResponse> CreateProperty(CreatePropertyCommand command, CancellationToken cancellationToken);
         Task<RequestResponse> DeleteProperty(DeletePropertyCommand command, CancellationToken cancellationToken);
         PropertyResponse GetPropertyById(GetPropertyByIdQuery query);
-        List<PropertiesResponse> GetProperties(GetPropertiesQuery query);
+        List<PropertyResponse> GetProperties(GetPropertiesQuery query);
         Task<RequestResponse> UpdateProperty(UpdatePropertyCommand command, CancellationToken cancellationToken);
     }
 }
