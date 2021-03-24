@@ -24,7 +24,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> CreateMedicalAppointment(CreateMedicalAppointmentCommand command, CancellationToken cancellationToken)
         {
-            var appointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Id == command.Id);
+            var appointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (appointment != null)
             {
                 throw new Exception("The appointment already exists");
@@ -41,7 +41,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> DeleteMedicalAppointment(DeleteMedicalAppointmentCommand command, CancellationToken cancellationToken)
         {
-            var appointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Id == command.Id);
+            var appointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (appointment == null)
             {
                 throw new Exception("The appointment does not exists");
@@ -64,7 +64,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> UpdateMedicalAppointment(UpdateMedicalAppointmentCommand command, CancellationToken cancellationToken)
         {
-            var appointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Id == command.Id);
+            var appointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (appointment == null)
             {
                 throw new Exception("The appointment does not exists");

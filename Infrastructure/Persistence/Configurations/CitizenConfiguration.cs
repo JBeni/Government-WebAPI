@@ -8,7 +8,7 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Citizen> builder)
         {
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => x.Identifier);
 
             builder.Property(t => t.FirstName)
                 .HasMaxLength(150)

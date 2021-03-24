@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenRequests.Commands
 {
     public class UpdateCitizenRequestCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
         public string CNP { get; set; }
         public bool IsProcessed { get; set; }
         public DateTime DateOfExpiry { get; set; }
@@ -42,7 +42,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenRequests.Commands
     {
         public UpdateCitizenRequestCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

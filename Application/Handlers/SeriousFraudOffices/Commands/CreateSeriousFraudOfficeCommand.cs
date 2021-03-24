@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands
 {
     public class CreateSeriousFraudOfficeCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class CreateSeriousFraudOfficeCommandHandler : IRequestHandler<CreateSeriousFraudOfficeCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands
     {
         public CreateSeriousFraudOfficeCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

@@ -1,17 +1,18 @@
 ﻿using AutoMapper;
 using GovernmentSystem.Application.Common.Mappings;
 using GovernmentSystem.Domain.Entities.CitizenEntities;
+using System;
 
 namespace GovernmentSystem.Application.Responses
 {
     public class IdentityCardResponse : IMapFrom<IdentityCard>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<IdentityCard, IdentityCardResponse>()
-                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
+                .ForMember(d => d.Identifier, opt => opt.MapFrom(s => s.Identifier));
         }
     }
 }

@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Queries
 {
     public class GetCitizenMedicalHistoriesQuery : IRequest<List<CitizenMedicalHistoryResponse>>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetCitizenMedicalHistoriesQueryHandler : IRequestHandler<GetCitizenMedicalHistoriesQuery, List<CitizenMedicalHistoryResponse>>

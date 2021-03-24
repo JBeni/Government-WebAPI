@@ -28,7 +28,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> CreateCitizenMedicalHistory(CreateCitizenMedicalHistoryCommand command, CancellationToken cancellationToken)
         {
-            var citizenMedicalHistory = _dbContext.CitizenMedicalHistories.SingleOrDefault(x => x.Id == command.Id);
+            var citizenMedicalHistory = _dbContext.CitizenMedicalHistories.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (citizenMedicalHistory != null)
             {
                 throw new Exception("The citizen medical history request already exists");
@@ -45,7 +45,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> DeleteCitizenMedicalHistory(DeleteCitizenMedicalHistoryCommand command, CancellationToken cancellationToken)
         {
-            var citizenMedicalHistory = _dbContext.CitizenMedicalHistories.SingleOrDefault(x => x.Id == command.Id);
+            var citizenMedicalHistory = _dbContext.CitizenMedicalHistories.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (citizenMedicalHistory == null)
             {
                 throw new Exception("The citizen medical history request does not exists");
@@ -61,7 +61,7 @@ namespace GovernmentSystem.Infrastructure.Services
         public List<CitizenMedicalHistoryResponse> GetCitizenMedicalHistories(GetCitizenMedicalHistoriesQuery query)
         {
             var result = _dbContext.CitizenMedicalHistories
-                    .OrderBy(x => x.Id)
+                    .OrderBy(x => x.Identifier)
                     .ProjectTo<CitizenMedicalHistoryResponse>(_mapper.ConfigurationProvider)
                     .ToList();
             return result;
@@ -74,7 +74,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> UpdateCitizenMedicalHistory(UpdateCitizenMedicalHistoryCommand command, CancellationToken cancellationToken)
         {
-            var citizenMedicalHistory = _dbContext.CitizenMedicalHistories.SingleOrDefault(x => x.Id == command.Id);
+            var citizenMedicalHistory = _dbContext.CitizenMedicalHistories.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (citizenMedicalHistory == null)
             {
                 throw new Exception("The citizen medical history request does not exists");

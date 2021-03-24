@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
 {
     public class CreatePublicServantSFOCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class CreatePublicServantSFOCommandHandler : IRequestHandler<CreatePublicServantSFOCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
     {
         public CreatePublicServantSFOCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

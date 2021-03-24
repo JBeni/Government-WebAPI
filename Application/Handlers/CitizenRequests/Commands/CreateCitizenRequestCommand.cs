@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenRequests.Commands
 {
     public class CreateCitizenRequestCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
         public string CNP { get; set; }
         public string UserName { get; set; }
         public string Name { get; set; }
@@ -47,7 +47,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenRequests.Commands
     {
         public CreateCitizenRequestCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

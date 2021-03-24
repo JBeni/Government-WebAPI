@@ -24,7 +24,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> CreateCitizenRequest(CreateCitizenRequestCommand command, CancellationToken cancellationToken)
         {
-            var citizenRequest = _dbContext.CitizenRequests.SingleOrDefault(x => x.Id == command.Id);
+            var citizenRequest = _dbContext.CitizenRequests.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (citizenRequest != null)
             {
                 throw new Exception("The citizen request already exists");
@@ -42,7 +42,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> DeleteCitizenRequest(DeleteCitizenRequestCommand command, CancellationToken cancellationToken)
         {
-            var citizenRequest = _dbContext.CitizenRequests.SingleOrDefault(x => x.Id == command.Id);
+            var citizenRequest = _dbContext.CitizenRequests.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (citizenRequest == null)
             {
                 throw new Exception("The citizen request does not exists");
@@ -66,7 +66,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> UpdateCitizenRequest(UpdateCitizenRequestCommand command, CancellationToken cancellationToken)
         {
-            var citizenRequest = _dbContext.CitizenRequests.SingleOrDefault(x => x.Id == command.Id);
+            var citizenRequest = _dbContext.CitizenRequests.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (citizenRequest == null)
             {
                 throw new Exception("The citizen request does not exists");

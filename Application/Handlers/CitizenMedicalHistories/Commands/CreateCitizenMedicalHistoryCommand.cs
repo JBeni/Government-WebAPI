@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Commands
 {
     public class CreateCitizenMedicalHistoryCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class CreateCitizenMedicalHistoryCommandHandler : IRequestHandler<CreateCitizenMedicalHistoryCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Commands
     {
         public CreateCitizenMedicalHistoryCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenRequests.Queries
 {
     public class GetCitizenRequestsQuery : IRequest<List<CitizenRequestResponse>>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class GetCitizenRequestsQueryHandler : IRequestHandler<GetCitizenRequestsQuery, List<CitizenRequestResponse>>

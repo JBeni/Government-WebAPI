@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.Appointments.Commands
 {
     public class DeleteMedicalAppointmentCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeleteMedicalAppointmentCommandHandler : IRequestHandler<DeleteMedicalAppointmentCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.Appointments.Commands
     {
         public DeleteMedicalAppointmentCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

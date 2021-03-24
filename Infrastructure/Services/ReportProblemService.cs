@@ -24,7 +24,7 @@ namespace GovernmentSystem.Infrastructure.Services
  
         public async Task<RequestResponse> CreateReportProblem(CreateReportProblemCommand command, CancellationToken cancellationToken)
         {
-            var reportProblem = _dbContext.ReportProblems.SingleOrDefault(x => x.Id == command.Id);
+            var reportProblem = _dbContext.ReportProblems.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (reportProblem != null)
             {
                 throw new Exception("The reported problem already exists");
@@ -41,7 +41,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> DeleteReportProblem(DeleteReportProblemCommand command, CancellationToken cancellationToken)
         {
-            var reportProblem = _dbContext.ReportProblems.SingleOrDefault(x => x.Id == command.Id);
+            var reportProblem = _dbContext.ReportProblems.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (reportProblem == null)
             {
                 throw new Exception("The reported problem does not exists");
@@ -64,7 +64,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> UpdateReportProblem(UpdateReportProblemCommand command, CancellationToken cancellationToken)
         {
-            var reportProblem = _dbContext.ReportProblems.SingleOrDefault(x => x.Id == command.Id);
+            var reportProblem = _dbContext.ReportProblems.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (reportProblem == null)
             {
                 throw new Exception("The reported problem does not exists");

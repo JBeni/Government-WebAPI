@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Commands
 {
     public class DeleteIdentityCardCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeleteIdentityCardCommandHandler : IRequestHandler<DeleteIdentityCardCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Commands
     {
         public DeleteIdentityCardCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
 {
     public class CreateDriverLicenseCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class CreateDriverLicenseCommandHandler : IRequestHandler<CreateDriverLicenseCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
     {
         public CreateDriverLicenseCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

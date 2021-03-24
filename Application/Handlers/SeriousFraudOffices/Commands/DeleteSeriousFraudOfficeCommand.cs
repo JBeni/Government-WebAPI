@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands
 {
     public class DeleteSeriousFraudOfficeCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeleteSeriousFraudOfficeCommandHandler : IRequestHandler<DeleteSeriousFraudOfficeCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands
     {
         public DeleteSeriousFraudOfficeCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
 {
     public class DeleteDriverLicenseCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeleteDriverLicenseCommandHandler : IRequestHandler<DeleteDriverLicenseCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
     {
         public DeleteDriverLicenseCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

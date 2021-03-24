@@ -1,17 +1,18 @@
 ﻿using AutoMapper;
 using GovernmentSystem.Application.Common.Mappings;
 using GovernmentSystem.Domain.Entities.MedicalEntities;
+using System;
 
 namespace GovernmentSystem.Application.Responses
 {
     public class PublicServantGPResponse : IMapFrom<PublicServantGP>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<PublicServantGP, PublicServantGPResponse>()
-                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
+                .ForMember(d => d.Identifier, opt => opt.MapFrom(s => s.Identifier));
         }
     }
 }

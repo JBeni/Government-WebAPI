@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
 {
     public class DeletePublicServantSFOCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeletePublicServantSFOHandler : IRequestHandler<DeletePublicServantSFOCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
     {
         public DeletePublicServantSFOHandlerValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

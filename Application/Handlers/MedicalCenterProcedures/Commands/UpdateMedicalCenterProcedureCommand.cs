@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenterProcedures.Commands
 {
     public class UpdateMedicalCenterProcedureCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class UpdateMedicalCenterProcedureCommandHandler : IRequestHandler<UpdateMedicalCenterProcedureCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenterProcedures.Commands
     {
         public UpdateMedicalCenterProcedureCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

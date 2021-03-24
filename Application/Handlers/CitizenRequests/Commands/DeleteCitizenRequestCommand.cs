@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenRequests.Commands
 {
     public class DeleteCitizenRequestCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeleteCitizenRequestCommandHandler : IRequestHandler<DeleteCitizenRequestCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenRequests.Commands
     {
         public DeleteCitizenRequestCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

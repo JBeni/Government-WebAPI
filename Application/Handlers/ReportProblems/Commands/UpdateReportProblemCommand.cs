@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.ReportProblems.Commands
 {
     public class UpdateReportProblemCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class UpdateReportProblemCommandHandler : IRequestHandler<UpdateReportProblemCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.ReportProblems.Commands
     {
         public UpdateReportProblemCommandHandlerValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

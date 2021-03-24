@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.ReportProblems.Commands
 {
     public class DeleteReportProblemCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class DeleteReportProblemCommandHandler : IRequestHandler<DeleteReportProblemCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.ReportProblems.Commands
     {
         public DeleteReportProblemCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }

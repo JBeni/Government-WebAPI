@@ -10,7 +10,7 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Commands
 {
     public class UpdateIdentityCardCommand : IRequest<RequestResponse>
     {
-        public int Id { get; set; }
+        public Guid Identifier { get; set; }
     }
 
     public class UpdateIdentityCardCommandHandler : IRequestHandler<UpdateIdentityCardCommand, RequestResponse>
@@ -39,7 +39,7 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Commands
     {
         public UpdateIdentityCardCommandValidator()
         {
-            RuleFor(v => v.Id)
+            RuleFor(v => v.Identifier)
                 .NotEmpty()
                 .NotNull();
         }
