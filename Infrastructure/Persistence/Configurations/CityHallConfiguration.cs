@@ -10,7 +10,13 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
         {
             builder.HasKey(x => x.Identifier);
 
-            builder.Property(t => t.Identifier)
+            builder.Property(t => t.CityHallName)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.ConstructionDate)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.Address)
                 .HasMaxLength(150)
                 .IsRequired();
         }

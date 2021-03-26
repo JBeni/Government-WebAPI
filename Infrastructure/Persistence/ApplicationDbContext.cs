@@ -80,7 +80,31 @@ namespace GovernmentSystem.Infrastructure.Persistence
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+            builder.ApplyConfiguration(new AddressConfiguration());
+            builder.ApplyConfiguration(new AddressTypeConfiguration());
+            builder.ApplyConfiguration(new BirthCertificateConfiguration());
             builder.ApplyConfiguration(new CitizenConfiguration());
+            builder.ApplyConfiguration(new CitizenMedicalHistoryConfiguration());
+            builder.ApplyConfiguration(new CitizenRequestConfiguration());
+            builder.ApplyConfiguration(new CityHallConfiguration());
+            builder.ApplyConfiguration(new DriverLicenseCategoryConfiguration());
+            builder.ApplyConfiguration(new DriverLicenseConfiguration());
+            builder.ApplyConfiguration(new IdentityCardConfiguration());
+            builder.ApplyConfiguration(new MedicalAppointmentConfiguration());
+            builder.ApplyConfiguration(new MedicalCenterConfiguration());
+            builder.ApplyConfiguration(new MedicalCenterProcedureConfiguration());
+            builder.ApplyConfiguration(new MedicalPaymentHistoryConfiguration());
+            builder.ApplyConfiguration(new MedicalProcedureConfiguration());
+            builder.ApplyConfiguration(new PassportConfiguration());
+            builder.ApplyConfiguration(new PoliceStationConfiguration());
+            builder.ApplyConfiguration(new PropertyConfiguration());
+            builder.ApplyConfiguration(new PublicServantCityHallConfiguration());
+            builder.ApplyConfiguration(new PublicServantConfiguration());
+            builder.ApplyConfiguration(new PublicServantGPConfiguration());
+            builder.ApplyConfiguration(new PublicServantPoliceConfiguration());
+            builder.ApplyConfiguration(new PublicServantSFOConfiguration());
+            builder.ApplyConfiguration(new ReportProblemConfiguration());
+            builder.ApplyConfiguration(new SeriousFraudOfficeConfiguration());
         }
     }
 }

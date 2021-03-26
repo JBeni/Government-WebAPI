@@ -10,9 +10,26 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
         {
             builder.HasKey(x => x.Identifier);
 
-            builder.Property(t => t.Identifier)
+            builder.Property(t => t.UserCNP)
                 .HasMaxLength(150)
                 .IsRequired();
+            builder.Property(t => t.UserName)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.Description)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.Type)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.IsProcessed)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.DateOfIssue)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.DateOfExpiry)
+                .HasMaxLength(150);
         }
     }
 }

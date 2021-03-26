@@ -10,7 +10,10 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
         {
             builder.HasKey(x => x.Identifier);
 
-            builder.Property(t => t.Identifier)
+            builder.Property(t => t.MedicalCenter)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.MedicalProcedure)
                 .HasMaxLength(150)
                 .IsRequired();
         }

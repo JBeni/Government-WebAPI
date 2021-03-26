@@ -10,7 +10,25 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
         {
             builder.HasKey(x => x.Identifier);
 
+            builder.Property(t => t.Size)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.UnitOfMeasure)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.ValueAtBuying)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.CurrentValue)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.Type)
+                .HasMaxLength(150)
+                .IsRequired();
             builder.Property(t => t.Address)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.CityHall)
                 .HasMaxLength(150)
                 .IsRequired();
         }

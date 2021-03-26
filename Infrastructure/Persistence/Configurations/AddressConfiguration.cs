@@ -10,7 +10,19 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
         {
             builder.HasKey(x => x.Identifier);
 
+            builder.Property(t => t.ZipCode)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.Street)
+                .HasMaxLength(150)
+                .IsRequired();
             builder.Property(t => t.County)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.Country)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder.Property(t => t.Type)
                 .HasMaxLength(150)
                 .IsRequired();
         }
