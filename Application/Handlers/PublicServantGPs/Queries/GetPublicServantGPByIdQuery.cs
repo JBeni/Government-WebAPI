@@ -30,7 +30,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Queries
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
+                throw new Exception("There was an error retrieving the public servant of GP by Id", ex);
             }
         }
     }
