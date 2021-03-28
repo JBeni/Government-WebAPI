@@ -30,7 +30,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Queries
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the medical history of citizen", ex);
+                throw new Exception("There was an error retrieving the citizen medical history by Id", ex);
             }
         }
     }
