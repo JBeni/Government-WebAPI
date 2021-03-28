@@ -31,7 +31,7 @@ namespace GovernmentSystem.Application.Handlers.Addresses.Queries
             }
             catch (Exception ex)
             {
-                throw new Exception("", ex);
+                throw new Exception("There was an error retrieving the addresses by Type", ex);
             }
         }
     }
