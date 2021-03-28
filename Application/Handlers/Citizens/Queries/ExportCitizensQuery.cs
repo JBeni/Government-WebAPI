@@ -21,16 +21,16 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Queries
             _citizenService = citizenService;
         }
 
-        public Task<ExportCitizensVm> Handle(ExportCitizensQuery request, CancellationToken cancellationToken)
+        public async Task<ExportCitizensVm> Handle(ExportCitizensQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                var result = _citizenService.ExportCitizensQuery(request);
-                return Task.FromResult(result);
+                var result = await _citizenService.ExportCitizensQuery(request);
+                return result;
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
+                throw new Exception("There was an error retrieving the citizens", ex);
             }
         }
     }
