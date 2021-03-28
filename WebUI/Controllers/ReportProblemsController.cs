@@ -1,42 +1,42 @@
-﻿using GovernmentSystem.Application.Handlers.Citizens.Commands;
-using GovernmentSystem.Application.Handlers.Citizens.Queries;
+﻿using GovernmentSystem.Application.Handlers.ReportProblems.Commands;
+using GovernmentSystem.Application.Handlers.ReportProblems.Queries;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace GovernmentSystem.WebUI.Controllers
 {
-    public class CitizensController : ApiControllerBase
+    public class ReprotProblemsController : ApiControllerBase
     {
         [HttpGet("")]
-        public async Task<IActionResult> GetCitizenById([FromQuery] GetCitizenByIdQuery query)
+        public async Task<IActionResult> GetReportProblemById([FromQuery] GetReportProblemByIdQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> GetCitizens([FromQuery] GetCitizensQuery query)
+        public async Task<IActionResult> GetReportProblems([FromQuery] GetReportProblemsQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> Create(CreateCitizenCommand command)
+        public async Task<IActionResult> Create(CreateReportProblemCommand command)
         {
             var result = await Mediator.Send(command);
             return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update(UpdateCitizenCommand command)
+        public async Task<IActionResult> Update(UpdateReportProblemCommand command)
         {
             var result = await Mediator.Send(command);
             return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
         }
 
         [HttpPut("delete")]
-        public async Task<IActionResult> Delete(DeleteCitizenCommand command)
+        public async Task<IActionResult> Delete(DeleteReportProblemCommand command)
         {
             var result = await Mediator.Send(command);
             return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
