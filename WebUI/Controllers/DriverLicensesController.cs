@@ -7,14 +7,14 @@ namespace GovernmentSystem.WebUI.Controllers
 {
     public class DriverLicensesController : ApiControllerBase
     {
-        [HttpGet("")]
+        [HttpGet("getDriverLicenseById")]
         public async Task<IActionResult> GetDriverLicenseById([FromQuery] GetDriverLicenseByIdQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("")]
+        [HttpGet("getDriverLicenses")]
         public async Task<IActionResult> GetDriverLicenses([FromQuery] GetDriverLicensesQuery query)
         {
             var result = await Mediator.Send(query);
