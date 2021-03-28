@@ -30,7 +30,7 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Queries
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
+                throw new Exception("There was an error retrieving the identity card by Id", ex);
             }
         }
     }
