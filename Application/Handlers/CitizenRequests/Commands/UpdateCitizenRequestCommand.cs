@@ -41,7 +41,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenRequests.Commands
     {
         public UpdateCitizenRequestCommandValidator()
         {
-            RuleFor(v => v.Identifier).Null();
+            RuleFor(v => v.Identifier).NotEmpty().Null();
             RuleFor(v => v.IsProcessed).NotEmpty().NotNull();
             RuleFor(v => v.DateOfExpiry).NotEmpty().NotNull();
         }

@@ -14,6 +14,8 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
         public Guid Identifier { get; set; }
         public string LicenseNumber { get; set; }
         public DriverLicenseCategory Category { get; set; }
+        public DateTime DateOfIssue { get; set; }
+        public DateTime DateOfExpiry { get; set; }
     }
 
     public class CreateDriverLicenseCommandHandler : IRequestHandler<CreateDriverLicenseCommand, RequestResponse>

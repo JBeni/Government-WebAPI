@@ -13,6 +13,8 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Commands
         public Guid Identifier { get; set; }
         public string Series { get; set; }
         public string Type { get; set; }
+        public DateTime DateOfIssue { get; set; }
+        public DateTime DateOfExpiry { get; set; }
     }
 
     public class CreateIdentityCardCommandHandler : IRequestHandler<CreateIdentityCardCommand, RequestResponse>

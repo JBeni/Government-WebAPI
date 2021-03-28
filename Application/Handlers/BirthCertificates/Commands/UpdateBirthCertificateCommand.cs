@@ -50,7 +50,7 @@ namespace GovernmentSystem.Application.Handlers.BirthCertificates.Commands
     {
         public UpdateBirthCertificateCommandValidator()
         {
-            RuleFor(v => v.Identifier).Null();
+            RuleFor(v => v.Identifier).NotEmpty().Null();
             RuleFor(v => v.PersonalIdentificationNumber).NotEmpty().NotNull();
             RuleFor(v => v.FirstName).NotEmpty().NotNull();
             RuleFor(v => v.LastName).NotEmpty().NotNull();

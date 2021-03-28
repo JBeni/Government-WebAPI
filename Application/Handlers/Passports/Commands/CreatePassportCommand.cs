@@ -14,6 +14,8 @@ namespace GovernmentSystem.Application.Handlers.Passports.Commands
         public long PassportNumber { get; set; }
         public string Type { get; set; }
         public string Country { get; set; }
+        public DateTime DateOfIssue { get; set; }
+        public DateTime DateOfExpiry { get; set; }
     }
 
     public class CreatePassportsCommandHandler : IRequestHandler<CreatePassportCommand, RequestResponse>

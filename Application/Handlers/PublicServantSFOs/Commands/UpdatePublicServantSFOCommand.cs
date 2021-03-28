@@ -48,7 +48,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
     {
         public UpdatePublicServantSFOCommandValidator()
         {
-            RuleFor(v => v.Identifier).NotNull();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
             RuleFor(v => v.CNP).NotEmpty().NotNull();
             RuleFor(v => v.FirstName).NotEmpty().NotNull();
             RuleFor(v => v.LastName).NotEmpty().NotNull();
