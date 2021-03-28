@@ -99,7 +99,6 @@ namespace GovernmentSystem.Infrastructure.Persistence
             builder.ApplyConfiguration(new PoliceStationConfiguration());
             builder.ApplyConfiguration(new PropertyConfiguration());
             builder.ApplyConfiguration(new PublicServantCityHallConfiguration());
-            builder.ApplyConfiguration(new PublicServantConfiguration());
             builder.ApplyConfiguration(new PublicServantGPConfiguration());
             builder.ApplyConfiguration(new PublicServantPoliceConfiguration());
             builder.ApplyConfiguration(new PublicServantSFOConfiguration());
