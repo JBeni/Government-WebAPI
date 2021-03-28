@@ -8,7 +8,6 @@ namespace GovernmentSystem.Domain.Entities
     {
         public string StationName { get; set; }
         public DateTime ConstructionDate { get; set; }
-
         public Address Address { get; set; }
         public CityHall CityHall { get; set; }
     }
