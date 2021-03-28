@@ -5,7 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Handlers.MedicalCenterById.Queries
+namespace GovernmentSystem.Application.Handlers.MedicalCenters.Queries
 {
     public class GetMedicalCenterByIdQuery : IRequest<MedicalCenterResponse>
     {
@@ -30,7 +30,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenterById.Queries
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the public servants of serious fraud office", ex);
+                throw new Exception("There was an error retrieving the medical center by Id", ex);
             }
         }
     }
