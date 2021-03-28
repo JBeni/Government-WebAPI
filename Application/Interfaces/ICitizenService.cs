@@ -14,7 +14,7 @@ namespace GovernmentSystem.Application.Interfaces
         Task<RequestResponse> CreateCitizen(CreateCitizenCommand command, CancellationToken cancellationToken);
         Task<RequestResponse> DeleteCitizen(DeleteCitizenCommand command, CancellationToken cancellationToken);
         string GenerateCNP(DateTime dateOfBirth, string userGender);
-        ExportCitizensVm ExportCitizensQuery(ExportCitizensQuery query);
+        Task<ExportCitizensVm> ExportCitizensQuery(ExportCitizensQuery query);
         CitizenResponse GetCitizenById(GetCitizenByIdQuery query);
         List<CitizenResponse> GetCitizens(GetCitizensQuery query);
         Task<RequestResponse> UpdateCitizen(UpdateCitizenCommand command, CancellationToken cancellationToken);
