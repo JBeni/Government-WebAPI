@@ -10,16 +10,20 @@ using System.Threading.Tasks;
 using GovernmentSystem.Application.Handlers.CityHalls.Queries;
 using System.Collections.Generic;
 using GovernmentSystem.Application.Responses;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
     public class CityHallService : ICityHallService
     {
         private readonly IApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public CityHallService(IApplicationDbContext dbContext)
+        public CityHallService(IApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public async Task<RequestResponse> CreateCityHall(CreateCityHallCommand command, CancellationToken cancellationToken)
@@ -29,17 +33,16 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The city hall already exists");
             }
-
             var entity = new CityHall
             {
                 Identifier = command.Identifier,
                 CityHallName = command.CityHallName,
                 Address = command.Address,
+                ConstructionDate = command.ConstructionDate
             };
 
             _dbContext.CityHalls.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-
             return RequestResponse.Success();
         }
 
@@ -51,22 +54,26 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The city hall does not exists");
             }
 
-            //cityHall.IsErased = command.IsErased;
-
             _dbContext.CityHalls.Update(cityHall);
             await _dbContext.SaveChangesAsync(cancellationToken);
-
             return RequestResponse.Success();
         }
 
         public CityHallResponse GetCityHallById(GetCityHallByIdQuery query)
         {
-            throw new NotImplementedException();
+            var result = _dbContext.CityHalls
+                .Where(v => v.Identifier == query.Identifier)
+                .ProjectTo<CityHallResponse>(_mapper.ConfigurationProvider)
+                .FirstOrDefault();
+            return result;
         }
 
         public List<CityHallResponse> GetCityHalls(GetCityHallsQuery query)
         {
-            throw new NotImplementedException();
+            var result = _dbContext.CityHalls
+                .ProjectTo<CityHallResponse>(_mapper.ConfigurationProvider)
+                .ToList();
+            return result;
         }
 
         public async Task<RequestResponse> UpdateCityHall(UpdateCityHallCommand command, CancellationToken cancellationToken)
@@ -76,13 +83,11 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The city hall does not exists");
             }
-
             cityHall.CityHallName = command.CityHallName;
             cityHall.Address = command.Address;
 
             _dbContext.CityHalls.Update(cityHall);
             await _dbContext.SaveChangesAsync(cancellationToken);
-
             return RequestResponse.Success();
         }
     }

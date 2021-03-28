@@ -7,20 +7,23 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using GovernmentSystem.Domain.Entities.MedicalEntities;
-using GovernmentSystem.Application.Handlers.MedicalCenterById.Queries;
 using System.Collections.Generic;
 using GovernmentSystem.Application.Handlers.MedicalCenters.Queries;
 using GovernmentSystem.Application.Responses;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
     public class MedicalCenterService : IMedicalCenterService
     {
         private readonly IApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public MedicalCenterService(IApplicationDbContext dbContext)
+        public MedicalCenterService(IApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public async Task<RequestResponse> CreateMedicalCenter(CreateMedicalCenterCommand command, CancellationToken cancellationToken)
@@ -30,9 +33,11 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical center already exists");
             }
-
             var entity = new MedicalCenter
             {
+                Address = command.Address,
+                CenterName = command.CenterName,
+                ConstructionDate = command.ConstructionDate,
             };
 
             _dbContext.MedicalCenters.Add(entity);
@@ -55,12 +60,19 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public MedicalCenterResponse GetMedicalCenterById(GetMedicalCenterByIdQuery query)
         {
-            throw new NotImplementedException();
+            var result = _dbContext.MedicalCenters
+                .Where(x => x.Identifier == query.Identifier)
+                .ProjectTo<MedicalCenterResponse>(_mapper.ConfigurationProvider)
+                .FirstOrDefault();
+            return result;
         }
 
         public List<MedicalCenterResponse> GetMedicalCenters(GetMedicalCentersQuery query)
         {
-            throw new NotImplementedException();
+            var result = _dbContext.MedicalCenters
+                .ProjectTo<MedicalCenterResponse>(_mapper.ConfigurationProvider)
+                .ToList();
+            return result;
         }
 
         public async Task<RequestResponse> UpdateMedicalCenter(UpdateMedicalCenterCommand command, CancellationToken cancellationToken)
@@ -70,7 +82,9 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical center does not exists");
             }
-            //medicalCenter.Something = "";
+            medicalCenter.Address = command.Address;
+            medicalCenter.CenterName = command.CenterName;
+            medicalCenter.ConstructionDate = command.ConstructionDate;
 
             _dbContext.MedicalCenters.Update(medicalCenter);
             await _dbContext.SaveChangesAsync(cancellationToken);

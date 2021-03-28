@@ -10,18 +10,22 @@ using GovernmentSystem.Domain.Entities.CitizenEntities;
 using GovernmentSystem.Application.Handlers.ReportProblems.Queries;
 using System.Collections.Generic;
 using GovernmentSystem.Application.Responses;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
     public class ReportProblemService : IReportProblemService
     {
         private readonly IApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public ReportProblemService(IApplicationDbContext dbContext)
+        public ReportProblemService(IApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
- 
+
         public async Task<RequestResponse> CreateReportProblem(CreateReportProblemCommand command, CancellationToken cancellationToken)
         {
             var reportProblem = _dbContext.ReportProblems.SingleOrDefault(x => x.Identifier == command.Identifier);
@@ -29,9 +33,13 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The reported problem already exists");
             }
-
             var entity = new ReportProblem
             {
+                DateOfExpiry = command.DateOfExpiry,
+                DateOfIssue = command.DateOfIssue,
+                Description = command.Description,
+                IsProcessed = false,
+                Title = command.Title
             };
 
             _dbContext.ReportProblems.Add(entity);
@@ -47,19 +55,26 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The reported problem does not exists");
             }
 
-            _dbContext.ReportProblems.Add(reportProblem);
+            _dbContext.ReportProblems.Remove(reportProblem);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
 
         public ReportProblemResponse GetReportProblemById(GetReportProblemByIdQuery query)
         {
-            throw new NotImplementedException();
+            var result = _dbContext.ReportProblems
+                .Where(x => x.Identifier == query.Identifier)
+                .ProjectTo<ReportProblemResponse>(_mapper.ConfigurationProvider)
+                .FirstOrDefault();
+            return result;
         }
 
         public List<ReportProblemResponse> GetReportProblems(GetReportProblemsQuery query)
         {
-            throw new NotImplementedException();
+            var result = _dbContext.ReportProblems
+                .ProjectTo<ReportProblemResponse>(_mapper.ConfigurationProvider)
+                .ToList();
+            return result;
         }
 
         public async Task<RequestResponse> UpdateReportProblem(UpdateReportProblemCommand command, CancellationToken cancellationToken)
@@ -69,10 +84,9 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The reported problem does not exists");
             }
-
             reportProblem.IsProcessed = true;
 
-            _dbContext.ReportProblems.Add(reportProblem);
+            _dbContext.ReportProblems.Update(reportProblem);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }

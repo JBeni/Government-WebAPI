@@ -36,6 +36,15 @@ namespace GovernmentSystem.Infrastructure.Services
 
             var entity = new CitizenMedicalHistory
             {
+                AdditionalInformation = command.AdditionalInformation,
+                MedicalAppointment = command.MedicalAppointment,
+                Citizen = command.Citizen,
+                DateOfDiagnostic = command.DateOfDiagnostic,
+                HealthProblem = command.HealthProblem,
+                MedicalCenter = command.MedicalCenter,
+                PublicServantGP = command.PublicServantGP,
+                Symptoms = command.Symptoms,
+                Treatment = command.Treatment,
             };
 
             _dbContext.CitizenMedicalHistories.Add(entity);
@@ -56,20 +65,21 @@ namespace GovernmentSystem.Infrastructure.Services
             return RequestResponse.Success();
         }
 
-
-
         public List<CitizenMedicalHistoryResponse> GetCitizenMedicalHistories(GetCitizenMedicalHistoriesQuery query)
         {
             var result = _dbContext.CitizenMedicalHistories
-                    .OrderBy(x => x.Identifier)
-                    .ProjectTo<CitizenMedicalHistoryResponse>(_mapper.ConfigurationProvider)
-                    .ToList();
+                .ProjectTo<CitizenMedicalHistoryResponse>(_mapper.ConfigurationProvider)
+                .ToList();
             return result;
         }
 
         public CitizenMedicalHistoryResponse GetCitizenMedicalHistoryById(GetCitizenMedicalHistoryByIdQuery query)
         {
-            throw new NotImplementedException();
+            var result = _dbContext.CitizenMedicalHistories
+                .Where(v => v.Identifier == query.Identifier)
+                .ProjectTo<CitizenMedicalHistoryResponse>(_mapper.ConfigurationProvider)
+                .FirstOrDefault();
+            return result;
         }
 
         public async Task<RequestResponse> UpdateCitizenMedicalHistory(UpdateCitizenMedicalHistoryCommand command, CancellationToken cancellationToken)
@@ -79,7 +89,15 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The citizen medical history request does not exists");
             }
-            //citizenMedicalHistory.Some = "";
+            citizenMedicalHistory.AdditionalInformation = command.AdditionalInformation;
+            citizenMedicalHistory.MedicalAppointment = command.MedicalAppointment;
+            citizenMedicalHistory.Citizen = command.Citizen;
+            citizenMedicalHistory.DateOfDiagnostic = command.DateOfDiagnostic;
+            citizenMedicalHistory.HealthProblem = command.HealthProblem;
+            citizenMedicalHistory.MedicalCenter = command.MedicalCenter;
+            citizenMedicalHistory.PublicServantGP = command.PublicServantGP;
+            citizenMedicalHistory.Symptoms = command.Symptoms;
+            citizenMedicalHistory.Treatment = command.Treatment;
 
             _dbContext.CitizenMedicalHistories.Update(citizenMedicalHistory);
             await _dbContext.SaveChangesAsync(cancellationToken);

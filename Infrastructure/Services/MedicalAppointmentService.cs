@@ -1,4 +1,6 @@
-﻿using GovernmentSystem.Application.Common.Interfaces;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Handlers.Appointments.Commands;
 using GovernmentSystem.Application.Handlers.MedicalAppointments.Queries;
@@ -16,22 +18,29 @@ namespace GovernmentSystem.Infrastructure.Services
     public class MedicalAppointmentService : IMedicalAppointmentService
     {
         private readonly IApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public MedicalAppointmentService(IApplicationDbContext dbContext)
+        public MedicalAppointmentService(IApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public async Task<RequestResponse> CreateMedicalAppointment(CreateMedicalAppointmentCommand command, CancellationToken cancellationToken)
         {
-            var appointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Identifier == command.Identifier);
-            if (appointment != null)
+            var medicalAppointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (medicalAppointment != null)
             {
-                throw new Exception("The appointment already exists");
+                throw new Exception("The medical appointment already exists");
             }
-
             var entity = new MedicalAppointment
             {
+                AppointmentDay = command.AppointmentDay,
+                Citizen = command.Citizen,
+                MedicalCenter = command.MedicalCenter,
+                MedicalProcedure = command.MedicalProcedure,
+                PublicServantGP = command.PublicServantGP,
+                Symptoms = command.Symptoms
             };
 
             _dbContext.MedicalAppointments.Add(entity);
@@ -41,37 +50,49 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> DeleteMedicalAppointment(DeleteMedicalAppointmentCommand command, CancellationToken cancellationToken)
         {
-            var appointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Identifier == command.Identifier);
-            if (appointment == null)
+            var medicalAppointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (medicalAppointment == null)
             {
-                throw new Exception("The appointment does not exists");
+                throw new Exception("The medical appointment does not exists");
             }
 
-            _dbContext.MedicalAppointments.Remove(appointment);
+            _dbContext.MedicalAppointments.Remove(medicalAppointment);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
 
         public MedicalAppointmentResponse GetMedicalAppointmentById(GetMedicalAppointmentByIdQuery query)
         {
-            throw new NotImplementedException();
+            var result = _dbContext.MedicalAppointments
+                .Where(x => x.Identifier == query.Identifier)
+                .ProjectTo<MedicalAppointmentResponse>(_mapper.ConfigurationProvider)
+                .FirstOrDefault();
+            return result;
         }
 
         public List<MedicalAppointmentResponse> GetMedicalAppointments(GetMedicalAppointmentsQuery query)
         {
-            throw new NotImplementedException();
+            var result = _dbContext.MedicalAppointments
+                .ProjectTo<MedicalAppointmentResponse>(_mapper.ConfigurationProvider)
+                .ToList();
+            return result;
         }
 
         public async Task<RequestResponse> UpdateMedicalAppointment(UpdateMedicalAppointmentCommand command, CancellationToken cancellationToken)
         {
-            var appointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Identifier == command.Identifier);
-            if (appointment == null)
+            var medicalAppointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (medicalAppointment == null)
             {
-                throw new Exception("The appointment does not exists");
+                throw new Exception("The medical appointment does not exists");
             }
-            //appointment.Some = "";
+            medicalAppointment.AppointmentDay = command.AppointmentDay;
+            medicalAppointment.Citizen = command.Citizen;
+            medicalAppointment.MedicalCenter = command.MedicalCenter;
+            medicalAppointment.MedicalProcedure = command.MedicalProcedure;
+            medicalAppointment.PublicServantGP = command.PublicServantGP;
+            medicalAppointment.Symptoms = command.Symptoms;
 
-            _dbContext.MedicalAppointments.Update(appointment);
+            _dbContext.MedicalAppointments.Update(medicalAppointment);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }

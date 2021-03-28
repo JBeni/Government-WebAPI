@@ -10,16 +10,20 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using GovernmentSystem.Application.Handlers.Properties.Queries;
 using GovernmentSystem.Application.Responses;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
     public class PropertyService : IPropertyService
     {
         private readonly IApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public PropertyService(IApplicationDbContext dbContext)
+        public PropertyService(IApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public async Task<RequestResponse> CreateProperty(CreatePropertyCommand command, CancellationToken cancellationToken)
@@ -29,9 +33,15 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The property already exists");
             }
-
             var entity = new Property
             {
+                Address = command.Address,
+                ValueAtBuying = command.ValueAtBuying,
+                CityHall = command.CityHall,
+                CurrentValue = command.CurrentValue,
+                Size = command.Size,
+                Type = command.Type,
+                UnitOfMeasure = command.UnitOfMeasure
             };
 
             _dbContext.Properties.Add(entity);
@@ -47,19 +57,26 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The property does not exists");
             }
 
-            _dbContext.Properties.Add(property);
+            _dbContext.Properties.Remove(property);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
 
         public List<PropertyResponse> GetProperties(GetPropertiesQuery query)
         {
-            throw new NotImplementedException();
+            var result = _dbContext.Properties
+                .ProjectTo<PropertyResponse>(_mapper.ConfigurationProvider)
+                .ToList();
+            return result;
         }
 
         public PropertyResponse GetPropertyById(GetPropertyByIdQuery query)
         {
-            throw new NotImplementedException();
+            var result = _dbContext.Properties
+                .Where(x => x.Identifier == query.Identifier)
+                .ProjectTo<PropertyResponse>(_mapper.ConfigurationProvider)
+                .FirstOrDefault();
+            return result;
         }
 
         public async Task<RequestResponse> UpdateProperty(UpdatePropertyCommand command, CancellationToken cancellationToken)
@@ -69,9 +86,9 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The property does not exists");
             }
-            property.CurrentValue = "";
+            property.CurrentValue = command.CurrentValue;
 
-            _dbContext.Properties.Add(property);
+            _dbContext.Properties.Update(property);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }

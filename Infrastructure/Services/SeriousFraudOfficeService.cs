@@ -1,10 +1,15 @@
-﻿using GovernmentSystem.Application.Common.Models;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using GovernmentSystem.Application.Common.Interfaces;
+using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands;
 using GovernmentSystem.Application.Handlers.SeriousFraudOffices.Queries;
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Responses;
+using GovernmentSystem.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,29 +17,75 @@ namespace GovernmentSystem.Infrastructure.Services
 {
     public class SeriousFraudOfficeService : ISeriousFraudOfficeService
     {
-        public Task<RequestResponse> CreateSeriousFraudOffice(CreateSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
+        private readonly IApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
+
+        public SeriousFraudOfficeService(IApplicationDbContext dbContext, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
+            _mapper = mapper;
         }
 
-        public Task<RequestResponse> DeleteSeriousFraudOffice(DeleteSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> CreateSeriousFraudOffice(CreateSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var sfo = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (sfo != null)
+            {
+                throw new Exception("The serious fraud office already exists");
+            }
+            var entity = new SeriousFraudOffice
+            {
+                Address = command.Address,
+                ConstructionDate = command.ConstructionDate,
+                OfficeName = command.OfficeName
+            };
+
+            _dbContext.SeriousFraudOffices.Add(entity);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+            return RequestResponse.Success();
+        }
+
+        public async Task<RequestResponse> DeleteSeriousFraudOffice(DeleteSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
+        {
+            var sfo = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (sfo != null)
+            {
+                throw new Exception("The serious fraud office does not exists");
+            }
+
+            _dbContext.SeriousFraudOffices.Remove(sfo);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+            return RequestResponse.Success();
         }
 
         public SeriousFraudOfficeResponse GetSeriousFraudOfficeById(GetSeriousFraudOfficeByIdQuery query)
         {
-            throw new NotImplementedException();
+            var result = _dbContext.SeriousFraudOffices
+                .Where(x => x.Identifier == query.Identifier)
+                .ProjectTo<SeriousFraudOfficeResponse>(_mapper.ConfigurationProvider)
+                .FirstOrDefault();
+            return result;
         }
 
         public List<SeriousFraudOfficeResponse> GetSeriousFraudOffices(GetSeriousFraudOfficesQuery query)
         {
-            throw new NotImplementedException();
+            var result = _dbContext.SeriousFraudOffices
+                .ProjectTo<SeriousFraudOfficeResponse>(_mapper.ConfigurationProvider)
+                .ToList();
+            return result;
         }
 
-        public Task<RequestResponse> UpdateSeriousFraudOffice(UpdateSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> UpdateSeriousFraudOffice(UpdateSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var sfo = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (sfo != null)
+            {
+                throw new Exception("The serious fraud office does not exists");
+            }
+
+            _dbContext.SeriousFraudOffices.Update(sfo);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+            return RequestResponse.Success();
         }
     }
 }
