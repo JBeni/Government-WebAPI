@@ -30,7 +30,7 @@ namespace GovernmentSystem.Application.Handlers.BirthCertificates.Queries
             }
             catch (Exception ex)
             {
-                throw new Exception("", ex);
+                throw new Exception("There was an error retrieving the birth certificate by Id", ex);
             }
         }
     }
