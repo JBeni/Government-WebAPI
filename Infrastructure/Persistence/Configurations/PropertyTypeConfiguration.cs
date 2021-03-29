@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GovernmentSystem.Infrastructure.Persistence.Configurations
 {
-    public class PropertyTypeConfiguration : IEntityTypeConfiguration<PropertyType>
+    public class AddressTypeConfiguration : IEntityTypeConfiguration<AddressType>
     {
-        public void Configure(EntityTypeBuilder<PropertyType> builder)
+        public void Configure(EntityTypeBuilder<AddressType> builder)
         {
             builder.HasKey(x => x.Identifier);
 

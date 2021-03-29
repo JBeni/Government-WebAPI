@@ -33,26 +33,26 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
             builder.Property(t => t.DateOfDeath)
                 .HasMaxLength(150);
 
-            builder.Property(t => t.BirthCertificate)
-                .IsRequired();
-            builder.Property(t => t.IdentityCard)
-                .HasMaxLength(150);
-            builder.Property(t => t.Passport)
-                .HasMaxLength(150);
-            builder.Property(t => t.DriverLicense)
-                .HasMaxLength(150);
+            //builder.Property(t => t.BirthCertificate)
+            //    .IsRequired();
+            //builder.Property(t => t.IdentityCard)
+            //    .HasMaxLength(150);
+            //builder.Property(t => t.Passport)
+            //    .HasMaxLength(150);
+            //builder.Property(t => t.DriverLicense)
+            //    .HasMaxLength(150);
 
-            builder.Property(t => t.HomeAddress)
-                .IsRequired();
-            builder.Property(t => t.CityHallResidence)
-                .HasMaxLength(150)
-                .IsRequired();
-            builder.Property(t => t.MedicalCenter)
-                .HasMaxLength(150)
-                .IsRequired();
-            builder.Property(t => t.PublicServantGP)
-                .HasMaxLength(150)
-                .IsRequired();
+            //builder.Property(t => t.HomeAddress)
+            //    .IsRequired();
+            //builder.Property(t => t.CityHallResidence)
+            //    .HasMaxLength(150)
+            //    .IsRequired();
+            //builder.Property(t => t.MedicalCenter)
+            //    .HasMaxLength(150)
+            //    .IsRequired();
+            //builder.Property(t => t.PublicServantGP)
+            //    .HasMaxLength(150)
+            //    .IsRequired();
         }
     }
 }

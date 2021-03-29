@@ -22,9 +22,9 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
             builder.Property(t => t.Country)
                 .HasMaxLength(150)
                 .IsRequired();
-            builder.Property(t => t.Type)
-                .HasMaxLength(150)
-                .IsRequired();
+            //builder.Property(t => t.Type)
+            //    .HasMaxLength(150)
+            //    .IsRequired();
         }
     }
 }

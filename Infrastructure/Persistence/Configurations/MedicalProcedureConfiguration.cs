@@ -22,9 +22,9 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
             builder.Property(t => t.AdditionalInformation)
                 .HasMaxLength(150)
                 .IsRequired();
-            builder.Property(t => t.MedicalCenter)
-                .HasMaxLength(150)
-                .IsRequired();
+            //builder.Property(t => t.MedicalCenter)
+            //    .HasMaxLength(150)
+            //    .IsRequired();
         }
     }
 }

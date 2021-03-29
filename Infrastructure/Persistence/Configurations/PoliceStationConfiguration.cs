@@ -16,12 +16,12 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
             builder.Property(t => t.ConstructionDate)
                 .HasMaxLength(150)
                 .IsRequired();
-            builder.Property(t => t.Address)
-                .HasMaxLength(150)
-                .IsRequired();
-            builder.Property(t => t.CityHall)
-                .HasMaxLength(150)
-                .IsRequired();
+            //builder.Property(t => t.Address)
+            //    .HasMaxLength(150)
+            //    .IsRequired();
+            //builder.Property(t => t.CityHall)
+            //    .HasMaxLength(150)
+            //    .IsRequired();
         }
     }
 }

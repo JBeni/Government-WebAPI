@@ -26,18 +26,18 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
                 .HasMaxLength(150)
                 .IsRequired();
 
-            builder.Property(t => t.Citizen)
-                .HasMaxLength(150)
-                .IsRequired();
-            builder.Property(t => t.PublicServantGP)
-                .HasMaxLength(150)
-                .IsRequired();
-            builder.Property(t => t.MedicalCenter)
-                .HasMaxLength(150)
-                .IsRequired();
-            builder.Property(t => t.MedicalAppointment)
-                .HasMaxLength(150)
-                .IsRequired();
+            //builder.Property(t => t.Citizen)
+            //    .HasMaxLength(150)
+            //    .IsRequired();
+            //builder.Property(t => t.PublicServantGP)
+            //    .HasMaxLength(150)
+            //    .IsRequired();
+            //builder.Property(t => t.MedicalCenter)
+            //    .HasMaxLength(150)
+            //    .IsRequired();
+            //builder.Property(t => t.MedicalAppointment)
+            //    .HasMaxLength(150)
+            //    .IsRequired();
         }
     }
 }

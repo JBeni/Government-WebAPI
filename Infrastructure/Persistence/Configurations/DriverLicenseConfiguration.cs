@@ -13,9 +13,9 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
             builder.Property(t => t.LicenseNumber)
                 .HasMaxLength(150)
                 .IsRequired();
-            builder.Property(t => t.Category)
-                .HasMaxLength(150)
-                .IsRequired();
+            //builder.Property(t => t.Category)
+            //    .HasMaxLength(150)
+            //    .IsRequired();
             builder.Property(t => t.DateOfIssue)
                 .HasMaxLength(150)
                 .IsRequired();
