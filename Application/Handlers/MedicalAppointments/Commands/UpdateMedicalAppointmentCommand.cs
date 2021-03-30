@@ -14,7 +14,6 @@ namespace GovernmentSystem.Application.Handlers.Appointments.Commands
         public string Symptoms { get; set; }
         public DateTime AppointmentDay { get; set; }
         public int MedicalProcedureId { get; set; }
-        public int CitizenId { get; set; }
         public int PublicServantGPId { get; set; }
         public int MedicalCenterId { get; set; }
     }
@@ -49,7 +48,6 @@ namespace GovernmentSystem.Application.Handlers.Appointments.Commands
             RuleFor(v => v.Symptoms).NotEmpty().NotNull();
             RuleFor(v => v.AppointmentDay).NotEmpty().NotNull();
             RuleFor(v => v.MedicalProcedureId).NotEmpty().NotNull();
-            RuleFor(v => v.CitizenId).NotEmpty().NotNull();
             RuleFor(v => v.PublicServantGPId).NotEmpty().NotNull();
             RuleFor(v => v.MedicalCenterId).NotEmpty().NotNull();
         }

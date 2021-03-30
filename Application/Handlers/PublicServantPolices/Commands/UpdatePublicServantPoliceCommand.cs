@@ -11,7 +11,6 @@ namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Commands
     public class UpdatePublicServantPoliceCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
-        public string CNP { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string DutyRole { get; set; }
@@ -48,7 +47,6 @@ namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Commands
         public UpdatePublicServantPoliceCommandValidator()
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
-            RuleFor(v => v.CNP).NotEmpty().NotNull();
             RuleFor(v => v.FirstName).NotEmpty().NotNull();
             RuleFor(v => v.LastName).NotEmpty().NotNull();
             RuleFor(v => v.DutyRole).NotEmpty().NotNull();

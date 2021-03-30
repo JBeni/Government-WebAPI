@@ -11,6 +11,8 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
     public class UpdateCitizenCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public int IdentityCardId { get; set; }
         public int PassportId { get; set; }
         public int DriverLicenseId { get; set; }
@@ -44,6 +46,8 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
         public UpdateCitizenCommandValidator()
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
+            RuleFor(v => v.FirstName).NotEmpty().NotNull();
+            RuleFor(v => v.LastName).NotEmpty().NotNull();
             RuleFor(v => v.IdentityCardId).NotEmpty().NotNull();
             RuleFor(v => v.PassportId).NotEmpty().NotNull();
             RuleFor(v => v.DriverLicenseId).NotEmpty().NotNull();

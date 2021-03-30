@@ -12,7 +12,6 @@ namespace GovernmentSystem.Application.Handlers.CityHalls.Commands
     {
         public Guid Identifier { get; set; }
         public string CityHallName { get; set; }
-        public DateTime ConstructionDate { get; set; }
         public int AddressId { get; set; }
     }
 
@@ -44,7 +43,6 @@ namespace GovernmentSystem.Application.Handlers.CityHalls.Commands
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
             RuleFor(v => v.CityHallName).NotEmpty().NotNull();
-            RuleFor(v => v.ConstructionDate).NotEmpty().NotNull();
             RuleFor(v => v.AddressId).NotEmpty().NotNull();
 
         }

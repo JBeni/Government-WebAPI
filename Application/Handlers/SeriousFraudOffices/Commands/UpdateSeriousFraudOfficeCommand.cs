@@ -12,7 +12,6 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands
     {
         public Guid Identifier { get; set; }
         public string OfficeName { get; set; }
-        public DateTime ConstructionDate { get; set; }
         public int AddressId { get; set; }
     }
 
@@ -44,7 +43,6 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
             RuleFor(v => v.OfficeName).NotEmpty().NotNull();
-            RuleFor(v => v.ConstructionDate).NotEmpty().NotNull();
             RuleFor(v => v.AddressId).NotEmpty().NotNull();
         }
     }

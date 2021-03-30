@@ -14,11 +14,6 @@ namespace GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands
         public long AmountPaid { get; set; }
         public long AmountToPay { get; set; }
         public DateTime DateOfPayment { get; set; }
-        public int MedicalProcedureId { get; set; }
-        public int MedicalCenterId { get; set; }
-        public int PublicServantGPId { get; set; }
-        public int CitizenWhoBenefitId { get; set; }
-        public int CitizenWhoPaidId { get; set; }
     }
 
     public class UpdateMedicalPaymentHistorysCommandHandler : IRequestHandler<UpdateMedicalPaymentHistoryCommand, RequestResponse>
@@ -51,11 +46,6 @@ namespace GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands
             RuleFor(v => v.AmountPaid).NotEmpty().NotNull();
             RuleFor(v => v.AmountToPay).NotEmpty().NotNull();
             RuleFor(v => v.DateOfPayment).NotEmpty().NotNull();
-            RuleFor(v => v.MedicalProcedureId).NotEmpty().NotNull();
-            RuleFor(v => v.MedicalCenterId).NotEmpty().NotNull();
-            RuleFor(v => v.PublicServantGPId).NotEmpty().NotNull();
-            RuleFor(v => v.CitizenWhoBenefitId).NotEmpty().NotNull();
-            RuleFor(v => v.CitizenWhoPaidId).NotEmpty().NotNull();
         }
     }
 }
