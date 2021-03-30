@@ -41,6 +41,7 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
         public DeleteCitizenCommandValidator()
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
+            RuleFor(v => v.DateOfDeath).NotEmpty().NotNull();
         }
     }
 }

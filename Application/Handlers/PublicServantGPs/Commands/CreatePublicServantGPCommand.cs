@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.MedicalEntities;
 using MediatR;
 using System;
 using System.Threading;
@@ -19,7 +18,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Commands
         public int ContractYears { get; set; }
         public DateTime HireStartDate { get; set; }
         public DateTime HireEndDate { get; set; }
-        public MedicalCenter MedicalCenter { get; set; }
+        public int MedicalCenterId { get; set; }
     }
 
     public class CreatePublicServantGPsCommandHandler : IRequestHandler<CreatePublicServantGPCommand, RequestResponse>
@@ -56,7 +55,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Commands
             RuleFor(v => v.ContractYears).NotEmpty().NotNull();
             RuleFor(v => v.HireStartDate).NotEmpty().NotNull();
             RuleFor(v => v.HireEndDate).NotEmpty().NotNull();
-            RuleFor(v => v.MedicalCenter).NotEmpty().NotNull();
+            RuleFor(v => v.MedicalCenterId).NotEmpty().NotNull();
         }
     }
 }

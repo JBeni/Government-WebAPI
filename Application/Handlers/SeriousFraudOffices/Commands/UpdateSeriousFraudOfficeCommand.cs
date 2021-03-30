@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
 using MediatR;
 using System;
 using System.Threading;
@@ -14,7 +13,7 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands
         public Guid Identifier { get; set; }
         public string OfficeName { get; set; }
         public DateTime ConstructionDate { get; set; }
-        public Address Address { get; set; }
+        public int AddressId { get; set; }
     }
 
     public class UpdateSeriousFraudOfficeCommandHandler : IRequestHandler<UpdateSeriousFraudOfficeCommand, RequestResponse>
@@ -46,7 +45,7 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
             RuleFor(v => v.OfficeName).NotEmpty().NotNull();
             RuleFor(v => v.ConstructionDate).NotEmpty().NotNull();
-            RuleFor(v => v.Address).NotEmpty().NotNull();
+            RuleFor(v => v.AddressId).NotEmpty().NotNull();
         }
     }
 }

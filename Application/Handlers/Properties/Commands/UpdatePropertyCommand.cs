@@ -5,7 +5,6 @@ using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
 
 namespace GovernmentSystem.Application.Handlers.Properties.Commands
 {
@@ -16,9 +15,9 @@ namespace GovernmentSystem.Application.Handlers.Properties.Commands
         public string UnitOfMeasure { get; set; }
         public string ValueAtBuying { get; set; }
         public string CurrentValue { get; set; }
-        public PropertyType Type { get; set; }
-        public Address Address { get; set; }
-        public CityHall CityHall { get; set; }
+        public int TypeId { get; set; }
+        public int AddressId { get; set; }
+        public int CityHallId { get; set; }
     }
 
     public class UpdatePropertyCommandHandler : IRequestHandler<UpdatePropertyCommand, RequestResponse>
@@ -52,9 +51,9 @@ namespace GovernmentSystem.Application.Handlers.Properties.Commands
             RuleFor(v => v.UnitOfMeasure).NotEmpty().NotNull();
             RuleFor(v => v.ValueAtBuying).NotEmpty().NotNull();
             RuleFor(v => v.CurrentValue).NotEmpty().NotNull();
-            RuleFor(v => v.Type).NotEmpty().NotNull();
-            RuleFor(v => v.Address).NotEmpty().NotNull();
-            RuleFor(v => v.CityHall).NotEmpty().NotNull();
+            RuleFor(v => v.TypeId).NotEmpty().NotNull();
+            RuleFor(v => v.AddressId).NotEmpty().NotNull();
+            RuleFor(v => v.CityHallId).NotEmpty().NotNull();
         }
     }
 }

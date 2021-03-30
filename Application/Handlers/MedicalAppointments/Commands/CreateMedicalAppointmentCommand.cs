@@ -5,8 +5,6 @@ using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using GovernmentSystem.Domain.Entities.MedicalEntities;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
 
 namespace GovernmentSystem.Application.Handlers.Appointments.Commands
 {
@@ -15,10 +13,10 @@ namespace GovernmentSystem.Application.Handlers.Appointments.Commands
         public Guid Identifier { get; set; }
         public string Symptoms { get; set; }
         public DateTime AppointmentDay { get; set; }
-        public MedicalProcedure MedicalProcedure { get; set; }
-        public Citizen Citizen { get; set; }
-        public PublicServantGP PublicServantGP { get; set; }
-        public MedicalCenter MedicalCenter { get; set; }
+        public int MedicalProcedureId { get; set; }
+        public int CitizenId { get; set; }
+        public int PublicServantGPId { get; set; }
+        public int MedicalCenterId { get; set; }
     }
 
     public class CreateMedicalAppointmentCommandHandler : IRequestHandler<CreateMedicalAppointmentCommand, RequestResponse>
@@ -50,10 +48,10 @@ namespace GovernmentSystem.Application.Handlers.Appointments.Commands
             RuleFor(v => v.Identifier).Null();
             RuleFor(v => v.Symptoms).NotEmpty().NotNull();
             RuleFor(v => v.AppointmentDay).NotEmpty().NotNull();
-            RuleFor(v => v.MedicalProcedure).NotEmpty().NotNull();
-            RuleFor(v => v.Citizen).NotEmpty().NotNull();
-            RuleFor(v => v.PublicServantGP).NotEmpty().NotNull();
-            RuleFor(v => v.MedicalCenter).NotEmpty().NotNull();
+            RuleFor(v => v.MedicalProcedureId).NotEmpty().NotNull();
+            RuleFor(v => v.CitizenId).NotEmpty().NotNull();
+            RuleFor(v => v.PublicServantGPId).NotEmpty().NotNull();
+            RuleFor(v => v.MedicalCenterId).NotEmpty().NotNull();
         }
     }
 }

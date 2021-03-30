@@ -5,8 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
 
 namespace GovernmentSystem.Application.Handlers.Citizens.Commands
 {
@@ -17,8 +15,8 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
         public string LastName { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
-        public BirthCertificate DateOfBirth { get; set; }
-        public Address PlaceOfBirth { get; set; }
+        public int DateOfBirthId { get; set; }
+        public int PlaceOfBirthId { get; set; }
     }
 
     public class CreateCitizenCommandHandler : IRequestHandler<CreateCitizenCommand, RequestResponse>
@@ -53,8 +51,8 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
             RuleFor(v => v.LastName).NotEmpty().NotNull();
             RuleFor(v => v.Age).NotEmpty().NotNull();
             RuleFor(v => v.Gender).NotEmpty().NotNull();
-            RuleFor(v => v.DateOfBirth).NotEmpty().NotNull();
-            RuleFor(v => v.PlaceOfBirth).NotEmpty().NotNull();
+            RuleFor(v => v.DateOfBirthId).NotEmpty().NotNull();
+            RuleFor(v => v.PlaceOfBirthId).NotEmpty().NotNull();
         }
     }
 }

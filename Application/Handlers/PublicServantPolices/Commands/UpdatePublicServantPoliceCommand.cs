@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities;
 using MediatR;
 using System;
 using System.Threading;
@@ -19,7 +18,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Commands
         public int ContractYears { get; set; }
         public DateTime HireStartDate { get; set; }
         public DateTime HireEndDate { get; set; }
-        public PoliceStation PoliceStation { get; set; }
+        public int PoliceStationId { get; set; }
     }
 
     public class UpdatePublicServantPolicesCommandHandler : IRequestHandler<UpdatePublicServantPoliceCommand, RequestResponse>
@@ -56,7 +55,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Commands
             RuleFor(v => v.ContractYears).NotEmpty().NotNull();
             RuleFor(v => v.HireStartDate).NotEmpty().NotNull();
             RuleFor(v => v.HireEndDate).NotEmpty().NotNull();
-            RuleFor(v => v.PoliceStation).NotEmpty().NotNull();
+            RuleFor(v => v.PoliceStationId).NotEmpty().NotNull();
         }
     }
 }

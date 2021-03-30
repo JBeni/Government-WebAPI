@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities;
 using MediatR;
 using System;
 using System.Threading;
@@ -19,7 +18,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
         public int ContractYears { get; set; }
         public DateTime HireStartDate { get; set; }
         public DateTime HireEndDate { get; set; }
-        public SeriousFraudOffice SFO { get; set; }
+        public int SFOId { get; set; }
     }
 
     public class CreatePublicServantSFOCommandHandler : IRequestHandler<CreatePublicServantSFOCommand, RequestResponse>
@@ -56,7 +55,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
             RuleFor(v => v.ContractYears).NotEmpty().NotNull();
             RuleFor(v => v.HireStartDate).NotEmpty().NotNull();
             RuleFor(v => v.HireEndDate).NotEmpty().NotNull();
-            RuleFor(v => v.SFO).NotEmpty().NotNull();
+            RuleFor(v => v.SFOId).NotEmpty().NotNull();
         }
     }
 }

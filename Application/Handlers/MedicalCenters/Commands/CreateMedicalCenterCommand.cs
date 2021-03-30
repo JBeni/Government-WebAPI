@@ -5,7 +5,6 @@ using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
 
 namespace GovernmentSystem.Application.Handlers.MedicalCenters.Commands
 {
@@ -14,7 +13,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Commands
         public Guid Identifier { get; set; }
         public string CenterName { get; set; }
         public DateTime ConstructionDate { get; set; }
-        public Address Address { get; set; }
+        public int AddressId { get; set; }
     }
 
     public class CreateMedicalCentersCommandHandler : IRequestHandler<CreateMedicalCenterCommand, RequestResponse>
@@ -46,7 +45,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Commands
             RuleFor(v => v.Identifier).Null();
             RuleFor(v => v.CenterName).NotEmpty().NotNull();
             RuleFor(v => v.ConstructionDate).NotEmpty().NotNull();
-            RuleFor(v => v.Address).NotEmpty().NotNull();
+            RuleFor(v => v.AddressId).NotEmpty().NotNull();
         }
     }
 }

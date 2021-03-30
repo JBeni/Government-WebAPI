@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
 using MediatR;
 using System;
 using System.Threading;
@@ -19,7 +18,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantCityHalls.Commands
         public int ContractYears { get; set; }
         public DateTime HireStartDate { get; set; }
         public DateTime HireEndDate { get; set; }
-        public CityHall CityHall { get; set; }
+        public int CityHallId { get; set; }
     }
 
     public class UpdatePublicServantCityHallsCommandHandler : IRequestHandler<UpdatePublicServantCityHallCommand, RequestResponse>
@@ -56,7 +55,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantCityHalls.Commands
             RuleFor(v => v.ContractYears).NotEmpty().NotNull();
             RuleFor(v => v.HireStartDate).NotEmpty().NotNull();
             RuleFor(v => v.HireEndDate).NotEmpty().NotNull();
-            RuleFor(v => v.CityHall).NotEmpty().NotNull();
+            RuleFor(v => v.CityHallId).NotEmpty().NotNull();
         }
     }
 }

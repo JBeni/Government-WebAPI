@@ -1,8 +1,6 @@
 ﻿using FluentValidation;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
-using GovernmentSystem.Domain.Entities.MedicalEntities;
 using MediatR;
 using System;
 using System.Threading;
@@ -16,11 +14,11 @@ namespace GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands
         public long AmountPaid { get; set; }
         public long AmountToPay { get; set; }
         public DateTime DateOfPayment { get; set; }
-        public MedicalProcedure MedicalProcedure { get; set; }
-        public MedicalCenter MedicalCenter { get; set; }
-        public PublicServantGP PublicServantGP { get; set; }
-        public Citizen CitizenWhoBenefit { get; set; }
-        public Citizen CitizenWhoPaid { get; set; }
+        public int MedicalProcedureId { get; set; }
+        public int MedicalCenterId { get; set; }
+        public int PublicServantGPId { get; set; }
+        public int CitizenWhoBenefitId { get; set; }
+        public int CitizenWhoPaidId { get; set; }
     }
 
     public class UpdateMedicalPaymentHistorysCommandHandler : IRequestHandler<UpdateMedicalPaymentHistoryCommand, RequestResponse>
@@ -53,11 +51,11 @@ namespace GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands
             RuleFor(v => v.AmountPaid).NotEmpty().NotNull();
             RuleFor(v => v.AmountToPay).NotEmpty().NotNull();
             RuleFor(v => v.DateOfPayment).NotEmpty().NotNull();
-            RuleFor(v => v.MedicalProcedure).NotEmpty().NotNull();
-            RuleFor(v => v.MedicalCenter).NotEmpty().NotNull();
-            RuleFor(v => v.PublicServantGP).NotEmpty().NotNull();
-            RuleFor(v => v.CitizenWhoBenefit).NotEmpty().NotNull();
-            RuleFor(v => v.CitizenWhoPaid).NotEmpty().NotNull();
+            RuleFor(v => v.MedicalProcedureId).NotEmpty().NotNull();
+            RuleFor(v => v.MedicalCenterId).NotEmpty().NotNull();
+            RuleFor(v => v.PublicServantGPId).NotEmpty().NotNull();
+            RuleFor(v => v.CitizenWhoBenefitId).NotEmpty().NotNull();
+            RuleFor(v => v.CitizenWhoPaidId).NotEmpty().NotNull();
         }
     }
 }

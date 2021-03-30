@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
 using MediatR;
 using System;
 using System.Threading;
@@ -13,7 +12,7 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
     {
         public Guid Identifier { get; set; }
         public string LicenseNumber { get; set; }
-        public DriverLicenseCategory Category { get; set; }
+        public int CategoryId { get; set; }
     }
 
     public class UpdateDriverLicenseCommandHandler : IRequestHandler<UpdateDriverLicenseCommand, RequestResponse>
@@ -44,7 +43,7 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
             RuleFor(v => v.LicenseNumber).NotEmpty().NotNull();
-            RuleFor(v => v.Category).NotEmpty().NotNull();
+            RuleFor(v => v.CategoryId).NotEmpty().NotNull();
 
         }
     }
