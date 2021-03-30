@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using GovernmentSystem.Application.Common.Models;
 using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
 using MediatR;
 using System;
 using System.Threading;
@@ -16,7 +15,7 @@ namespace GovernmentSystem.Application.Handlers.Addresses.Commands
         public string Street { get; set; }
         public string County { get; set; }
         public string Country { get; set; }
-        public AddressType Type { get; set; }
+        public int AddressTypeId { get; set; }
     }
 
     public class CreateAddressCommandHandler : IRequestHandler<CreateAddressCommand, RequestResponse>
@@ -49,7 +48,7 @@ namespace GovernmentSystem.Application.Handlers.Addresses.Commands
             RuleFor(v => v.Street).NotEmpty().NotNull();
             RuleFor(v => v.County).NotEmpty().NotNull();
             RuleFor(v => v.Country).NotEmpty().NotNull();
-            RuleFor(v => v.Type).NotEmpty().NotNull();
+            RuleFor(v => v.AddressTypeId).NotEmpty().NotNull();
         }
     }
 }
