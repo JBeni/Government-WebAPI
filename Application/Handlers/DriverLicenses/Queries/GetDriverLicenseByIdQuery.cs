@@ -14,18 +14,18 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Queries
 
     public class GetDriverLicenseByIdQueryHandler : IRequestHandler<GetDriverLicenseByIdQuery, DriverLicenseResponse>
     {
-        private readonly IDriverLicenseService _driverLicenseByIdService;
+        private readonly IDriverLicenseService _driverLicenseService;
 
-        public GetDriverLicenseByIdQueryHandler(IDriverLicenseService driverLicenseByIdService)
+        public GetDriverLicenseByIdQueryHandler(IDriverLicenseService driverLicenseService)
         {
-            _driverLicenseByIdService = driverLicenseByIdService;
+            _driverLicenseService = driverLicenseService;
         }
 
         public Task<DriverLicenseResponse> Handle(GetDriverLicenseByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                var result = _driverLicenseByIdService.GetDriverLicenseById(request);
+                var result = _driverLicenseService.GetDriverLicenseById(request);
                 return Task.FromResult(result);
             }
             catch (Exception ex)

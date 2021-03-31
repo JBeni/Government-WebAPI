@@ -11,9 +11,6 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
     public class UpdateDriverLicenseCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
-        public Guid CategoryId { get; set; }
-        public DateTime DateOfIssue { get; set; }
-        public DateTime DateOfExpiry { get; set; }
     }
 
     public class UpdateDriverLicenseCommandHandler : IRequestHandler<UpdateDriverLicenseCommand, RequestResponse>
@@ -43,9 +40,6 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
         public UpdateDriverLicenseCommandValidator()
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
-            RuleFor(v => v.CategoryId).NotEmpty().NotNull();
-            RuleFor(v => v.DateOfIssue).NotEmpty().NotNull();
-            RuleFor(v => v.DateOfExpiry).NotEmpty().NotNull();
         }
     }
 }

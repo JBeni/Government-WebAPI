@@ -12,9 +12,6 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
     {
         public Guid Identifier { get; set; }
         public string LicenseNumber { get; set; }
-        public Guid CategoryId { get; set; }
-        public DateTime DateOfIssue { get; set; }
-        public DateTime DateOfExpiry { get; set; }
     }
 
     public class CreateDriverLicenseCommandHandler : IRequestHandler<CreateDriverLicenseCommand, RequestResponse>
@@ -45,9 +42,6 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
         {
             RuleFor(v => v.Identifier).Null();
             RuleFor(v => v.LicenseNumber).NotEmpty().NotNull();
-            RuleFor(v => v.CategoryId).NotEmpty().NotNull();
-            RuleFor(v => v.DateOfIssue).NotEmpty().NotNull();
-            RuleFor(v => v.DateOfExpiry).NotEmpty().NotNull();
         }
     }
 }
