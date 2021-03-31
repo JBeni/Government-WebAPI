@@ -12,7 +12,7 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
     {
         public Guid Identifier { get; set; }
         public string LicenseNumber { get; set; }
-        public int CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
         public DateTime DateOfIssue { get; set; }
         public DateTime DateOfExpiry { get; set; }
     }

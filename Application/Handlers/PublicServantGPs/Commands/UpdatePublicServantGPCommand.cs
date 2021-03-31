@@ -17,7 +17,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Commands
         public int ContractYears { get; set; }
         public DateTime HireStartDate { get; set; }
         public DateTime HireEndDate { get; set; }
-        public int MedicalCenterId { get; set; }
+        public Guid MedicalCenterId { get; set; }
     }
 
     public class UpdatePublicServantGPsCommandHandler : IRequestHandler<UpdatePublicServantGPCommand, RequestResponse>

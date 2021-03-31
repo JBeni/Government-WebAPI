@@ -12,7 +12,7 @@ namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands
     {
         public Guid Identifier { get; set; }
         public string OfficeName { get; set; }
-        public int AddressId { get; set; }
+        public Guid AddressId { get; set; }
     }
 
     public class UpdateSeriousFraudOfficeCommandHandler : IRequestHandler<UpdateSeriousFraudOfficeCommand, RequestResponse>

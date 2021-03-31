@@ -13,7 +13,7 @@ namespace GovernmentSystem.Application.Handlers.CityHalls.Commands
         public Guid Identifier { get; set; }
         public string CityHallName { get; set; }
         public DateTime ConstructionDate { get; set; }
-        public int AddressId { get; set; }
+        public Guid AddressId { get; set; }
     }
 
     public class CreateCityHallCommandHandler : IRequestHandler<CreateCityHallCommand, RequestResponse>

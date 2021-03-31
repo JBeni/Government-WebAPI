@@ -14,11 +14,11 @@ namespace GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands
         public long AmountPaid { get; set; }
         public long AmountToPay { get; set; }
         public DateTime DateOfPayment { get; set; }
-        public int MedicalProcedureId { get; set; }
-        public int MedicalCenterId { get; set; }
-        public int PublicServantGPId { get; set; }
-        public int CitizenWhoBenefitId { get; set; }
-        public int CitizenWhoPaidId { get; set; }
+        public Guid MedicalProcedureId { get; set; }
+        public Guid MedicalCenterId { get; set; }
+        public Guid PublicServantGPId { get; set; }
+        public Guid CitizenWhoBenefitId { get; set; }
+        public Guid CitizenWhoPaidId { get; set; }
     }
 
     public class CreateMedicalPaymentHistorysCommandHandler : IRequestHandler<CreateMedicalPaymentHistoryCommand, RequestResponse>

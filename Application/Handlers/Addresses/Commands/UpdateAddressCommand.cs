@@ -13,7 +13,7 @@ namespace GovernmentSystem.Application.Handlers.Addresses.Commands
         public Guid Identifier { get; set; }
         public string ZipCode { get; set; }
         public string Street { get; set; }
-        public int AddressTypeId { get; set; }
+        public Guid AddressTypeId { get; set; }
     }
 
     public class UpdateAddressCommandHandler : IRequestHandler<UpdateAddressCommand, RequestResponse>

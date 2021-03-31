@@ -15,7 +15,7 @@ namespace GovernmentSystem.Application.Handlers.Addresses.Commands
         public string Street { get; set; }
         public string County { get; set; }
         public string Country { get; set; }
-        public int AddressTypeId { get; set; }
+        public Guid AddressTypeId { get; set; }
     }
 
     public class CreateAddressCommandHandler : IRequestHandler<CreateAddressCommand, RequestResponse>

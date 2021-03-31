@@ -17,7 +17,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantCityHalls.Commands
         public int ContractYears { get; set; }
         public DateTime HireStartDate { get; set; }
         public DateTime HireEndDate { get; set; }
-        public int CityHallId { get; set; }
+        public Guid CityHallId { get; set; }
     }
 
     public class UpdatePublicServantCityHallsCommandHandler : IRequestHandler<UpdatePublicServantCityHallCommand, RequestResponse>

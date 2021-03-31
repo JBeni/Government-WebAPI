@@ -15,8 +15,8 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
         public string LastName { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
-        public int DateOfBirthId { get; set; }
-        public int PlaceOfBirthId { get; set; }
+        public Guid DateOfBirthId { get; set; }
+        public Guid PlaceOfBirthId { get; set; }
     }
 
     public class CreateCitizenCommandHandler : IRequestHandler<CreateCitizenCommand, RequestResponse>

@@ -11,7 +11,7 @@ namespace GovernmentSystem.Application.Handlers.DriverLicenses.Commands
     public class UpdateDriverLicenseCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
-        public int CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
         public DateTime DateOfIssue { get; set; }
         public DateTime DateOfExpiry { get; set; }
     }

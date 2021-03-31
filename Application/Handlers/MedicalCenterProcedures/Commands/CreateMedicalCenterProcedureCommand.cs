@@ -11,8 +11,8 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenterProcedures.Commands
     public class CreateMedicalCenterProcedureCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
-        public int MedicalCenterId { get; set; }
-        public int MedicalProcedureId { get; set; }
+        public Guid MedicalCenterId { get; set; }
+        public Guid MedicalProcedureId { get; set; }
     }
 
     public class CreateMedicalCenterProcedureCommandHandler : IRequestHandler<CreateMedicalCenterProcedureCommand, RequestResponse>

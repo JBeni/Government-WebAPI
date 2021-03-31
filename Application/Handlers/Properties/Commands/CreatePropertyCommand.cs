@@ -17,7 +17,7 @@ namespace GovernmentSystem.Application.Handlers.Properties.Commands
         public string CurrentValue { get; set; }
         public int TypeId { get; set; }
         public int AddressId { get; set; }
-        public int CityHallId { get; set; }
+        public Guid CityHallId { get; set; }
     }
 
     public class CreatePropertyCommandHandler : IRequestHandler<CreatePropertyCommand, RequestResponse>

@@ -13,10 +13,10 @@ namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Commands
         public Guid Identifier { get; set; }
         public string Treatment { get; set; }
         public string AdditionalInformation { get; set; }
-        public int CitizenId { get; set; }
-        public int PublicServantGPId { get; set; }
-        public int MedicalCenterId { get; set; }
-        public int MedicalAppointmentId { get; set; }
+        public Guid CitizenId { get; set; }
+        public Guid PublicServantGPId { get; set; }
+        public Guid MedicalCenterId { get; set; }
+        public Guid MedicalAppointmentId { get; set; }
     }
 
     public class UpdateCitizenMedicalHistoryCommandHandler : IRequestHandler<UpdateCitizenMedicalHistoryCommand, RequestResponse>

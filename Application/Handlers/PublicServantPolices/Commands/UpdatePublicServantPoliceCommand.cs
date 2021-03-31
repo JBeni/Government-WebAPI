@@ -17,7 +17,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Commands
         public int ContractYears { get; set; }
         public DateTime HireStartDate { get; set; }
         public DateTime HireEndDate { get; set; }
-        public int PoliceStationId { get; set; }
+        public Guid PoliceStationId { get; set; }
     }
 
     public class UpdatePublicServantPolicesCommandHandler : IRequestHandler<UpdatePublicServantPoliceCommand, RequestResponse>

@@ -13,10 +13,10 @@ namespace GovernmentSystem.Application.Handlers.Appointments.Commands
         public Guid Identifier { get; set; }
         public string Symptoms { get; set; }
         public DateTime AppointmentDay { get; set; }
-        public int MedicalProcedureId { get; set; }
-        public int CitizenId { get; set; }
-        public int PublicServantGPId { get; set; }
-        public int MedicalCenterId { get; set; }
+        public Guid MedicalProcedureId { get; set; }
+        public Guid CitizenId { get; set; }
+        public Guid PublicServantGPId { get; set; }
+        public Guid MedicalCenterId { get; set; }
     }
 
     public class CreateMedicalAppointmentCommandHandler : IRequestHandler<CreateMedicalAppointmentCommand, RequestResponse>

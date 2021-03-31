@@ -13,10 +13,10 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
         public Guid Identifier { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int IdentityCardId { get; set; }
-        public int PassportId { get; set; }
-        public int DriverLicenseId { get; set; }
-        public int CityHallResidenceId { get; set; }
+        public Guid IdentityCardId { get; set; }
+        public Guid PassportId { get; set; }
+        public Guid DriverLicenseId { get; set; }
+        public Guid CityHallResidenceId { get; set; }
     }
 
     public class UpdateCitizenCommandHandler : IRequestHandler<UpdateCitizenCommand, RequestResponse>

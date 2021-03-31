@@ -13,7 +13,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Commands
         public Guid Identifier { get; set; }
         public string CenterName { get; set; }
         public DateTime ConstructionDate { get; set; }
-        public int AddressId { get; set; }
+        public Guid AddressId { get; set; }
     }
 
     public class CreateMedicalCentersCommandHandler : IRequestHandler<CreateMedicalCenterCommand, RequestResponse>

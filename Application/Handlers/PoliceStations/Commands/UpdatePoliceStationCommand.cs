@@ -12,8 +12,8 @@ namespace GovernmentSystem.Application.Handlers.PoliceStations.Commands
     {
         public Guid Identifier { get; set; }
         public string StationName { get; set; }
-        public int AddressId { get; set; }
-        public int CityHallId { get; set; }
+        public Guid AddressId { get; set; }
+        public Guid CityHallId { get; set; }
     }
 
     public class UpdatePoliceStationsCommandHandler : IRequestHandler<UpdatePoliceStationCommand, RequestResponse>

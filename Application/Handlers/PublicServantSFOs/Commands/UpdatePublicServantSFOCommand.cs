@@ -17,7 +17,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
         public int ContractYears { get; set; }
         public DateTime HireStartDate { get; set; }
         public DateTime HireEndDate { get; set; }
-        public int SFOId { get; set; }
+        public Guid SFOId { get; set; }
     }
 
     public class UpdatePublicServantSFOCommandHandler : IRequestHandler<UpdatePublicServantSFOCommand, RequestResponse>

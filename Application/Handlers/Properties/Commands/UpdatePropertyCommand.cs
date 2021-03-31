@@ -13,7 +13,7 @@ namespace GovernmentSystem.Application.Handlers.Properties.Commands
         public Guid Identifier { get; set; }
         public string UnitOfMeasure { get; set; }
         public string CurrentValue { get; set; }
-        public int TypeId { get; set; }
+        public Guid TypeId { get; set; }
     }
 
     public class UpdatePropertyCommandHandler : IRequestHandler<UpdatePropertyCommand, RequestResponse>
