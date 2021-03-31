@@ -1,10 +1,12 @@
 ﻿using GovernmentSystem.Domain.Common;
-using GovernmentSystem.Domain.Enums;
+using System.Collections.Generic;
 
 namespace GovernmentSystem.Domain.Entities.CitizenEntities
 {
-    public class DriverLicenseCategory : ValidityEntity
+    public class DriverLicenseCategory : BaseEntity
     {
-        public DriverLicenseCategories CategoryType { get; set; }
+        public string Category { get; set; }
+
+        public ICollection<Citizen> Citizens { get; set; }
     }
 }
