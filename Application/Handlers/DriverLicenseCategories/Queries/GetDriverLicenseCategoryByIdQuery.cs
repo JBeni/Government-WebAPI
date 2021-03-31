@@ -5,7 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Handlers.DriverLicenseCategory.Queries
+namespace GovernmentSystem.Application.Handlers.DriverLicenseCategories.Queries
 {
     public class GetDriverLicenseCategoryByIdQuery : IRequest<DriverLicenseCategoryResponse>
     {
