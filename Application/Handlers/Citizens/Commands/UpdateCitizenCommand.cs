@@ -17,6 +17,7 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
         public Guid PassportId { get; set; }
         public Guid DriverLicenseId { get; set; }
         public Guid CityHallResidenceId { get; set; }
+        public Guid HomeAddressId { get; set; }
     }
 
     public class UpdateCitizenCommandHandler : IRequestHandler<UpdateCitizenCommand, RequestResponse>

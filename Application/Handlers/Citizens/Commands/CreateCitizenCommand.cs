@@ -15,8 +15,8 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
         public string LastName { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
-        public Guid DateOfBirthId { get; set; }
-        public Guid PlaceOfBirthId { get; set; }
+        public Guid BirthCertificateId { get; set; }
+        public Guid HomeAddressId { get; set; }
     }
 
     public class CreateCitizenCommandHandler : IRequestHandler<CreateCitizenCommand, RequestResponse>
@@ -51,8 +51,8 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
             RuleFor(v => v.LastName).NotEmpty().NotNull();
             RuleFor(v => v.Age).NotEmpty().NotNull();
             RuleFor(v => v.Gender).NotEmpty().NotNull();
-            RuleFor(v => v.DateOfBirthId).NotEmpty().NotNull();
-            RuleFor(v => v.PlaceOfBirthId).NotEmpty().NotNull();
+            RuleFor(v => v.BirthCertificateId).NotEmpty().NotNull();
+            RuleFor(v => v.HomeAddressId).NotEmpty().NotNull();
         }
     }
 }
