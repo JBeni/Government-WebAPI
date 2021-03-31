@@ -33,14 +33,19 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical appointment already exists");
             }
+            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.CitizenId);
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
+            var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.MedicalProcedureId);
+            var publicServantGP = _dbContext.PublicServantGPs.SingleOrDefault(x => x.Identifier == command.PublicServantGPId);
+
             var entity = new MedicalAppointment
             {
                 AppointmentDay = command.AppointmentDay,
-                Citizen = command.Citizen,
-                MedicalCenter = command.MedicalCenter,
-                MedicalProcedure = command.MedicalProcedure,
-                PublicServantGP = command.PublicServantGP,
-                Symptoms = command.Symptoms
+                Symptoms = command.Symptoms,
+                Citizen = citizen,
+                MedicalCenter = medicalCenter,
+                MedicalProcedure = medicalProcedure,
+                PublicServantGP = publicServantGP,
             };
 
             _dbContext.MedicalAppointments.Add(entity);
@@ -85,12 +90,15 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical appointment does not exists");
             }
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
+            var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.MedicalProcedureId);
+            var publicServantGP = _dbContext.PublicServantGPs.SingleOrDefault(x => x.Identifier == command.PublicServantGPId);
+
             medicalAppointment.AppointmentDay = command.AppointmentDay;
-            medicalAppointment.Citizen = command.Citizen;
-            medicalAppointment.MedicalCenter = command.MedicalCenter;
-            medicalAppointment.MedicalProcedure = command.MedicalProcedure;
-            medicalAppointment.PublicServantGP = command.PublicServantGP;
             medicalAppointment.Symptoms = command.Symptoms;
+            medicalAppointment.MedicalCenter = medicalCenter;
+            medicalAppointment.MedicalProcedure = medicalProcedure;
+            medicalAppointment.PublicServantGP = publicServantGP;
 
             _dbContext.MedicalAppointments.Update(medicalAppointment);
             await _dbContext.SaveChangesAsync(cancellationToken);

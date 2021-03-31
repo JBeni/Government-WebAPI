@@ -33,9 +33,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The serious fraud office already exists");
             }
+            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
             var entity = new SeriousFraudOffice
             {
-                Address = command.Address,
+                Address = address,
                 ConstructionDate = command.ConstructionDate,
                 OfficeName = command.OfficeName
             };
@@ -82,6 +83,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The serious fraud office does not exists");
             }
+            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
 
             _dbContext.SeriousFraudOffices.Update(sfo);
             await _dbContext.SaveChangesAsync(cancellationToken);

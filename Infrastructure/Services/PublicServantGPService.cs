@@ -33,9 +33,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of GP already exists");
             }
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
             var entity = new PublicServantGP
             {
-                MedicalCenter = command.MedicalCenter,
+                MedicalCenter = medicalCenter,
                 CNP = command.CNP,
                 ContractYears = command.ContractYears,
                 DutyRole = command.DutyRole,
@@ -87,6 +88,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of GP does not exists");
             }
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
 
             _dbContext.PublicServantGPs.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);

@@ -33,14 +33,18 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The property already exists");
             }
+            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallId);
+            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
+            var propertyType = _dbContext.PropertyTypes.SingleOrDefault(x => x.Identifier == command.TypeId);
+
             var entity = new Property
             {
-                Address = command.Address,
+                Address = address,
                 ValueAtBuying = command.ValueAtBuying,
-                CityHall = command.CityHall,
+                CityHall = cityHall,
                 CurrentValue = command.CurrentValue,
                 Size = command.Size,
-                Type = command.Type,
+                Type = propertyType,
                 UnitOfMeasure = command.UnitOfMeasure
             };
 
@@ -86,7 +90,9 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The property does not exists");
             }
+            var propertyType = _dbContext.PropertyTypes.SingleOrDefault(x => x.Identifier == command.TypeId);
             property.CurrentValue = command.CurrentValue;
+            property.Type = propertyType;
 
             _dbContext.Properties.Update(property);
             await _dbContext.SaveChangesAsync(cancellationToken);

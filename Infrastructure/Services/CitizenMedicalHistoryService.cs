@@ -33,18 +33,22 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The citizen medical history request already exists");
             }
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
+            var publicServantGP = _dbContext.PublicServantGPs.SingleOrDefault(x => x.Identifier == command.PublicServantGPId);
+            var medicalAppointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Identifier == command.MedicalAppointmentId);
+            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.CitizenId);
 
             var entity = new CitizenMedicalHistory
             {
                 AdditionalInformation = command.AdditionalInformation,
-                MedicalAppointment = command.MedicalAppointment,
-                Citizen = command.Citizen,
                 DateOfDiagnostic = command.DateOfDiagnostic,
                 HealthProblem = command.HealthProblem,
-                MedicalCenter = command.MedicalCenter,
-                PublicServantGP = command.PublicServantGP,
                 Symptoms = command.Symptoms,
                 Treatment = command.Treatment,
+                MedicalCenter = medicalCenter,
+                PublicServantGP = publicServantGP,
+                MedicalAppointment = medicalAppointment,
+                Citizen = citizen,
             };
 
             _dbContext.CitizenMedicalHistories.Add(entity);
@@ -89,15 +93,17 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The citizen medical history request does not exists");
             }
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
+            var publicServantGP = _dbContext.PublicServantGPs.SingleOrDefault(x => x.Identifier == command.PublicServantGPId);
+            var medicalAppointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Identifier == command.MedicalAppointmentId);
+            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.CitizenId);
+
             citizenMedicalHistory.AdditionalInformation = command.AdditionalInformation;
-            citizenMedicalHistory.MedicalAppointment = command.MedicalAppointment;
-            citizenMedicalHistory.Citizen = command.Citizen;
-            citizenMedicalHistory.DateOfDiagnostic = command.DateOfDiagnostic;
-            citizenMedicalHistory.HealthProblem = command.HealthProblem;
-            citizenMedicalHistory.MedicalCenter = command.MedicalCenter;
-            citizenMedicalHistory.PublicServantGP = command.PublicServantGP;
-            citizenMedicalHistory.Symptoms = command.Symptoms;
             citizenMedicalHistory.Treatment = command.Treatment;
+            citizenMedicalHistory.Citizen = citizen;
+            citizenMedicalHistory.MedicalAppointment = medicalAppointment;
+            citizenMedicalHistory.MedicalCenter = medicalCenter;
+            citizenMedicalHistory.PublicServantGP = publicServantGP;
 
             _dbContext.CitizenMedicalHistories.Update(citizenMedicalHistory);
             await _dbContext.SaveChangesAsync(cancellationToken);

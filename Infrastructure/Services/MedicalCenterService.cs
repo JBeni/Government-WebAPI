@@ -33,9 +33,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical center already exists");
             }
+            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
             var entity = new MedicalCenter
             {
-                Address = command.Address,
+                Address = address,
                 CenterName = command.CenterName,
                 ConstructionDate = command.ConstructionDate,
             };
@@ -82,9 +83,9 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical center does not exists");
             }
-            medicalCenter.Address = command.Address;
+            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
+            medicalCenter.Address = address;
             medicalCenter.CenterName = command.CenterName;
-            medicalCenter.ConstructionDate = command.ConstructionDate;
 
             _dbContext.MedicalCenters.Update(medicalCenter);
             await _dbContext.SaveChangesAsync(cancellationToken);

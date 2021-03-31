@@ -33,9 +33,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of serious fraud office already exists");
             }
+            var sfo = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.SFOId);
             var entity = new PublicServantSFO
             {
-                SFO = command.SFO,
+                SFO = sfo,
                 CNP = command.CNP,
                 ContractYears = command.ContractYears,
                 DutyRole = command.DutyRole,
@@ -87,6 +88,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of serious fraud office does not exists");
             }
+            var sfo = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.SFOId);
 
             _dbContext.PublicServantSFOs.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);

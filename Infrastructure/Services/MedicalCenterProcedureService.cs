@@ -33,10 +33,13 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical center procedure already exists");
             }
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
+            var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.MedicalProcedureId);
+
             var entity = new MedicalCenterProcedure
             {
-                MedicalCenter = command.MedicalCenter,
-                MedicalProcedure = command.MedicalProcedure
+                MedicalCenter = medicalCenter,
+                MedicalProcedure = medicalProcedure
             };
 
             _dbContext.MedicalCenterProcedures.Add(entity);
@@ -81,8 +84,11 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical center procedure already exists");
             }
-            medicalCenterProcedure.MedicalCenter = command.MedicalCenter;
-            medicalCenterProcedure.MedicalProcedure = command.MedicalProcedure;
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
+            var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.MedicalProcedureId);
+
+            medicalCenterProcedure.MedicalCenter = medicalCenter;
+            medicalCenterProcedure.MedicalProcedure = medicalProcedure;
 
             _dbContext.MedicalCenterProcedures.Update(medicalCenterProcedure);
             await _dbContext.SaveChangesAsync(cancellationToken);

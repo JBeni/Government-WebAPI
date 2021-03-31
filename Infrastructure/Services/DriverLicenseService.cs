@@ -35,9 +35,6 @@ namespace GovernmentSystem.Infrastructure.Services
             }
             var entity = new DriverLicense
             {
-                Category = command.Category,
-                DateOfExpiry = command.DateOfExpiry,
-                DateOfIssue = command.DateOfIssue,
                 LicenseNumber = command.LicenseNumber
             };
 
@@ -83,8 +80,6 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The driver license does not exists");
             }
-            driverLicense.LicenseNumber = command.LicenseNumber;
-            driverLicense.Category = command.Category;
 
             _dbContext.DriverLicenses.Update(driverLicense);
             await _dbContext.SaveChangesAsync(cancellationToken);

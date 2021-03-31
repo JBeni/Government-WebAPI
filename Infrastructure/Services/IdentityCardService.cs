@@ -83,8 +83,8 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The identity card does not exists");
             }
-            identityCard.Series = command.Series;
-            identityCard.Type = command.Type;
+            identityCard.DateOfIssue = command.DateOfIssue;
+            identityCard.DateOfExpiry = command.DateOfExpiry;
 
             _dbContext.IdentityCards.Update(identityCard);
             await _dbContext.SaveChangesAsync(cancellationToken);

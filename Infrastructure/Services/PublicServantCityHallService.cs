@@ -33,9 +33,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of city hall already exists");
             }
+            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallId);
             var entity = new PublicServantCityHall
             {
-                CityHall = command.CityHall,
+                CityHall = cityHall,
                 CNP = command.CNP,
                 ContractYears = command.ContractYears,
                 DutyRole = command.DutyRole,
@@ -87,6 +88,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of city hall does not exists");
             }
+            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallId);
 
             _dbContext.PublicServantCityHalls.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);

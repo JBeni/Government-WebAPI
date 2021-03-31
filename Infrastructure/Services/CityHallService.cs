@@ -33,11 +33,12 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The city hall already exists");
             }
+            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
             var entity = new CityHall
             {
                 Identifier = command.Identifier,
                 CityHallName = command.CityHallName,
-                Address = command.Address,
+                Address = address,
                 ConstructionDate = command.ConstructionDate
             };
 
@@ -83,8 +84,9 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The city hall does not exists");
             }
+            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
             cityHall.CityHallName = command.CityHallName;
-            cityHall.Address = command.Address;
+            cityHall.Address = address;
 
             _dbContext.CityHalls.Update(cityHall);
             await _dbContext.SaveChangesAsync(cancellationToken);

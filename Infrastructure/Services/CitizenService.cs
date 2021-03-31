@@ -31,13 +31,15 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> CreateCitizen(CreateCitizenCommand command, CancellationToken cancellationToken)
         {
-            var userCNP = GenerateCNP(command.DateOfBirth.BirthDate, command.Gender);
+            var birthCertificate = _dbContext.BirthCertificates.SingleOrDefault(x => x.Identifier == command.BirthCertificateId);
+            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.HomeAddressId);
+            var userCNP = GenerateCNP(birthCertificate.BirthDate, command.Gender);
+
             var citizen = _dbContext.Citizens.SingleOrDefault(x => x.CNP == userCNP);
             if (citizen != null)
             {
                 throw new Exception("The citizen already exists");
             }
-
             var entity = new Citizen
             {
                 FirstName = command.FirstName,
@@ -45,7 +47,8 @@ namespace GovernmentSystem.Infrastructure.Services
                 CNP = userCNP,
                 Age = command.Age,
                 Gender = command.Gender,
-                DateOfBirth = command.DateOfBirth.BirthDate,
+                DateOfBirth = birthCertificate.BirthDate,
+                HomeAddress = address
             };
 
             _dbContext.Citizens.Add(entity);
@@ -117,10 +120,17 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The citizen does not exists");
             }
-            citizen.IdentityCard = command.IdentityCard;
-            citizen.Passport = command.Passport;
-            citizen.DriverLicense = command.DriverLicense;
-            citizen.CityHallResidence = command.CityHallResidence;
+            var identityCard = _dbContext.IdentityCards.SingleOrDefault(x => x.Identifier == command.IdentityCardId);
+            var passport = _dbContext.Passports.SingleOrDefault(x => x.Identifier == command.PassportId);
+            var driverLicense = _dbContext.DriverLicenses.SingleOrDefault(x => x.Identifier == command.DriverLicenseId);
+            var cityHallResidence = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallResidenceId);
+            var homeAddress = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.HomeAddressId);
+
+            citizen.IdentityCard = identityCard;
+            citizen.Passport = passport;
+            citizen.DriverLicense = driverLicense;
+            citizen.CityHallResidence = cityHallResidence;
+            citizen.HomeAddress = homeAddress;
 
             _dbContext.Citizens.Update(citizen);
             await _dbContext.SaveChangesAsync(cancellationToken);

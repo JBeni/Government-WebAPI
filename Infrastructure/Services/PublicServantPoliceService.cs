@@ -33,9 +33,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of police station already exists");
             }
+            var policeStation = _dbContext.PoliceStations.SingleOrDefault(x => x.Identifier == command.PoliceStationId);
             var entity = new PublicServantPolice
             {
-                PoliceStation = command.PoliceStation,
+                PoliceStation = policeStation,
                 CNP = command.CNP,
                 ContractYears = command.ContractYears,
                 DutyRole = command.DutyRole,
@@ -87,6 +88,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of police station does not exists");
             }
+            var policeStation = _dbContext.PoliceStations.SingleOrDefault(x => x.Identifier == command.PoliceStationId);
 
             _dbContext.PublicServantPolices.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);

@@ -33,16 +33,22 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical payment history already exists");
             }
+            var citizenWhoBenefit = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.CitizenWhoBenefitId);
+            var citizenWhoPaid = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.CitizenWhoPaidId);
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
+            var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.MedicalProcedureId);
+            var publicServantGP = _dbContext.PublicServantGPs.SingleOrDefault(x => x.Identifier == command.PublicServantGPId);
+
             var entity = new MedicalPaymentHistory
             {
                 AmountPaid = command.AmountPaid,
                 AmountToPay = command.AmountToPay,
-                CitizenWhoBenefit = command.CitizenWhoBenefit,
-                CitizenWhoPaid = command.CitizenWhoPaid,
                 DateOfPayment = command.DateOfPayment,
-                MedicalCenter = command.MedicalCenter,
-                MedicalProcedure = command.MedicalProcedure,
-                PublicServantGP = command.PublicServantGP
+                CitizenWhoBenefit = citizenWhoBenefit,
+                CitizenWhoPaid = citizenWhoPaid,
+                MedicalCenter = medicalCenter,
+                MedicalProcedure = medicalProcedure,
+                PublicServantGP = publicServantGP
             };
 
             _dbContext.MedicalPaymentHistories.Add(entity);

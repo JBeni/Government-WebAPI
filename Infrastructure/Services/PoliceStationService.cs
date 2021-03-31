@@ -33,10 +33,13 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The police station already exists");
             }
+            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallId);
+            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
+
             var entity = new PoliceStation
             {
-                Address = command.Address,
-                CityHall = command.CityHall,
+                Address = address,
+                CityHall = cityHall,
                 ConstructionDate = command.ConstructionDate,
                 StationName = command.StationName
             };
@@ -83,6 +86,8 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The police station does not exists");
             }
+            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallId);
+            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
 
             _dbContext.PoliceStations.Update(policeStation);
             await _dbContext.SaveChangesAsync(cancellationToken);
