@@ -2,9 +2,8 @@
 
 namespace GovernmentSystem.Domain.Entities.CitizenEntities
 {
-    public class DriverLicense : ValidityEntity
+    public class DriverLicense : BaseEntity
     {
         public string LicenseNumber { get; set; }
-        public DriverLicenseCategory Category { get; set; }
     }
 }

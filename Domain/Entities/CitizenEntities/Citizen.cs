@@ -2,6 +2,7 @@
 using GovernmentSystem.Domain.Entities.CityHallEntities;
 using GovernmentSystem.Domain.Entities.MedicalEntities;
 using System;
+using System.Collections.Generic;
 
 namespace GovernmentSystem.Domain.Entities.CitizenEntities
 {
@@ -24,5 +25,7 @@ namespace GovernmentSystem.Domain.Entities.CitizenEntities
         public CityHall CityHallResidence { get; set; }
         public MedicalCenter MedicalCenter { get; set; }
         public PublicServantGP PublicServantGP { get; set; }
+
+        public ICollection<DriverLicenseCategory> DriverLicenseCategories { get; set; }
     }
 }
