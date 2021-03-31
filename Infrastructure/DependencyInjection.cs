@@ -35,12 +35,15 @@ namespace GovernmentSystem.Infrastructure
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             services.AddTransient<IAddressService, AddressService>();
+            services.AddTransient<IAddressTypeService, AddressTypeService>();
             services.AddTransient<IBirthCertificateService, BirthCertificateService>();
+            services.AddTransient<ICitizenDriverLicenseCategoryService, CitizenDriverLicenseCategoryService>();
             services.AddTransient<ICitizenMedicalHistoryService, CitizenMedicalHistoryService>();
             services.AddTransient<ICitizenRequestService, CitizenRequestService>();
             services.AddTransient<ICitizenService, CitizenService>();
             services.AddTransient<ICityHallService, CityHallService>();
             services.AddTransient<ICommonService, CommonService>();
+            services.AddTransient<IDriverLicenseCategoryService, DriverLicenseCategoryService>();
             services.AddTransient<IDriverLicenseService, DriverLicenseService>();
             services.AddTransient<IIdentityCardService, IdentityCardService>();
             services.AddTransient<IMedicalAppointmentService, MedicalAppointmentService>();
@@ -51,6 +54,7 @@ namespace GovernmentSystem.Infrastructure
             services.AddTransient<IPassportService, PassportService>();
             services.AddTransient<IPoliceStationService, PoliceStationService>();
             services.AddTransient<IPropertyService, PropertyService>();
+            services.AddTransient<IPropertyTypeService, PropertyTypeService>();
             services.AddTransient<IPublicServantCityHallService, PublicServantCityHallService>();
             services.AddTransient<IPublicServantGPService, PublicServantGPService>();
             services.AddTransient<IPublicServantPoliceService, PublicServantPoliceService>();
