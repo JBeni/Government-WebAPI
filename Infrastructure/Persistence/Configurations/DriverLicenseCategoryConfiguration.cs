@@ -10,13 +10,7 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
         {
             builder.HasKey(x => x.Identifier);
 
-            builder.Property(t => t.CategoryType)
-                .HasMaxLength(150)
-                .IsRequired();
-            builder.Property(t => t.DateOfIssue)
-                .HasMaxLength(150)
-                .IsRequired();
-            builder.Property(t => t.DateOfExpiry)
+            builder.Property(t => t.Category)
                 .HasMaxLength(150)
                 .IsRequired();
         }

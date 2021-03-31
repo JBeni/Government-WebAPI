@@ -19,21 +19,6 @@ namespace GovernmentSystem.Infrastructure.Persistence.Configurations
             builder.Property(t => t.DateOfPayment)
                 .HasMaxLength(150)
                 .IsRequired();
-            //builder.Property(t => t.MedicalProcedure)
-            //    .HasMaxLength(150)
-            //    .IsRequired();
-            //builder.Property(t => t.MedicalCenter)
-            //    .HasMaxLength(150)
-            //    .IsRequired();
-            //builder.Property(t => t.PublicServantGP)
-            //    .HasMaxLength(150)
-            //    .IsRequired();
-            //builder.Property(t => t.CitizenWhoBenefit)
-            //    .HasMaxLength(150)
-            //    .IsRequired();
-            //builder.Property(t => t.CitizenWhoPaid)
-            //    .HasMaxLength(150)
-            //    .IsRequired();
         }
     }
 }
