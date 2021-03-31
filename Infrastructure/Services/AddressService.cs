@@ -34,12 +34,13 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The address already exists");
             }
 
+            var addressType = _dbContext.AddressTypes.SingleOrDefault(x => x.Identifier == command.AddressTypeId);
             var entity = new Address
             {
                 Country = command.Country,
                 County = command.County,
                 Street = command.Street,
-                Type = command.Type,
+                Type = addressType,
                 ZipCode = command.ZipCode
             };
 
@@ -103,12 +104,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The address does not exists");
             }
-
+            var addressType = _dbContext.AddressTypes.SingleOrDefault(x => x.Identifier == command.AddressTypeId);
             address.ZipCode = command.ZipCode;
             address.Street = command.Street;
-            address.County = command.County;
-            address.Country = command.Country;
-            address.Type = command.Type;
+            address.Type = addressType;
 
             _dbContext.Addresses.Remove(address);
             await _dbContext.SaveChangesAsync(cancellationToken);
