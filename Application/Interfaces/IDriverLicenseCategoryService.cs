@@ -1,4 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.DriverLicenseCategory.Queries;
+﻿using GovernmentSystem.Application.Handlers.DriverLicenseCategories.Queries;
 using GovernmentSystem.Application.Responses;
 using System.Collections.Generic;
 
