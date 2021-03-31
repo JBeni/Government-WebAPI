@@ -15,7 +15,7 @@ namespace GovernmentSystem.WebUI.Controllers
         }
 
         [HttpGet("getAddresses")]
-        public async Task<IActionResult> GetAddresss([FromQuery] GetAddressesQuery query)
+        public async Task<IActionResult> GetAddresses([FromQuery] GetAddressesQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
