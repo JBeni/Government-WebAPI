@@ -61,12 +61,12 @@ namespace GovernmentSystem.Infrastructure.Persistence
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.DbEntryCreatedBy = _currentUserService.UserId.ToString();
-                        entry.Entity.DbEntryCreated = _dateTime.Now;
+                        entry.Entity.AuditEntryCreatedBy = _currentUserService.UserId.ToString();
+                        entry.Entity.AuditEntryCreated = _dateTime.Now;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.DbEntryLastModifiedBy = _currentUserService.UserId.ToString();
-                        entry.Entity.DbEntryLastModified = _dateTime.Now;
+                        entry.Entity.AuditEntryLastModifiedBy = _currentUserService.UserId.ToString();
+                        entry.Entity.AuditEntryLastModified = _dateTime.Now;
                         break;
                 }
             }
