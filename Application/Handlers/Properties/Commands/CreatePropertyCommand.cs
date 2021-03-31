@@ -15,8 +15,8 @@ namespace GovernmentSystem.Application.Handlers.Properties.Commands
         public string UnitOfMeasure { get; set; }
         public string ValueAtBuying { get; set; }
         public string CurrentValue { get; set; }
-        public int TypeId { get; set; }
-        public int AddressId { get; set; }
+        public Guid TypeId { get; set; }
+        public Guid AddressId { get; set; }
         public Guid CityHallId { get; set; }
     }
 
