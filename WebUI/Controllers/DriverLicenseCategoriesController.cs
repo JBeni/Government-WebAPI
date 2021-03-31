@@ -1,4 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.DriverLicenseCategory.Queries;
+﻿using GovernmentSystem.Application.Handlers.DriverLicenseCategories.Queries;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
