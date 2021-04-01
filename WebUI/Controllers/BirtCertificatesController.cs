@@ -35,7 +35,7 @@ namespace GovernmentSystem.WebUI.Controllers
             return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
         }
 
-        [HttpPut("delete")]
+        [HttpDelete("delete")]
         public async Task<IActionResult> Delete(DeleteBirthCertificateCommand command)
         {
             var result = await Mediator.Send(command);
