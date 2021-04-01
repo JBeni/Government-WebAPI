@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace GovernmentSystem.Domain.Entities.CitizenEntities
 {
-    public class Citizen : AuditableEntity
+    public class Citizen : AuditEntity
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -57,17 +57,17 @@ namespace GovernmentSystem.Infrastructure.Persistence
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach (EntityEntry<AuditableEntity> entry in ChangeTracker.Entries<AuditableEntity>())
+            foreach (EntityEntry<AuditEntity> entry in ChangeTracker.Entries<AuditEntity>())
             {
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.AuditEntryCreatedBy = _currentUserService.UserId.ToString();
-                        entry.Entity.AuditEntryCreated = _dateTime.Now;
+                        entry.Entity.EntryCreatedBy = _currentUserService.UserId.ToString();
+                        entry.Entity.EntryCreated = _dateTime.Now;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.AuditEntryLastModifiedBy = _currentUserService.UserId.ToString();
-                        entry.Entity.AuditEntryLastModified = _dateTime.Now;
+                        entry.Entity.EntryLastModifiedBy = _currentUserService.UserId.ToString();
+                        entry.Entity.EntryLastModified = _dateTime.Now;
                         break;
                 }
             }
