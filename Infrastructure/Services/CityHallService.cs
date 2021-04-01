@@ -55,7 +55,7 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The city hall does not exists");
             }
 
-            _dbContext.CityHalls.Update(cityHall);
+            _dbContext.CityHalls.Remove(cityHall);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }

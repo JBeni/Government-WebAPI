@@ -109,7 +109,7 @@ namespace GovernmentSystem.Infrastructure.Services
             address.Street = command.Street;
             address.Type = addressType;
 
-            _dbContext.Addresses.Remove(address);
+            _dbContext.Addresses.Update(address);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }

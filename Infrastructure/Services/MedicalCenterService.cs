@@ -54,7 +54,7 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The medical center does not exists");
             }
 
-            _dbContext.MedicalCenters.Update(medicalCenter);
+            _dbContext.MedicalCenters.Remove(medicalCenter);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }

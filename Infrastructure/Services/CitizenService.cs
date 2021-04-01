@@ -65,7 +65,7 @@ namespace GovernmentSystem.Infrastructure.Services
             }
             citizen.DateOfDeath = command.DateOfDeath;
 
-            _dbContext.Citizens.Update(citizen);
+            _dbContext.Citizens.Remove(citizen);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
