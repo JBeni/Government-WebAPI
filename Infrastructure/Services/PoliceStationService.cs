@@ -19,11 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IInsideEntityService _insiderEntityService;
 
-        public PoliceStationService(IApplicationDbContext dbContext, IMapper mapper)
+        public PoliceStationService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _insiderEntityService = insiderEntityService;
         }
 
         public async Task<RequestResponse> CreatePoliceStation(CreatePoliceStationCommand command, CancellationToken cancellationToken)
@@ -33,8 +35,8 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The police station already exists");
             }
-            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallId);
-            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
+            var cityHall = _insiderEntityService.GetCityHallById(command.CityHallId);
+            var address = _insiderEntityService.GetAddressById(command.AddressId);
 
             var entity = new PoliceStation
             {
@@ -86,8 +88,9 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The police station does not exists");
             }
-            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallId);
-            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
+            var cityHall = _insiderEntityService.GetCityHallById(command.CityHallId);
+            var address = _insiderEntityService.GetAddressById(command.AddressId);
+
             policeStation.Address = address;
             policeStation.CityHall = cityHall;
             policeStation.ConstructionDate = command.ConstructionDate;

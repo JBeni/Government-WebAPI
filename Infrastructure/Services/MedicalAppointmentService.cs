@@ -19,11 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IInsideEntityService _insiderEntityService;
 
-        public MedicalAppointmentService(IApplicationDbContext dbContext, IMapper mapper)
+        public MedicalAppointmentService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _insiderEntityService = insiderEntityService;
         }
 
         public async Task<RequestResponse> CreateMedicalAppointment(CreateMedicalAppointmentCommand command, CancellationToken cancellationToken)
@@ -33,10 +35,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical appointment already exists");
             }
-            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.CitizenId);
-            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
-            var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.MedicalProcedureId);
-            var publicServantGP = _dbContext.PublicServantGPs.SingleOrDefault(x => x.Identifier == command.PublicServantGPId);
+            var citizen = _insiderEntityService.GetCitizenById(command.CitizenId);
+            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var medicalProcedure = _insiderEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
+            var publicServantGP = _insiderEntityService.GetPublicServantGPById(command.PublicServantGPId);
 
             var entity = new MedicalAppointment
             {
@@ -90,10 +92,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical appointment does not exists");
             }
-            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.CitizenId);
-            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
-            var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.MedicalProcedureId);
-            var publicServantGP = _dbContext.PublicServantGPs.SingleOrDefault(x => x.Identifier == command.PublicServantGPId);
+            var citizen = _insiderEntityService.GetCitizenById(command.CitizenId);
+            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var medicalProcedure = _insiderEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
+            var publicServantGP = _insiderEntityService.GetPublicServantGPById(command.PublicServantGPId);
 
             medicalAppointment.AppointmentDay = command.AppointmentDay;
             medicalAppointment.Symptoms = command.Symptoms;

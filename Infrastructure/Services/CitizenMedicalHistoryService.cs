@@ -19,11 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IInsideEntityService _insiderEntityService;
 
-        public CitizenMedicalHistoryService(IApplicationDbContext dbContext, IMapper mapper)
+        public CitizenMedicalHistoryService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _insiderEntityService = insiderEntityService;
         }
 
         public async Task<RequestResponse> CreateCitizenMedicalHistory(CreateCitizenMedicalHistoryCommand command, CancellationToken cancellationToken)
@@ -33,10 +35,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The citizen medical history request already exists");
             }
-            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
-            var publicServantGP = _dbContext.PublicServantGPs.SingleOrDefault(x => x.Identifier == command.PublicServantGPId);
-            var medicalAppointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Identifier == command.MedicalAppointmentId);
-            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.CitizenId);
+            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var publicServantGP = _insiderEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var medicalAppointment = _insiderEntityService.GetMedicalAppointmentById(command.MedicalAppointmentId);
+            var citizen = _insiderEntityService.GetCitizenById(command.CitizenId);
 
             var entity = new CitizenMedicalHistory
             {
@@ -93,10 +95,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The citizen medical history request does not exists");
             }
-            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
-            var publicServantGP = _dbContext.PublicServantGPs.SingleOrDefault(x => x.Identifier == command.PublicServantGPId);
-            var medicalAppointment = _dbContext.MedicalAppointments.SingleOrDefault(x => x.Identifier == command.MedicalAppointmentId);
-            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.CitizenId);
+            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var publicServantGP = _insiderEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var medicalAppointment = _insiderEntityService.GetMedicalAppointmentById(command.MedicalAppointmentId);
+            var citizen = _insiderEntityService.GetCitizenById(command.CitizenId);
 
             citizenMedicalHistory.AdditionalInformation = command.AdditionalInformation;
             citizenMedicalHistory.DateOfDiagnostic = command.DateOfDiagnostic;

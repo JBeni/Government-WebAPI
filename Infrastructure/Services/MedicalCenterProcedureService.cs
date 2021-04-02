@@ -19,11 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IInsideEntityService _insiderEntityService;
 
-        public MedicalCenterProcedureService(IApplicationDbContext dbContext, IMapper mapper)
+        public MedicalCenterProcedureService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _insiderEntityService = insiderEntityService;
         }
 
         public async Task<RequestResponse> CreateMedicalCenterProcedure(CreateMedicalCenterProcedureCommand command, CancellationToken cancellationToken)
@@ -33,8 +35,8 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical center procedure already exists");
             }
-            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
-            var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.MedicalProcedureId);
+            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var medicalProcedure = _insiderEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
 
             var entity = new MedicalCenterProcedure
             {
@@ -84,8 +86,8 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical center procedure already exists");
             }
-            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
-            var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.MedicalProcedureId);
+            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var medicalProcedure = _insiderEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
 
             medicalCenterProcedure.MedicalCenter = medicalCenter;
             medicalCenterProcedure.MedicalProcedure = medicalProcedure;

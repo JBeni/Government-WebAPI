@@ -19,11 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IInsideEntityService _insiderEntityService;
 
-        public PublicServantCityHallService(IApplicationDbContext dbContext, IMapper mapper)
+        public PublicServantCityHallService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _insiderEntityService = insiderEntityService;
         }
 
         public async Task<RequestResponse> CreatePublicServantCityHall(CreatePublicServantCityHallCommand command, CancellationToken cancellationToken)
@@ -33,7 +35,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of city hall already exists");
             }
-            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallId);
+            var cityHall = _insiderEntityService.GetCityHallById(command.CityHallId);
             var entity = new PublicServantCityHall
             {
                 CityHall = cityHall,
@@ -88,7 +90,8 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of city hall does not exists");
             }
-            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallId);
+            var cityHall = _insiderEntityService.GetCityHallById(command.CityHallId);
+
             publicServant.CityHall = cityHall;
             publicServant.CNP = command.CNP;
             publicServant.ContractYears = command.ContractYears;

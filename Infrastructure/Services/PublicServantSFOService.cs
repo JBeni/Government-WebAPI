@@ -19,11 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IInsideEntityService _insiderEntityService;
 
-        public PublicServantSFOService(IApplicationDbContext dbContext, IMapper mapper)
+        public PublicServantSFOService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _insiderEntityService = insiderEntityService;
         }
 
         public async Task<RequestResponse> CreatePublicServantSFO(CreatePublicServantSFOCommand command, CancellationToken cancellationToken)
@@ -33,7 +35,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of serious fraud office already exists");
             }
-            var sfo = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.SFOId);
+            var sfo = _insiderEntityService.GetSeriousFraudOfficeById(command.SFOId);
             var entity = new PublicServantSFO
             {
                 SFO = sfo,
@@ -88,7 +90,8 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of serious fraud office does not exists");
             }
-            var sfo = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.SFOId);
+            var sfo = _insiderEntityService.GetSeriousFraudOfficeById(command.SFOId);
+
             publicServant.SFO = sfo;
             publicServant.CNP = command.CNP;
             publicServant.ContractYears = command.ContractYears;
