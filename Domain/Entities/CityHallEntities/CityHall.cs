@@ -3,7 +3,7 @@ using System;
 
 namespace GovernmentSystem.Domain.Entities.CityHallEntities
 {
-    public class CityHall : BaseEntity
+    public class CityHall : AuditEntity
     {
         public string CityHallName { get; set; }
         public DateTime ConstructionDate { get; set; }

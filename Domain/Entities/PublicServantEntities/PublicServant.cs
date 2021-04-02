@@ -3,7 +3,7 @@ using System;
 
 namespace GovernmentSystem.Domain.Entities.PublicServantEntities
 {
-    public class PublicServant : BaseEntity
+    public class PublicServant : AuditEntity
     {
         public string CNP { get; set; }
         public string FirstName { get; set; }

@@ -3,7 +3,7 @@ using System;
 
 namespace GovernmentSystem.Domain.Entities.CitizenEntities
 {
-    public class BirthCertificate : BaseEntity
+    public class BirthCertificate : AuditEntity
     {
         public string PersonalIdentificationNumber { get; set; }
         public string FirstName { get; set; }

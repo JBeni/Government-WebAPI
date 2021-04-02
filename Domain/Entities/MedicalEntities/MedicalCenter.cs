@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace GovernmentSystem.Domain.Entities.MedicalEntities
 {
-    public class MedicalCenter : BaseEntity
+    public class MedicalCenter : AuditEntity
     {
         public string CenterName { get; set; }
         public DateTime ConstructionDate { get; set; }

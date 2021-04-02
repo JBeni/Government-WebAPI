@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GovernmentSystem.Domain.Entities.MedicalEntities
 {
-    public class MedicalProcedure : BaseEntity
+    public class MedicalProcedure : AuditEntity
     {
         public long Price { get; set; }
         public string ProcedureName { get; set; }

@@ -2,7 +2,7 @@
 
 namespace GovernmentSystem.Domain.Entities.CityHallEntities
 {
-    public class Address : BaseEntity
+    public class Address : AuditEntity
     {
         public string ZipCode { get; set; }
         public string Street { get; set; }

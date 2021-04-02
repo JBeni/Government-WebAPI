@@ -4,7 +4,7 @@ using System;
 
 namespace GovernmentSystem.Domain.Entities
 {
-    public class SeriousFraudOffice : BaseEntity
+    public class SeriousFraudOffice : AuditEntity
     {
         public string OfficeName { get; set; }
         public DateTime ConstructionDate { get; set; }

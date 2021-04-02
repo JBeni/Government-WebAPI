@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GovernmentSystem.Domain.Entities.CitizenEntities
 {
-    public class DriverLicenseCategory : BaseEntity
+    public class DriverLicenseCategory : AuditEntity
     {
         public string Category { get; set; }
 

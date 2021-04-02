@@ -2,7 +2,7 @@
 
 namespace GovernmentSystem.Domain.Entities.CitizenEntities
 {
-    public class DriverLicense : BaseEntity
+    public class DriverLicense : AuditEntity
     {
         public string LicenseNumber { get; set; }
     }

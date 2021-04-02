@@ -4,7 +4,7 @@ using System;
 
 namespace GovernmentSystem.Domain.Entities.MedicalEntities
 {
-    public class MedicalAppointment : BaseEntity
+    public class MedicalAppointment : AuditEntity
     {
         public string Symptoms { get; set; }
         public DateTime AppointmentDay { get; set; }

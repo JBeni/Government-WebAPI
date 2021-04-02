@@ -4,7 +4,7 @@ using System;
 
 namespace GovernmentSystem.Domain.Entities.MedicalEntities
 {
-    public class CitizenMedicalHistory : BaseEntity
+    public class CitizenMedicalHistory : AuditEntity
     {
         public string Symptoms { get; set; }
         public string HealthProblem { get; set; }

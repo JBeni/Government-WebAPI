@@ -2,7 +2,7 @@
 
 namespace GovernmentSystem.Domain.Entities.CityHallEntities
 {
-    public class Property : BaseEntity
+    public class Property : AuditEntity
     {
         public long Size { get; set; }
         public string UnitOfMeasure { get; set; }

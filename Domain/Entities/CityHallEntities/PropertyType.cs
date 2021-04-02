@@ -2,7 +2,7 @@
 
 namespace GovernmentSystem.Domain.Entities.CityHallEntities
 {
-    public class PropertyType : BaseEntity
+    public class PropertyType : AuditEntity
     {
         public string Type { get;set; }
     }

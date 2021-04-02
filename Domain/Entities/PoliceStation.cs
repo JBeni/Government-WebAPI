@@ -4,7 +4,7 @@ using System;
 
 namespace GovernmentSystem.Domain.Entities
 {
-    public class PoliceStation : BaseEntity
+    public class PoliceStation : AuditEntity
     {
         public string StationName { get; set; }
         public DateTime ConstructionDate { get; set; }
