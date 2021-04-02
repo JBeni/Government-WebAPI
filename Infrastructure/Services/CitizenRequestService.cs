@@ -87,8 +87,13 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The citizen request does not exists");
             }
-            citizenRequest.IsProcessed = true;
             citizenRequest.DateOfExpiry = command.DateOfExpiry;
+            citizenRequest.DateOfIssue = command.DateOfIssue;
+            citizenRequest.Description = command.Description;
+            citizenRequest.IsProcessed = true;
+            citizenRequest.Type = command.Type;
+            citizenRequest.UserCNP = command.UserCNP;
+            citizenRequest.UserName = command.UserName;
 
             _dbContext.CitizenRequests.Update(citizenRequest);
             await _dbContext.SaveChangesAsync(cancellationToken);

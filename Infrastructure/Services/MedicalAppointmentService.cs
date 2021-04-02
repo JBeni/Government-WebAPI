@@ -90,6 +90,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical appointment does not exists");
             }
+            var citizen = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.CitizenId);
             var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
             var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.MedicalProcedureId);
             var publicServantGP = _dbContext.PublicServantGPs.SingleOrDefault(x => x.Identifier == command.PublicServantGPId);

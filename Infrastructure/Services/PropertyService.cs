@@ -90,9 +90,17 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The property does not exists");
             }
+            var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallId);
+            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
             var propertyType = _dbContext.PropertyTypes.SingleOrDefault(x => x.Identifier == command.TypeId);
+
+            property.Address = address;
+            property.ValueAtBuying = command.ValueAtBuying;
+            property.CityHall = cityHall;
             property.CurrentValue = command.CurrentValue;
+            property.Size = command.Size;
             property.Type = propertyType;
+            property.UnitOfMeasure = command.UnitOfMeasure;
 
             _dbContext.Properties.Update(property);
             await _dbContext.SaveChangesAsync(cancellationToken);

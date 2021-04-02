@@ -89,6 +89,14 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The public servant of serious fraud office does not exists");
             }
             var sfo = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.SFOId);
+            publicServant.SFO = sfo;
+            publicServant.CNP = command.CNP;
+            publicServant.ContractYears = command.ContractYears;
+            publicServant.DutyRole = command.DutyRole;
+            publicServant.FirstName = command.FirstName;
+            publicServant.HireEndDate = command.HireEndDate;
+            publicServant.HireStartDate = command.HireStartDate;
+            publicServant.LastName = command.LastName;
 
             _dbContext.PublicServantSFOs.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);

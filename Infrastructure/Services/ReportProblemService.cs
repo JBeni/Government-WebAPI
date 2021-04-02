@@ -84,6 +84,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The reported problem does not exists");
             }
+            reportProblem.DateOfExpiry = command.DateOfExpiry;
+            reportProblem.DateOfIssue = command.DateOfIssue;
+            reportProblem.Description = command.Description;
+            reportProblem.Title = command.Title;
             reportProblem.IsProcessed = true;
 
             _dbContext.ReportProblems.Update(reportProblem);

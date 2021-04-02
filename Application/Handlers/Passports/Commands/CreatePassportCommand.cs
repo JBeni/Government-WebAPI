@@ -48,6 +48,8 @@ namespace GovernmentSystem.Application.Handlers.Passports.Commands
             RuleFor(v => v.PassportNumber).NotEmpty().NotNull();
             RuleFor(v => v.Type).NotEmpty().NotNull();
             RuleFor(v => v.Country).NotEmpty().NotNull();
+            RuleFor(v => v.DateOfIssue).NotEmpty().NotNull();
+            RuleFor(v => v.DateOfExpiry).NotEmpty().NotNull();
         }
     }
 }

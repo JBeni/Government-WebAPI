@@ -12,6 +12,7 @@ namespace GovernmentSystem.Application.Handlers.PoliceStations.Commands
     {
         public Guid Identifier { get; set; }
         public string StationName { get; set; }
+        public DateTime ConstructionDate { get; set; }
         public Guid AddressId { get; set; }
         public Guid CityHallId { get; set; }
     }
@@ -44,6 +45,7 @@ namespace GovernmentSystem.Application.Handlers.PoliceStations.Commands
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
             RuleFor(v => v.StationName).NotEmpty().NotNull();
+            RuleFor(v => v.ConstructionDate).NotEmpty().NotNull();
             RuleFor(v => v.AddressId).NotEmpty().NotNull();
             RuleFor(v => v.CityHallId).NotEmpty().NotNull();
         }

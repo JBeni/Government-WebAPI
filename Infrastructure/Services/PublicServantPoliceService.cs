@@ -89,6 +89,14 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The public servant of police station does not exists");
             }
             var policeStation = _dbContext.PoliceStations.SingleOrDefault(x => x.Identifier == command.PoliceStationId);
+            publicServant.PoliceStation = policeStation;
+            publicServant.CNP = command.CNP;
+            publicServant.ContractYears = command.ContractYears;
+            publicServant.DutyRole = command.DutyRole;
+            publicServant.FirstName = command.FirstName;
+            publicServant.HireEndDate = command.HireEndDate;
+            publicServant.HireStartDate = command.HireStartDate;
+            publicServant.LastName = command.LastName;
 
             _dbContext.PublicServantPolices.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);

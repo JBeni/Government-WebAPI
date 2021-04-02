@@ -11,9 +11,13 @@ namespace GovernmentSystem.Application.Handlers.Properties.Commands
     public class UpdatePropertyCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
+        public long Size { get; set; }
         public string UnitOfMeasure { get; set; }
+        public string ValueAtBuying { get; set; }
         public string CurrentValue { get; set; }
         public Guid TypeId { get; set; }
+        public Guid AddressId { get; set; }
+        public Guid CityHallId { get; set; }
     }
 
     public class UpdatePropertyCommandHandler : IRequestHandler<UpdatePropertyCommand, RequestResponse>
@@ -43,9 +47,13 @@ namespace GovernmentSystem.Application.Handlers.Properties.Commands
         public UpdatePropertyCommandValidator()
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
+            RuleFor(v => v.Size).NotEmpty().NotNull();
             RuleFor(v => v.UnitOfMeasure).NotEmpty().NotNull();
+            RuleFor(v => v.ValueAtBuying).NotEmpty().NotNull();
             RuleFor(v => v.CurrentValue).NotEmpty().NotNull();
             RuleFor(v => v.TypeId).NotEmpty().NotNull();
+            RuleFor(v => v.AddressId).NotEmpty().NotNull();
+            RuleFor(v => v.CityHallId).NotEmpty().NotNull();
         }
     }
 }

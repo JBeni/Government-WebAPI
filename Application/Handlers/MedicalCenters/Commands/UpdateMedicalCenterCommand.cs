@@ -12,6 +12,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Commands
     {
         public Guid Identifier { get; set; }
         public string CenterName { get; set; }
+        public DateTime ConstructionDate { get; set; }
         public Guid AddressId { get; set; }
     }
 
@@ -43,6 +44,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalCenters.Commands
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
             RuleFor(v => v.CenterName).NotEmpty().NotNull();
+            RuleFor(v => v.ConstructionDate).NotEmpty().NotNull();
             RuleFor(v => v.AddressId).NotEmpty().NotNull();
         }
     }

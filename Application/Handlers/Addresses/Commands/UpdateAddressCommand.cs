@@ -13,6 +13,8 @@ namespace GovernmentSystem.Application.Handlers.Addresses.Commands
         public Guid Identifier { get; set; }
         public string ZipCode { get; set; }
         public string Street { get; set; }
+        public string County { get; set; }
+        public string Country { get; set; }
         public Guid AddressTypeId { get; set; }
     }
 
@@ -45,6 +47,8 @@ namespace GovernmentSystem.Application.Handlers.Addresses.Commands
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
             RuleFor(v => v.ZipCode).NotEmpty().NotNull();
             RuleFor(v => v.Street).NotEmpty().NotNull();
+            RuleFor(v => v.County).NotEmpty().NotNull();
+            RuleFor(v => v.Country).NotEmpty().NotNull();
             RuleFor(v => v.AddressTypeId).NotEmpty().NotNull();
         }
     }

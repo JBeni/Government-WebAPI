@@ -44,6 +44,7 @@ namespace GovernmentSystem.Application.Handlers.Addresses.Commands
     {
         public CreateAddressCommandValidator()
         {
+            RuleFor(v => v.Identifier).NotNull();
             RuleFor(v => v.ZipCode).NotEmpty().NotNull();
             RuleFor(v => v.Street).NotEmpty().NotNull();
             RuleFor(v => v.County).NotEmpty().NotNull();

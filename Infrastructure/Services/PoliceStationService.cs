@@ -88,6 +88,10 @@ namespace GovernmentSystem.Infrastructure.Services
             }
             var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallId);
             var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
+            policeStation.Address = address;
+            policeStation.CityHall = cityHall;
+            policeStation.ConstructionDate = command.ConstructionDate;
+            policeStation.StationName = command.StationName;
 
             _dbContext.PoliceStations.Update(policeStation);
             await _dbContext.SaveChangesAsync(cancellationToken);

@@ -11,8 +11,10 @@ namespace GovernmentSystem.Application.Handlers.ReportProblems.Commands
     public class UpdateReportProblemCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public bool IsProcessed { get; set; }
+        public DateTime DateOfIssue { get; set; }
         public DateTime DateOfExpiry { get; set; }
     }
 
@@ -43,8 +45,10 @@ namespace GovernmentSystem.Application.Handlers.ReportProblems.Commands
         public UpdateReportProblemCommandHandlerValidator()
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
+            RuleFor(v => v.Title).NotEmpty().NotNull();
             RuleFor(v => v.Description).NotEmpty().NotNull();
             RuleFor(v => v.IsProcessed).NotEmpty().NotNull();
+            RuleFor(v => v.DateOfIssue).NotEmpty().NotNull();
             RuleFor(v => v.DateOfExpiry).NotEmpty().NotNull();
         }
     }

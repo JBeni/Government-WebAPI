@@ -87,6 +87,7 @@ namespace GovernmentSystem.Infrastructure.Services
             var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
             cityHall.CityHallName = command.CityHallName;
             cityHall.Address = address;
+            cityHall.ConstructionDate = command.ConstructionDate;
 
             _dbContext.CityHalls.Update(cityHall);
             await _dbContext.SaveChangesAsync(cancellationToken);

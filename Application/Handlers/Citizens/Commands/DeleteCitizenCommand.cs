@@ -11,7 +11,6 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
     public class DeleteCitizenCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
-        public DateTime DateOfDeath { get; set; }
     }
 
     public class DeleteCitizenCommandHandler : IRequestHandler<DeleteCitizenCommand, RequestResponse>
@@ -41,7 +40,6 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
         public DeleteCitizenCommandValidator()
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
-            RuleFor(v => v.DateOfDeath).NotEmpty().NotNull();
         }
     }
 }

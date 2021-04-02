@@ -48,6 +48,8 @@ namespace GovernmentSystem.Application.Handlers.ReportProblems.Commands
             RuleFor(v => v.Title).NotEmpty().NotNull();
             RuleFor(v => v.Description).NotEmpty().NotNull();
             RuleFor(v => v.IsProcessed).NotEmpty().NotNull();
+            RuleFor(v => v.DateOfIssue).NotEmpty().NotNull();
+            RuleFor(v => v.DateOfExpiry).Null();
         }
     }
 }

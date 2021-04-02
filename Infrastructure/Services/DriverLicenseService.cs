@@ -80,6 +80,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The driver license does not exists");
             }
+            driverLicense.LicenseNumber = command.LicenseNumber;
 
             _dbContext.DriverLicenses.Update(driverLicense);
             await _dbContext.SaveChangesAsync(cancellationToken);

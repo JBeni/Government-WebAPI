@@ -84,6 +84,11 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The passport does not exists");
             }
+            passport.Country = command.Country;
+            passport.DateOfExpiry = command.DateOfExpiry;
+            passport.DateOfIssue = command.DateOfIssue;
+            passport.PassportNumber = command.PassportNumber;
+            passport.Type = command.Type;
 
             _dbContext.Passports.Update(passport);
             await _dbContext.SaveChangesAsync(cancellationToken);

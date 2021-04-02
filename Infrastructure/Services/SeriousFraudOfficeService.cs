@@ -84,6 +84,9 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The serious fraud office does not exists");
             }
             var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
+            sfo.Address = address;
+            sfo.ConstructionDate = command.ConstructionDate;
+            sfo.OfficeName = command.OfficeName;
 
             _dbContext.SeriousFraudOffices.Update(sfo);
             await _dbContext.SaveChangesAsync(cancellationToken);

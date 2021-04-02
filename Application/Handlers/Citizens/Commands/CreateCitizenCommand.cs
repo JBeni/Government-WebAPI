@@ -15,8 +15,17 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
         public string LastName { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public DateTime DateOfDeath { get; set; }
+
         public Guid BirthCertificateId { get; set; }
+        public Guid IdentityCardId { get; set; }
+        public Guid PassportId { get; set; }
+        public Guid DriverLicenseId { get; set; }
         public Guid HomeAddressId { get; set; }
+        public Guid CityHallResidenceId { get; set; }
+        public Guid MedicalCenterId { get; set; }
+        public Guid PublicServantGPId { get; set; }
     }
 
     public class CreateCitizenCommandHandler : IRequestHandler<CreateCitizenCommand, RequestResponse>
@@ -51,8 +60,16 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
             RuleFor(v => v.LastName).NotEmpty().NotNull();
             RuleFor(v => v.Age).NotEmpty().NotNull();
             RuleFor(v => v.Gender).NotEmpty().NotNull();
+            RuleFor(v => v.DateOfBirth).NotEmpty().NotNull();
+            RuleFor(v => v.DateOfDeath).NotEmpty().NotNull();
             RuleFor(v => v.BirthCertificateId).NotEmpty().NotNull();
+            RuleFor(v => v.IdentityCardId).NotEmpty().NotNull();
+            RuleFor(v => v.PassportId).NotEmpty().NotNull();
+            RuleFor(v => v.DriverLicenseId).NotEmpty().NotNull();
             RuleFor(v => v.HomeAddressId).NotEmpty().NotNull();
+            RuleFor(v => v.CityHallResidenceId).NotEmpty().NotNull();
+            RuleFor(v => v.MedicalCenterId).NotEmpty().NotNull();
+            RuleFor(v => v.PublicServantGPId).NotEmpty().NotNull();
         }
     }
 }

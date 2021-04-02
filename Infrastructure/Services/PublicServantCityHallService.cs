@@ -89,6 +89,14 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The public servant of city hall does not exists");
             }
             var cityHall = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallId);
+            publicServant.CityHall = cityHall;
+            publicServant.CNP = command.CNP;
+            publicServant.ContractYears = command.ContractYears;
+            publicServant.DutyRole = command.DutyRole;
+            publicServant.FirstName = command.FirstName;
+            publicServant.HireEndDate = command.HireEndDate;
+            publicServant.HireStartDate = command.HireStartDate;
+            publicServant.LastName = command.LastName;
 
             _dbContext.PublicServantCityHalls.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);

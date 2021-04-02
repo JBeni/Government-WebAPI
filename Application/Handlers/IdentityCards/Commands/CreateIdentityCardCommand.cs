@@ -46,6 +46,8 @@ namespace GovernmentSystem.Application.Handlers.IdentityCards.Commands
             RuleFor(v => v.Identifier).Null();
             RuleFor(v => v.Series).NotEmpty().NotNull();
             RuleFor(v => v.Type).NotEmpty().NotNull();
+            RuleFor(v => v.DateOfIssue).NotEmpty().NotNull();
+            RuleFor(v => v.DateOfExpiry).NotEmpty().NotNull();
         }
     }
 }

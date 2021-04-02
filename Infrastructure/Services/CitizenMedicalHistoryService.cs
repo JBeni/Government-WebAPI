@@ -99,11 +99,14 @@ namespace GovernmentSystem.Infrastructure.Services
             var citizen = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.CitizenId);
 
             citizenMedicalHistory.AdditionalInformation = command.AdditionalInformation;
+            citizenMedicalHistory.DateOfDiagnostic = command.DateOfDiagnostic;
+            citizenMedicalHistory.HealthProblem = command.HealthProblem;
+            citizenMedicalHistory.Symptoms = command.Symptoms;
             citizenMedicalHistory.Treatment = command.Treatment;
-            citizenMedicalHistory.Citizen = citizen;
-            citizenMedicalHistory.MedicalAppointment = medicalAppointment;
             citizenMedicalHistory.MedicalCenter = medicalCenter;
             citizenMedicalHistory.PublicServantGP = publicServantGP;
+            citizenMedicalHistory.MedicalAppointment = medicalAppointment;
+            citizenMedicalHistory.Citizen = citizen;
 
             _dbContext.CitizenMedicalHistories.Update(citizenMedicalHistory);
             await _dbContext.SaveChangesAsync(cancellationToken);

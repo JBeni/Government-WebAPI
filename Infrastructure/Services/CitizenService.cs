@@ -32,14 +32,20 @@ namespace GovernmentSystem.Infrastructure.Services
         public async Task<RequestResponse> CreateCitizen(CreateCitizenCommand command, CancellationToken cancellationToken)
         {
             var birthCertificate = _dbContext.BirthCertificates.SingleOrDefault(x => x.Identifier == command.BirthCertificateId);
-            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.HomeAddressId);
             var userCNP = GenerateCNP(birthCertificate.BirthDate, command.Gender);
-
             var citizen = _dbContext.Citizens.SingleOrDefault(x => x.CNP == userCNP);
             if (citizen != null)
             {
                 throw new Exception("The citizen already exists");
             }
+            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.HomeAddressId);
+            var identityCard = _dbContext.IdentityCards.SingleOrDefault(x => x.Identifier == command.IdentityCardId);
+            var passport = _dbContext.Passports.SingleOrDefault(x => x.Identifier == command.PassportId);
+            var driverLicense = _dbContext.DriverLicenses.SingleOrDefault(x => x.Identifier == command.DriverLicenseId);
+            var cityHallResidence = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallResidenceId);
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
+            var publicServantGP = _dbContext.PublicServantGPs.SingleOrDefault(x => x.Identifier == command.PublicServantGPId);
+
             var entity = new Citizen
             {
                 FirstName = command.FirstName,
@@ -47,8 +53,16 @@ namespace GovernmentSystem.Infrastructure.Services
                 CNP = userCNP,
                 Age = command.Age,
                 Gender = command.Gender,
-                DateOfBirth = birthCertificate.BirthDate,
-                HomeAddress = address
+                DateOfBirth = command.DateOfBirth,
+                DateOfDeath = command.DateOfDeath,
+                BirthCertificate = birthCertificate,
+                HomeAddress = address,
+                IdentityCard = identityCard,
+                Passport = passport,
+                DriverLicense = driverLicense,
+                CityHallResidence = cityHallResidence,
+                MedicalCenter = medicalCenter,
+                PublicServantGP = publicServantGP
             };
 
             _dbContext.Citizens.Add(entity);
@@ -63,7 +77,6 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The citizen does not exists");
             }
-            citizen.DateOfDeath = command.DateOfDeath;
 
             _dbContext.Citizens.Remove(citizen);
             await _dbContext.SaveChangesAsync(cancellationToken);
@@ -120,17 +133,29 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The citizen does not exists");
             }
+            var birthCertificate = _dbContext.BirthCertificates.SingleOrDefault(x => x.Identifier == command.BirthCertificateId);
+            var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.HomeAddressId);
             var identityCard = _dbContext.IdentityCards.SingleOrDefault(x => x.Identifier == command.IdentityCardId);
             var passport = _dbContext.Passports.SingleOrDefault(x => x.Identifier == command.PassportId);
             var driverLicense = _dbContext.DriverLicenses.SingleOrDefault(x => x.Identifier == command.DriverLicenseId);
             var cityHallResidence = _dbContext.CityHalls.SingleOrDefault(x => x.Identifier == command.CityHallResidenceId);
-            var homeAddress = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.HomeAddressId);
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
+            var publicServantGP = _dbContext.PublicServantGPs.SingleOrDefault(x => x.Identifier == command.PublicServantGPId);
 
+            citizen.FirstName = command.FirstName;
+            citizen.LastName = command.LastName;
+            citizen.Age = command.Age;
+            citizen.Gender = command.Gender;
+            citizen.DateOfBirth = command.DateOfBirth;
+            citizen.DateOfDeath = command.DateOfDeath;
+            citizen.BirthCertificate = birthCertificate;
+            citizen.HomeAddress = address;
             citizen.IdentityCard = identityCard;
             citizen.Passport = passport;
             citizen.DriverLicense = driverLicense;
             citizen.CityHallResidence = cityHallResidence;
-            citizen.HomeAddress = homeAddress;
+            citizen.MedicalCenter = medicalCenter;
+            citizen.PublicServantGP = publicServantGP;
 
             _dbContext.Citizens.Update(citizen);
             await _dbContext.SaveChangesAsync(cancellationToken);

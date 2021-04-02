@@ -86,6 +86,7 @@ namespace GovernmentSystem.Infrastructure.Services
             var address = _dbContext.Addresses.SingleOrDefault(x => x.Identifier == command.AddressId);
             medicalCenter.Address = address;
             medicalCenter.CenterName = command.CenterName;
+            medicalCenter.ConstructionDate = command.ConstructionDate;
 
             _dbContext.MedicalCenters.Update(medicalCenter);
             await _dbContext.SaveChangesAsync(cancellationToken);

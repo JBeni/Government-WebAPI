@@ -105,8 +105,10 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The address does not exists");
             }
             var addressType = _dbContext.AddressTypes.SingleOrDefault(x => x.Identifier == command.AddressTypeId);
-            address.ZipCode = command.ZipCode;
+            address.Country = command.Country;
+            address.County = command.County;
             address.Street = command.Street;
+            address.ZipCode = command.ZipCode;
             address.Type = addressType;
 
             _dbContext.Addresses.Update(address);

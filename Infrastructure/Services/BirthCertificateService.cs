@@ -33,7 +33,6 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The birth certificate already exists");
             }
-
             var entity = new BirthCertificate
             {
                 BirthDate = command.BirthDate,
@@ -91,6 +90,17 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The birth certificate does not exists");
             }
+            birthCertificate.BirthDate = command.BirthDate;
+            birthCertificate.BirthPlace = command.BirthPlace;
+            birthCertificate.Country = command.Country;
+            birthCertificate.Father = command.Father;
+            birthCertificate.FirstName = command.FirstName;
+            birthCertificate.RegistrationDate = command.RegistrationDate;
+            birthCertificate.LastName = command.LastName;
+            birthCertificate.Mother = command.Mother;
+            birthCertificate.PersonalIdentificationNumber = command.PersonalIdentificationNumber;
+            birthCertificate.RegistrationPlace = command.RegistrationPlace;
+            birthCertificate.Series = command.Series;
 
             _dbContext.BirthCertificates.Update(birthCertificate);
             await _dbContext.SaveChangesAsync(cancellationToken);

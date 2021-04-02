@@ -89,6 +89,14 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The public servant of GP does not exists");
             }
             var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
+            publicServant.MedicalCenter = medicalCenter;
+            publicServant.CNP = command.CNP;
+            publicServant.ContractYears = command.ContractYears;
+            publicServant.DutyRole = command.DutyRole;
+            publicServant.FirstName = command.FirstName;
+            publicServant.HireEndDate = command.HireEndDate;
+            publicServant.HireStartDate = command.HireStartDate;
+            publicServant.LastName = command.LastName;
 
             _dbContext.PublicServantGPs.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);

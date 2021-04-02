@@ -93,6 +93,20 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical payment history does not exists");
             }
+            var citizenWhoBenefit = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.CitizenWhoBenefitId);
+            var citizenWhoPaid = _dbContext.Citizens.SingleOrDefault(x => x.Identifier == command.CitizenWhoPaidId);
+            var medicalCenter = _dbContext.MedicalCenters.SingleOrDefault(x => x.Identifier == command.MedicalCenterId);
+            var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.MedicalProcedureId);
+            var publicServantGP = _dbContext.PublicServantGPs.SingleOrDefault(x => x.Identifier == command.PublicServantGPId);
+
+            medicalPaymentHistory.AmountPaid = command.AmountPaid;
+            medicalPaymentHistory.AmountToPay = command.AmountToPay;
+            medicalPaymentHistory.DateOfPayment = command.DateOfPayment;
+            medicalPaymentHistory.CitizenWhoBenefit = citizenWhoBenefit;
+            medicalPaymentHistory.CitizenWhoPaid = citizenWhoPaid;
+            medicalPaymentHistory.MedicalCenter = medicalCenter;
+            medicalPaymentHistory.MedicalProcedure = medicalProcedure;
+            medicalPaymentHistory.PublicServantGP = publicServantGP;
 
             _dbContext.MedicalPaymentHistories.Update(medicalPaymentHistory);
             await _dbContext.SaveChangesAsync(cancellationToken);
