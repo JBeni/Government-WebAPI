@@ -33,8 +33,8 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The address already exists");
             }
-
             var addressType = _dbContext.AddressTypes.SingleOrDefault(x => x.Identifier == command.AddressTypeId);
+
             var entity = new Address
             {
                 Country = command.Country,
