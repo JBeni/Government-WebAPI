@@ -14,6 +14,7 @@ namespace GovernmentSystem.WebUI.Services
             
         }
 
-        public int UserId => int.Parse(_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier));
+        public string UserId => _httpContextAccessor.HttpContext?.User?.FindFirstValue("UserId");
+        public string Username => _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email);
     }
 }
