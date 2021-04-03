@@ -271,7 +271,7 @@ namespace GovernmentSystem.Infrastructure.Services
             return result;
         }
 
-        public PublicServantGP GetPublicServantGPById(Guid identifier)
+        public PublicServantMedicalCenter GetPublicServantGPById(Guid identifier)
         {
             var result = _dbContext.PublicServantGPs
                 .Where(v => v.Identifier == identifier)

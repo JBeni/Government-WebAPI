@@ -1,5 +1,5 @@
-﻿using GovernmentSystem.Application.Handlers.PublicServantGPs.Commands;
-using GovernmentSystem.Application.Handlers.PublicServantGPs.Queries;
+﻿using GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Commands;
+using GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Queries;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

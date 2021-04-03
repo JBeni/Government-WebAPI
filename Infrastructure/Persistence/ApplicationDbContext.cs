@@ -49,7 +49,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
         public DbSet<MedicalCenterProcedure> MedicalCenterProcedures { get; set; }
         public DbSet<MedicalPaymentHistory> MedicalPaymentHistories { get; set; }
         public DbSet<MedicalProcedure> MedicalProcedures { get; set; }
-        public DbSet<PublicServantGP> PublicServantGPs { get; set; }
+        public DbSet<PublicServantMedicalCenter> PublicServantGPs { get; set; }
         public DbSet<PublicServantPolice> PublicServantPolices { get; set; }
         public DbSet<PublicServantSFO> PublicServantSFOs { get; set; }
         public DbSet<PoliceStation> PoliceStations { get; set; }

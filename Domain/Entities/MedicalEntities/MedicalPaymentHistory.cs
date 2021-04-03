@@ -12,7 +12,7 @@ namespace GovernmentSystem.Domain.Entities.MedicalEntities
 
         public MedicalProcedure MedicalProcedure { get; set; }
         public MedicalCenter MedicalCenter { get; set; }
-        public PublicServantGP PublicServantGP { get; set; }
+        public PublicServantMedicalCenter PublicServantGP { get; set; }
         public Citizen CitizenWhoBenefit { get; set; }
         public Citizen CitizenWhoPaid { get; set; }
     }

@@ -14,7 +14,7 @@ namespace GovernmentSystem.Application.Responses
         public DateTime DateOfPayment { get; set; }
         public MedicalProcedure MedicalProcedure { get; set; }
         public MedicalCenter MedicalCenter { get; set; }
-        public PublicServantGP PublicServantGP { get; set; }
+        public PublicServantMedicalCenter PublicServantGP { get; set; }
         public Citizen CitizenWhoBenefit { get; set; }
         public Citizen CitizenWhoPaid { get; set; }
 

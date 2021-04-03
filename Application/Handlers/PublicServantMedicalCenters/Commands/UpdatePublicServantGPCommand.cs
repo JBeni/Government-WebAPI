@@ -6,9 +6,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Commands
+namespace GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Commands
 {
-    public class CreatePublicServantGPCommand : IRequest<RequestResponse>
+    public class UpdatePublicServantGPCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
         public string CNP { get; set; }
@@ -21,20 +21,20 @@ namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Commands
         public Guid MedicalCenterId { get; set; }
     }
 
-    public class CreatePublicServantGPsCommandHandler : IRequestHandler<CreatePublicServantGPCommand, RequestResponse>
+    public class UpdatePublicServantGPsCommandHandler : IRequestHandler<UpdatePublicServantGPCommand, RequestResponse>
     {
         private readonly IPublicServantGPService _PublicServantGPService;
 
-        public CreatePublicServantGPsCommandHandler(IPublicServantGPService PublicServantGPService)
+        public UpdatePublicServantGPsCommandHandler(IPublicServantGPService PublicServantGPService)
         {
             _PublicServantGPService = PublicServantGPService;
         }
 
-        public async Task<RequestResponse> Handle(CreatePublicServantGPCommand request, CancellationToken cancellationToken)
+        public async Task<RequestResponse> Handle(UpdatePublicServantGPCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                return await _PublicServantGPService.CreatePublicServantGP(request, cancellationToken);
+                return await _PublicServantGPService.UpdatePublicServantGP(request, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -43,11 +43,11 @@ namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Commands
         }
     }
 
-    public class CreatePublicServantGPCommandValidator : AbstractValidator<CreatePublicServantGPCommand>
+    public class UpdatePublicServantGPCommandValidator : AbstractValidator<UpdatePublicServantGPCommand>
     {
-        public CreatePublicServantGPCommandValidator()
+        public UpdatePublicServantGPCommandValidator()
         {
-            RuleFor(v => v.Identifier).Null();
+            RuleFor(v => v.Identifier).NotEmpty().NotNull();
             RuleFor(v => v.CNP).NotEmpty().NotNull();
             RuleFor(v => v.FirstName).NotEmpty().NotNull();
             RuleFor(v => v.LastName).NotEmpty().NotNull();

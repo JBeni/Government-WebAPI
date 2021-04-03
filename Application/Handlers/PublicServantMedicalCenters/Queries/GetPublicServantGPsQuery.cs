@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Queries
+namespace GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Queries
 {
     public class GetPublicServantGPsQuery : IRequest<List<PublicServantGPResponse>>
     {

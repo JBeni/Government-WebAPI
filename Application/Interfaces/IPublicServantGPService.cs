@@ -1,6 +1,6 @@
 ﻿using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Handlers.PublicServantGPs.Commands;
-using GovernmentSystem.Application.Handlers.PublicServantGPs.Queries;
+using GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Commands;
+using GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Queries;
 using GovernmentSystem.Application.Responses;
 using System.Collections.Generic;
 using System.Threading;

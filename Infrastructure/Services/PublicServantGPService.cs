@@ -2,8 +2,8 @@
 using AutoMapper.QueryableExtensions;
 using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Handlers.PublicServantGPs.Commands;
-using GovernmentSystem.Application.Handlers.PublicServantGPs.Queries;
+using GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Commands;
+using GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Queries;
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Responses;
 using GovernmentSystem.Domain.Entities.MedicalEntities;
@@ -36,7 +36,7 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The public servant of GP already exists");
             }
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
-            var entity = new PublicServantGP
+            var entity = new PublicServantMedicalCenter
             {
                 MedicalCenter = medicalCenter,
                 CNP = command.CNP,

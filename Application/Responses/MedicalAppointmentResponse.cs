@@ -13,7 +13,7 @@ namespace GovernmentSystem.Application.Responses
         public DateTime AppointmentDay { get; set; }
         public MedicalProcedure MedicalProcedure { get; set; }
         public Citizen Citizen { get; set; }
-        public PublicServantGP PublicServantGP { get; set; }
+        public PublicServantMedicalCenter PublicServantGP { get; set; }
         public MedicalCenter MedicalCenter { get; set; }
 
         public void Mapping(Profile profile)

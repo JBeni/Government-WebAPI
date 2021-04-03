@@ -6,7 +6,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Commands
+namespace GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Commands
 {
     public class DeletePublicServantGPCommand : IRequest<RequestResponse>
     {

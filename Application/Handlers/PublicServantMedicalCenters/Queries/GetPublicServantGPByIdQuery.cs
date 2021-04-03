@@ -5,7 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Handlers.PublicServantGPs.Queries
+namespace GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Queries
 {
     public class GetPublicServantGPByIdQuery : IRequest<PublicServantGPResponse>
     {

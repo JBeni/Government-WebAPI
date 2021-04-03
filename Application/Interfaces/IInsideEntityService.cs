@@ -30,7 +30,7 @@ namespace GovernmentSystem.Application.Interfaces
         Property GetPropertyById(Guid identifier);
         PropertyType GetPropertyTypeById(Guid identifier);
         PublicServantCityHall GetPublicServantCityHallById(Guid identifier);
-        PublicServantGP GetPublicServantGPById(Guid identifier);
+        PublicServantMedicalCenter GetPublicServantGPById(Guid identifier);
         PublicServantPolice GetPublicServantPoliceById(Guid identifier);
         PublicServantSFO GetPublicServantSFOById(Guid identifier);
         ReportProblem GetReportProblemById(Guid identifier);

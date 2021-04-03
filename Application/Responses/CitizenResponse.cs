@@ -24,7 +24,7 @@ namespace GovernmentSystem.Application.Responses
         public Address HomeAddress { get; set; }
         public CityHall CityHallResidence { get; set; }
         public MedicalCenter MedicalCenter { get; set; }
-        public PublicServantGP PublicServantGP { get; set; }
+        public PublicServantMedicalCenter PublicServantGP { get; set; }
 
         public void Mapping(Profile profile)
         {

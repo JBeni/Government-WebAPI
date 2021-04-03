@@ -2,7 +2,7 @@
 
 namespace GovernmentSystem.Domain.Entities.MedicalEntities
 {
-    public class PublicServantGP : PublicServant
+    public class PublicServantMedicalCenter : PublicServant
     {
         public MedicalCenter MedicalCenter { get; set; }
     }
