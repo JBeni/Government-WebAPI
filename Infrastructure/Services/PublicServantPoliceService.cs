@@ -19,13 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IInsideEntityService _insiderEntityService;
+        private readonly IInsideEntityService _insideEntityService;
 
-        public PublicServantPoliceService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
+        public PublicServantPoliceService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _insiderEntityService = insiderEntityService;
+            _insideEntityService = insideEntityService;
         }
 
         public async Task<RequestResponse> CreatePublicServantPolice(CreatePublicServantPoliceCommand command, CancellationToken cancellationToken)
@@ -35,7 +35,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of police station already exists");
             }
-            var policeStation = _insiderEntityService.GetPoliceStationById(command.PoliceStationId);
+            var policeStation = _insideEntityService.GetPoliceStationById(command.PoliceStationId);
             var entity = new PublicServantPolice
             {
                 PoliceStation = policeStation,
@@ -90,7 +90,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of police station does not exists");
             }
-            var policeStation = _insiderEntityService.GetPoliceStationById(command.PoliceStationId);
+            var policeStation = _insideEntityService.GetPoliceStationById(command.PoliceStationId);
 
             publicServant.PoliceStation = policeStation;
             publicServant.CNP = command.CNP;

@@ -19,13 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IInsideEntityService _insiderEntityService;
+        private readonly IInsideEntityService _insideEntityService;
 
-        public PublicServantGPService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
+        public PublicServantGPService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _insiderEntityService = insiderEntityService;
+            _insideEntityService = insideEntityService;
         }
 
         public async Task<RequestResponse> CreatePublicServantGP(CreatePublicServantGPCommand command, CancellationToken cancellationToken)
@@ -35,7 +35,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of GP already exists");
             }
-            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
             var entity = new PublicServantGP
             {
                 MedicalCenter = medicalCenter,
@@ -90,7 +90,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The public servant of GP does not exists");
             }
-            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
 
             publicServant.MedicalCenter = medicalCenter;
             publicServant.CNP = command.CNP;

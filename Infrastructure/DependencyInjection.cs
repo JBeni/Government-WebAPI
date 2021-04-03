@@ -42,10 +42,10 @@ namespace GovernmentSystem.Infrastructure
             services.AddTransient<ICitizenRequestService, CitizenRequestService>();
             services.AddTransient<ICitizenService, CitizenService>();
             services.AddTransient<ICityHallService, CityHallService>();
-            services.AddTransient<ICommonService, CommonService>();
             services.AddTransient<IDriverLicenseCategoryService, DriverLicenseCategoryService>();
             services.AddTransient<IDriverLicenseService, DriverLicenseService>();
             services.AddTransient<IIdentityCardService, IdentityCardService>();
+            services.AddTransient<IInsideEntityService, InsideEntityService>();
             services.AddTransient<IMedicalAppointmentService, MedicalAppointmentService>();
             services.AddTransient<IMedicalCenterProcedureService, MedicalCenterProcedureService>();
             services.AddTransient<IMedicalCenterService, MedicalCenterService>();

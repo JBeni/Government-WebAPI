@@ -19,13 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IInsideEntityService _insiderEntityService;
+        private readonly IInsideEntityService _insideEntityService;
 
-        public MedicalPaymentHistoryService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
+        public MedicalPaymentHistoryService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _insiderEntityService = insiderEntityService;
+            _insideEntityService = insideEntityService;
         }
 
         public async Task<RequestResponse> CreateMedicalPaymentHistory(CreateMedicalPaymentHistoryCommand command, CancellationToken cancellationToken)
@@ -35,11 +35,11 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical payment history already exists");
             }
-            var citizenWhoBenefit = _insiderEntityService.GetCitizenById(command.CitizenWhoBenefitId);
-            var citizenWhoPaid = _insiderEntityService.GetCitizenById(command.CitizenWhoPaidId);
-            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
-            var medicalProcedure = _insiderEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
-            var publicServantGP = _insiderEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var citizenWhoBenefit = _insideEntityService.GetCitizenById(command.CitizenWhoBenefitId);
+            var citizenWhoPaid = _insideEntityService.GetCitizenById(command.CitizenWhoPaidId);
+            var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var medicalProcedure = _insideEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
+            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
 
             var entity = new MedicalPaymentHistory
             {
@@ -95,11 +95,11 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical payment history does not exists");
             }
-            var citizenWhoBenefit = _insiderEntityService.GetCitizenById(command.CitizenWhoBenefitId);
-            var citizenWhoPaid = _insiderEntityService.GetCitizenById(command.CitizenWhoPaidId);
-            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
-            var medicalProcedure = _insiderEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
-            var publicServantGP = _insiderEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var citizenWhoBenefit = _insideEntityService.GetCitizenById(command.CitizenWhoBenefitId);
+            var citizenWhoPaid = _insideEntityService.GetCitizenById(command.CitizenWhoPaidId);
+            var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var medicalProcedure = _insideEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
+            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
 
             medicalPaymentHistory.AmountPaid = command.AmountPaid;
             medicalPaymentHistory.AmountToPay = command.AmountToPay;

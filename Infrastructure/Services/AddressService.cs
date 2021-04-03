@@ -19,13 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IInsideEntityService _insiderEntityService;
+        private readonly IInsideEntityService _insideEntityService;
 
-        public AddressService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
+        public AddressService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _insiderEntityService = insiderEntityService;
+            _insideEntityService = insideEntityService;
         }
 
         public async Task<RequestResponse> CreateAddress(CreateAddressCommand command, CancellationToken cancellationToken)
@@ -35,7 +35,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The address already exists");
             }
-            var addressType = _insiderEntityService.GetAddressTypeById(command.AddressTypeId);
+            var addressType = _insideEntityService.GetAddressTypeById(command.AddressTypeId);
             var entity = new Address
             {
                 Country = command.Country,
@@ -105,7 +105,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The address does not exists");
             }
-            var addressType = _insiderEntityService.GetAddressTypeById(command.AddressTypeId);
+            var addressType = _insideEntityService.GetAddressTypeById(command.AddressTypeId);
             address.Country = command.Country;
             address.County = command.County;
             address.Street = command.Street;

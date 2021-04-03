@@ -19,13 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IInsideEntityService _insiderEntityService;
+        private readonly IInsideEntityService _insideEntityService;
 
-        public MedicalCenterService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
+        public MedicalCenterService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _insiderEntityService = insiderEntityService;
+            _insideEntityService = insideEntityService;
         }
 
         public async Task<RequestResponse> CreateMedicalCenter(CreateMedicalCenterCommand command, CancellationToken cancellationToken)
@@ -35,7 +35,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical center already exists");
             }
-            var address = _insiderEntityService.GetAddressById(command.AddressId);
+            var address = _insideEntityService.GetAddressById(command.AddressId);
             var entity = new MedicalCenter
             {
                 Address = address,
@@ -85,7 +85,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical center does not exists");
             }
-            var address = _insiderEntityService.GetAddressById(command.AddressId);
+            var address = _insideEntityService.GetAddressById(command.AddressId);
             medicalCenter.Address = address;
             medicalCenter.CenterName = command.CenterName;
             medicalCenter.ConstructionDate = command.ConstructionDate;

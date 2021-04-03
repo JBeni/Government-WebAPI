@@ -19,13 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IInsideEntityService _insiderEntityService;
+        private readonly IInsideEntityService _insideEntityService;
 
-        public CitizenDriverLicenseCategoryService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
+        public CitizenDriverLicenseCategoryService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _insiderEntityService = insiderEntityService;
+            _insideEntityService = insideEntityService;
         }
 
         public async Task<RequestResponse> CreateCitizenDriverLicenseCategory(CreateCitizenDriverLicenseCategoryCommand command, CancellationToken cancellationToken)
@@ -35,8 +35,8 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The citizen driver license category already exists");
             }
-            var citizen = _insiderEntityService.GetCitizenById(command.CitizenId);
-            var driverLicenseCategory = _insiderEntityService.GetDriverLicenseCategoryById(command.DriverLicenseCategoryId);
+            var citizen = _insideEntityService.GetCitizenById(command.CitizenId);
+            var driverLicenseCategory = _insideEntityService.GetDriverLicenseCategoryById(command.DriverLicenseCategoryId);
 
             var entity = new CitizenDriverLicenseCategory
             {
@@ -88,8 +88,8 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The citizen driver license category does not exists");
             }
-            var citizen = _insiderEntityService.GetCitizenById(command.CitizenId);
-            var driverLicenseCategory = _insiderEntityService.GetDriverLicenseCategoryById(command.DriverLicenseCategoryId);
+            var citizen = _insideEntityService.GetCitizenById(command.CitizenId);
+            var driverLicenseCategory = _insideEntityService.GetDriverLicenseCategoryById(command.DriverLicenseCategoryId);
 
             citizenDriverLicenseCategory.Citizen = citizen;
             citizenDriverLicenseCategory.DriverLicenseCategory = driverLicenseCategory;

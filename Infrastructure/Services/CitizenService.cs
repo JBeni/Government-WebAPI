@@ -21,34 +21,34 @@ namespace GovernmentSystem.Infrastructure.Services
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly ICsvFileBuilder _csvFileBuilder;
-        private readonly IInsideEntityService _insiderEntityService;
+        private readonly IInsideEntityService _insideEntityService;
 
         public CitizenService(IApplicationDbContext dbContext, IMapper mapper,
             ICsvFileBuilder csvFileBuilder,
-            IInsideEntityService insiderEntityService)
+            IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
             _csvFileBuilder = csvFileBuilder;
-            _insiderEntityService = insiderEntityService;
+            _insideEntityService = insideEntityService;
         }
 
         public async Task<RequestResponse> CreateCitizen(CreateCitizenCommand command, CancellationToken cancellationToken)
         {
-            var birthCertificate = _insiderEntityService.GetBirthCertificateById(command.BirthCertificateId);
+            var birthCertificate = _insideEntityService.GetBirthCertificateById(command.BirthCertificateId);
             var userCNP = GenerateCNP(birthCertificate.BirthDate, command.Gender);
             var citizen = _dbContext.Citizens.SingleOrDefault(x => x.CNP == userCNP);
             if (citizen != null)
             {
                 throw new Exception("The citizen already exists");
             }
-            var address = _insiderEntityService.GetAddressById(command.HomeAddressId);
-            var identityCard = _insiderEntityService.GetIdentityCardById(command.IdentityCardId);
-            var passport = _insiderEntityService.GetPassportById(command.PassportId);
-            var driverLicense = _insiderEntityService.GetDriverLicenseById(command.DriverLicenseId);
-            var cityHallResidence = _insiderEntityService.GetCityHallById(command.CityHallResidenceId);
-            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
-            var publicServantGP = _insiderEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var address = _insideEntityService.GetAddressById(command.HomeAddressId);
+            var identityCard = _insideEntityService.GetIdentityCardById(command.IdentityCardId);
+            var passport = _insideEntityService.GetPassportById(command.PassportId);
+            var driverLicense = _insideEntityService.GetDriverLicenseById(command.DriverLicenseId);
+            var cityHallResidence = _insideEntityService.GetCityHallById(command.CityHallResidenceId);
+            var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
 
             var entity = new Citizen
             {
@@ -137,14 +137,14 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The citizen does not exists");
             }
-            var birthCertificate = _insiderEntityService.GetBirthCertificateById(command.BirthCertificateId);
-            var address = _insiderEntityService.GetAddressById(command.HomeAddressId);
-            var identityCard = _insiderEntityService.GetIdentityCardById(command.IdentityCardId);
-            var passport = _insiderEntityService.GetPassportById(command.PassportId);
-            var driverLicense = _insiderEntityService.GetDriverLicenseById(command.DriverLicenseId);
-            var cityHallResidence = _insiderEntityService.GetCityHallById(command.CityHallResidenceId);
-            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
-            var publicServantGP = _insiderEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var birthCertificate = _insideEntityService.GetBirthCertificateById(command.BirthCertificateId);
+            var address = _insideEntityService.GetAddressById(command.HomeAddressId);
+            var identityCard = _insideEntityService.GetIdentityCardById(command.IdentityCardId);
+            var passport = _insideEntityService.GetPassportById(command.PassportId);
+            var driverLicense = _insideEntityService.GetDriverLicenseById(command.DriverLicenseId);
+            var cityHallResidence = _insideEntityService.GetCityHallById(command.CityHallResidenceId);
+            var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
 
             citizen.FirstName = command.FirstName;
             citizen.LastName = command.LastName;

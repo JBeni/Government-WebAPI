@@ -19,13 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IInsideEntityService _insiderEntityService;
+        private readonly IInsideEntityService _insideEntityService;
 
-        public MedicalAppointmentService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
+        public MedicalAppointmentService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _insiderEntityService = insiderEntityService;
+            _insideEntityService = insideEntityService;
         }
 
         public async Task<RequestResponse> CreateMedicalAppointment(CreateMedicalAppointmentCommand command, CancellationToken cancellationToken)
@@ -35,10 +35,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical appointment already exists");
             }
-            var citizen = _insiderEntityService.GetCitizenById(command.CitizenId);
-            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
-            var medicalProcedure = _insiderEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
-            var publicServantGP = _insiderEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var citizen = _insideEntityService.GetCitizenById(command.CitizenId);
+            var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var medicalProcedure = _insideEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
+            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
 
             var entity = new MedicalAppointment
             {
@@ -92,10 +92,10 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The medical appointment does not exists");
             }
-            var citizen = _insiderEntityService.GetCitizenById(command.CitizenId);
-            var medicalCenter = _insiderEntityService.GetMedicalCenterById(command.MedicalCenterId);
-            var medicalProcedure = _insiderEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
-            var publicServantGP = _insiderEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var citizen = _insideEntityService.GetCitizenById(command.CitizenId);
+            var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
+            var medicalProcedure = _insideEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
+            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
 
             medicalAppointment.AppointmentDay = command.AppointmentDay;
             medicalAppointment.Symptoms = command.Symptoms;

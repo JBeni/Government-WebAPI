@@ -19,13 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IInsideEntityService _insiderEntityService;
+        private readonly IInsideEntityService _insideEntityService;
 
-        public PoliceStationService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
+        public PoliceStationService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _insiderEntityService = insiderEntityService;
+            _insideEntityService = insideEntityService;
         }
 
         public async Task<RequestResponse> CreatePoliceStation(CreatePoliceStationCommand command, CancellationToken cancellationToken)
@@ -35,8 +35,8 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The police station already exists");
             }
-            var cityHall = _insiderEntityService.GetCityHallById(command.CityHallId);
-            var address = _insiderEntityService.GetAddressById(command.AddressId);
+            var cityHall = _insideEntityService.GetCityHallById(command.CityHallId);
+            var address = _insideEntityService.GetAddressById(command.AddressId);
 
             var entity = new PoliceStation
             {
@@ -88,8 +88,8 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The police station does not exists");
             }
-            var cityHall = _insiderEntityService.GetCityHallById(command.CityHallId);
-            var address = _insiderEntityService.GetAddressById(command.AddressId);
+            var cityHall = _insideEntityService.GetCityHallById(command.CityHallId);
+            var address = _insideEntityService.GetAddressById(command.AddressId);
 
             policeStation.Address = address;
             policeStation.CityHall = cityHall;

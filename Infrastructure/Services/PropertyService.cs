@@ -19,13 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IInsideEntityService _insiderEntityService;
+        private readonly IInsideEntityService _insideEntityService;
 
-        public PropertyService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insiderEntityService)
+        public PropertyService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _insiderEntityService = insiderEntityService;
+            _insideEntityService = insideEntityService;
         }
 
         public async Task<RequestResponse> CreateProperty(CreatePropertyCommand command, CancellationToken cancellationToken)
@@ -35,9 +35,9 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The property already exists");
             }
-            var cityHall = _insiderEntityService.GetCityHallById(command.CityHallId);
-            var address = _insiderEntityService.GetAddressById(command.AddressId);
-            var propertyType = _insiderEntityService.GetPropertyTypeById(command.TypeId);
+            var cityHall = _insideEntityService.GetCityHallById(command.CityHallId);
+            var address = _insideEntityService.GetAddressById(command.AddressId);
+            var propertyType = _insideEntityService.GetPropertyTypeById(command.TypeId);
 
             var entity = new Property
             {
@@ -92,9 +92,9 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The property does not exists");
             }
-            var cityHall = _insiderEntityService.GetCityHallById(command.CityHallId);
-            var address = _insiderEntityService.GetAddressById(command.AddressId);
-            var propertyType = _insiderEntityService.GetPropertyTypeById(command.TypeId);
+            var cityHall = _insideEntityService.GetCityHallById(command.CityHallId);
+            var address = _insideEntityService.GetAddressById(command.AddressId);
+            var propertyType = _insideEntityService.GetPropertyTypeById(command.TypeId);
 
             property.Address = address;
             property.ValueAtBuying = command.ValueAtBuying;
