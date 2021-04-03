@@ -24,7 +24,7 @@ namespace GovernmentSystem.Application.Responses
         public Address HomeAddress { get; set; }
         public CityHall CityHallResidence { get; set; }
         public MedicalCenter MedicalCenter { get; set; }
-        public PublicServantMedicalCenter PublicServantGP { get; set; }
+        public PublicServantMedicalCenter PublicServantMedicalCenter { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -44,7 +44,7 @@ namespace GovernmentSystem.Application.Responses
                 .ForMember(d => d.HomeAddress, opt => opt.MapFrom(s => s.HomeAddress))
                 .ForMember(d => d.CityHallResidence, opt => opt.MapFrom(s => s.CityHallResidence))
                 .ForMember(d => d.MedicalCenter, opt => opt.MapFrom(s => s.MedicalCenter))
-                .ForMember(d => d.PublicServantGP, opt => opt.MapFrom(s => s.PublicServantGP));
+                .ForMember(d => d.PublicServantMedicalCenter, opt => opt.MapFrom(s => s.PublicServantMedicalCenter));
         }
     }
 }

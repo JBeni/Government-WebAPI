@@ -15,7 +15,7 @@ namespace GovernmentSystem.Application.Responses
         public string Treatment { get; set; }
         public string AdditionalInformation { get; set; }
         public Citizen Citizen { get; set; }
-        public PublicServantMedicalCenter PublicServantGP { get; set; }
+        public PublicServantMedicalCenter PublicServantMedicalCenter { get; set; }
         public MedicalCenter MedicalCenter { get; set; }
         public MedicalAppointment MedicalAppointment { get; set; }
 
@@ -28,7 +28,7 @@ namespace GovernmentSystem.Application.Responses
                 .ForMember(d => d.DateOfDiagnostic, opt => opt.MapFrom(s => s.DateOfDiagnostic))
                 .ForMember(d => d.AdditionalInformation, opt => opt.MapFrom(s => s.AdditionalInformation))
                 .ForMember(d => d.Citizen, opt => opt.MapFrom(s => s.Citizen))
-                .ForMember(d => d.PublicServantGP, opt => opt.MapFrom(s => s.PublicServantGP))
+                .ForMember(d => d.PublicServantMedicalCenter, opt => opt.MapFrom(s => s.PublicServantMedicalCenter))
                 .ForMember(d => d.MedicalCenter, opt => opt.MapFrom(s => s.MedicalCenter))
                 .ForMember(d => d.MedicalAppointment, opt => opt.MapFrom(s => s.MedicalAppointment));
         }

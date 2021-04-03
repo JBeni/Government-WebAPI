@@ -30,8 +30,8 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> CreateSeriousFraudOffice(CreateSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
         {
-            var sfo = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.Identifier);
-            if (sfo != null)
+            var seriousFraudOffice = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (seriousFraudOffice != null)
             {
                 throw new Exception("The serious fraud office already exists");
             }
@@ -50,13 +50,13 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> DeleteSeriousFraudOffice(DeleteSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
         {
-            var sfo = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.Identifier);
-            if (sfo != null)
+            var seriousFraudOffice = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (seriousFraudOffice != null)
             {
                 throw new Exception("The serious fraud office does not exists");
             }
 
-            _dbContext.SeriousFraudOffices.Remove(sfo);
+            _dbContext.SeriousFraudOffices.Remove(seriousFraudOffice);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
@@ -80,18 +80,18 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> UpdateSeriousFraudOffice(UpdateSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
         {
-            var sfo = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.Identifier);
-            if (sfo != null)
+            var seriousFraudOffice = _dbContext.SeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (seriousFraudOffice != null)
             {
                 throw new Exception("The serious fraud office does not exists");
             }
             var address = _insideEntityService.GetAddressById(command.AddressId);
 
-            sfo.Address = address;
-            sfo.ConstructionDate = command.ConstructionDate;
-            sfo.OfficeName = command.OfficeName;
+            seriousFraudOffice.Address = address;
+            seriousFraudOffice.ConstructionDate = command.ConstructionDate;
+            seriousFraudOffice.OfficeName = command.OfficeName;
 
-            _dbContext.SeriousFraudOffices.Update(sfo);
+            _dbContext.SeriousFraudOffices.Update(seriousFraudOffice);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }

@@ -6,9 +6,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
+namespace GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Commands
 {
-    public class UpdatePublicServantSFOCommand : IRequest<RequestResponse>
+    public class UpdatePublicServantMedicalCenterCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
         public string CNP { get; set; }
@@ -18,23 +18,23 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
         public int ContractYears { get; set; }
         public DateTime HireStartDate { get; set; }
         public DateTime HireEndDate { get; set; }
-        public Guid SFOId { get; set; }
+        public Guid MedicalCenterId { get; set; }
     }
 
-    public class UpdatePublicServantSFOCommandHandler : IRequestHandler<UpdatePublicServantSFOCommand, RequestResponse>
+    public class UpdatePublicServantMedicalCentersCommandHandler : IRequestHandler<UpdatePublicServantMedicalCenterCommand, RequestResponse>
     {
-        private readonly IPublicServantSFOService _publicServantSFOService;
+        private readonly IPublicServantMedicalCenterService _publicServantMedicalCenterService;
 
-        public UpdatePublicServantSFOCommandHandler(IPublicServantSFOService publicServantSFOService)
+        public UpdatePublicServantMedicalCentersCommandHandler(IPublicServantMedicalCenterService publicServantMedicalCenterService)
         {
-            _publicServantSFOService = publicServantSFOService;
+            _publicServantMedicalCenterService = publicServantMedicalCenterService;
         }
 
-        public async Task<RequestResponse> Handle(UpdatePublicServantSFOCommand request, CancellationToken cancellationToken)
+        public async Task<RequestResponse> Handle(UpdatePublicServantMedicalCenterCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                return await _publicServantSFOService.UpdatePublicServantSFO(request, cancellationToken);
+                return await _publicServantMedicalCenterService.UpdatePublicServantMedicalCenter(request, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -43,9 +43,9 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
         }
     }
 
-    public class UpdatePublicServantSFOCommandValidator : AbstractValidator<UpdatePublicServantSFOCommand>
+    public class UpdatePublicServantMedicalCenterCommandValidator : AbstractValidator<UpdatePublicServantMedicalCenterCommand>
     {
-        public UpdatePublicServantSFOCommandValidator()
+        public UpdatePublicServantMedicalCenterCommandValidator()
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
             RuleFor(v => v.CNP).NotEmpty().NotNull();
@@ -55,7 +55,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
             RuleFor(v => v.ContractYears).NotEmpty().NotNull();
             RuleFor(v => v.HireStartDate).NotEmpty().NotNull();
             RuleFor(v => v.HireEndDate).NotEmpty().NotNull();
-            RuleFor(v => v.SFOId).NotEmpty().NotNull();
+            RuleFor(v => v.MedicalCenterId).NotEmpty().NotNull();
         }
     }
 }

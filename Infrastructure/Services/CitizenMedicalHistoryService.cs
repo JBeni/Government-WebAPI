@@ -36,7 +36,7 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The citizen medical history request already exists");
             }
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
-            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var publicServantMedicalCenter = _insideEntityService.GetPublicServantMedicalCenterById(command.PublicServantMedicalCenterId);
             var medicalAppointment = _insideEntityService.GetMedicalAppointmentById(command.MedicalAppointmentId);
             var citizen = _insideEntityService.GetCitizenById(command.CitizenId);
 
@@ -48,7 +48,7 @@ namespace GovernmentSystem.Infrastructure.Services
                 Symptoms = command.Symptoms,
                 Treatment = command.Treatment,
                 MedicalCenter = medicalCenter,
-                PublicServantGP = publicServantGP,
+                PublicServantMedicalCenter = publicServantMedicalCenter,
                 MedicalAppointment = medicalAppointment,
                 Citizen = citizen,
             };
@@ -96,7 +96,7 @@ namespace GovernmentSystem.Infrastructure.Services
                 throw new Exception("The citizen medical history request does not exists");
             }
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
-            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var publicServantMedicalCenter = _insideEntityService.GetPublicServantMedicalCenterById(command.PublicServantMedicalCenterId);
             var medicalAppointment = _insideEntityService.GetMedicalAppointmentById(command.MedicalAppointmentId);
             var citizen = _insideEntityService.GetCitizenById(command.CitizenId);
 
@@ -106,7 +106,7 @@ namespace GovernmentSystem.Infrastructure.Services
             citizenMedicalHistory.Symptoms = command.Symptoms;
             citizenMedicalHistory.Treatment = command.Treatment;
             citizenMedicalHistory.MedicalCenter = medicalCenter;
-            citizenMedicalHistory.PublicServantGP = publicServantGP;
+            citizenMedicalHistory.PublicServantMedicalCenter = publicServantMedicalCenter;
             citizenMedicalHistory.MedicalAppointment = medicalAppointment;
             citizenMedicalHistory.Citizen = citizen;
 

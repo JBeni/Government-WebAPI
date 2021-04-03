@@ -5,7 +5,7 @@ using System;
 
 namespace GovernmentSystem.Application.Responses
 {
-    public class PublicServantGPResponse : IMapFrom<PublicServantMedicalCenter>
+    public class PublicServantMedicalCenterResponse : IMapFrom<PublicServantMedicalCenter>
     {
         public Guid Identifier { get; set; }
         public string CNP { get; set; }
@@ -19,7 +19,7 @@ namespace GovernmentSystem.Application.Responses
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<PublicServantMedicalCenter, PublicServantGPResponse>()
+            profile.CreateMap<PublicServantMedicalCenter, PublicServantMedicalCenterResponse>()
                 .ForMember(d => d.Identifier, opt => opt.MapFrom(s => s.Identifier))
                 .ForMember(d => d.CNP, opt => opt.MapFrom(s => s.CNP))
                 .ForMember(d => d.FirstName, opt => opt.MapFrom(s => s.FirstName))

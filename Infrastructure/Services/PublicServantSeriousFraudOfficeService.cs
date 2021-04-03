@@ -2,8 +2,8 @@
 using AutoMapper.QueryableExtensions;
 using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands;
-using GovernmentSystem.Application.Handlers.PublicServantSFOs.Queries;
+using GovernmentSystem.Application.Handlers.PublicServantSeriousFraudOffices.Commands;
+using GovernmentSystem.Application.Handlers.PublicServantSeriousFraudOffices.Queries;
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Responses;
 using GovernmentSystem.Domain.Entities.PublicServantEntities;
@@ -15,30 +15,30 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
-    public class PublicServantSFOService : IPublicServantSFOService
+    public class PublicServantSeriousFraudOfficeService : IPublicServantSeriousFraudOfficeservice
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IInsideEntityService _insideEntityService;
 
-        public PublicServantSFOService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
+        public PublicServantSeriousFraudOfficeService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
             _insideEntityService = insideEntityService;
         }
 
-        public async Task<RequestResponse> CreatePublicServantSFO(CreatePublicServantSFOCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> CreatePublicServantSeriousFraudOffice(CreatePublicServantSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
         {
-            var publicServant = _dbContext.PublicServantSFOs.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var publicServant = _dbContext.PublicServantSeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (publicServant != null)
             {
                 throw new Exception("The public servant of serious fraud office already exists");
             }
-            var sfo = _insideEntityService.GetSeriousFraudOfficeById(command.SFOId);
-            var entity = new PublicServantSFO
+            var seriousFraudOffice = _insideEntityService.GetSeriousFraudOfficeById(command.SeriousFraudOfficeId);
+            var entity = new PublicServantSeriousFraudOffice
             {
-                SFO = sfo,
+                SeriousFraudOffice = seriousFraudOffice,
                 CNP = command.CNP,
                 ContractYears = command.ContractYears,
                 DutyRole = command.DutyRole,
@@ -48,51 +48,51 @@ namespace GovernmentSystem.Infrastructure.Services
                 LastName = command.LastName
             };
 
-            _dbContext.PublicServantSFOs.Add(entity);
+            _dbContext.PublicServantSeriousFraudOffices.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
 
-        public async Task<RequestResponse> DeletePublicServantSFO(DeletePublicServantSFOCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> DeletePublicServantSeriousFraudOffice(DeletePublicServantSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
         {
-            var publicServant = _dbContext.PublicServantSFOs.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var publicServant = _dbContext.PublicServantSeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (publicServant != null)
             {
                 throw new Exception("The public servant of serious fraud office does not exists");
             }
 
-            _dbContext.PublicServantSFOs.Remove(publicServant);
+            _dbContext.PublicServantSeriousFraudOffices.Remove(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
 
-        public PublicServantSFOResponse GetPublicServantSFOById(GetPublicServantSFOByIdQuery query)
+        public PublicServantSeriousFraudOfficeResponse GetPublicServantSeriousFraudOfficeById(GetPublicServantSeriousFraudOfficeByIdQuery query)
         {
-            var result = _dbContext.PublicServantSFOs
+            var result = _dbContext.PublicServantSeriousFraudOffices
                 .Where(x => x.Identifier == query.Identifier)
-                .ProjectTo<PublicServantSFOResponse>(_mapper.ConfigurationProvider)
+                .ProjectTo<PublicServantSeriousFraudOfficeResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
             return result;
         }
 
-        public List<PublicServantSFOResponse> GetPublicServantSFOs(GetPublicServantSFOsQuery query)
+        public List<PublicServantSeriousFraudOfficeResponse> GetPublicServantSeriousFraudOffices(GetPublicServantSeriousFraudOfficesQuery query)
         {
-            var result = _dbContext.PublicServantSFOs
-                .ProjectTo<PublicServantSFOResponse>(_mapper.ConfigurationProvider)
+            var result = _dbContext.PublicServantSeriousFraudOffices
+                .ProjectTo<PublicServantSeriousFraudOfficeResponse>(_mapper.ConfigurationProvider)
                 .ToList();
             return result;
         }
 
-        public async Task<RequestResponse> UpdatePublicServantSFO(UpdatePublicServantSFOCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> UpdatePublicServantSeriousFraudOffice(UpdatePublicServantSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
         {
-            var publicServant = _dbContext.PublicServantSFOs.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var publicServant = _dbContext.PublicServantSeriousFraudOffices.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (publicServant != null)
             {
                 throw new Exception("The public servant of serious fraud office does not exists");
             }
-            var sfo = _insideEntityService.GetSeriousFraudOfficeById(command.SFOId);
+            var seriousFraudOffice = _insideEntityService.GetSeriousFraudOfficeById(command.SeriousFraudOfficeId);
 
-            publicServant.SFO = sfo;
+            publicServant.SeriousFraudOffice = seriousFraudOffice;
             publicServant.CNP = command.CNP;
             publicServant.ContractYears = command.ContractYears;
             publicServant.DutyRole = command.DutyRole;
@@ -101,7 +101,7 @@ namespace GovernmentSystem.Infrastructure.Services
             publicServant.HireStartDate = command.HireStartDate;
             publicServant.LastName = command.LastName;
 
-            _dbContext.PublicServantSFOs.Update(publicServant);
+            _dbContext.PublicServantSeriousFraudOffices.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
 

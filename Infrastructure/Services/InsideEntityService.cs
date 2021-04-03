@@ -271,14 +271,14 @@ namespace GovernmentSystem.Infrastructure.Services
             return result;
         }
 
-        public PublicServantMedicalCenter GetPublicServantGPById(Guid identifier)
+        public PublicServantMedicalCenter GetPublicServantMedicalCenterById(Guid identifier)
         {
-            var result = _dbContext.PublicServantGPs
+            var result = _dbContext.PublicServantMedicalCenters
                 .Where(v => v.Identifier == identifier)
                 .FirstOrDefault();
             if (result == null)
             {
-                throw new Exception("The public servant GP does not exists");
+                throw new Exception("The public servant medical center does not exists");
             }
             return result;
         }
@@ -295,14 +295,14 @@ namespace GovernmentSystem.Infrastructure.Services
             return result;
         }
 
-        public PublicServantSFO GetPublicServantSFOById(Guid identifier)
+        public PublicServantSeriousFraudOffice GetPublicServantSeriousFraudOfficeById(Guid identifier)
         {
-            var result = _dbContext.PublicServantSFOs
+            var result = _dbContext.PublicServantSeriousFraudOffices
                 .Where(v => v.Identifier == identifier)
                 .FirstOrDefault();
             if (result == null)
             {
-                throw new Exception("The public servant SFO does not exists");
+                throw new Exception("The public servant serious fraud office does not exists");
             }
             return result;
         }

@@ -6,7 +6,7 @@ using System;
 
 namespace GovernmentSystem.Application.Responses
 {
-    public class PublicServantSFOResponse : IMapFrom<PublicServantSFO>
+    public class PublicServantSeriousFraudOfficeResponse : IMapFrom<PublicServantSeriousFraudOffice>
     {
         public Guid Identifier { get; set; }
         public string CNP { get; set; }
@@ -16,11 +16,11 @@ namespace GovernmentSystem.Application.Responses
         public int ContractYears { get; set; }
         public DateTime HireStartDate { get; set; }
         public DateTime HireEndDate { get; set; }
-        public SeriousFraudOffice SFO { get; set; }
+        public SeriousFraudOffice SeriousFraudOffice { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<PublicServantSFO, PublicServantSFOResponse>()
+            profile.CreateMap<PublicServantSeriousFraudOffice, PublicServantSeriousFraudOfficeResponse>()
                 .ForMember(d => d.Identifier, opt => opt.MapFrom(s => s.Identifier))
                 .ForMember(d => d.CNP, opt => opt.MapFrom(s => s.CNP))
                 .ForMember(d => d.FirstName, opt => opt.MapFrom(s => s.FirstName))
@@ -29,7 +29,7 @@ namespace GovernmentSystem.Application.Responses
                 .ForMember(d => d.ContractYears, opt => opt.MapFrom(s => s.ContractYears))
                 .ForMember(d => d.HireStartDate, opt => opt.MapFrom(s => s.HireStartDate))
                 .ForMember(d => d.HireEndDate, opt => opt.MapFrom(s => s.HireEndDate))
-                .ForMember(d => d.SFO, opt => opt.MapFrom(s => s.SFO));
+                .ForMember(d => d.SeriousFraudOffice, opt => opt.MapFrom(s => s.SeriousFraudOffice));
         }
     }
 }

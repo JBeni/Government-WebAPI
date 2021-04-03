@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Commands
 {
-    public class UpdatePublicServantGPCommand : IRequest<RequestResponse>
+    public class CreatePublicServantMedicalCenterCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
         public string CNP { get; set; }
@@ -21,20 +21,20 @@ namespace GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Comm
         public Guid MedicalCenterId { get; set; }
     }
 
-    public class UpdatePublicServantGPsCommandHandler : IRequestHandler<UpdatePublicServantGPCommand, RequestResponse>
+    public class CreatePublicServantMedicalCentersCommandHandler : IRequestHandler<CreatePublicServantMedicalCenterCommand, RequestResponse>
     {
-        private readonly IPublicServantGPService _PublicServantGPService;
+        private readonly IPublicServantMedicalCenterService _publicServantMedicalCenterService;
 
-        public UpdatePublicServantGPsCommandHandler(IPublicServantGPService PublicServantGPService)
+        public CreatePublicServantMedicalCentersCommandHandler(IPublicServantMedicalCenterService publicServantMedicalCenterService)
         {
-            _PublicServantGPService = PublicServantGPService;
+            _publicServantMedicalCenterService = publicServantMedicalCenterService;
         }
 
-        public async Task<RequestResponse> Handle(UpdatePublicServantGPCommand request, CancellationToken cancellationToken)
+        public async Task<RequestResponse> Handle(CreatePublicServantMedicalCenterCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                return await _PublicServantGPService.UpdatePublicServantGP(request, cancellationToken);
+                return await _publicServantMedicalCenterService.CreatePublicServantMedicalCenter(request, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -43,11 +43,11 @@ namespace GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Comm
         }
     }
 
-    public class UpdatePublicServantGPCommandValidator : AbstractValidator<UpdatePublicServantGPCommand>
+    public class CreatePublicServantMedicalCenterCommandValidator : AbstractValidator<CreatePublicServantMedicalCenterCommand>
     {
-        public UpdatePublicServantGPCommandValidator()
+        public CreatePublicServantMedicalCenterCommandValidator()
         {
-            RuleFor(v => v.Identifier).NotEmpty().NotNull();
+            RuleFor(v => v.Identifier).Null();
             RuleFor(v => v.CNP).NotEmpty().NotNull();
             RuleFor(v => v.FirstName).NotEmpty().NotNull();
             RuleFor(v => v.LastName).NotEmpty().NotNull();

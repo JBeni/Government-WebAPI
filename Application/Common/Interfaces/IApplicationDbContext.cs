@@ -35,10 +35,10 @@ namespace GovernmentSystem.Application.Common.Interfaces
         DbSet<MedicalCenterProcedure> MedicalCenterProcedures { get; set; }
         DbSet<MedicalPaymentHistory> MedicalPaymentHistories { get; set; }
         DbSet<MedicalProcedure> MedicalProcedures { get; set; }
-        DbSet<PublicServantMedicalCenter> PublicServantGPs { get; set; }
+        DbSet<PublicServantMedicalCenter> PublicServantMedicalCenters { get; set; }
 
         DbSet<PublicServantPolice> PublicServantPolices { get; set; }
-        DbSet<PublicServantSFO> PublicServantSFOs { get; set; }
+        DbSet<PublicServantSeriousFraudOffice> PublicServantSeriousFraudOffices { get; set; }
 
         DbSet<PoliceStation> PoliceStations { get; set; }
         DbSet<SeriousFraudOffice> SeriousFraudOffices { get; set; }

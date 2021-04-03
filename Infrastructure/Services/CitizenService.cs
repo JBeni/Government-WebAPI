@@ -48,7 +48,7 @@ namespace GovernmentSystem.Infrastructure.Services
             var driverLicense = _insideEntityService.GetDriverLicenseById(command.DriverLicenseId);
             var cityHallResidence = _insideEntityService.GetCityHallById(command.CityHallResidenceId);
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
-            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var publicServantMedicalCenter = _insideEntityService.GetPublicServantMedicalCenterById(command.PublicServantMedicalCenterId);
 
             var entity = new Citizen
             {
@@ -66,7 +66,7 @@ namespace GovernmentSystem.Infrastructure.Services
                 DriverLicense = driverLicense,
                 CityHallResidence = cityHallResidence,
                 MedicalCenter = medicalCenter,
-                PublicServantGP = publicServantGP
+                PublicServantMedicalCenter = publicServantMedicalCenter
             };
 
             _dbContext.Citizens.Add(entity);
@@ -144,7 +144,7 @@ namespace GovernmentSystem.Infrastructure.Services
             var driverLicense = _insideEntityService.GetDriverLicenseById(command.DriverLicenseId);
             var cityHallResidence = _insideEntityService.GetCityHallById(command.CityHallResidenceId);
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
-            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var publicServantMedicalCenter = _insideEntityService.GetPublicServantMedicalCenterById(command.PublicServantMedicalCenterId);
 
             citizen.FirstName = command.FirstName;
             citizen.LastName = command.LastName;
@@ -159,7 +159,7 @@ namespace GovernmentSystem.Infrastructure.Services
             citizen.DriverLicense = driverLicense;
             citizen.CityHallResidence = cityHallResidence;
             citizen.MedicalCenter = medicalCenter;
-            citizen.PublicServantGP = publicServantGP;
+            citizen.PublicServantMedicalCenter = publicServantMedicalCenter;
 
             _dbContext.Citizens.Update(citizen);
             await _dbContext.SaveChangesAsync(cancellationToken);

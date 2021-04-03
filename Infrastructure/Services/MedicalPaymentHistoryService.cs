@@ -39,7 +39,7 @@ namespace GovernmentSystem.Infrastructure.Services
             var citizenWhoPaid = _insideEntityService.GetCitizenById(command.CitizenWhoPaidId);
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
             var medicalProcedure = _insideEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
-            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var publicServantMedicalCenter = _insideEntityService.GetPublicServantMedicalCenterById(command.PublicServantMedicalCenterId);
 
             var entity = new MedicalPaymentHistory
             {
@@ -50,7 +50,7 @@ namespace GovernmentSystem.Infrastructure.Services
                 CitizenWhoPaid = citizenWhoPaid,
                 MedicalCenter = medicalCenter,
                 MedicalProcedure = medicalProcedure,
-                PublicServantGP = publicServantGP
+                PublicServantMedicalCenter = publicServantMedicalCenter
             };
 
             _dbContext.MedicalPaymentHistories.Add(entity);
@@ -99,7 +99,7 @@ namespace GovernmentSystem.Infrastructure.Services
             var citizenWhoPaid = _insideEntityService.GetCitizenById(command.CitizenWhoPaidId);
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
             var medicalProcedure = _insideEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
-            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var publicServantMedicalCenter = _insideEntityService.GetPublicServantMedicalCenterById(command.PublicServantMedicalCenterId);
 
             medicalPaymentHistory.AmountPaid = command.AmountPaid;
             medicalPaymentHistory.AmountToPay = command.AmountToPay;
@@ -108,7 +108,7 @@ namespace GovernmentSystem.Infrastructure.Services
             medicalPaymentHistory.CitizenWhoPaid = citizenWhoPaid;
             medicalPaymentHistory.MedicalCenter = medicalCenter;
             medicalPaymentHistory.MedicalProcedure = medicalProcedure;
-            medicalPaymentHistory.PublicServantGP = publicServantGP;
+            medicalPaymentHistory.PublicServantMedicalCenter = publicServantMedicalCenter;
 
             _dbContext.MedicalPaymentHistories.Update(medicalPaymentHistory);
             await _dbContext.SaveChangesAsync(cancellationToken);

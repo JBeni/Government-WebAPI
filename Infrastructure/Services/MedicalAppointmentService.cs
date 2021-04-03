@@ -38,7 +38,7 @@ namespace GovernmentSystem.Infrastructure.Services
             var citizen = _insideEntityService.GetCitizenById(command.CitizenId);
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
             var medicalProcedure = _insideEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
-            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var publicServantMedicalCenter = _insideEntityService.GetPublicServantMedicalCenterById(command.PublicServantMedicalCenterId);
 
             var entity = new MedicalAppointment
             {
@@ -47,7 +47,7 @@ namespace GovernmentSystem.Infrastructure.Services
                 Citizen = citizen,
                 MedicalCenter = medicalCenter,
                 MedicalProcedure = medicalProcedure,
-                PublicServantGP = publicServantGP,
+                PublicServantMedicalCenter = publicServantMedicalCenter,
             };
 
             _dbContext.MedicalAppointments.Add(entity);
@@ -95,13 +95,13 @@ namespace GovernmentSystem.Infrastructure.Services
             var citizen = _insideEntityService.GetCitizenById(command.CitizenId);
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
             var medicalProcedure = _insideEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
-            var publicServantGP = _insideEntityService.GetPublicServantGPById(command.PublicServantGPId);
+            var publicServantMedicalCenter = _insideEntityService.GetPublicServantMedicalCenterById(command.PublicServantMedicalCenterId);
 
             medicalAppointment.AppointmentDay = command.AppointmentDay;
             medicalAppointment.Symptoms = command.Symptoms;
             medicalAppointment.MedicalCenter = medicalCenter;
             medicalAppointment.MedicalProcedure = medicalProcedure;
-            medicalAppointment.PublicServantGP = publicServantGP;
+            medicalAppointment.PublicServantMedicalCenter = publicServantMedicalCenter;
 
             _dbContext.MedicalAppointments.Update(medicalAppointment);
             await _dbContext.SaveChangesAsync(cancellationToken);

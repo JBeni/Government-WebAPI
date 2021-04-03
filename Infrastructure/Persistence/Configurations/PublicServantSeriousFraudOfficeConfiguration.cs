@@ -1,12 +1,12 @@
-﻿using GovernmentSystem.Domain.Entities.MedicalEntities;
+﻿using GovernmentSystem.Domain.Entities.PublicServantEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GovernmentSystem.Infrastructure.Persistence.Configurations
 {
-    public class PublicServantGPConfiguration : IEntityTypeConfiguration<PublicServantMedicalCenter>
+    public class PublicServantSeriousFraudOfficeConfiguration : IEntityTypeConfiguration<PublicServantSeriousFraudOffice>
     {
-        public void Configure(EntityTypeBuilder<PublicServantMedicalCenter> builder)
+        public void Configure(EntityTypeBuilder<PublicServantSeriousFraudOffice> builder)
         {
             builder.HasKey(x => x.Identifier);
 

@@ -1,12 +1,12 @@
-﻿using GovernmentSystem.Domain.Entities.PublicServantEntities;
+﻿using GovernmentSystem.Domain.Entities.MedicalEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GovernmentSystem.Infrastructure.Persistence.Configurations
 {
-    public class PublicServantSFOConfiguration : IEntityTypeConfiguration<PublicServantSFO>
+    public class PublicServantMedicalCenterConfiguration : IEntityTypeConfiguration<PublicServantMedicalCenter>
     {
-        public void Configure(EntityTypeBuilder<PublicServantSFO> builder)
+        public void Configure(EntityTypeBuilder<PublicServantMedicalCenter> builder)
         {
             builder.HasKey(x => x.Identifier);
 

@@ -17,7 +17,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Commands
         public string Treatment { get; set; }
         public string AdditionalInformation { get; set; }
         public Guid CitizenId { get; set; }
-        public Guid PublicServantGPId { get; set; }
+        public Guid PublicServantMedicalCenterId { get; set; }
         public Guid MedicalCenterId { get; set; }
         public Guid MedicalAppointmentId { get; set; }
     }
@@ -55,7 +55,7 @@ namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Commands
             RuleFor(v => v.Treatment).NotEmpty().NotNull();
             RuleFor(v => v.AdditionalInformation).NotEmpty().NotNull();
             RuleFor(v => v.CitizenId).NotEmpty().NotNull();
-            RuleFor(v => v.PublicServantGPId).NotEmpty().NotNull();
+            RuleFor(v => v.PublicServantMedicalCenterId).NotEmpty().NotNull();
             RuleFor(v => v.MedicalCenterId).NotEmpty().NotNull();
             RuleFor(v => v.MedicalAppointmentId).NotEmpty().NotNull();
         }

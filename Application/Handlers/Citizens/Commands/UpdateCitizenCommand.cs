@@ -25,7 +25,7 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
         public Guid HomeAddressId { get; set; }
         public Guid CityHallResidenceId { get; set; }
         public Guid MedicalCenterId { get; set; }
-        public Guid PublicServantGPId { get; set; }
+        public Guid PublicServantMedicalCenterId { get; set; }
     }
 
     public class UpdateCitizenCommandHandler : IRequestHandler<UpdateCitizenCommand, RequestResponse>
@@ -68,7 +68,7 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Commands
             RuleFor(v => v.HomeAddressId).NotEmpty().NotNull();
             RuleFor(v => v.CityHallResidenceId).NotEmpty().NotNull();
             RuleFor(v => v.MedicalCenterId).NotEmpty().NotNull();
-            RuleFor(v => v.PublicServantGPId).NotEmpty().NotNull();
+            RuleFor(v => v.PublicServantMedicalCenterId).NotEmpty().NotNull();
         }
     }
 }

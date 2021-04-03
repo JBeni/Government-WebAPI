@@ -6,9 +6,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
+namespace GovernmentSystem.Application.Handlers.PublicServantSeriousFraudOffices.Commands
 {
-    public class CreatePublicServantSFOCommand : IRequest<RequestResponse>
+    public class CreatePublicServantSeriousFraudOfficeCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
         public string CNP { get; set; }
@@ -18,23 +18,23 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
         public int ContractYears { get; set; }
         public DateTime HireStartDate { get; set; }
         public DateTime HireEndDate { get; set; }
-        public Guid SFOId { get; set; }
+        public Guid SeriousFraudOfficeId { get; set; }
     }
 
-    public class CreatePublicServantSFOCommandHandler : IRequestHandler<CreatePublicServantSFOCommand, RequestResponse>
+    public class CreatePublicServantSeriousFraudOfficeCommandHandler : IRequestHandler<CreatePublicServantSeriousFraudOfficeCommand, RequestResponse>
     {
-        private readonly IPublicServantSFOService _publicServantSFOService;
+        private readonly IPublicServantSeriousFraudOfficeservice _publicServantSeriousFraudOfficesService;
 
-        public CreatePublicServantSFOCommandHandler(IPublicServantSFOService publicServantSFOService)
+        public CreatePublicServantSeriousFraudOfficeCommandHandler(IPublicServantSeriousFraudOfficeservice publicServantSeriousFraudOfficeService)
         {
-            _publicServantSFOService = publicServantSFOService;
+            _publicServantSeriousFraudOfficesService = publicServantSeriousFraudOfficeService;
         }
 
-        public async Task<RequestResponse> Handle(CreatePublicServantSFOCommand request, CancellationToken cancellationToken)
+        public async Task<RequestResponse> Handle(CreatePublicServantSeriousFraudOfficeCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                return await _publicServantSFOService.CreatePublicServantSFO(request, cancellationToken);
+                return await _publicServantSeriousFraudOfficesService.CreatePublicServantSeriousFraudOffice(request, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -43,9 +43,9 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
         }
     }
 
-    public class CreatePublicServantSFOCommandValidator : AbstractValidator<CreatePublicServantSFOCommand>
+    public class CreatePublicServantSeriousFraudOfficeCommandValidator : AbstractValidator<CreatePublicServantSeriousFraudOfficeCommand>
     {
-        public CreatePublicServantSFOCommandValidator()
+        public CreatePublicServantSeriousFraudOfficeCommandValidator()
         {
             RuleFor(v => v.Identifier).Null();
             RuleFor(v => v.CNP).NotEmpty().NotNull();
@@ -55,7 +55,7 @@ namespace GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands
             RuleFor(v => v.ContractYears).NotEmpty().NotNull();
             RuleFor(v => v.HireStartDate).NotEmpty().NotNull();
             RuleFor(v => v.HireEndDate).NotEmpty().NotNull();
-            RuleFor(v => v.SFOId).NotEmpty().NotNull();
+            RuleFor(v => v.SeriousFraudOfficeId).NotEmpty().NotNull();
         }
     }
 }

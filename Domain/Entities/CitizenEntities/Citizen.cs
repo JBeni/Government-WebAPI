@@ -24,7 +24,7 @@ namespace GovernmentSystem.Domain.Entities.CitizenEntities
         public Address HomeAddress { get; set; }
         public CityHall CityHallResidence { get; set; }
         public MedicalCenter MedicalCenter { get; set; }
-        public PublicServantMedicalCenter PublicServantGP { get; set; }
+        public PublicServantMedicalCenter PublicServantMedicalCenter { get; set; }
 
         public ICollection<DriverLicenseCategory> DriverLicenseCategories { get; set; }
     }

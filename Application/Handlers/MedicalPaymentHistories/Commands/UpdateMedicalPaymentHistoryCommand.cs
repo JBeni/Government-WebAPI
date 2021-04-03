@@ -16,7 +16,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands
         public DateTime DateOfPayment { get; set; }
         public Guid MedicalProcedureId { get; set; }
         public Guid MedicalCenterId { get; set; }
-        public Guid PublicServantGPId { get; set; }
+        public Guid PublicServantMedicalCenterId { get; set; }
         public Guid CitizenWhoBenefitId { get; set; }
         public Guid CitizenWhoPaidId { get; set; }
     }
@@ -53,7 +53,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands
             RuleFor(v => v.DateOfPayment).NotEmpty().NotNull();
             RuleFor(v => v.MedicalProcedureId).NotEmpty().NotNull();
             RuleFor(v => v.MedicalCenterId).NotEmpty().NotNull();
-            RuleFor(v => v.PublicServantGPId).NotEmpty().NotNull();
+            RuleFor(v => v.PublicServantMedicalCenterId).NotEmpty().NotNull();
             RuleFor(v => v.CitizenWhoBenefitId).NotEmpty().NotNull();
             RuleFor(v => v.CitizenWhoPaidId).NotEmpty().NotNull();
         }

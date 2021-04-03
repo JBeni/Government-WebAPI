@@ -1,42 +1,42 @@
-﻿using GovernmentSystem.Application.Handlers.PublicServantSFOs.Commands;
-using GovernmentSystem.Application.Handlers.PublicServantSFOs.Queries;
+﻿using GovernmentSystem.Application.Handlers.PublicServantSeriousFraudOffices.Commands;
+using GovernmentSystem.Application.Handlers.PublicServantSeriousFraudOffices.Queries;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace GovernmentSystem.WebUI.Controllers
 {
-    public class PublicServantSFOsController : ApiControllerBase
+    public class PublicServantSeriousFraudOfficesController : ApiControllerBase
     {
-        [HttpGet("getPublicServantSFOById")]
-        public async Task<IActionResult> GetPublicServantSFOById([FromQuery] GetPublicServantSFOByIdQuery query)
+        [HttpGet("getPublicServantSeriousFraudOfficeById")]
+        public async Task<IActionResult> GetPublicServantSeriousFraudOfficeById([FromQuery] GetPublicServantSeriousFraudOfficeByIdQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("getPublicServantSFOs")]
-        public async Task<IActionResult> GetPublicServantSFOs([FromQuery] GetPublicServantSFOsQuery query)
+        [HttpGet("getPublicServantSeriousFraudOffices")]
+        public async Task<IActionResult> GetPublicServantSeriousFraudOffices([FromQuery] GetPublicServantSeriousFraudOfficesQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> Create(CreatePublicServantSFOCommand command)
+        public async Task<IActionResult> Create(CreatePublicServantSeriousFraudOfficeCommand command)
         {
             var result = await Mediator.Send(command);
             return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update(UpdatePublicServantSFOCommand command)
+        public async Task<IActionResult> Update(UpdatePublicServantSeriousFraudOfficeCommand command)
         {
             var result = await Mediator.Send(command);
             return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete(DeletePublicServantSFOCommand command)
+        public async Task<IActionResult> Delete(DeletePublicServantSeriousFraudOfficeCommand command)
         {
             var result = await Mediator.Send(command);
             return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);

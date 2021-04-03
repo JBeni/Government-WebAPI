@@ -5,38 +5,38 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.WebUI.Controllers
 {
-    public class PublicServantGPsController : ApiControllerBase
+    public class PublicServantMedicalCentersController : ApiControllerBase
     {
-        [HttpGet("getPublicServantGPById")]
-        public async Task<IActionResult> GetPublicServantGPById([FromQuery] GetPublicServantGPByIdQuery query)
+        [HttpGet("getPublicServantMedicalCenterById")]
+        public async Task<IActionResult> GetPublicServantMedicalCenterById([FromQuery] GetPublicServantMedicalCenterByIdQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("getPublicServantGPs")]
-        public async Task<IActionResult> GetPublicServantGPs([FromQuery] GetPublicServantGPsQuery query)
+        [HttpGet("getPublicServantMedicalCenters")]
+        public async Task<IActionResult> GetPublicServantMedicalCenters([FromQuery] GetPublicServantMedicalCentersQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> Create(CreatePublicServantGPCommand command)
+        public async Task<IActionResult> Create(CreatePublicServantMedicalCenterCommand command)
         {
             var result = await Mediator.Send(command);
             return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update(UpdatePublicServantGPCommand command)
+        public async Task<IActionResult> Update(UpdatePublicServantMedicalCenterCommand command)
         {
             var result = await Mediator.Send(command);
             return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete(DeletePublicServantGPCommand command)
+        public async Task<IActionResult> Delete(DeletePublicServantMedicalCenterCommand command)
         {
             var result = await Mediator.Send(command);
             return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
