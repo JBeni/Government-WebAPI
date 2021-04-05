@@ -19,11 +19,13 @@ namespace GovernmentSystem.Infrastructure.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IInsideEntityService _insideEntityService;
 
-        public CityHallReportProblemService(IApplicationDbContext dbContext, IMapper mapper)
+        public CityHallReportProblemService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _insideEntityService = insideEntityService;
         }
 
         public async Task<RequestResponse> CreateCityHallReportProblem(CreateCityHallReportProblemCommand command, CancellationToken cancellationToken)
@@ -33,13 +35,15 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The city hall reported problem already exists");
             }
+            var cityHall = _insideEntityService.GetCityHallById(command.CityHallId);
             var entity = new CityHallReportProblem
             {
                 DateOfExpiry = command.DateOfExpiry,
                 DateOfIssue = command.DateOfIssue,
                 Description = command.Description,
                 IsProcessed = false,
-                Title = command.Title
+                Title = command.Title,
+                CityHall = cityHall
             };
 
             _dbContext.CityHallReportProblems.Add(entity);
@@ -84,11 +88,14 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 throw new Exception("The city hall reported problem does not exists");
             }
+            var cityHall = _insideEntityService.GetCityHallById(command.CityHallId);
+
             cityHallReportProblem.DateOfExpiry = command.DateOfExpiry;
             cityHallReportProblem.DateOfIssue = command.DateOfIssue;
             cityHallReportProblem.Description = command.Description;
             cityHallReportProblem.Title = command.Title;
             cityHallReportProblem.IsProcessed = true;
+            cityHallReportProblem.CityHall = cityHall;
 
             _dbContext.CityHallReportProblems.Update(cityHallReportProblem);
             await _dbContext.SaveChangesAsync(cancellationToken);

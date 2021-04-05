@@ -16,6 +16,7 @@ namespace GovernmentSystem.Application.Handlers.CityHallReportProblems.Commands
         public bool IsProcessed { get; set; }
         public DateTime DateOfIssue { get; set; }
         public DateTime DateOfExpiry { get; set; }
+        public Guid CityHallId { get; set; }
     }
 
     public class CreateCityHallReportProblemCommandHandler : IRequestHandler<CreateCityHallReportProblemCommand, RequestResponse>
@@ -50,6 +51,7 @@ namespace GovernmentSystem.Application.Handlers.CityHallReportProblems.Commands
             RuleFor(v => v.IsProcessed).NotEmpty().NotNull();
             RuleFor(v => v.DateOfIssue).NotEmpty().NotNull();
             RuleFor(v => v.DateOfExpiry).Null();
+            RuleFor(v => v.CityHallId).NotEmpty().NotNull();
         }
     }
 }

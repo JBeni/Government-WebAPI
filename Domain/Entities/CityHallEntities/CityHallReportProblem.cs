@@ -2,10 +2,8 @@
 
 namespace GovernmentSystem.Domain.Entities.CityHallEntities
 {
-    public class CityHallReportProblem : ValidityEntity
+    public class CityHallReportProblem : ReportProblem
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public bool IsProcessed { get; set; }
+        public CityHall CityHall { get; set; }
     }
 }
