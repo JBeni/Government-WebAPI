@@ -1,8 +1,8 @@
 ﻿using GovernmentSystem.Domain.Common;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
+using GovernmentSystem.Domain.Entities.CityHalls;
 using System;
 
-namespace GovernmentSystem.Domain.Entities
+namespace GovernmentSystem.Domain.Entities.PoliceStations
 {
     public class PoliceStation : AuditEntity
     {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Domain.Entities.MedicalEntities;
+using GovernmentSystem.Domain.Entities.Medicals;
 using System;
 
 namespace GovernmentSystem.Application.Responses

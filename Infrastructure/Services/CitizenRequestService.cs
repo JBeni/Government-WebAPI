@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
+using GovernmentSystem.Domain.Entities.Citizens;
 using GovernmentSystem.Application.Handlers.CitizenRequests.Queries;
 using System.Collections.Generic;
 using GovernmentSystem.Application.Responses;

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
+using GovernmentSystem.Domain.Entities.Citizens;
 using System;
 
 namespace GovernmentSystem.Application.Responses

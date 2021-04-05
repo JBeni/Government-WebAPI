@@ -1,4 +1,4 @@
-﻿using GovernmentSystem.Domain.Entities.PublicServantEntities;
+﻿using GovernmentSystem.Domain.Entities.PoliceStations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

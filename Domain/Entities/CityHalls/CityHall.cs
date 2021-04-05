@@ -1,7 +1,7 @@
 ﻿using GovernmentSystem.Domain.Common;
 using System;
 
-namespace GovernmentSystem.Domain.Entities.CityHallEntities
+namespace GovernmentSystem.Domain.Entities.CityHalls
 {
     public class CityHall : AuditEntity
     {

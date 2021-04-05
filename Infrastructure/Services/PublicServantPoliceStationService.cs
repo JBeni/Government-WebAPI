@@ -6,7 +6,7 @@ using GovernmentSystem.Application.Handlers.PublicServantPoliceStations.Commands
 using GovernmentSystem.Application.Handlers.PublicServantPoliceStations.Queries;
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Responses;
-using GovernmentSystem.Domain.Entities.PublicServantEntities;
+using GovernmentSystem.Domain.Entities.PoliceStations;
 using System;
 using System.Collections.Generic;
 using System.Linq;

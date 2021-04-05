@@ -1,6 +1,6 @@
 ﻿using GovernmentSystem.Domain.Common;
 
-namespace GovernmentSystem.Domain.Entities.PublicServantEntities
+namespace GovernmentSystem.Domain.Entities.PoliceStations
 {
     public class PublicServantPoliceStation : PublicServant
     {

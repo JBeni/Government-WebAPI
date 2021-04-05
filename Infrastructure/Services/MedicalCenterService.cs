@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using GovernmentSystem.Domain.Entities.MedicalEntities;
+using GovernmentSystem.Domain.Entities.Medicals;
 using System.Collections.Generic;
 using GovernmentSystem.Application.Handlers.MedicalCenters.Queries;
 using GovernmentSystem.Application.Responses;

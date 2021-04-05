@@ -6,7 +6,7 @@ using GovernmentSystem.Application.Handlers.MedicalProcedures.Commands;
 using GovernmentSystem.Application.Handlers.MedicalProcedures.Queries;
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Responses;
-using GovernmentSystem.Domain.Entities.MedicalEntities;
+using GovernmentSystem.Domain.Entities.Medicals;
 using System;
 using System.Collections.Generic;
 using System.Linq;

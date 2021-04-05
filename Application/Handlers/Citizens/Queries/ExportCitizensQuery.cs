@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using GovernmentSystem.Application.Interfaces;
 using System;
 using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
+using GovernmentSystem.Domain.Entities.Citizens;
 
 namespace GovernmentSystem.Application.Handlers.Citizens.Queries
 {

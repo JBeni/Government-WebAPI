@@ -6,7 +6,7 @@ using GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands;
 using GovernmentSystem.Application.Handlers.SeriousFraudOffices.Queries;
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Responses;
-using GovernmentSystem.Domain.Entities;
+using GovernmentSystem.Domain.Entities.SeriousFraudOffices;
 using System;
 using System.Collections.Generic;
 using System.Linq;

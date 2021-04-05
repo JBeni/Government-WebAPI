@@ -1,6 +1,6 @@
 ﻿using GovernmentSystem.Domain.Common;
 
-namespace GovernmentSystem.Domain.Entities.MedicalEntities
+namespace GovernmentSystem.Domain.Entities.Medicals
 {
     public class MedicalCenterProcedure : AuditEntity
     {

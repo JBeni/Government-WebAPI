@@ -6,7 +6,7 @@ using GovernmentSystem.Application.Handlers.PublicServantCityHalls.Commands;
 using GovernmentSystem.Application.Handlers.PublicServantCityHalls.Queries;
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Responses;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
+using GovernmentSystem.Domain.Entities.CityHalls;
 using System;
 using System.Collections.Generic;
 using System.Linq;

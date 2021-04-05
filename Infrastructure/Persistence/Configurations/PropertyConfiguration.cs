@@ -1,4 +1,4 @@
-﻿using GovernmentSystem.Domain.Entities.CityHallEntities;
+﻿using GovernmentSystem.Domain.Entities.CityHalls;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

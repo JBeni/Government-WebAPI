@@ -1,4 +1,4 @@
-﻿using GovernmentSystem.Domain.Entities;
+﻿using GovernmentSystem.Domain.Entities.SeriousFraudOffices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

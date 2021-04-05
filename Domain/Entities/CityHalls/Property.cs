@@ -1,6 +1,6 @@
 ﻿using GovernmentSystem.Domain.Common;
 
-namespace GovernmentSystem.Domain.Entities.CityHallEntities
+namespace GovernmentSystem.Domain.Entities.CityHalls
 {
     public class Property : AuditEntity
     {

@@ -1,6 +1,6 @@
 ﻿using GovernmentSystem.Domain.Common;
 
-namespace GovernmentSystem.Domain.Entities.CitizenEntities
+namespace GovernmentSystem.Domain.Entities.Citizens
 {
     public class CitizenRequest : ValidityEntity
     {

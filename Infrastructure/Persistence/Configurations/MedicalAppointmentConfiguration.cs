@@ -1,4 +1,4 @@
-﻿using GovernmentSystem.Domain.Entities.MedicalEntities;
+﻿using GovernmentSystem.Domain.Entities.Medicals;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

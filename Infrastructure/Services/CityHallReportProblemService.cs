@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using GovernmentSystem.Application.Responses;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
+using GovernmentSystem.Domain.Entities.CityHalls;
 
 namespace GovernmentSystem.Infrastructure.Services
 {

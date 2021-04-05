@@ -1,10 +1,10 @@
 ﻿using GovernmentSystem.Domain.Common;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
-using GovernmentSystem.Domain.Entities.MedicalEntities;
+using GovernmentSystem.Domain.Entities.CityHalls;
+using GovernmentSystem.Domain.Entities.Medicals;
 using System;
 using System.Collections.Generic;
 
-namespace GovernmentSystem.Domain.Entities.CitizenEntities
+namespace GovernmentSystem.Domain.Entities.Citizens
 {
     public class Citizen : AuditEntity
     {

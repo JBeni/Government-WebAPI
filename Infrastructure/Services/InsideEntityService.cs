@@ -1,10 +1,10 @@
 ﻿using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
-using GovernmentSystem.Domain.Entities.CityHallEntities;
-using GovernmentSystem.Domain.Entities.MedicalEntities;
-using GovernmentSystem.Domain.Entities.PublicServantEntities;
+using GovernmentSystem.Domain.Entities.Citizens;
+using GovernmentSystem.Domain.Entities.CityHalls;
+using GovernmentSystem.Domain.Entities.Medicals;
+using GovernmentSystem.Domain.Entities.PoliceStations;
+using GovernmentSystem.Domain.Entities.SeriousFraudOffices;
 using System;
 using System.Linq;
 

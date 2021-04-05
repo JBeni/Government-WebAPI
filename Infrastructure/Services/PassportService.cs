@@ -6,7 +6,7 @@ using GovernmentSystem.Application.Handlers.Passports.Commands;
 using GovernmentSystem.Application.Handlers.Passports.Queries;
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Responses;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
+using GovernmentSystem.Domain.Entities.Citizens;
 using System;
 using System.Collections.Generic;
 using System.Linq;

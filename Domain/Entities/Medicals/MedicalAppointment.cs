@@ -1,8 +1,8 @@
 ﻿using GovernmentSystem.Domain.Common;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
+using GovernmentSystem.Domain.Entities.Citizens;
 using System;
 
-namespace GovernmentSystem.Domain.Entities.MedicalEntities
+namespace GovernmentSystem.Domain.Entities.Medicals
 {
     public class MedicalAppointment : AuditEntity
     {
