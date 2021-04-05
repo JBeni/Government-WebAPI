@@ -50,7 +50,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
         public DbSet<MedicalPaymentHistory> MedicalPaymentHistories { get; set; }
         public DbSet<MedicalProcedure> MedicalProcedures { get; set; }
         public DbSet<PublicServantMedicalCenter> PublicServantMedicalCenters { get; set; }
-        public DbSet<PublicServantPolice> PublicServantPolices { get; set; }
+        public DbSet<PublicServantPoliceStation> PublicServantPoliceStations { get; set; }
         public DbSet<PublicServantSeriousFraudOffice> PublicServantSeriousFraudOffices { get; set; }
         public DbSet<PoliceStation> PoliceStations { get; set; }
         public DbSet<SeriousFraudOffice> SeriousFraudOffices { get; set; }
@@ -103,7 +103,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
             builder.ApplyConfiguration(new PropertyTypeConfiguration());
             builder.ApplyConfiguration(new PublicServantCityHallConfiguration());
             builder.ApplyConfiguration(new PublicServantMedicalCenterConfiguration());
-            builder.ApplyConfiguration(new PublicServantPoliceConfiguration());
+            builder.ApplyConfiguration(new PublicServantPoliceStationConfiguration());
             builder.ApplyConfiguration(new PublicServantSeriousFraudOfficeConfiguration());
             builder.ApplyConfiguration(new ReportProblemConfiguration());
             builder.ApplyConfiguration(new SeriousFraudOfficeConfiguration());

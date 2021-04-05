@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GovernmentSystem.Infrastructure.Persistence.Configurations
 {
-    public class PublicServantPoliceConfiguration : IEntityTypeConfiguration<PublicServantPolice>
+    public class PublicServantPoliceStationConfiguration : IEntityTypeConfiguration<PublicServantPoliceStation>
     {
-        public void Configure(EntityTypeBuilder<PublicServantPolice> builder)
+        public void Configure(EntityTypeBuilder<PublicServantPoliceStation> builder)
         {
             builder.HasKey(x => x.Identifier);
 

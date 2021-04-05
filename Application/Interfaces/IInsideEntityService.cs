@@ -31,7 +31,7 @@ namespace GovernmentSystem.Application.Interfaces
         PropertyType GetPropertyTypeById(Guid identifier);
         PublicServantCityHall GetPublicServantCityHallById(Guid identifier);
         PublicServantMedicalCenter GetPublicServantMedicalCenterById(Guid identifier);
-        PublicServantPolice GetPublicServantPoliceById(Guid identifier);
+        PublicServantPoliceStation GetPublicServantPoliceStationById(Guid identifier);
         PublicServantSeriousFraudOffice GetPublicServantSeriousFraudOfficeById(Guid identifier);
         ReportProblem GetReportProblemById(Guid identifier);
         SeriousFraudOffice GetSeriousFraudOfficeById(Guid identifier);

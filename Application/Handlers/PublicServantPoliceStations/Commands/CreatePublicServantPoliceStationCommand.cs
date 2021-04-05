@@ -6,9 +6,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Commands
+namespace GovernmentSystem.Application.Handlers.PublicServantPoliceStations.Commands
 {
-    public class CreatePublicServantPoliceCommand : IRequest<RequestResponse>
+    public class CreatePublicServantPoliceStationCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
         public string CNP { get; set; }
@@ -21,20 +21,20 @@ namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Commands
         public Guid PoliceStationId { get; set; }
     }
 
-    public class CreatePublicServantPolicesCommandHandler : IRequestHandler<CreatePublicServantPoliceCommand, RequestResponse>
+    public class CreatePublicServantPoliceStationCommandHandler : IRequestHandler<CreatePublicServantPoliceStationCommand, RequestResponse>
     {
-        private readonly IPublicServantPoliceService _publicServantPoliceService;
+        private readonly IPublicServantPoliceStationService _publicServantPoliceService;
 
-        public CreatePublicServantPolicesCommandHandler(IPublicServantPoliceService publicServantPoliceService)
+        public CreatePublicServantPoliceStationCommandHandler(IPublicServantPoliceStationService publicServantPoliceService)
         {
             _publicServantPoliceService = publicServantPoliceService;
         }
 
-        public async Task<RequestResponse> Handle(CreatePublicServantPoliceCommand request, CancellationToken cancellationToken)
+        public async Task<RequestResponse> Handle(CreatePublicServantPoliceStationCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                return await _publicServantPoliceService.CreatePublicServantPolice(request, cancellationToken);
+                return await _publicServantPoliceService.CreatePublicServantPoliceStation(request, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -43,9 +43,9 @@ namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Commands
         }
     }
 
-    public class CreatePublicServantPoliceCommandValidator : AbstractValidator<CreatePublicServantPoliceCommand>
+    public class CreatePublicServantPoliceStationCommandValidator : AbstractValidator<CreatePublicServantPoliceStationCommand>
     {
-        public CreatePublicServantPoliceCommandValidator()
+        public CreatePublicServantPoliceStationCommandValidator()
         {
             RuleFor(v => v.Identifier).Null();
             RuleFor(v => v.CNP).NotEmpty().NotNull();

@@ -283,9 +283,9 @@ namespace GovernmentSystem.Infrastructure.Services
             return result;
         }
 
-        public PublicServantPolice GetPublicServantPoliceById(Guid identifier)
+        public PublicServantPoliceStation GetPublicServantPoliceStationById(Guid identifier)
         {
-            var result = _dbContext.PublicServantPolices
+            var result = _dbContext.PublicServantPoliceStations
                 .Where(v => v.Identifier == identifier)
                 .FirstOrDefault();
             if (result == null)

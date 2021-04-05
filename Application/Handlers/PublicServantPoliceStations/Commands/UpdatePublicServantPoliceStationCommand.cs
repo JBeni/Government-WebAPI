@@ -6,9 +6,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Commands
+namespace GovernmentSystem.Application.Handlers.PublicServantPoliceStations.Commands
 {
-    public class UpdatePublicServantPoliceCommand : IRequest<RequestResponse>
+    public class UpdatePublicServantPoliceStationCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
         public string CNP { get; set; }
@@ -21,20 +21,20 @@ namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Commands
         public Guid PoliceStationId { get; set; }
     }
 
-    public class UpdatePublicServantPolicesCommandHandler : IRequestHandler<UpdatePublicServantPoliceCommand, RequestResponse>
+    public class UpdatePublicServantPoliceStationCommandHandler : IRequestHandler<UpdatePublicServantPoliceStationCommand, RequestResponse>
     {
-        private readonly IPublicServantPoliceService _publicServantPoliceService;
+        private readonly IPublicServantPoliceStationService _publicServantPoliceService;
 
-        public UpdatePublicServantPolicesCommandHandler(IPublicServantPoliceService publicServantPoliceService)
+        public UpdatePublicServantPoliceStationCommandHandler(IPublicServantPoliceStationService publicServantPoliceService)
         {
             _publicServantPoliceService = publicServantPoliceService;
         }
 
-        public async Task<RequestResponse> Handle(UpdatePublicServantPoliceCommand request, CancellationToken cancellationToken)
+        public async Task<RequestResponse> Handle(UpdatePublicServantPoliceStationCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                return await _publicServantPoliceService.UpdatePublicServantPolice(request, cancellationToken);
+                return await _publicServantPoliceService.UpdatePublicServantPoliceStation(request, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -43,9 +43,9 @@ namespace GovernmentSystem.Application.Handlers.PublicServantPolices.Commands
         }
     }
 
-    public class UpdatePublicServantPoliceCommandValidator : AbstractValidator<UpdatePublicServantPoliceCommand>
+    public class UpdatePublicServantPoliceStationCommandValidator : AbstractValidator<UpdatePublicServantPoliceStationCommand>
     {
-        public UpdatePublicServantPoliceCommandValidator()
+        public UpdatePublicServantPoliceStationCommandValidator()
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
             RuleFor(v => v.CNP).NotEmpty().NotNull();

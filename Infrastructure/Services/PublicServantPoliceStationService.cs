@@ -2,8 +2,8 @@
 using AutoMapper.QueryableExtensions;
 using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Handlers.PublicServantPolices.Commands;
-using GovernmentSystem.Application.Handlers.PublicServantPolices.Queries;
+using GovernmentSystem.Application.Handlers.PublicServantPoliceStations.Commands;
+using GovernmentSystem.Application.Handlers.PublicServantPoliceStations.Queries;
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Responses;
 using GovernmentSystem.Domain.Entities.PublicServantEntities;
@@ -15,28 +15,28 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
-    public class PublicServantPoliceService : IPublicServantPoliceService
+    public class PublicServantPoliceStationService : IPublicServantPoliceStationService
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IInsideEntityService _insideEntityService;
 
-        public PublicServantPoliceService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
+        public PublicServantPoliceStationService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
             _insideEntityService = insideEntityService;
         }
 
-        public async Task<RequestResponse> CreatePublicServantPolice(CreatePublicServantPoliceCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> CreatePublicServantPoliceStation(CreatePublicServantPoliceStationCommand command, CancellationToken cancellationToken)
         {
-            var publicServant = _dbContext.PublicServantPolices.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var publicServant = _dbContext.PublicServantPoliceStations.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (publicServant != null)
             {
                 throw new Exception("The public servant of police station already exists");
             }
             var policeStation = _insideEntityService.GetPoliceStationById(command.PoliceStationId);
-            var entity = new PublicServantPolice
+            var entity = new PublicServantPoliceStation
             {
                 PoliceStation = policeStation,
                 CNP = command.CNP,
@@ -48,44 +48,44 @@ namespace GovernmentSystem.Infrastructure.Services
                 LastName = command.LastName
             };
 
-            _dbContext.PublicServantPolices.Add(entity);
+            _dbContext.PublicServantPoliceStations.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
 
-        public async Task<RequestResponse> DeletePublicServantPolice(DeletePublicServantPoliceCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> DeletePublicServantPoliceStation(DeletePublicServantPoliceStationCommand command, CancellationToken cancellationToken)
         {
-            var publicServant = _dbContext.PublicServantPolices.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var publicServant = _dbContext.PublicServantPoliceStations.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (publicServant != null)
             {
                 throw new Exception("The public servant of police station does not exists");
             }
 
-            _dbContext.PublicServantPolices.Remove(publicServant);
+            _dbContext.PublicServantPoliceStations.Remove(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
 
-        public PublicServantPoliceResponse GetPublicServantPoliceById(GetPublicServantPoliceByIdQuery query)
+        public PublicServantPoliceStationResponse GetPublicServantPoliceStationById(GetPublicServantPoliceStationByIdQuery query)
         {
-            var result = _dbContext.PublicServantPolices
+            var result = _dbContext.PublicServantPoliceStations
                 .Where(x => x.Identifier == query.Identifier)
-                .ProjectTo<PublicServantPoliceResponse>(_mapper.ConfigurationProvider)
+                .ProjectTo<PublicServantPoliceStationResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
             return result;
         }
 
-        public List<PublicServantPoliceResponse> GetPublicServantPolices(GetPublicServantPolicesQuery query)
+        public List<PublicServantPoliceStationResponse> GetPublicServantPoliceStations(GetPublicServantPoliceStationsQuery query)
         {
-            var result = _dbContext.PublicServantPolices
-                .ProjectTo<PublicServantPoliceResponse>(_mapper.ConfigurationProvider)
+            var result = _dbContext.PublicServantPoliceStations
+                .ProjectTo<PublicServantPoliceStationResponse>(_mapper.ConfigurationProvider)
                 .ToList();
             return result;
         }
 
-        public async Task<RequestResponse> UpdatePublicServantPolice(UpdatePublicServantPoliceCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> UpdatePublicServantPoliceStation(UpdatePublicServantPoliceStationCommand command, CancellationToken cancellationToken)
         {
-            var publicServant = _dbContext.PublicServantPolices.SingleOrDefault(x => x.Identifier == command.Identifier);
+            var publicServant = _dbContext.PublicServantPoliceStations.SingleOrDefault(x => x.Identifier == command.Identifier);
             if (publicServant != null)
             {
                 throw new Exception("The public servant of police station does not exists");
@@ -101,7 +101,7 @@ namespace GovernmentSystem.Infrastructure.Services
             publicServant.HireStartDate = command.HireStartDate;
             publicServant.LastName = command.LastName;
 
-            _dbContext.PublicServantPolices.Update(publicServant);
+            _dbContext.PublicServantPoliceStations.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }

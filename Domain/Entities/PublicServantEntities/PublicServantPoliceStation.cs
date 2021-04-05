@@ -1,6 +1,6 @@
 ﻿namespace GovernmentSystem.Domain.Entities.PublicServantEntities
 {
-    public class PublicServantPolice : PublicServant
+    public class PublicServantPoliceStation : PublicServant
     {
         public PoliceStation PoliceStation { get; set; }
     }
