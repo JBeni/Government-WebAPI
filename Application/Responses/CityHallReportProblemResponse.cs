@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Domain.Entities.CitizenEntities;
+using GovernmentSystem.Domain.Entities.CityHallEntities;
 using System;
 
 namespace GovernmentSystem.Application.Responses
 {
-    public class ReportProblemResponse : IMapFrom<ReportProblem>
+    public class CityHallReportProblemResponse : IMapFrom<CityHallReportProblem>
     {
         public Guid Identifier { get; set; }
         public string Title { get; set; }
@@ -14,7 +14,7 @@ namespace GovernmentSystem.Application.Responses
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<ReportProblem, ReportProblemResponse>()
+            profile.CreateMap<CityHallReportProblem, CityHallReportProblemResponse>()
                 .ForMember(d => d.Identifier, opt => opt.MapFrom(s => s.Identifier))
                 .ForMember(d => d.Title, opt => opt.MapFrom(s => s.Title))
                 .ForMember(d => d.Description, opt => opt.MapFrom(s => s.Description))

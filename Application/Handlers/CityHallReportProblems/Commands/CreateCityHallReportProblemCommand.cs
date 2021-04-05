@@ -6,9 +6,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Handlers.ReportProblems.Commands
+namespace GovernmentSystem.Application.Handlers.CityHallReportProblems.Commands
 {
-    public class CreateReportProblemCommand : IRequest<RequestResponse>
+    public class CreateCityHallReportProblemCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
         public string Title { get; set; }
@@ -18,20 +18,20 @@ namespace GovernmentSystem.Application.Handlers.ReportProblems.Commands
         public DateTime DateOfExpiry { get; set; }
     }
 
-    public class CreateReportProblemCommandHandler : IRequestHandler<CreateReportProblemCommand, RequestResponse>
+    public class CreateCityHallReportProblemCommandHandler : IRequestHandler<CreateCityHallReportProblemCommand, RequestResponse>
     {
-        private readonly IReportProblemService _reportProblemService;
+        private readonly ICityHallReportProblemService _cityHallReportProblemService;
 
-        public CreateReportProblemCommandHandler(IReportProblemService reportProblemService)
+        public CreateCityHallReportProblemCommandHandler(ICityHallReportProblemService cityHallReportProblemService)
         {
-            _reportProblemService = reportProblemService;
+            _cityHallReportProblemService = cityHallReportProblemService;
         }
 
-        public async Task<RequestResponse> Handle(CreateReportProblemCommand request, CancellationToken cancellationToken)
+        public async Task<RequestResponse> Handle(CreateCityHallReportProblemCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                return await _reportProblemService.CreateReportProblem(request, cancellationToken);
+                return await _cityHallReportProblemService.CreateCityHallReportProblem(request, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -40,9 +40,9 @@ namespace GovernmentSystem.Application.Handlers.ReportProblems.Commands
         }
     }
 
-    public class CreateReportProblemCommandValidator : AbstractValidator<CreateReportProblemCommand>
+    public class CreateCityHallReportProblemCommandValidator : AbstractValidator<CreateCityHallReportProblemCommand>
     {
-        public CreateReportProblemCommandValidator()
+        public CreateCityHallReportProblemCommandValidator()
         {
             RuleFor(v => v.Identifier).Null();
             RuleFor(v => v.Title).NotEmpty().NotNull();

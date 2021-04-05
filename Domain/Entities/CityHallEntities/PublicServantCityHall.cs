@@ -1,4 +1,4 @@
-﻿using GovernmentSystem.Domain.Entities.PublicServantEntities;
+﻿using GovernmentSystem.Domain.Common;
 
 namespace GovernmentSystem.Domain.Entities.CityHallEntities
 {

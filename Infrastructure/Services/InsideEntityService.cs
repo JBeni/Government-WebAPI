@@ -307,14 +307,14 @@ namespace GovernmentSystem.Infrastructure.Services
             return result;
         }
 
-        public ReportProblem GetReportProblemById(Guid identifier)
+        public CityHallReportProblem GetCityHallReportProblemById(Guid identifier)
         {
-            var result = _dbContext.ReportProblems
+            var result = _dbContext.CityHallReportProblems
                 .Where(v => v.Identifier == identifier)
                 .FirstOrDefault();
             if (result == null)
             {
-                throw new Exception("The report problem does not exists");
+                throw new Exception("The city hall report problem does not exists");
             }
             return result;
         }

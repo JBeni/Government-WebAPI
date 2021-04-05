@@ -1,12 +1,12 @@
-﻿using GovernmentSystem.Domain.Entities.CitizenEntities;
+﻿using GovernmentSystem.Domain.Entities.CityHallEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GovernmentSystem.Infrastructure.Persistence.Configurations
 {
-    public class ReportProblemConfiguration : IEntityTypeConfiguration<ReportProblem>
+    public class CityHallReportProblemConfiguration : IEntityTypeConfiguration<CityHallReportProblem>
     {
-        public void Configure(EntityTypeBuilder<ReportProblem> builder)
+        public void Configure(EntityTypeBuilder<CityHallReportProblem> builder)
         {
             builder.HasKey(x => x.Identifier);
 

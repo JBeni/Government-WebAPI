@@ -36,7 +36,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
         public DbSet<DriverLicenseCategory> DriverLicenseCategories { get; set; }
         public DbSet<IdentityCard> IdentityCards { get; set; }
         public DbSet<Passport> Passports { get; set; }
-        public DbSet<ReportProblem> ReportProblems { get; set; }
+        public DbSet<CityHallReportProblem> CityHallReportProblems { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<AddressType> AddressTypes { get; set; }
         public DbSet<CityHall> CityHalls { get; set; }
@@ -105,7 +105,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
             builder.ApplyConfiguration(new PublicServantMedicalCenterConfiguration());
             builder.ApplyConfiguration(new PublicServantPoliceStationConfiguration());
             builder.ApplyConfiguration(new PublicServantSeriousFraudOfficeConfiguration());
-            builder.ApplyConfiguration(new ReportProblemConfiguration());
+            builder.ApplyConfiguration(new CityHallReportProblemConfiguration());
             builder.ApplyConfiguration(new SeriousFraudOfficeConfiguration());
         }
     }

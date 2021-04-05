@@ -59,7 +59,7 @@ namespace GovernmentSystem.Infrastructure
             services.AddTransient<IPublicServantMedicalCenterService, PublicServantMedicalCenterService>();
             services.AddTransient<IPublicServantPoliceStationService, PublicServantPoliceStationService>();
             services.AddTransient<IPublicServantSeriousFraudOfficeservice, PublicServantSeriousFraudOfficeService>();
-            services.AddTransient<IReportProblemService, ReportProblemService>();
+            services.AddTransient<ICityHallReportProblemService, CityHallReportProblemService>();
             services.AddTransient<ISeriousFraudOfficeService, SeriousFraudOfficeService>();
 
             services.AddTransient<IDateTime, DateTimeService>();

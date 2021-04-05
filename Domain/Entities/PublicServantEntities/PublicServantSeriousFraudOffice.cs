@@ -1,4 +1,6 @@
-﻿namespace GovernmentSystem.Domain.Entities.PublicServantEntities
+﻿using GovernmentSystem.Domain.Common;
+
+namespace GovernmentSystem.Domain.Entities.PublicServantEntities
 {
     public class PublicServantSeriousFraudOffice : PublicServant
     {

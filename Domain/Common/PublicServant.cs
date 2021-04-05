@@ -1,7 +1,6 @@
-﻿using GovernmentSystem.Domain.Common;
-using System;
+﻿using System;
 
-namespace GovernmentSystem.Domain.Entities.PublicServantEntities
+namespace GovernmentSystem.Domain.Common
 {
     public class PublicServant : AuditEntity
     {

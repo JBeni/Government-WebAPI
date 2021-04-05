@@ -20,7 +20,7 @@ namespace GovernmentSystem.Application.Common.Interfaces
         DbSet<DriverLicenseCategory> DriverLicenseCategories { get; set; }
         DbSet<IdentityCard> IdentityCards { get; set; }
         DbSet<Passport> Passports { get; set; }
-        DbSet<ReportProblem> ReportProblems { get; set; }
+        DbSet<CityHallReportProblem> CityHallReportProblems { get; set; }
 
         DbSet<Address> Addresses { get; set; }
         DbSet<AddressType> AddressTypes { get; set; }
