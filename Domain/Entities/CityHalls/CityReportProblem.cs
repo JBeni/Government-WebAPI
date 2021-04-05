@@ -2,7 +2,7 @@
 
 namespace GovernmentSystem.Domain.Entities.CityHalls
 {
-    public class CityHallReportProblem : ReportProblem
+    public class CityReportProblem : ReportProblem
     {
         public CityHall CityHall { get; set; }
     }

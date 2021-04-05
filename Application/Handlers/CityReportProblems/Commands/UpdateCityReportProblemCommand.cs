@@ -6,9 +6,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Handlers.CityHallReportProblems.Commands
+namespace GovernmentSystem.Application.Handlers.CityReportProblems.Commands
 {
-    public class UpdateCityHallReportProblemCommand : IRequest<RequestResponse>
+    public class UpdateCityReportProblemCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
         public string Title { get; set; }
@@ -19,20 +19,20 @@ namespace GovernmentSystem.Application.Handlers.CityHallReportProblems.Commands
         public Guid CityHallId { get; set; }
     }
 
-    public class UpdateCityHallReportProblemCommandHandler : IRequestHandler<UpdateCityHallReportProblemCommand, RequestResponse>
+    public class UpdateCityReportProblemCommandHandler : IRequestHandler<UpdateCityReportProblemCommand, RequestResponse>
     {
-        private readonly ICityHallReportProblemService _cityHallReportProblemService;
+        private readonly ICityReportProblemService _cityReportProblemService;
 
-        public UpdateCityHallReportProblemCommandHandler(ICityHallReportProblemService cityHallReportProblemService)
+        public UpdateCityReportProblemCommandHandler(ICityReportProblemService cityReportProblemService)
         {
-            _cityHallReportProblemService = cityHallReportProblemService;
+            _cityReportProblemService = cityReportProblemService;
         }
 
-        public async Task<RequestResponse> Handle(UpdateCityHallReportProblemCommand request, CancellationToken cancellationToken)
+        public async Task<RequestResponse> Handle(UpdateCityReportProblemCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                return await _cityHallReportProblemService.UpdateCityHallReportProblem(request, cancellationToken);
+                return await _cityReportProblemService.UpdateCityReportProblem(request, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -41,9 +41,9 @@ namespace GovernmentSystem.Application.Handlers.CityHallReportProblems.Commands
         }
     }
 
-    public class UpdateCityHallReportProblemCommandValidator : AbstractValidator<UpdateCityHallReportProblemCommand>
+    public class UpdateCityReportProblemCommandValidator : AbstractValidator<UpdateCityReportProblemCommand>
     {
-        public UpdateCityHallReportProblemCommandValidator()
+        public UpdateCityReportProblemCommandValidator()
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
             RuleFor(v => v.Title).NotEmpty().NotNull();

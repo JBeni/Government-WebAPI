@@ -33,7 +33,7 @@ namespace GovernmentSystem.Application.Interfaces
         PublicServantMedicalCenter GetPublicServantMedicalCenterById(Guid identifier);
         PublicServantPoliceStation GetPublicServantPoliceStationById(Guid identifier);
         PublicServantSeriousFraudOffice GetPublicServantSeriousFraudOfficeById(Guid identifier);
-        CityHallReportProblem GetCityHallReportProblemById(Guid identifier);
+        CityReportProblem GetCityReportProblemById(Guid identifier);
         SeriousFraudOffice GetSeriousFraudOfficeById(Guid identifier);
     }
 }

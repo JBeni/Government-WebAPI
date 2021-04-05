@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GovernmentSystem.Infrastructure.Persistence.Configurations
 {
-    public class CityHallReportProblemConfiguration : IEntityTypeConfiguration<CityHallReportProblem>
+    public class CityReportProblemConfiguration : IEntityTypeConfiguration<CityReportProblem>
     {
-        public void Configure(EntityTypeBuilder<CityHallReportProblem> builder)
+        public void Configure(EntityTypeBuilder<CityReportProblem> builder)
         {
             builder.HasKey(x => x.Identifier);
 

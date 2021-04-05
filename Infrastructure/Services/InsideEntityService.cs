@@ -307,9 +307,9 @@ namespace GovernmentSystem.Infrastructure.Services
             return result;
         }
 
-        public CityHallReportProblem GetCityHallReportProblemById(Guid identifier)
+        public CityReportProblem GetCityReportProblemById(Guid identifier)
         {
-            var result = _dbContext.CityHallReportProblems
+            var result = _dbContext.CityReportProblems
                 .Where(v => v.Identifier == identifier)
                 .FirstOrDefault();
             if (result == null)
