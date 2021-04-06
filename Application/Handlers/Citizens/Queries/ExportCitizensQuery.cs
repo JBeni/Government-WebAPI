@@ -35,7 +35,7 @@ namespace GovernmentSystem.Application.Handlers.Citizens.Queries
         }
     }
 
-    public class CitizenRecord : IMapFrom<Citizen>
+    public class CitizenExport : IMapFrom<Citizen>
     {
         public string FirstName { get; set; }
         public bool Active { get; set; }
