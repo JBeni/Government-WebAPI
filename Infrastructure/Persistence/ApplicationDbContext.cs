@@ -1,5 +1,6 @@
 ﻿using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Domain.Common;
+using GovernmentSystem.Domain.Entities;
 using GovernmentSystem.Domain.Entities.Citizens;
 using GovernmentSystem.Domain.Entities.CityHalls;
 using GovernmentSystem.Domain.Entities.Medicals;
@@ -35,6 +36,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
         public DbSet<CitizenRequest> CitizenRequests { get; set; }
         public DbSet<DriverLicense> DriverLicenses { get; set; }
         public DbSet<DriverLicenseCategory> DriverLicenseCategories { get; set; }
+        public DbSet<IdentityCardAppointment> IdentityCardAppointments { get; set; }
         public DbSet<IdentityCard> IdentityCards { get; set; }
         public DbSet<Passport> Passports { get; set; }
         public DbSet<CityReportProblem> CityReportProblems { get; set; }
@@ -53,6 +55,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
         public DbSet<PublicServantMedicalCenter> PublicServantMedicalCenters { get; set; }
         public DbSet<PublicServantPoliceStation> PublicServantPoliceStations { get; set; }
         public DbSet<PublicServantSeriousFraudOffice> PublicServantSeriousFraudOffices { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
         public DbSet<PoliceStation> PoliceStations { get; set; }
         public DbSet<SeriousFraudOffice> SeriousFraudOffices { get; set; }
 
@@ -93,6 +96,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
             builder.ApplyConfiguration(new CitizenDriverLicenseCategoryConfiguration());
             builder.ApplyConfiguration(new DriverLicenseCategoryConfiguration());
             builder.ApplyConfiguration(new DriverLicenseConfiguration());
+            builder.ApplyConfiguration(new IdentityCardAppointmentConfiguration());
             builder.ApplyConfiguration(new IdentityCardConfiguration());
             builder.ApplyConfiguration(new MedicalAppointmentConfiguration());
             builder.ApplyConfiguration(new MedicalCenterConfiguration());

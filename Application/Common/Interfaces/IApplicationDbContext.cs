@@ -1,4 +1,5 @@
-﻿using GovernmentSystem.Domain.Entities.Citizens;
+﻿using GovernmentSystem.Domain.Entities;
+using GovernmentSystem.Domain.Entities.Citizens;
 using GovernmentSystem.Domain.Entities.CityHalls;
 using GovernmentSystem.Domain.Entities.Medicals;
 using GovernmentSystem.Domain.Entities.PoliceStations;
@@ -19,6 +20,7 @@ namespace GovernmentSystem.Application.Common.Interfaces
         DbSet<CitizenRequest> CitizenRequests { get; set; }
         DbSet<DriverLicense> DriverLicenses { get; set; }
         DbSet<DriverLicenseCategory> DriverLicenseCategories { get; set; }
+        DbSet<IdentityCardAppointment> IdentityCardAppointments { get; set; }
         DbSet<IdentityCard> IdentityCards { get; set; }
         DbSet<Passport> Passports { get; set; }
         DbSet<CityReportProblem> CityReportProblems { get; set; }
@@ -40,6 +42,7 @@ namespace GovernmentSystem.Application.Common.Interfaces
 
         DbSet<PublicServantPoliceStation> PublicServantPoliceStations { get; set; }
         DbSet<PublicServantSeriousFraudOffice> PublicServantSeriousFraudOffices { get; set; }
+        DbSet<Invoice> Invoices { get; set; }
 
         DbSet<PoliceStation> PoliceStations { get; set; }
         DbSet<SeriousFraudOffice> SeriousFraudOffices { get; set; }
