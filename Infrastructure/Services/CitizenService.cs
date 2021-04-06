@@ -91,7 +91,7 @@ namespace GovernmentSystem.Infrastructure.Services
         {
             var vm = new ExportCitizensVm();
             var records = await _dbContext.Citizens
-                    .ProjectTo<CitizenRecord>(_mapper.ConfigurationProvider)
+                    .ProjectTo<CitizenExport>(_mapper.ConfigurationProvider)
                     .ToListAsync();
 
             vm.Content = _csvFileBuilder.BuildCitizensFIle(records);

@@ -4,7 +4,7 @@ using GovernmentSystem.Application.Handlers.Citizens.Queries;
 
 namespace GovernmentSystem.Infrastructure.Files.Maps
 {
-    public class CitizenRecordMap : ClassMap<CitizenRecord>
+    public class CitizenRecordMap : ClassMap<CitizenExport>
     {
         public CitizenRecordMap()
         {

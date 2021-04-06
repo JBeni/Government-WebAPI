@@ -10,7 +10,7 @@ namespace GovernmentSystem.Infrastructure.Files
 {
     public class CsvFileBuilder : ICsvFileBuilder
     {
-        public byte[] BuildCitizensFIle(IEnumerable<CitizenRecord> records)
+        public byte[] BuildCitizensFIle(IEnumerable<CitizenExport> records)
         {
             using var memoryStream = new MemoryStream();
             using (var streamWriter = new StreamWriter(memoryStream))
