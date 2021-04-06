@@ -25,6 +25,7 @@ namespace GovernmentSystem.Application.Common.Interfaces
         DbSet<IdentityCard> IdentityCards { get; set; }
         DbSet<Passport> Passports { get; set; }
         DbSet<CityReportProblem> CityReportProblems { get; set; }
+        DbSet<PoliceReportProblem> PoliceReportProblems { get; set; }
 
         DbSet<Address> Addresses { get; set; }
         DbSet<AddressType> AddressTypes { get; set; }
