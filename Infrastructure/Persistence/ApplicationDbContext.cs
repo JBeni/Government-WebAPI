@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Infrastructure.Persistence
 {
-    public class ApplicationDbContext : DbContext , IApplicationDbContext
+    public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
@@ -61,6 +61,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
         public DbSet<PublicServantPoliceStation> PublicServantPoliceStations { get; set; }
         public DbSet<PublicServantSeriousFraudOffice> PublicServantSeriousFraudOffices { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Tax> Taxes { get; set; }
         public DbSet<PoliceStation> PoliceStations { get; set; }
         public DbSet<SeriousFraudOffice> SeriousFraudOffices { get; set; }
 
@@ -108,6 +109,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
             builder.ApplyConfiguration(new MedicalCenterProcedureConfiguration());
             builder.ApplyConfiguration(new MedicalPaymentConfiguration());
             builder.ApplyConfiguration(new MedicalProcedureConfiguration());
+            builder.ApplyConfiguration(new TaxConfiguration());
             builder.ApplyConfiguration(new PassportConfiguration());
             builder.ApplyConfiguration(new PolicePaymentConfiguration());
             builder.ApplyConfiguration(new PoliceStationConfiguration());
