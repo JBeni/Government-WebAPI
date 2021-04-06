@@ -63,6 +63,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Tax> Taxes { get; set; }
         public DbSet<PoliceStation> PoliceStations { get; set; }
+        public DbSet<FraudOfficeReportProblem> FraudOfficeReportProblems { get; set; }
         public DbSet<SeriousFraudOffice> SeriousFraudOffices { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
@@ -116,6 +117,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
             builder.ApplyConfiguration(new RegularizationConfiguration());
             builder.ApplyConfiguration(new CompanyConfiguration());
             builder.ApplyConfiguration(new PropertyConfiguration());
+            builder.ApplyConfiguration(new FraudOfficeReportProblemConfiguration());
             builder.ApplyConfiguration(new PropertyTypeConfiguration());
             builder.ApplyConfiguration(new PublicServantCityHallConfiguration());
             builder.ApplyConfiguration(new PublicServantMedicalCenterConfiguration());
