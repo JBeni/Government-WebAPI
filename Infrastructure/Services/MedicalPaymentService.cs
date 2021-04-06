@@ -37,6 +37,7 @@ namespace GovernmentSystem.Infrastructure.Services
             }
             var citizenWhoBenefit = _insideEntityService.GetCitizenById(command.CitizenWhoBenefitId);
             var citizenWhoPaid = _insideEntityService.GetCitizenById(command.CitizenWhoPaidId);
+            var invoice = _insideEntityService.GetInvoiceById(command.InvoiceId);
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
             var medicalProcedure = _insideEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
             var publicServantMedicalCenter = _insideEntityService.GetPublicServantMedicalCenterById(command.PublicServantMedicalCenterId);
@@ -48,6 +49,7 @@ namespace GovernmentSystem.Infrastructure.Services
                 DateOfPayment = command.DateOfPayment,
                 CitizenWhoBenefit = citizenWhoBenefit,
                 CitizenWhoPaid = citizenWhoPaid,
+                Invoice = invoice,
                 MedicalCenter = medicalCenter,
                 MedicalProcedure = medicalProcedure,
                 PublicServantMedicalCenter = publicServantMedicalCenter
@@ -97,6 +99,7 @@ namespace GovernmentSystem.Infrastructure.Services
             }
             var citizenWhoBenefit = _insideEntityService.GetCitizenById(command.CitizenWhoBenefitId);
             var citizenWhoPaid = _insideEntityService.GetCitizenById(command.CitizenWhoPaidId);
+            var invoice = _insideEntityService.GetInvoiceById(command.InvoiceId);
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
             var medicalProcedure = _insideEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
             var publicServantMedicalCenter = _insideEntityService.GetPublicServantMedicalCenterById(command.PublicServantMedicalCenterId);
@@ -106,6 +109,7 @@ namespace GovernmentSystem.Infrastructure.Services
             medicalPayment.DateOfPayment = command.DateOfPayment;
             medicalPayment.CitizenWhoBenefit = citizenWhoBenefit;
             medicalPayment.CitizenWhoPaid = citizenWhoPaid;
+            medicalPayment.Invoice = invoice;
             medicalPayment.MedicalCenter = medicalCenter;
             medicalPayment.MedicalProcedure = medicalProcedure;
             medicalPayment.PublicServantMedicalCenter = publicServantMedicalCenter;

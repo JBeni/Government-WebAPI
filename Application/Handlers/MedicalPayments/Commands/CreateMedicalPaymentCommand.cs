@@ -14,6 +14,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalPayments.Commands
         public long AmountPaid { get; set; }
         public long AmountToPay { get; set; }
         public DateTime DateOfPayment { get; set; }
+        public Guid InvoiceId { get; set; }
         public Guid MedicalProcedureId { get; set; }
         public Guid MedicalCenterId { get; set; }
         public Guid PublicServantMedicalCenterId { get; set; }
@@ -51,6 +52,7 @@ namespace GovernmentSystem.Application.Handlers.MedicalPayments.Commands
             RuleFor(v => v.AmountPaid).NotEmpty().NotNull();
             RuleFor(v => v.AmountToPay).NotEmpty().NotNull();
             RuleFor(v => v.DateOfPayment).NotEmpty().NotNull();
+            RuleFor(v => v.InvoiceId).NotEmpty().NotNull();
             RuleFor(v => v.MedicalProcedureId).NotEmpty().NotNull();
             RuleFor(v => v.MedicalCenterId).NotEmpty().NotNull();
             RuleFor(v => v.PublicServantMedicalCenterId).NotEmpty().NotNull();

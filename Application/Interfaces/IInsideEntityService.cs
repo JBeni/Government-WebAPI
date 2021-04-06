@@ -1,4 +1,5 @@
-﻿using GovernmentSystem.Domain.Entities.Citizens;
+﻿using GovernmentSystem.Domain.Entities;
+using GovernmentSystem.Domain.Entities.Citizens;
 using GovernmentSystem.Domain.Entities.CityHalls;
 using GovernmentSystem.Domain.Entities.Medicals;
 using GovernmentSystem.Domain.Entities.PoliceStations;
@@ -20,6 +21,7 @@ namespace GovernmentSystem.Application.Interfaces
         DriverLicenseCategory GetDriverLicenseCategoryById(Guid identifier);
         DriverLicense GetDriverLicenseById(Guid identifier);
         IdentityCard GetIdentityCardById(Guid identifier);
+        Invoice GetInvoiceById(Guid identifier);
         MedicalAppointment GetMedicalAppointmentById(Guid identifier);
         MedicalCenterProcedure GetMedicalCenterProcedureById(Guid identifier);
         MedicalCenter GetMedicalCenterById(Guid identifier);
