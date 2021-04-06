@@ -57,6 +57,7 @@ namespace GovernmentSystem.Infrastructure
             services.AddTransient<IMedicalProcedureService, MedicalProcedureService>();
             services.AddTransient<IRegularizationService, RegularizationService>();
             services.AddTransient<ICompanyService, CompanyService>();
+            services.AddTransient<IFraudOfficeReportProblemService, FraudOfficeReportProblemService>();
             services.AddTransient<IPassportService, PassportService>();
             services.AddTransient<IPoliceReportProblemService, PoliceReportProblemService>();
             services.AddTransient<IPolicePaymentService, PolicePaymentService>();
