@@ -90,7 +90,7 @@ namespace GovernmentSystem.Infrastructure.Services
 
             fraudOfficeReportProblem.Title = command.Title;
             fraudOfficeReportProblem.Description = command.Description;
-            fraudOfficeReportProblem.IsProcessed = true;
+            fraudOfficeReportProblem.IsProcessed = command.IsProcessed;
             fraudOfficeReportProblem.SeriousFraudOffice = seriousFraudOffice;
 
             _dbContext.FraudOfficeReportProblems.Update(fraudOfficeReportProblem);

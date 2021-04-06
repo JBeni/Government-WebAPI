@@ -40,7 +40,7 @@ namespace GovernmentSystem.Infrastructure.Services
             {
                 Title = command.Title,
                 Description = command.Description,
-                IsProcessed = command.IsProcessed,
+                IsProcessed = false,
                 PoliceStation = policeStation
             };
 

@@ -94,7 +94,7 @@ namespace GovernmentSystem.Infrastructure.Services
             CityReportProblem.DateOfIssue = command.DateOfIssue;
             CityReportProblem.Description = command.Description;
             CityReportProblem.Title = command.Title;
-            CityReportProblem.IsProcessed = true;
+            CityReportProblem.IsProcessed = command.IsProcessed;
             CityReportProblem.CityHall = cityHall;
 
             _dbContext.CityReportProblems.Update(CityReportProblem);

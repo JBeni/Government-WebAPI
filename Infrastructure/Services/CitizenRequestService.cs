@@ -90,7 +90,7 @@ namespace GovernmentSystem.Infrastructure.Services
             citizenRequest.DateOfExpiry = command.DateOfExpiry;
             citizenRequest.DateOfIssue = command.DateOfIssue;
             citizenRequest.Description = command.Description;
-            citizenRequest.IsProcessed = true;
+            citizenRequest.IsProcessed = command.IsProcessed;
             citizenRequest.Type = command.Type;
             citizenRequest.UserCNP = command.UserCNP;
             citizenRequest.UserName = command.UserName;
