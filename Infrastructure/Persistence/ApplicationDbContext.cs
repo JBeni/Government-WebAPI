@@ -38,6 +38,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
         public DbSet<PoliceReportProblem> PoliceReportProblems { get; set; }
         public DbSet<CitizenRequest> CitizenRequests { get; set; }
         public DbSet<DriverLicense> DriverLicenses { get; set; }
+        public DbSet<Regularization> Regularizations { get; set; }
         public DbSet<DriverLicenseCategory> DriverLicenseCategories { get; set; }
         public DbSet<IdentityCardAppointment> IdentityCardAppointments { get; set; }
         public DbSet<IdentityCard> IdentityCards { get; set; }
