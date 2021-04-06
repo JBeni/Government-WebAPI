@@ -47,6 +47,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
         public DbSet<Address> Addresses { get; set; }
         public DbSet<AddressType> AddressTypes { get; set; }
         public DbSet<CityHall> CityHalls { get; set; }
+        public DbSet<Company> Companies { get; set; }
         public DbSet<Property> Properties { get; set; }
         public DbSet<PropertyType> PropertyTypes { get; set; }
         public DbSet<PublicServantCityHall> PublicServantCityHalls { get; set; }
@@ -111,6 +112,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
             builder.ApplyConfiguration(new PolicePaymentConfiguration());
             builder.ApplyConfiguration(new PoliceStationConfiguration());
             builder.ApplyConfiguration(new RegularizationConfiguration());
+            builder.ApplyConfiguration(new CompanyConfiguration());
             builder.ApplyConfiguration(new PropertyConfiguration());
             builder.ApplyConfiguration(new PropertyTypeConfiguration());
             builder.ApplyConfiguration(new PublicServantCityHallConfiguration());
