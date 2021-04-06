@@ -18,6 +18,7 @@ namespace GovernmentSystem.Application.Interfaces
         CitizenRequest GetCitizenRequestById(Guid identifier);
         Citizen GetCitizenById(Guid identifier);
         CityHall GetCityHallById(Guid identifier);
+        Company GetCompanyById(Guid identifier);
         DriverLicenseCategory GetDriverLicenseCategoryById(Guid identifier);
         DriverLicense GetDriverLicenseById(Guid identifier);
         IdentityCard GetIdentityCardById(Guid identifier);

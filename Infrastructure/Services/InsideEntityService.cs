@@ -343,5 +343,17 @@ namespace GovernmentSystem.Infrastructure.Services
             }
             return result;
         }
+
+        public Company GetCompanyById(Guid identifier)
+        {
+            var result = _dbContext.Companies
+                .Where(v => v.Identifier == identifier)
+                .FirstOrDefault();
+            if (result == null)
+            {
+                throw new Exception("The company does not exists");
+            }
+            return result;
+        }
     }
 }
