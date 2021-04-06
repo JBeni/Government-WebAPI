@@ -39,11 +39,13 @@ namespace GovernmentSystem.Infrastructure
             services.AddTransient<IBirthCertificateService, BirthCertificateService>();
             services.AddTransient<ICitizenDriverLicenseCategoryService, CitizenDriverLicenseCategoryService>();
             services.AddTransient<ICitizenMedicalHistoryService, CitizenMedicalHistoryService>();
+            services.AddTransient<ICitizenRecordService, CitizenRecordService>();
             services.AddTransient<ICitizenRequestService, CitizenRequestService>();
             services.AddTransient<ICitizenService, CitizenService>();
             services.AddTransient<ICityHallService, CityHallService>();
             services.AddTransient<IDriverLicenseCategoryService, DriverLicenseCategoryService>();
             services.AddTransient<IDriverLicenseService, DriverLicenseService>();
+            services.AddTransient<IIdentityCardAppointmentService, IdentityCardAppointmentService>();
             services.AddTransient<IIdentityCardService, IdentityCardService>();
             services.AddTransient<IInsideEntityService, InsideEntityService>();
             services.AddTransient<IMedicalAppointmentService, MedicalAppointmentService>();
