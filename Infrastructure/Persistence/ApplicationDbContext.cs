@@ -32,6 +32,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
         public DbSet<BirthCertificate> BirthCertificates { get; set; }
         public DbSet<Citizen> Citizens { get; set; }
         public DbSet<CitizenDriverLicenseCategory> CitizenDriverLicenseCategories { get; set; }
+        public DbSet<PolicePayment> PolicePayments { get; set; }
         public DbSet<CitizenRecord> CitizenRecords { get; set; }
         public DbSet<CitizenRequest> CitizenRequests { get; set; }
         public DbSet<DriverLicense> DriverLicenses { get; set; }
@@ -104,6 +105,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
             builder.ApplyConfiguration(new MedicalPaymentConfiguration());
             builder.ApplyConfiguration(new MedicalProcedureConfiguration());
             builder.ApplyConfiguration(new PassportConfiguration());
+            builder.ApplyConfiguration(new PolicePaymentConfiguration());
             builder.ApplyConfiguration(new PoliceStationConfiguration());
             builder.ApplyConfiguration(new PropertyConfiguration());
             builder.ApplyConfiguration(new PropertyTypeConfiguration());
