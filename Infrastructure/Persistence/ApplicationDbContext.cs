@@ -110,6 +110,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
             builder.ApplyConfiguration(new PassportConfiguration());
             builder.ApplyConfiguration(new PolicePaymentConfiguration());
             builder.ApplyConfiguration(new PoliceStationConfiguration());
+            builder.ApplyConfiguration(new RegularizationConfiguration());
             builder.ApplyConfiguration(new PropertyConfiguration());
             builder.ApplyConfiguration(new PropertyTypeConfiguration());
             builder.ApplyConfiguration(new PublicServantCityHallConfiguration());
