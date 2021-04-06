@@ -1,42 +1,42 @@
-﻿using GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands;
-using GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Queries;
+﻿using GovernmentSystem.Application.Handlers.MedicalPayments.Commands;
+using GovernmentSystem.Application.Handlers.MedicalPayments.Queries;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace GovernmentSystem.WebUI.Controllers
 {
-    public class MedicalPaymentHistoriesController : ApiControllerBase
+    public class MedicalPaymentiesController : ApiControllerBase
     {
-        [HttpGet("getMedicalPaymentHistoryById")]
-        public async Task<IActionResult> GetMedicalPaymentHistoryById([FromQuery] GetMedicalPaymentHistoryByIdQuery query)
+        [HttpGet("getMedicalPaymentById")]
+        public async Task<IActionResult> GetMedicalPaymentById([FromQuery] GetMedicalPaymentByIdQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("getMedicalPaymentHistories")]
-        public async Task<IActionResult> GetMedicalPaymentHistorys([FromQuery] GetMedicalPaymentHistoriesQuery query)
+        [HttpGet("getMedicalPayments")]
+        public async Task<IActionResult> GetMedicalPayments([FromQuery] GetMedicalPaymentsQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> Create(CreateMedicalPaymentHistoryCommand command)
+        public async Task<IActionResult> Create(CreateMedicalPaymentCommand command)
         {
             var result = await Mediator.Send(command);
             return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update(UpdateMedicalPaymentHistoryCommand command)
+        public async Task<IActionResult> Update(UpdateMedicalPaymentCommand command)
         {
             var result = await Mediator.Send(command);
             return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete(DeleteMedicalPaymentHistoryCommand command)
+        public async Task<IActionResult> Delete(DeleteMedicalPaymentCommand command)
         {
             var result = await Mediator.Send(command);
             return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);

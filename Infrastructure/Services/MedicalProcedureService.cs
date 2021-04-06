@@ -28,8 +28,8 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> CreateMedicalProcedure(CreateMedicalProcedureCommand command, CancellationToken cancellationToken)
         {
-            var medicalPaymentHistory = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.Identifier);
-            if (medicalPaymentHistory != null)
+            var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (medicalProcedure != null)
             {
                 throw new Exception("The medical procedure already exists");
             }
@@ -48,13 +48,13 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> DeleteMedicalProcedure(DeleteMedicalProcedureCommand command, CancellationToken cancellationToken)
         {
-            var medicalPaymentHistory = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.Identifier);
-            if (medicalPaymentHistory != null)
+            var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (medicalProcedure != null)
             {
                 throw new Exception("The medical procedure does not exists");
             }
 
-            _dbContext.MedicalProcedures.Remove(medicalPaymentHistory);
+            _dbContext.MedicalProcedures.Remove(medicalProcedure);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
@@ -78,17 +78,17 @@ namespace GovernmentSystem.Infrastructure.Services
 
         public async Task<RequestResponse> UpdateMedicalProcedure(UpdateMedicalProcedureCommand command, CancellationToken cancellationToken)
         {
-            var medicalPaymentHistory = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.Identifier);
-            if (medicalPaymentHistory != null)
+            var medicalProcedure = _dbContext.MedicalProcedures.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (medicalProcedure != null)
             {
                 throw new Exception("The medical procedure does not exists");
             }
-            medicalPaymentHistory.AdditionalInformation = command.AdditionalInformation;
-            medicalPaymentHistory.Price = command.Price;
-            medicalPaymentHistory.ProcedureDuration = command.ProcedureDuration;
-            medicalPaymentHistory.ProcedureName = command.ProcedureName;
+            medicalProcedure.AdditionalInformation = command.AdditionalInformation;
+            medicalProcedure.Price = command.Price;
+            medicalProcedure.ProcedureDuration = command.ProcedureDuration;
+            medicalProcedure.ProcedureName = command.ProcedureName;
 
-            _dbContext.MedicalProcedures.Update(medicalPaymentHistory);
+            _dbContext.MedicalProcedures.Update(medicalProcedure);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }

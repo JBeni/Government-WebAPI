@@ -47,7 +47,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
         public DbSet<MedicalAppointment> MedicalAppointments { get; set; }
         public DbSet<MedicalCenter> MedicalCenters { get; set; }
         public DbSet<MedicalCenterProcedure> MedicalCenterProcedures { get; set; }
-        public DbSet<MedicalPaymentHistory> MedicalPaymentHistories { get; set; }
+        public DbSet<MedicalPayment> MedicalPayments { get; set; }
         public DbSet<MedicalProcedure> MedicalProcedures { get; set; }
         public DbSet<PublicServantMedicalCenter> PublicServantMedicalCenters { get; set; }
         public DbSet<PublicServantPoliceStation> PublicServantPoliceStations { get; set; }
@@ -95,7 +95,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
             builder.ApplyConfiguration(new MedicalAppointmentConfiguration());
             builder.ApplyConfiguration(new MedicalCenterConfiguration());
             builder.ApplyConfiguration(new MedicalCenterProcedureConfiguration());
-            builder.ApplyConfiguration(new MedicalPaymentHistoryConfiguration());
+            builder.ApplyConfiguration(new MedicalPaymentConfiguration());
             builder.ApplyConfiguration(new MedicalProcedureConfiguration());
             builder.ApplyConfiguration(new PassportConfiguration());
             builder.ApplyConfiguration(new PoliceStationConfiguration());

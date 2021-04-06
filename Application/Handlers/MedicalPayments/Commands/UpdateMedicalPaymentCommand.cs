@@ -6,9 +6,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands
+namespace GovernmentSystem.Application.Handlers.MedicalPayments.Commands
 {
-    public class UpdateMedicalPaymentHistoryCommand : IRequest<RequestResponse>
+    public class UpdateMedicalPaymentCommand : IRequest<RequestResponse>
     {
         public Guid Identifier { get; set; }
         public long AmountPaid { get; set; }
@@ -21,20 +21,20 @@ namespace GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands
         public Guid CitizenWhoPaidId { get; set; }
     }
 
-    public class UpdateMedicalPaymentHistorysCommandHandler : IRequestHandler<UpdateMedicalPaymentHistoryCommand, RequestResponse>
+    public class UpdateMedicalPaymentCommandHandler : IRequestHandler<UpdateMedicalPaymentCommand, RequestResponse>
     {
-        private readonly IMedicalPaymentHistoryService _medicalPaymentHistoryService;
+        private readonly IMedicalPaymentService _medicalPaymentyService;
 
-        public UpdateMedicalPaymentHistorysCommandHandler(IMedicalPaymentHistoryService medicalPaymentHistoryService)
+        public UpdateMedicalPaymentCommandHandler(IMedicalPaymentService medicalPaymentyService)
         {
-            _medicalPaymentHistoryService = medicalPaymentHistoryService;
+            _medicalPaymentyService = medicalPaymentyService;
         }
 
-        public async Task<RequestResponse> Handle(UpdateMedicalPaymentHistoryCommand request, CancellationToken cancellationToken)
+        public async Task<RequestResponse> Handle(UpdateMedicalPaymentCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                return await _medicalPaymentHistoryService.UpdateMedicalPaymentHistory(request, cancellationToken);
+                return await _medicalPaymentyService.UpdateMedicalPayment(request, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -43,9 +43,9 @@ namespace GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands
         }
     }
 
-    public class UpdateMedicalPaymentHistoryCommandValidator : AbstractValidator<UpdateMedicalPaymentHistoryCommand>
+    public class UpdateMedicalPaymentCommandValidator : AbstractValidator<UpdateMedicalPaymentCommand>
     {
-        public UpdateMedicalPaymentHistoryCommandValidator()
+        public UpdateMedicalPaymentCommandValidator()
         {
             RuleFor(v => v.Identifier).NotEmpty().NotNull();
             RuleFor(v => v.AmountPaid).NotEmpty().NotNull();

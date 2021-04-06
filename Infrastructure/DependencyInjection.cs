@@ -49,7 +49,7 @@ namespace GovernmentSystem.Infrastructure
             services.AddTransient<IMedicalAppointmentService, MedicalAppointmentService>();
             services.AddTransient<IMedicalCenterProcedureService, MedicalCenterProcedureService>();
             services.AddTransient<IMedicalCenterService, MedicalCenterService>();
-            services.AddTransient<IMedicalPaymentHistoryService, MedicalPaymentHistoryService>();
+            services.AddTransient<IMedicalPaymentService, MedicalPaymentService>();
             services.AddTransient<IMedicalProcedureService, MedicalProcedureService>();
             services.AddTransient<IPassportService, PassportService>();
             services.AddTransient<IPoliceStationService, PoliceStationService>();

@@ -6,7 +6,7 @@ using System;
 
 namespace GovernmentSystem.Application.Responses
 {
-    public class MedicalPaymentHistoryResponse : IMapFrom<MedicalPaymentHistory>
+    public class MedicalPaymentResponse : IMapFrom<MedicalPayment>
     {
         public Guid Identifier { get; set; }
         public long AmountPaid { get; set; }
@@ -20,7 +20,7 @@ namespace GovernmentSystem.Application.Responses
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<MedicalPaymentHistory, MedicalPaymentHistoryResponse>()
+            profile.CreateMap<MedicalPayment, MedicalPaymentResponse>()
                 .ForMember(d => d.Identifier, opt => opt.MapFrom(s => s.Identifier))
                 .ForMember(d => d.AmountPaid, opt => opt.MapFrom(s => s.AmountPaid))
                 .ForMember(d => d.AmountToPay, opt => opt.MapFrom(s => s.AmountToPay))

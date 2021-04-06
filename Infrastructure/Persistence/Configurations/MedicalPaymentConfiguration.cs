@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GovernmentSystem.Infrastructure.Persistence.Configurations
 {
-    public class MedicalPaymentHistoryConfiguration : IEntityTypeConfiguration<MedicalPaymentHistory>
+    public class MedicalPaymentConfiguration : IEntityTypeConfiguration<MedicalPayment>
     {
-        public void Configure(EntityTypeBuilder<MedicalPaymentHistory> builder)
+        public void Configure(EntityTypeBuilder<MedicalPayment> builder)
         {
             builder.HasKey(x => x.Identifier);
 

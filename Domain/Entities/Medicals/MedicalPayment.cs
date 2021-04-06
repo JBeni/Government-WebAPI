@@ -4,7 +4,7 @@ using System;
 
 namespace GovernmentSystem.Domain.Entities.Medicals
 {
-    public class MedicalPaymentHistory : AuditEntity
+    public class MedicalPayment : AuditEntity
     {
         public long AmountPaid { get; set; }
         public long AmountToPay { get; set; }

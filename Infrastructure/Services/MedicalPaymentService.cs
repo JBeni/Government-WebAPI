@@ -2,8 +2,8 @@
 using AutoMapper.QueryableExtensions;
 using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Commands;
-using GovernmentSystem.Application.Handlers.MedicalPaymentHistories.Queries;
+using GovernmentSystem.Application.Handlers.MedicalPayments.Commands;
+using GovernmentSystem.Application.Handlers.MedicalPayments.Queries;
 using GovernmentSystem.Application.Interfaces;
 using GovernmentSystem.Application.Responses;
 using GovernmentSystem.Domain.Entities.Medicals;
@@ -15,25 +15,25 @@ using System.Threading.Tasks;
 
 namespace GovernmentSystem.Infrastructure.Services
 {
-    public class MedicalPaymentHistoryService : IMedicalPaymentHistoryService
+    public class MedicalPaymentService : IMedicalPaymentService
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IInsideEntityService _insideEntityService;
 
-        public MedicalPaymentHistoryService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
+        public MedicalPaymentService(IApplicationDbContext dbContext, IMapper mapper, IInsideEntityService insideEntityService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
             _insideEntityService = insideEntityService;
         }
 
-        public async Task<RequestResponse> CreateMedicalPaymentHistory(CreateMedicalPaymentHistoryCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> CreateMedicalPayment(CreateMedicalPaymentCommand command, CancellationToken cancellationToken)
         {
-            var medicalPaymentHistory = _dbContext.MedicalPaymentHistories.SingleOrDefault(x => x.Identifier == command.Identifier);
-            if (medicalPaymentHistory != null)
+            var medicalPayment = _dbContext.MedicalPayments.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (medicalPayment != null)
             {
-                throw new Exception("The medical payment history already exists");
+                throw new Exception("The medical payment already exists");
             }
             var citizenWhoBenefit = _insideEntityService.GetCitizenById(command.CitizenWhoBenefitId);
             var citizenWhoPaid = _insideEntityService.GetCitizenById(command.CitizenWhoPaidId);
@@ -41,7 +41,7 @@ namespace GovernmentSystem.Infrastructure.Services
             var medicalProcedure = _insideEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
             var publicServantMedicalCenter = _insideEntityService.GetPublicServantMedicalCenterById(command.PublicServantMedicalCenterId);
 
-            var entity = new MedicalPaymentHistory
+            var entity = new MedicalPayment
             {
                 AmountPaid = command.AmountPaid,
                 AmountToPay = command.AmountToPay,
@@ -53,47 +53,47 @@ namespace GovernmentSystem.Infrastructure.Services
                 PublicServantMedicalCenter = publicServantMedicalCenter
             };
 
-            _dbContext.MedicalPaymentHistories.Add(entity);
+            _dbContext.MedicalPayments.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
 
-        public async Task<RequestResponse> DeleteMedicalPaymentHistory(DeleteMedicalPaymentHistoryCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> DeleteMedicalPayment(DeleteMedicalPaymentCommand command, CancellationToken cancellationToken)
         {
-            var medicalPaymentHistory = _dbContext.MedicalPaymentHistories.SingleOrDefault(x => x.Identifier == command.Identifier);
-            if (medicalPaymentHistory != null)
+            var medicalPayment = _dbContext.MedicalPayments.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (medicalPayment != null)
             {
-                throw new Exception("The medical payment history does not exists");
+                throw new Exception("The medical payment does not exists");
             }
 
-            _dbContext.MedicalPaymentHistories.Remove(medicalPaymentHistory);
+            _dbContext.MedicalPayments.Remove(medicalPayment);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }
 
-        public List<MedicalPaymentHistoryResponse> GetMedicalPaymentHistories(GetMedicalPaymentHistoriesQuery query)
+        public List<MedicalPaymentResponse> GetMedicalPayments(GetMedicalPaymentsQuery query)
         {
-            var result = _dbContext.MedicalPaymentHistories
-                .ProjectTo<MedicalPaymentHistoryResponse>(_mapper.ConfigurationProvider)
+            var result = _dbContext.MedicalPayments
+                .ProjectTo<MedicalPaymentResponse>(_mapper.ConfigurationProvider)
                 .ToList();
             return result;
         }
 
-        public MedicalPaymentHistoryResponse GetMedicalPaymentHistoryById(GetMedicalPaymentHistoryByIdQuery query)
+        public MedicalPaymentResponse GetMedicalPaymentById(GetMedicalPaymentByIdQuery query)
         {
-            var result = _dbContext.MedicalPaymentHistories
+            var result = _dbContext.MedicalPayments
                 .Where(x => x.Identifier == query.Identifier)
-                .ProjectTo<MedicalPaymentHistoryResponse>(_mapper.ConfigurationProvider)
+                .ProjectTo<MedicalPaymentResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
             return result;
         }
 
-        public async Task<RequestResponse> UpdateMedicalPaymentHistory(UpdateMedicalPaymentHistoryCommand command, CancellationToken cancellationToken)
+        public async Task<RequestResponse> UpdateMedicalPayment(UpdateMedicalPaymentCommand command, CancellationToken cancellationToken)
         {
-            var medicalPaymentHistory = _dbContext.MedicalPaymentHistories.SingleOrDefault(x => x.Identifier == command.Identifier);
-            if (medicalPaymentHistory != null)
+            var medicalPayment = _dbContext.MedicalPayments.SingleOrDefault(x => x.Identifier == command.Identifier);
+            if (medicalPayment != null)
             {
-                throw new Exception("The medical payment history does not exists");
+                throw new Exception("The medical payment does not exists");
             }
             var citizenWhoBenefit = _insideEntityService.GetCitizenById(command.CitizenWhoBenefitId);
             var citizenWhoPaid = _insideEntityService.GetCitizenById(command.CitizenWhoPaidId);
@@ -101,16 +101,16 @@ namespace GovernmentSystem.Infrastructure.Services
             var medicalProcedure = _insideEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
             var publicServantMedicalCenter = _insideEntityService.GetPublicServantMedicalCenterById(command.PublicServantMedicalCenterId);
 
-            medicalPaymentHistory.AmountPaid = command.AmountPaid;
-            medicalPaymentHistory.AmountToPay = command.AmountToPay;
-            medicalPaymentHistory.DateOfPayment = command.DateOfPayment;
-            medicalPaymentHistory.CitizenWhoBenefit = citizenWhoBenefit;
-            medicalPaymentHistory.CitizenWhoPaid = citizenWhoPaid;
-            medicalPaymentHistory.MedicalCenter = medicalCenter;
-            medicalPaymentHistory.MedicalProcedure = medicalProcedure;
-            medicalPaymentHistory.PublicServantMedicalCenter = publicServantMedicalCenter;
+            medicalPayment.AmountPaid = command.AmountPaid;
+            medicalPayment.AmountToPay = command.AmountToPay;
+            medicalPayment.DateOfPayment = command.DateOfPayment;
+            medicalPayment.CitizenWhoBenefit = citizenWhoBenefit;
+            medicalPayment.CitizenWhoPaid = citizenWhoPaid;
+            medicalPayment.MedicalCenter = medicalCenter;
+            medicalPayment.MedicalProcedure = medicalProcedure;
+            medicalPayment.PublicServantMedicalCenter = publicServantMedicalCenter;
 
-            _dbContext.MedicalPaymentHistories.Update(medicalPaymentHistory);
+            _dbContext.MedicalPayments.Update(medicalPayment);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return RequestResponse.Success();
         }

@@ -187,14 +187,14 @@ namespace GovernmentSystem.Infrastructure.Services
             return result;
         }
 
-        public MedicalPaymentHistory GetMedicalPaymentHistoryById(Guid identifier)
+        public MedicalPayment GetMedicalPaymentById(Guid identifier)
         {
-            var result = _dbContext.MedicalPaymentHistories
+            var result = _dbContext.MedicalPayments
                 .Where(v => v.Identifier == identifier)
                 .FirstOrDefault();
             if (result == null)
             {
-                throw new Exception("The medical payment history does not exists");
+                throw new Exception("The medical payment does not exists");
             }
             return result;
         }

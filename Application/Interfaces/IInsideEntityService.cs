@@ -23,7 +23,7 @@ namespace GovernmentSystem.Application.Interfaces
         MedicalAppointment GetMedicalAppointmentById(Guid identifier);
         MedicalCenterProcedure GetMedicalCenterProcedureById(Guid identifier);
         MedicalCenter GetMedicalCenterById(Guid identifier);
-        MedicalPaymentHistory GetMedicalPaymentHistoryById(Guid identifier);
+        MedicalPayment GetMedicalPaymentById(Guid identifier);
         MedicalProcedure GetMedicalProcedureById(Guid identifier);
         Passport GetPassportById(Guid identifier);
         PoliceStation GetPoliceStationById(Guid identifier);
