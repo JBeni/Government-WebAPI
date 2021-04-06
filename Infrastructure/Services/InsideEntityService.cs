@@ -1,5 +1,6 @@
 ﻿using GovernmentSystem.Application.Common.Interfaces;
 using GovernmentSystem.Application.Interfaces;
+using GovernmentSystem.Domain.Entities;
 using GovernmentSystem.Domain.Entities.Citizens;
 using GovernmentSystem.Domain.Entities.CityHalls;
 using GovernmentSystem.Domain.Entities.Medicals;
@@ -327,6 +328,18 @@ namespace GovernmentSystem.Infrastructure.Services
             if (result == null)
             {
                 throw new Exception("The serious fraud office does not exists");
+            }
+            return result;
+        }
+
+        public Invoice GetInvoiceById(Guid identifier)
+        {
+            var result = _dbContext.Invoices
+                .Where(v => v.Identifier == identifier)
+                .FirstOrDefault();
+            if (result == null)
+            {
+                throw new Exception("The invoice does not exists");
             }
             return result;
         }
