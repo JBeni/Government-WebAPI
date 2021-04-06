@@ -17,6 +17,7 @@ namespace GovernmentSystem.Application.Common.Interfaces
         DbSet<CitizenDriverLicenseCategory> CitizenDriverLicenseCategories { get; set; }
         DbSet<PolicePayment> PolicePayments { get; set; }
 
+        DbSet<CityPayment> CityPayments { get; set; }
         DbSet<CitizenRecord> CitizenRecords { get; set; }
         DbSet<CitizenRequest> CitizenRequests { get; set; }
         DbSet<DriverLicense> DriverLicenses { get; set; }
