@@ -43,6 +43,7 @@ namespace GovernmentSystem.Infrastructure
             services.AddTransient<ICitizenRequestService, CitizenRequestService>();
             services.AddTransient<ICitizenService, CitizenService>();
             services.AddTransient<ITaxService, TaxService>();
+            services.AddTransient<IPaymentHistoryService, PaymentHistoryService>();
             services.AddTransient<ICityHallService, CityHallService>();
             services.AddTransient<ICityPaymentService, CityPaymentService>();
             services.AddTransient<IDriverLicenseCategoryService, DriverLicenseCategoryService>();
