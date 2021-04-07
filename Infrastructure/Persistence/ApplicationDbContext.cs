@@ -61,6 +61,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
         public DbSet<PublicServantPoliceStation> PublicServantPoliceStations { get; set; }
         public DbSet<PublicServantSeriousFraudOffice> PublicServantSeriousFraudOffices { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<PaymentHistory> PaymentHistories { get; set; }
         public DbSet<Tax> Taxes { get; set; }
         public DbSet<PoliceStation> PoliceStations { get; set; }
         public DbSet<FraudOfficeReportProblem> FraudOfficeReportProblems { get; set; }
@@ -100,6 +101,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
             builder.ApplyConfiguration(new CitizenRecordConfiguration());
             builder.ApplyConfiguration(new CitizenRequestConfiguration());
             builder.ApplyConfiguration(new CityHallConfiguration());
+            builder.ApplyConfiguration(new PaymentHistoryConfiguration());
             builder.ApplyConfiguration(new InvoiceConfiguration());
             builder.ApplyConfiguration(new CitizenDriverLicenseCategoryConfiguration());
             builder.ApplyConfiguration(new DriverLicenseCategoryConfiguration());

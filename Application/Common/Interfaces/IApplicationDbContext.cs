@@ -21,6 +21,7 @@ namespace GovernmentSystem.Application.Common.Interfaces
         DbSet<Company> Companies { get; set; }
         DbSet<Regularization> Regularizations { get; set; }
         DbSet<Invoice> Invoices { get; set; }
+        DbSet<PaymentHistory> PaymentHistories { get; set; }
 
         DbSet<CityPayment> CityPayments { get; set; }
         DbSet<CitizenRecord> CitizenRecords { get; set; }
