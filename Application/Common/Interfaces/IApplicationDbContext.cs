@@ -20,6 +20,7 @@ namespace GovernmentSystem.Application.Common.Interfaces
         DbSet<Tax> Taxes { get; set; }
         DbSet<Company> Companies { get; set; }
         DbSet<Regularization> Regularizations { get; set; }
+        DbSet<Invoice> Invoices { get; set; }
 
         DbSet<CityPayment> CityPayments { get; set; }
         DbSet<CitizenRecord> CitizenRecords { get; set; }
@@ -49,7 +50,6 @@ namespace GovernmentSystem.Application.Common.Interfaces
 
         DbSet<PublicServantPoliceStation> PublicServantPoliceStations { get; set; }
         DbSet<PublicServantSeriousFraudOffice> PublicServantSeriousFraudOffices { get; set; }
-        DbSet<Invoice> Invoices { get; set; }
 
         DbSet<PoliceStation> PoliceStations { get; set; }
         DbSet<SeriousFraudOffice> SeriousFraudOffices { get; set; }

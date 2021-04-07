@@ -100,6 +100,7 @@ namespace GovernmentSystem.Infrastructure.Persistence
             builder.ApplyConfiguration(new CitizenRecordConfiguration());
             builder.ApplyConfiguration(new CitizenRequestConfiguration());
             builder.ApplyConfiguration(new CityHallConfiguration());
+            builder.ApplyConfiguration(new InvoiceConfiguration());
             builder.ApplyConfiguration(new CitizenDriverLicenseCategoryConfiguration());
             builder.ApplyConfiguration(new DriverLicenseCategoryConfiguration());
             builder.ApplyConfiguration(new DriverLicenseConfiguration());
