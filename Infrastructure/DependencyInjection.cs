@@ -63,6 +63,7 @@ namespace GovernmentSystem.Infrastructure
             services.AddTransient<IPolicePaymentService, PolicePaymentService>();
             services.AddTransient<IPoliceStationService, PoliceStationService>();
             services.AddTransient<IPropertyService, PropertyService>();
+            services.AddTransient<IInvoiceService, InvoiceService>();
             services.AddTransient<IPropertyTypeService, PropertyTypeService>();
             services.AddTransient<IPublicServantCityHallService, PublicServantCityHallService>();
             services.AddTransient<IPublicServantMedicalCenterService, PublicServantMedicalCenterService>();
