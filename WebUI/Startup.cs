@@ -29,6 +29,16 @@ namespace GovernmentSystem.WebUI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("EnableCORS", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             services.AddApplicationLayer();
             services.AddInfrastructureLayer(Configuration);
 
@@ -85,6 +95,7 @@ namespace GovernmentSystem.WebUI
                 app.UseHsts();
             }
 
+            app.UseCors("EnableCORS");
             app.UseHealthChecks("/health");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
