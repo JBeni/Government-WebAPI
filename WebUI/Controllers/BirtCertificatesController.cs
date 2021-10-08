@@ -7,14 +7,14 @@ namespace GovernmentSystem.WebUI.Controllers
 {
     public class BirthCertificatesController : ApiControllerBase
     {
-        [HttpGet("getBirthCertificateById")]
+        [HttpGet("birth-certificate")]
         public async Task<IActionResult> GetBirthCertificateById([FromQuery] GetBirthCertificateByIdQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("getBirthCertificates")]
+        [HttpGet("birth-certificates")]
         public async Task<IActionResult> GetBirthCertificates([FromQuery] GetBirthCertificatesQuery query)
         {
             var result = await Mediator.Send(query);

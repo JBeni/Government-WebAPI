@@ -7,14 +7,14 @@ namespace GovernmentSystem.WebUI.Controllers
 {
     public class CompanyController : ApiControllerBase
     {
-        [HttpGet("getCompanyById")]
+        [HttpGet("company")]
         public async Task<IActionResult> GetCompanyById([FromQuery] GetCompanyByIdQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("getCompanies")]
+        [HttpGet("companies")]
         public async Task<IActionResult> GetCompanies([FromQuery] GetCompaniesQuery query)
         {
             var result = await Mediator.Send(query);

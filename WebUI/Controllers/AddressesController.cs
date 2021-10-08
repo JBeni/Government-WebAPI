@@ -7,14 +7,14 @@ namespace GovernmentSystem.WebUI.Controllers
 {
     public class AddressesController : ApiControllerBase
     {
-        [HttpGet("getAddressById")]
+        [HttpGet("address")]
         public async Task<IActionResult> GetAddressById([FromQuery] GetAddressByIdQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("getAddresses")]
+        [HttpGet("addresses")]
         public async Task<IActionResult> GetAddresses([FromQuery] GetAddressesQuery query)
         {
             var result = await Mediator.Send(query);

@@ -7,14 +7,14 @@ namespace GovernmentSystem.WebUI.Controllers
 {
     public class PassportsController : ApiControllerBase
     {
-        [HttpGet("getPassportById")]
+        [HttpGet("passport")]
         public async Task<IActionResult> GetPassportById([FromQuery] GetPassportByIdQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("getPassports")]
+        [HttpGet("passports")]
         public async Task<IActionResult> GetPassports([FromQuery] GetPassportsQuery query)
         {
             var result = await Mediator.Send(query);

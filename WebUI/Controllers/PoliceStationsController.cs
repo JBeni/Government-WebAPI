@@ -7,14 +7,14 @@ namespace GovernmentSystem.WebUI.Controllers
 {
     public class PoliceStationsController : ApiControllerBase
     {
-        [HttpGet("getPoliceStationById")]
+        [HttpGet("police-station")]
         public async Task<IActionResult> GetPoliceStationById([FromQuery] GetPoliceStationByIdQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("getPoliceStations")]
+        [HttpGet("police-stations")]
         public async Task<IActionResult> GetPoliceStations([FromQuery] GetPoliceStationsQuery query)
         {
             var result = await Mediator.Send(query);

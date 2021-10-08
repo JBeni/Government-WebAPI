@@ -6,7 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 namespace GovernmentSystem.WebUI.Controllers
 {
     [ApiController]
-    [Route("api/v{version:apiversion}/[controller]")]
+    //[Route("api/v{version:apiversion}/[controller]")]
+    [Route("api/[controller]")]
     //[Authorize]
     public abstract class ApiControllerBase : ControllerBase
     {

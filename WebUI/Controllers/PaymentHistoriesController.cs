@@ -7,14 +7,14 @@ namespace GovernmentSystem.WebUI.Controllers
 {
     public class PaymentHistoriesController : ApiControllerBase
     {
-        [HttpGet("getPaymentHistoryById")]
+        [HttpGet("payment-history")]
         public async Task<IActionResult> GetPaymentHistoryById([FromQuery] GetPaymentHistoryByIdQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("getPaymentHistories")]
+        [HttpGet("payment-histories")]
         public async Task<IActionResult> GetPaymentHistories([FromQuery] GetPaymentHistoriesQuery query)
         {
             var result = await Mediator.Send(query);

@@ -7,14 +7,14 @@ namespace GovernmentSystem.WebUI.Controllers
 {
     public class FraudOfficeReportProblemsController : ApiControllerBase
     {
-        [HttpGet("getFraudOfficeReportProblemById")]
+        [HttpGet("fraud-office-report-problem")]
         public async Task<IActionResult> GetFraudOfficeReportProblemById([FromQuery] GetFraudOfficeReportProblemByIdQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("getFraudOfficeReportProblems")]
+        [HttpGet("fraud-office-report-problems")]
         public async Task<IActionResult> GetFraudOfficeReportProblems([FromQuery] GetFraudOfficeReportProblemsQuery query)
         {
             var result = await Mediator.Send(query);

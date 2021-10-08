@@ -7,14 +7,14 @@ namespace GovernmentSystem.WebUI.Controllers
 {
     public class RegularizationsController : ApiControllerBase
     {
-        [HttpGet("getRegularizationById")]
+        [HttpGet("regularization")]
         public async Task<IActionResult> GetRegularizationById([FromQuery] GetRegularizationByIdQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("getRegularizations")]
+        [HttpGet("regularizations")]
         public async Task<IActionResult> GetRegularizations([FromQuery] GetRegularizationsQuery query)
         {
             var result = await Mediator.Send(query);
