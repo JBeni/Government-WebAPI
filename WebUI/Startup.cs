@@ -1,8 +1,10 @@
 using FluentValidation.AspNetCore;
 using GovernmentSystem.Application;
 using GovernmentSystem.Application.Common.Interfaces;
+using GovernmentSystem.Application.Handlers.Addresses.Queries;
 using GovernmentSystem.Infrastructure;
 using GovernmentSystem.Infrastructure.Persistence;
+using GovernmentSystem.WebUI.Controllers;
 using GovernmentSystem.WebUI.Filters;
 using GovernmentSystem.WebUI.Model;
 using GovernmentSystem.WebUI.Services;
@@ -10,6 +12,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc.Versioning.Conventions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -67,11 +70,19 @@ namespace GovernmentSystem.WebUI
             {
                 options.AssumeDefaultVersionWhenUnspecified = true;
                 options.DefaultApiVersion = new ApiVersion(1, 0);
-                options.ApiVersionReader = new HeaderApiVersionReader("API-Version");
+                options.ReportApiVersions = true;
 
-                //options.Conventions.Controller<CitizensController>()
-                //    .HasApiVersion(1, 0)
-                //    .Action(f => f.GetCitizensWithPagination(new GetCitizensWithPaginationQuery())).MapToApiVersion(1, 0);
+                options.ApiVersionReader = ApiVersionReader.Combine(
+                    new HeaderApiVersionReader("x-api-version"),
+                    new MediaTypeApiVersionReader("x-api-version")
+                );
+
+                // ensure that only request with x-api-version=1 could access the methods of the controller
+                // MapToApiVersion("1.0") -> ensure the same behaviour but at method level
+                options.Conventions.Controller<AddressesController>()
+                    .HasApiVersion(1, 0);
+                options.Conventions.Controller<AddressTypesController>()
+                    .HasApiVersion(1, 0);
             });
 
             services.AddSwaggerGen(c =>
