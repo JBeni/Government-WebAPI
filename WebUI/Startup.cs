@@ -69,7 +69,7 @@ namespace GovernmentSystem.WebUI
             services.AddApiVersioning(options =>
             {
                 options.AssumeDefaultVersionWhenUnspecified = true;
-                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.DefaultApiVersion = new ApiVersion(2, 0);
                 options.ReportApiVersions = true;
 
                 options.ApiVersionReader = ApiVersionReader.Combine(
@@ -78,16 +78,16 @@ namespace GovernmentSystem.WebUI
                 );
 
                 // ensure that only request with x-api-version=1 could access the methods of the controller
-                // MapToApiVersion("1.0") -> ensure the same behaviour but at method level
+                // MapToApiVersion("2.0") -> ensure the same behaviour but at method level
                 options.Conventions.Controller<AddressesController>()
-                    .HasApiVersion(1, 0);
+                    .HasApiVersion(2, 0);
                 options.Conventions.Controller<AddressTypesController>()
-                    .HasApiVersion(1, 0);
+                    .HasApiVersion(2, 0);
             });
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebUI", Version = "v1" });
+                c.SwaggerDoc("v2", new OpenApiInfo { Title = "WebUI", Version = "v2" });
             });
         }
 
@@ -98,7 +98,7 @@ namespace GovernmentSystem.WebUI
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebUI v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v2/swagger.json", "WebUI v2"));
             }
             else
             {

@@ -7,7 +7,7 @@ namespace GovernmentSystem.WebUI.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiversion}/[controller]")]
-    [ApiVersion("1.0", Deprecated = true)]
+    [ApiVersion("2.0")]
     //[Authorize]
     public abstract class ApiControllerBase : ControllerBase
     {
