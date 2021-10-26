@@ -1,5 +1,6 @@
 using GovernmentSystem.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -21,19 +22,13 @@ namespace GovernmentSystem.WebUI
                 try
                 {
                     var context = services.GetRequiredService<ApplicationDbContext>();
+                    if (context.Database.IsSqlServer())
+                    {
+                        context.Database.Migrate();
+                    }
 
-                    //if (context.Database.IsSqlServer())
-                    //{
-                    //    context.Database.Migrate();
-                    //}
-
-                    //var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-                    //var roleManager = services.GetRequiredService<RoleManager<ApplicationRole>>();
-
-                    // Not working at the moment
-
-                    //await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager, roleManager);
-                    //await ApplicationDbContextSeed.SeedSampleDataAsync(context);
+                    await ApplicationDbContextSeed.SeedSampleDataAsync(context);
+                    await ApplicationDbContextSeed.SeedSampleDriverLicenseCategoryAsync(context);
                 }
                 catch (Exception ex)
                 {
