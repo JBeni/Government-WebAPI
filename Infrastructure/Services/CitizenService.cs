@@ -1,20 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.Citizens.Commands;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Common.Interfaces;
-using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Domain.Entities.Citizens;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using GovernmentSystem.Application.Handlers.Citizens.Queries;
-using System.Collections.Generic;
-using GovernmentSystem.Application.Responses;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore;
-
-namespace GovernmentSystem.Infrastructure.Services
+﻿namespace GovernmentSystem.Infrastructure.Services
 {
     public class CitizenService : ICitizenService
     {

@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Commands;
-using GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Queries;
-using GovernmentSystem.Application.Responses;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Interfaces
+﻿namespace GovernmentSystem.Application.Interfaces
 {
     public interface IPublicServantMedicalCenterService
     {

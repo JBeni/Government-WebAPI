@@ -1,12 +1,4 @@
-﻿using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
-using GovernmentSystem.Application.Interfaces;
-using System;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Domain.Entities.Citizens;
-
-namespace GovernmentSystem.Application.Handlers.Citizens.Queries
+﻿namespace GovernmentSystem.Application.Handlers.Citizens.Queries
 {
     public class ExportCitizensQuery : IRequest<ExportCitizensVm>
     {

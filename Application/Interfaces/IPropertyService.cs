@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.Properties.Commands;
-using GovernmentSystem.Application.Common.Models;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using GovernmentSystem.Application.Handlers.Properties.Queries;
-using GovernmentSystem.Application.Responses;
-
-namespace GovernmentSystem.Application.Interfaces
+﻿namespace GovernmentSystem.Application.Interfaces
 {
     public interface IPropertyService
     {

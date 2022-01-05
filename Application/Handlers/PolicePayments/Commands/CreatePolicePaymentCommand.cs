@@ -1,12 +1,4 @@
-﻿using FluentValidation;
-using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Interfaces;
-using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.PolicePayments.Commands
+﻿namespace GovernmentSystem.Application.Handlers.PolicePayments.Commands
 {
     public class CreatePolicePaymentCommand : IRequest<RequestResponse>
     {

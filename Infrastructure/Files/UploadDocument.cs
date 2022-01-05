@@ -1,11 +1,4 @@
-﻿using GovernmentSystem.Application.Common.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Infrastructure.Files
+﻿namespace GovernmentSystem.Infrastructure.Files
 {
     public class UploadDocument : IUploadDocument
     {

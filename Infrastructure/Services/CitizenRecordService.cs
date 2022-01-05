@@ -1,19 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.CitizenRecords.Commands;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Common.Interfaces;
-using GovernmentSystem.Application.Common.Models;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using GovernmentSystem.Application.Handlers.CitizenRecords.Queries;
-using System.Collections.Generic;
-using GovernmentSystem.Application.Responses;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using GovernmentSystem.Domain.Entities.PoliceStations;
-
-namespace GovernmentSystem.Infrastructure.Services
+﻿namespace GovernmentSystem.Infrastructure.Services
 {
     public class CitizenRecordService : ICitizenRecordService
     {

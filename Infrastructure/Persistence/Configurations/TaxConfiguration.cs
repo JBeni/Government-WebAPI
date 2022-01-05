@@ -1,8 +1,4 @@
-﻿using GovernmentSystem.Domain.Entities.SeriousFraudOffices;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace GovernmentSystem.Infrastructure.Persistence.Configurations
+﻿namespace GovernmentSystem.Infrastructure.Persistence.Configurations
 {
     public class TaxConfiguration : IEntityTypeConfiguration<Tax>
     {

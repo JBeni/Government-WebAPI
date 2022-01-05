@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Queries
+﻿namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Queries
 {
     public class GetSeriousFraudOfficesQuery : IRequest<List<SeriousFraudOfficeResponse>>
     {

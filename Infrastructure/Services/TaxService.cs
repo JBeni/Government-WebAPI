@@ -1,19 +1,4 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using GovernmentSystem.Application.Common.Interfaces;
-using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Handlers.Taxes.Queries;
-using GovernmentSystem.Application.Handlers.Taxes.Commands;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using GovernmentSystem.Domain.Entities.SeriousFraudOffices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Infrastructure.Services
+﻿namespace GovernmentSystem.Infrastructure.Services
 {
     public class TaxService : ITaxService
     {

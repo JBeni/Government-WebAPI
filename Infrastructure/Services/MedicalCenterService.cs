@@ -1,19 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.MedicalCenters.Commands;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Common.Interfaces;
-using GovernmentSystem.Application.Common.Models;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using GovernmentSystem.Domain.Entities.Medicals;
-using System.Collections.Generic;
-using GovernmentSystem.Application.Handlers.MedicalCenters.Queries;
-using GovernmentSystem.Application.Responses;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-
-namespace GovernmentSystem.Infrastructure.Services
+﻿namespace GovernmentSystem.Infrastructure.Services
 {
     public class MedicalCenterService : IMedicalCenterService
     {

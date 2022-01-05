@@ -1,9 +1,4 @@
-﻿using FluentValidation.Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace GovernmentSystem.Application.Common.Exceptions
+﻿namespace GovernmentSystem.Application.Common.Exceptions
 {
     public class ValidationException : Exception
     {

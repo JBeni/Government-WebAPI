@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GovernmentSystem.Application.Common.Interfaces
+﻿namespace GovernmentSystem.Application.Common.Interfaces
 {
     public interface IDateTime
     {

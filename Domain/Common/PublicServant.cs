@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GovernmentSystem.Domain.Common
+﻿namespace GovernmentSystem.Domain.Common
 {
     public class PublicServant : AuditEntity
     {

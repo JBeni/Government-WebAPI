@@ -1,7 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-using GovernmentSystem.Domain.Entities.Citizens;
-
-namespace GovernmentSystem.Domain.Entities.PoliceStations
+﻿namespace GovernmentSystem.Domain.Entities.PoliceStations
 {
     public class PolicePayment : Payment
     {

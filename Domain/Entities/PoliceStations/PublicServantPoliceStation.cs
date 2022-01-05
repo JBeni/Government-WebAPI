@@ -1,6 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-
-namespace GovernmentSystem.Domain.Entities.PoliceStations
+﻿namespace GovernmentSystem.Domain.Entities.PoliceStations
 {
     public class PublicServantPoliceStation : PublicServant
     {

@@ -1,11 +1,4 @@
-﻿using GovernmentSystem.Application.Common.Behaviours;
-using AutoMapper;
-using FluentValidation;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
-
-namespace GovernmentSystem.Application
+﻿namespace GovernmentSystem.Application
 {
     public static class DependencyInjection
     {

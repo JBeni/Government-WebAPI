@@ -1,12 +1,4 @@
-﻿using CsvHelper;
-using GovernmentSystem.Application.Handlers.Citizens.Queries;
-using GovernmentSystem.Application.Common.Interfaces;
-using GovernmentSystem.Infrastructure.Files.Maps;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-
-namespace GovernmentSystem.Infrastructure.Files
+﻿namespace GovernmentSystem.Infrastructure.Files
 {
     public class CsvFileBuilder : ICsvFileBuilder
     {

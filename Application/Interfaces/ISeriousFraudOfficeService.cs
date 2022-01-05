@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Handlers.SeriousFraudOffices.Commands;
-using GovernmentSystem.Application.Handlers.SeriousFraudOffices.Queries;
-using GovernmentSystem.Application.Responses;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Interfaces
+﻿namespace GovernmentSystem.Application.Interfaces
 {
     public interface ISeriousFraudOfficeService
     {

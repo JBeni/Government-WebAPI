@@ -1,9 +1,4 @@
-﻿using GovernmentSystem.Domain.Entities.Citizens;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Infrastructure.Persistence
+﻿namespace GovernmentSystem.Infrastructure.Persistence
 {
     public static class ApplicationDbContextSeed
     {

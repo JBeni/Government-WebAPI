@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-using System;
-using System.Linq;
-using System.Reflection;
-
-namespace GovernmentSystem.Application.Common.Mappings
+﻿namespace GovernmentSystem.Application.Common.Mappings
 {
     public class MappingProfile : Profile
     {

@@ -1,6 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-
-namespace GovernmentSystem.Domain.Entities.CityHalls
+﻿namespace GovernmentSystem.Domain.Entities.CityHalls
 {
     public class AddressType : AuditEntity
     {

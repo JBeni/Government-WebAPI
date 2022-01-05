@@ -1,11 +1,4 @@
-﻿using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.CityPayments.Queries
+﻿namespace GovernmentSystem.Application.Handlers.CityPayments.Queries
 {
     public class GetCityPaymentByIdQuery : IRequest<CityPaymentResponse>
     {

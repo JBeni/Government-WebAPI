@@ -1,9 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace GovernmentSystem.WebUI.Controllers
+﻿namespace GovernmentSystem.WebUI.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiversion}/[controller]")]

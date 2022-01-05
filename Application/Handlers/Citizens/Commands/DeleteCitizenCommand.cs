@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Common.Models;
-using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using FluentValidation;
-
-namespace GovernmentSystem.Application.Handlers.Citizens.Commands
+﻿namespace GovernmentSystem.Application.Handlers.Citizens.Commands
 {
     public class DeleteCitizenCommand : IRequest<RequestResponse>
     {

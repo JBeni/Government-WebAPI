@@ -1,7 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-using System;
-
-namespace GovernmentSystem.Domain.Entities.Citizens
+﻿namespace GovernmentSystem.Domain.Entities.Citizens
 {
     public class BirthCertificate : AuditEntity
     {

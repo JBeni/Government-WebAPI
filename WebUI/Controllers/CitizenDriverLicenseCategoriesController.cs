@@ -1,9 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.CitizenDriverLicenseCategories.Commands;
-using GovernmentSystem.Application.Handlers.CitizenDriverLicenseCategories.Queries;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.WebUI.Controllers
+﻿namespace GovernmentSystem.WebUI.Controllers
 {
     public class CitizenDriverLicenseCategoriesController : ApiControllerBase
     {

@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Domain.Entities;
-using GovernmentSystem.Domain.Entities.Citizens;
-using GovernmentSystem.Domain.Entities.CityHalls;
-using GovernmentSystem.Domain.Entities.Medicals;
-using GovernmentSystem.Domain.Entities.PoliceStations;
-using GovernmentSystem.Domain.Entities.SeriousFraudOffices;
-using System;
-
-namespace GovernmentSystem.Application.Interfaces
+﻿namespace GovernmentSystem.Application.Interfaces
 {
     public interface IInsideEntityService
     {

@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Commands;
-using GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Queries;
-using GovernmentSystem.Application.Responses;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Interfaces
+﻿namespace GovernmentSystem.Application.Interfaces
 {
     public interface ICitizenMedicalHistoryService
     {

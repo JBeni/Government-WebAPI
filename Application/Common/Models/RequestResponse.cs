@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GovernmentSystem.Application.Common.Models
+﻿namespace GovernmentSystem.Application.Common.Models
 {
     public class RequestResponse
     {

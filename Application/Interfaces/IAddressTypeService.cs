@@ -1,8 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.AddressTypes.Queries;
-using GovernmentSystem.Application.Responses;
-using System.Collections.Generic;
-
-namespace GovernmentSystem.Application.Interfaces
+﻿namespace GovernmentSystem.Application.Interfaces
 {
     public interface IAddressTypeService
     {

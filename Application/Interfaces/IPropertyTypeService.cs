@@ -1,8 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.PropertyTypes.Queries;
-using GovernmentSystem.Application.Responses;
-using System.Collections.Generic;
-
-namespace GovernmentSystem.Application.Interfaces
+﻿namespace GovernmentSystem.Application.Interfaces
 {
     public interface IPropertyTypeService
     {

@@ -1,13 +1,4 @@
-﻿using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Common.Interfaces;
-using GovernmentSystem.Infrastructure.Files;
-using GovernmentSystem.Infrastructure.Persistence;
-using GovernmentSystem.Infrastructure.Services;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace GovernmentSystem.Infrastructure
+﻿namespace GovernmentSystem.Infrastructure
 {
     public static class DependencyInjection
     {

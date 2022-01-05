@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace GovernmentSystem.Application.Common.Mappings
+﻿namespace GovernmentSystem.Application.Common.Mappings
 {
     public interface IMapFrom<T>
     {

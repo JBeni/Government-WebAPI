@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.CitizenRecords.Queries
+﻿namespace GovernmentSystem.Application.Handlers.CitizenRecords.Queries
 {
     public class GetCitizenRecordsQuery : IRequest<List<CitizenRecordResponse>>
     {

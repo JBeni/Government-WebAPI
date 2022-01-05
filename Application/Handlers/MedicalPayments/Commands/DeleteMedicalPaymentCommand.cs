@@ -1,12 +1,4 @@
-﻿using FluentValidation;
-using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Interfaces;
-using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.MedicalPayments.Commands
+﻿namespace GovernmentSystem.Application.Handlers.MedicalPayments.Commands
 {
     public class DeleteMedicalPaymentCommand : IRequest<RequestResponse>
     {

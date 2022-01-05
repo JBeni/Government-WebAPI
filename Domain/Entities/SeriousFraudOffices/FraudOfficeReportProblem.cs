@@ -1,6 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-
-namespace GovernmentSystem.Domain.Entities.SeriousFraudOffices
+﻿namespace GovernmentSystem.Domain.Entities.SeriousFraudOffices
 {
     public class FraudOfficeReportProblem : ReportProblem
     {

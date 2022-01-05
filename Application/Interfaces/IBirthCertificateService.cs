@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Handlers.BirthCertificates.Commands;
-using GovernmentSystem.Application.Handlers.BirthCertificates.Queries;
-using GovernmentSystem.Application.Responses;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Interfaces
+﻿namespace GovernmentSystem.Application.Interfaces
 {
     public interface IBirthCertificateService
     {

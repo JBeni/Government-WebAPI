@@ -1,9 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.CityReportProblems.Commands;
-using GovernmentSystem.Application.Handlers.CityReportProblems.Queries;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.WebUI.Controllers
+﻿namespace GovernmentSystem.WebUI.Controllers
 {
     public class ReprotProblemsController : ApiControllerBase
     {

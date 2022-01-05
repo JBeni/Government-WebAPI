@@ -1,8 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-using GovernmentSystem.Domain.Entities.CityHalls;
-using System;
-
-namespace GovernmentSystem.Domain.Entities.SeriousFraudOffices
+﻿namespace GovernmentSystem.Domain.Entities.SeriousFraudOffices
 {
     public class SeriousFraudOffice : AuditEntity
     {

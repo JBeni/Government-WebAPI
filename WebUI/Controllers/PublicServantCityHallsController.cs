@@ -1,9 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.PublicServantCityHalls.Commands;
-using GovernmentSystem.Application.Handlers.PublicServantCityHalls.Queries;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.WebUI.Controllers
+﻿namespace GovernmentSystem.WebUI.Controllers
 {
     public class PublicServantCityHallsController : ApiControllerBase
     {

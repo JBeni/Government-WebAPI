@@ -1,12 +1,4 @@
-﻿using FluentValidation;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Common.Models;
-using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.CityHalls.Commands
+﻿namespace GovernmentSystem.Application.Handlers.CityHalls.Commands
 {
     public class DeleteCityHallCommand : IRequest<RequestResponse>
     {

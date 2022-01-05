@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.Addresses.Queries
+﻿namespace GovernmentSystem.Application.Handlers.Addresses.Queries
 {
     public class GetAddressByCountyQuery : IRequest<List<AddressResponse>>
     {

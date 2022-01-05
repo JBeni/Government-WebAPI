@@ -1,7 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-using System.Collections.Generic;
-
-namespace GovernmentSystem.Domain.Entities.Medicals
+﻿namespace GovernmentSystem.Domain.Entities.Medicals
 {
     public class MedicalProcedure : AuditEntity
     {

@@ -1,11 +1,4 @@
-﻿using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
-using System;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-
-namespace GovernmentSystem.Application.Handlers.Citizens.Queries
+﻿namespace GovernmentSystem.Application.Handlers.Citizens.Queries
 {
     public class GetCitizenByIdQuery : IRequest<CitizenResponse>
     {

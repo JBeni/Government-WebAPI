@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.Appointments.Commands;
-using GovernmentSystem.Application.Common.Models;
-using System.Threading;
-using System.Threading.Tasks;
-using GovernmentSystem.Application.Handlers.MedicalAppointments.Queries;
-using System.Collections.Generic;
-using GovernmentSystem.Application.Responses;
-
-namespace GovernmentSystem.Application.Interfaces
+﻿namespace GovernmentSystem.Application.Interfaces
 {
     public interface IMedicalAppointmentService
     {

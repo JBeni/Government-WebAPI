@@ -1,11 +1,4 @@
-﻿using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.AddressTypes.Queries
+﻿namespace GovernmentSystem.Application.Handlers.AddressTypes.Queries
 {
     public class GetAddressTypeByIdQuery : IRequest<AddressTypeResponse>
     {

@@ -1,7 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-using GovernmentSystem.Domain.Entities.Citizens;
-
-namespace GovernmentSystem.Domain.Entities.CityHalls
+﻿namespace GovernmentSystem.Domain.Entities.CityHalls
 {
     public class CityPayment : Payment
     {

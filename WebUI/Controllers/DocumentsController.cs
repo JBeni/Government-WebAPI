@@ -1,9 +1,4 @@
-﻿using GovernmentSystem.Application.Common.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-
-namespace GovernmentSystem.WebUI.Controllers
+﻿namespace GovernmentSystem.WebUI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

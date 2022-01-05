@@ -1,15 +1,4 @@
-﻿using GovernmentSystem.Application.Common.Interfaces;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Domain.Entities;
-using GovernmentSystem.Domain.Entities.Citizens;
-using GovernmentSystem.Domain.Entities.CityHalls;
-using GovernmentSystem.Domain.Entities.Medicals;
-using GovernmentSystem.Domain.Entities.PoliceStations;
-using GovernmentSystem.Domain.Entities.SeriousFraudOffices;
-using System;
-using System.Linq;
-
-namespace GovernmentSystem.Infrastructure.Services
+﻿namespace GovernmentSystem.Infrastructure.Services
 {
     public class InsideEntityService : IInsideEntityService
     {

@@ -1,8 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.DriverLicenseCategories.Queries;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.WebUI.Controllers
+﻿namespace GovernmentSystem.WebUI.Controllers
 {
     public class DriverLicenseCategoriesController : ApiControllerBase
     {

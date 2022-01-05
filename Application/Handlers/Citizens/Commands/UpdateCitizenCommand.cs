@@ -1,12 +1,4 @@
-﻿using FluentValidation;
-using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
-using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Interfaces;
-using System;
-
-namespace GovernmentSystem.Application.Handlers.Citizens.Commands
+﻿namespace GovernmentSystem.Application.Handlers.Citizens.Commands
 {
     public class UpdateCitizenCommand : IRequest<RequestResponse>
     {

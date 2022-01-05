@@ -1,13 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.Citizens.Commands;
-using GovernmentSystem.Application.Common.Models;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using GovernmentSystem.Application.Handlers.Citizens.Queries;
-using System.Collections.Generic;
-using GovernmentSystem.Application.Responses;
-
-namespace GovernmentSystem.Application.Interfaces
+﻿namespace GovernmentSystem.Application.Interfaces
 {
     public interface ICitizenService
     {

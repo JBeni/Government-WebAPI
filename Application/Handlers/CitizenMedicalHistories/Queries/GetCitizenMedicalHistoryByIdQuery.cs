@@ -1,11 +1,4 @@
-﻿using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Queries
+﻿namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Queries
 {
     public class GetCitizenMedicalHistoryByIdQuery : IRequest<CitizenMedicalHistoryResponse>
     {

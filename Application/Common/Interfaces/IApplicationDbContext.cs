@@ -1,14 +1,4 @@
-﻿using GovernmentSystem.Domain.Entities;
-using GovernmentSystem.Domain.Entities.Citizens;
-using GovernmentSystem.Domain.Entities.CityHalls;
-using GovernmentSystem.Domain.Entities.Medicals;
-using GovernmentSystem.Domain.Entities.PoliceStations;
-using GovernmentSystem.Domain.Entities.SeriousFraudOffices;
-using Microsoft.EntityFrameworkCore;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Common.Interfaces
+﻿namespace GovernmentSystem.Application.Common.Interfaces
 {
     public interface IApplicationDbContext
     {

@@ -1,7 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-using System.Collections.Generic;
-
-namespace GovernmentSystem.Domain.Entities.Citizens
+﻿namespace GovernmentSystem.Domain.Entities.Citizens
 {
     public class DriverLicenseCategory : AuditEntity
     {

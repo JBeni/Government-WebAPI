@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-using GovernmentSystem.Application.Common.Mappings;
-using GovernmentSystem.Domain.Entities.SeriousFraudOffices;
-using System;
-
-namespace GovernmentSystem.Application.Responses
+﻿namespace GovernmentSystem.Application.Responses
 {
     public class FraudOfficeReportProblemResponse : IMapFrom<FraudOfficeReportProblem>
     {

@@ -1,7 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-using GovernmentSystem.Domain.Entities.Citizens;
-
-namespace GovernmentSystem.Domain.Entities.SeriousFraudOffices
+﻿namespace GovernmentSystem.Domain.Entities.SeriousFraudOffices
 {
     public class Tax : AuditEntity
     {

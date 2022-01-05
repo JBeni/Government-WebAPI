@@ -1,9 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.PolicePayments.Commands;
-using GovernmentSystem.Application.Handlers.PolicePayments.Queries;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.WebUI.Controllers
+﻿namespace GovernmentSystem.WebUI.Controllers
 {
     public class PolicePaymentsController : ApiControllerBase
     {

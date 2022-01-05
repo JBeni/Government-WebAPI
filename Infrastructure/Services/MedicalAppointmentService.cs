@@ -1,19 +1,4 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using GovernmentSystem.Application.Common.Interfaces;
-using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Handlers.Appointments.Commands;
-using GovernmentSystem.Application.Handlers.MedicalAppointments.Queries;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using GovernmentSystem.Domain.Entities.Medicals;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Infrastructure.Services
+﻿namespace GovernmentSystem.Infrastructure.Services
 {
     public class MedicalAppointmentService : IMedicalAppointmentService
     {

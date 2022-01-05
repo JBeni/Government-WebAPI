@@ -1,8 +1,4 @@
-﻿using GovernmentSystem.Application.Common.Interfaces;
-using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
-
-namespace GovernmentSystem.WebUI.Services
+﻿namespace GovernmentSystem.WebUI.Services
 {
     public class CurrentUserService : ICurrentUserService
     {

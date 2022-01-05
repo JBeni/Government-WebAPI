@@ -1,19 +1,4 @@
-﻿using GovernmentSystem.Application.Common.Interfaces;
-using GovernmentSystem.Domain.Common;
-using GovernmentSystem.Domain.Entities;
-using GovernmentSystem.Domain.Entities.Citizens;
-using GovernmentSystem.Domain.Entities.CityHalls;
-using GovernmentSystem.Domain.Entities.Medicals;
-using GovernmentSystem.Domain.Entities.PoliceStations;
-using GovernmentSystem.Domain.Entities.SeriousFraudOffices;
-using GovernmentSystem.Infrastructure.Persistence.Configurations;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Infrastructure.Persistence
+﻿namespace GovernmentSystem.Infrastructure.Persistence
 {
     public class ApplicationDbContext : DbContext, IApplicationDbContext
     {

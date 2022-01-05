@@ -1,7 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-using System;
-
-namespace GovernmentSystem.Domain.Entities
+﻿namespace GovernmentSystem.Domain.Entities
 {
     public class Invoice : AuditEntity
     {

@@ -1,9 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Commands;
-using GovernmentSystem.Application.Handlers.PublicServantMedicalCenters.Queries;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.WebUI.Controllers
+﻿namespace GovernmentSystem.WebUI.Controllers
 {
     public class PublicServantMedicalCentersController : ApiControllerBase
     {

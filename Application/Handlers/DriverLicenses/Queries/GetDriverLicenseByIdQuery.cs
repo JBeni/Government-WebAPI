@@ -1,11 +1,4 @@
-﻿using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.DriverLicenses.Queries
+﻿namespace GovernmentSystem.Application.Handlers.DriverLicenses.Queries
 {
     public class GetDriverLicenseByIdQuery : IRequest<DriverLicenseResponse>
     {

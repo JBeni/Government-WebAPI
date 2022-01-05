@@ -1,9 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.Properties.Commands;
-using GovernmentSystem.Application.Handlers.Properties.Queries;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.WebUI.Controllers
+﻿namespace GovernmentSystem.WebUI.Controllers
 {
     public class PropertiesController : ApiControllerBase
     {

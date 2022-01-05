@@ -1,8 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-using GovernmentSystem.Domain.Entities.Citizens;
-using System;
-
-namespace GovernmentSystem.Domain.Entities
+﻿namespace GovernmentSystem.Domain.Entities
 {
     public class PaymentHistory : AuditEntity
     {

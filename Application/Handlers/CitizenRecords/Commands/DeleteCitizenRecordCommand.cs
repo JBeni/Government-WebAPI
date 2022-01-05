@@ -1,12 +1,4 @@
-﻿using FluentValidation;
-using GovernmentSystem.Application.Common.Models;
-using GovernmentSystem.Application.Interfaces;
-using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.CitizenRecords.Commands
+﻿namespace GovernmentSystem.Application.Handlers.CitizenRecords.Commands
 {
     public class DeleteCitizenRecordCommand : IRequest<RequestResponse>
     {

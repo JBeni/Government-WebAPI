@@ -1,13 +1,4 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using GovernmentSystem.Application.Common.Interfaces;
-using GovernmentSystem.Application.Handlers.PropertyTypes.Queries;
-using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace GovernmentSystem.Infrastructure.Services
+﻿namespace GovernmentSystem.Infrastructure.Services
 {
     public class PropertyTypeService : IPropertyTypeService
     {

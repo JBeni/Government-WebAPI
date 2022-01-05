@@ -1,8 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.AddressTypes.Queries;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.WebUI.Controllers
+﻿namespace GovernmentSystem.WebUI.Controllers
 {
     public class AddressTypesController : ApiControllerBase
     {

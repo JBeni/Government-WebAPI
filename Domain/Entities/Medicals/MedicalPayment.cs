@@ -1,7 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-using GovernmentSystem.Domain.Entities.Citizens;
-
-namespace GovernmentSystem.Domain.Entities.Medicals
+﻿namespace GovernmentSystem.Domain.Entities.Medicals
 {
     public class MedicalPayment : Payment
     {

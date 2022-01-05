@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.Regularizations.Queries
+﻿namespace GovernmentSystem.Application.Handlers.Regularizations.Queries
 {
     public class GetRegularizationsQuery : IRequest<List<RegularizationResponse>>
     {

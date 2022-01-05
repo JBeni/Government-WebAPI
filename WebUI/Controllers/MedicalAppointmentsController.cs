@@ -1,9 +1,4 @@
-﻿using GovernmentSystem.Application.Handlers.Appointments.Commands;
-using GovernmentSystem.Application.Handlers.MedicalAppointments.Queries;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.WebUI.Controllers
+﻿namespace GovernmentSystem.WebUI.Controllers
 {
     public class MedicalAppointmentsController : ApiControllerBase
     {

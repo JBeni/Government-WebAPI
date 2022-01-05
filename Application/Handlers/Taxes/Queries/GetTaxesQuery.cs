@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.Taxes.Queries
+﻿namespace GovernmentSystem.Application.Handlers.Taxes.Queries
 {
     public class GetTaxesQuery : IRequest<List<TaxResponse>>
     {

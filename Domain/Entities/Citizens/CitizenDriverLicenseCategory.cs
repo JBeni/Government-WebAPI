@@ -1,6 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-
-namespace GovernmentSystem.Domain.Entities.Citizens
+﻿namespace GovernmentSystem.Domain.Entities.Citizens
 {
     public class CitizenDriverLicenseCategory : ValidityEntity
     {

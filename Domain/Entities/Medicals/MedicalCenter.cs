@@ -1,9 +1,4 @@
-﻿using GovernmentSystem.Domain.Common;
-using GovernmentSystem.Domain.Entities.CityHalls;
-using System;
-using System.Collections.Generic;
-
-namespace GovernmentSystem.Domain.Entities.Medicals
+﻿namespace GovernmentSystem.Domain.Entities.Medicals
 {
     public class MedicalCenter : AuditEntity
     {

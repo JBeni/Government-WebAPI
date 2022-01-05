@@ -1,11 +1,4 @@
-﻿using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.Passports.Queries
+﻿namespace GovernmentSystem.Application.Handlers.Passports.Queries
 {
     public class GetPassportByIdQuery : IRequest<PassportResponse>
     {

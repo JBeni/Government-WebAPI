@@ -1,12 +1,4 @@
-﻿using GovernmentSystem.Application.Interfaces;
-using GovernmentSystem.Application.Responses;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace GovernmentSystem.Application.Handlers.PoliceReportProblems.Queries
+﻿namespace GovernmentSystem.Application.Handlers.PoliceReportProblems.Queries
 {
     public class GetPoliceReportProblemsQuery : IRequest<List<PoliceReportProblemResponse>>
     {
