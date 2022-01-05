@@ -27,8 +27,8 @@ namespace GovernmentSystem.WebUI
                         context.Database.Migrate();
                     }
 
-                    await ApplicationDbContextSeed.SeedSampleDataAsync(context);
-                    await ApplicationDbContextSeed.SeedSampleDriverLicenseCategoryAsync(context);
+                    //await ApplicationDbContextSeed.SeedSampleDataAsync(context);
+                    //await ApplicationDbContextSeed.SeedSampleDriverLicenseCategoryAsync(context);
                 }
                 catch (Exception ex)
                 {

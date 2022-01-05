@@ -9,7 +9,7 @@ namespace GovernmentSystem.Infrastructure.Files.Maps
         public CitizenRecordMap()
         {
             AutoMap(CultureInfo.InvariantCulture);
-            Map(m => m.Active).Convert(c => c.Active ? "Yes" : "No");
+            //Map(m => m.Active).Convert(c => c.Active ? true : false);
         }
     }
 }
