@@ -2,17 +2,17 @@
 {
     public class PassportsController : ApiControllerBase
     {
-        [HttpGet("passport")]
-        public async Task<IActionResult> GetPassportById([FromQuery] GetPassportByIdQuery query)
+        [HttpGet("passport/{id}")]
+        public async Task<IActionResult> GetPassportById(Guid id)
         {
-            var result = await Mediator.Send(query);
+            var result = await Mediator.Send(new GetPassportByIdQuery { Identifier = id });
             return Ok(result);
         }
 
         [HttpGet("passports")]
-        public async Task<IActionResult> GetPassports([FromQuery] GetPassportsQuery query)
+        public async Task<IActionResult> GetPassports()
         {
-            var result = await Mediator.Send(query);
+            var result = await Mediator.Send(new GetPassportsQuery { });
             return Ok(result);
         }
 
@@ -20,21 +20,21 @@
         public async Task<IActionResult> Create(CreatePassportCommand command)
         {
             var result = await Mediator.Send(command);
-            return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
+            return result.Successful == true ? Ok(result) : BadRequest(result);
         }
 
         [HttpPut("update")]
         public async Task<IActionResult> Update(UpdatePassportCommand command)
         {
             var result = await Mediator.Send(command);
-            return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
+            return result.Successful == true ? Ok(result) : BadRequest(result);
         }
 
         [HttpDelete("delete")]
         public async Task<IActionResult> Delete(DeletePassportCommand command)
         {
             var result = await Mediator.Send(command);
-            return result.Successful == true ? Ok(result) : BadRequest(result.Exception.InnerException.Message ?? result.Exception.Message);
+            return result.Successful == true ? Ok(result) : BadRequest(result);
         }
     }
 }

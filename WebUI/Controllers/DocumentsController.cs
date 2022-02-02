@@ -1,8 +1,6 @@
 ﻿namespace GovernmentSystem.WebUI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class DocumentsController : ControllerBase
+    public class DocumentsController : ApiControllerBase
     {
         private readonly IUploadDocument _uploadDocument;
 

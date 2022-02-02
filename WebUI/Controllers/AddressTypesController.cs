@@ -2,17 +2,17 @@
 {
     public class AddressTypesController : ApiControllerBase
     {
-        [HttpGet("address-type")]
-        public async Task<IActionResult> GetAddressTypeById([FromQuery] GetAddressTypeByIdQuery query)
+        [HttpGet("address-type/{id}")]
+        public async Task<IActionResult> GetAddressTypeById(Guid id)
         {
-            var result = await Mediator.Send(query);
+            var result = await Mediator.Send(new GetAddressTypeByIdQuery { Identifier = id });
             return Ok(result);
         }
 
         [HttpGet("address-types")]
-        public async Task<IActionResult> GetAddressTypes([FromQuery] GetAddressTypesQuery query)
+        public async Task<IActionResult> GetAddressTypes()
         {
-            var result = await Mediator.Send(query);
+            var result = await Mediator.Send(new GetAddressTypesQuery { });
             return Ok(result);
         }
     }
