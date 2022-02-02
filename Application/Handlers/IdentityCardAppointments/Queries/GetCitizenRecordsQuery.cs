@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.IdentityCardAppointments.Queries
 {
-    public class GetIdentityCardAppointmentsQuery : IRequest<List<IdentityCardAppointmentResponse>>
+    public class GetIdentityCardAppointmentsQuery : IRequest<Result<IdentityCardAppointmentResponse>>
     {
     }
 
-    public class GetIdentityCardAppointmentsQueryHandler : IRequestHandler<GetIdentityCardAppointmentsQuery, List<IdentityCardAppointmentResponse>>
+    public class GetIdentityCardAppointmentsQueryHandler : IRequestHandler<GetIdentityCardAppointmentsQuery, Result<IdentityCardAppointmentResponse>>
     {
         private readonly IIdentityCardAppointmentService _identityCardAppointmentService;
 
@@ -13,7 +13,7 @@
             _identityCardAppointmentService = identityCardAppointmentService;
         }
 
-        public Task<List<IdentityCardAppointmentResponse>> Handle(GetIdentityCardAppointmentsQuery request, CancellationToken cancellationToken)
+        public Task<Result<IdentityCardAppointmentResponse>> Handle(GetIdentityCardAppointmentsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the identity card appointments", ex);
+                return Task.FromResult(new Result<IdentityCardAppointmentResponse>
+                {
+                    Error = $"There was an error retrieving the identity card appointments. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

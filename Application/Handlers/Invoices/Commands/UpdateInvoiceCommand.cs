@@ -28,7 +28,7 @@
             }
             catch (Exception ex)
             {
-                return RequestResponse.Failure(ex);
+                return RequestResponse.Failure(ex.Message);
             }
         }
     }

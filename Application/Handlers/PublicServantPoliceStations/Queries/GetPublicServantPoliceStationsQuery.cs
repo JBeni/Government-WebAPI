@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.PublicServantPoliceStations.Queries
 {
-    public class GetPublicServantPoliceStationsQuery : IRequest<List<PublicServantPoliceStationResponse>>
+    public class GetPublicServantPoliceStationsQuery : IRequest<Result<PublicServantPoliceStationResponse>>
     {
     }
 
-    public class GetPublicServantPoliceStationsQueryHandler : IRequestHandler<GetPublicServantPoliceStationsQuery, List<PublicServantPoliceStationResponse>>
+    public class GetPublicServantPoliceStationsQueryHandler : IRequestHandler<GetPublicServantPoliceStationsQuery, Result<PublicServantPoliceStationResponse>>
     {
         private readonly IPublicServantPoliceStationService _publicServantPoliceService;
 
@@ -13,7 +13,7 @@
             _publicServantPoliceService = publicServantPoliceService;
         }
 
-        public Task<List<PublicServantPoliceStationResponse>> Handle(GetPublicServantPoliceStationsQuery request, CancellationToken cancellationToken)
+        public Task<Result<PublicServantPoliceStationResponse>> Handle(GetPublicServantPoliceStationsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the public servants of police", ex);
+                return Task.FromResult(new Result<PublicServantPoliceStationResponse>
+                {
+                    Error = $"There was an error retrieving the public servants of police. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

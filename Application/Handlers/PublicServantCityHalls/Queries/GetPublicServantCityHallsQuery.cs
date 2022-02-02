@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.PublicServantCityHalls.Queries
 {
-    public class GetPublicServantCityHallsQuery : IRequest<List<PublicServantCityHallResponse>>
+    public class GetPublicServantCityHallsQuery : IRequest<Result<PublicServantCityHallResponse>>
     {
     }
 
-    public class GetPublicServantCityHallsQueryHandler : IRequestHandler<GetPublicServantCityHallsQuery, List<PublicServantCityHallResponse>>
+    public class GetPublicServantCityHallsQueryHandler : IRequestHandler<GetPublicServantCityHallsQuery, Result<PublicServantCityHallResponse>>
     {
         private readonly IPublicServantCityHallService _publicServantCityHallService;
 
@@ -13,7 +13,7 @@
             _publicServantCityHallService = publicServantCityHallService;
         }
 
-        public Task<List<PublicServantCityHallResponse>> Handle(GetPublicServantCityHallsQuery request, CancellationToken cancellationToken)
+        public Task<Result<PublicServantCityHallResponse>> Handle(GetPublicServantCityHallsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the public servants of city hall", ex);
+                return Task.FromResult(new Result<PublicServantCityHallResponse>
+                {
+                    Error = $"There was an error retrieving the public servants of city hall. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Addresses.Queries
 {
-    public class GetAddressesQuery : IRequest<List<AddressResponse>>
+    public class GetAddressesQuery : IRequest<Result<AddressResponse>>
     {
     }
 
-    public class GetAddressesQueryHandler : IRequestHandler<GetAddressesQuery, List<AddressResponse>>
+    public class GetAddressesQueryHandler : IRequestHandler<GetAddressesQuery, Result<AddressResponse>>
     {
         private readonly IAddressService _addressService;
 
@@ -13,7 +13,7 @@
             _addressService = addressService;
         }
 
-        public Task<List<AddressResponse>> Handle(GetAddressesQuery request, CancellationToken cancellationToken)
+        public Task<Result<AddressResponse>> Handle(GetAddressesQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the addresses", ex);
+                return Task.FromResult(new Result<AddressResponse>
+                {
+                    Error = $"There was an error retrieving the addresses. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

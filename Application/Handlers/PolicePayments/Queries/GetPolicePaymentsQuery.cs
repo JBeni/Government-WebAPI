@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.PolicePayments.Queries
 {
-    public class GetPolicePaymentsQuery : IRequest<List<PolicePaymentResponse>>
+    public class GetPolicePaymentsQuery : IRequest<Result<PolicePaymentResponse>>
     {
     }
 
-    public class GetPolicePaymentsQueryHandler : IRequestHandler<GetPolicePaymentsQuery, List<PolicePaymentResponse>>
+    public class GetPolicePaymentsQueryHandler : IRequestHandler<GetPolicePaymentsQuery, Result<PolicePaymentResponse>>
     {
         private readonly IPolicePaymentService _policePaymentService;
 
@@ -13,7 +13,7 @@
             _policePaymentService = policePaymentService;
         }
 
-        public Task<List<PolicePaymentResponse>> Handle(GetPolicePaymentsQuery request, CancellationToken cancellationToken)
+        public Task<Result<PolicePaymentResponse>> Handle(GetPolicePaymentsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the police payments", ex);
+                return Task.FromResult(new Result<PolicePaymentResponse>
+                {
+                    Error = $"There was an error retrieving the police payments. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

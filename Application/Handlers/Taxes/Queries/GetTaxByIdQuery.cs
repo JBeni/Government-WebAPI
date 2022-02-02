@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Taxes.Queries
 {
-    public class GetTaxByIdQuery : IRequest<TaxResponse>
+    public class GetTaxByIdQuery : IRequest<Result<TaxResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetTaxByIdQueryHandler : IRequestHandler<GetTaxByIdQuery, TaxResponse>
+    public class GetTaxByIdQueryHandler : IRequestHandler<GetTaxByIdQuery, Result<TaxResponse>>
     {
         private readonly ITaxService _taxService;
 
@@ -14,7 +14,7 @@
             _taxService = taxService;
         }
 
-        public Task<TaxResponse> Handle(GetTaxByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<TaxResponse>> Handle(GetTaxByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {

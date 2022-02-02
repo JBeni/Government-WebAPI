@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.MedicalAppointments.Queries
 {
-    public class GetMedicalAppointmentsQuery : IRequest<List<MedicalAppointmentResponse>>
+    public class GetMedicalAppointmentsQuery : IRequest<Result<MedicalAppointmentResponse>>
     {
     }
 
-    public class GetMedicalAppointmentsQueryHandler : IRequestHandler<GetMedicalAppointmentsQuery, List<MedicalAppointmentResponse>>
+    public class GetMedicalAppointmentsQueryHandler : IRequestHandler<GetMedicalAppointmentsQuery, Result<MedicalAppointmentResponse>>
     {
         private readonly IMedicalAppointmentService _medicalAppointmentService;
 
@@ -13,7 +13,7 @@
             _medicalAppointmentService = medicalAppointmentService;
         }
 
-        public Task<List<MedicalAppointmentResponse>> Handle(GetMedicalAppointmentsQuery request, CancellationToken cancellationToken)
+        public Task<Result<MedicalAppointmentResponse>> Handle(GetMedicalAppointmentsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the medical appointments", ex);
+                return Task.FromResult(new Result<MedicalAppointmentResponse>
+                {
+                    Error = $"There was an error retrieving the medical appointments. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

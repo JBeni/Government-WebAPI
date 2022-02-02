@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.PaymentHistories.Queries
 {
-    public class GetPaymentHistoryByIdQuery : IRequest<PaymentHistoryResponse>
+    public class GetPaymentHistoryByIdQuery : IRequest<Result<PaymentHistoryResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetPaymentHistoryByIdQueryHandler : IRequestHandler<GetPaymentHistoryByIdQuery, PaymentHistoryResponse>
+    public class GetPaymentHistoryByIdQueryHandler : IRequestHandler<GetPaymentHistoryByIdQuery, Result<PaymentHistoryResponse>>
     {
         private readonly IPaymentHistoryService _paymentHistoryService;
 
@@ -14,7 +14,7 @@
             _paymentHistoryService = paymentHistoryService;
         }
 
-        public Task<PaymentHistoryResponse> Handle(GetPaymentHistoryByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<PaymentHistoryResponse>> Handle(GetPaymentHistoryByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the payment history by Id", ex);
+                return Task.FromResult(new Result<PaymentHistoryResponse>
+                {
+                    Error = $"There was an error retrieving the payment history by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

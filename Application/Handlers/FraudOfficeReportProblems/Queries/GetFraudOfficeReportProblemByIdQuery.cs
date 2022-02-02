@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.FraudOfficeReportProblems.Queries
 {
-    public class GetFraudOfficeReportProblemByIdQuery : IRequest<FraudOfficeReportProblemResponse>
+    public class GetFraudOfficeReportProblemByIdQuery : IRequest<Result<FraudOfficeReportProblemResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetFraudOfficeReportProblemByIdQueryHandler : IRequestHandler<GetFraudOfficeReportProblemByIdQuery, FraudOfficeReportProblemResponse>
+    public class GetFraudOfficeReportProblemByIdQueryHandler : IRequestHandler<GetFraudOfficeReportProblemByIdQuery, Result<FraudOfficeReportProblemResponse>>
     {
         private readonly IFraudOfficeReportProblemService _fraudOfficeReportProblemService;
 
@@ -14,7 +14,7 @@
             _fraudOfficeReportProblemService = fraudOfficeReportProblemService;
         }
 
-        public Task<FraudOfficeReportProblemResponse> Handle(GetFraudOfficeReportProblemByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<FraudOfficeReportProblemResponse>> Handle(GetFraudOfficeReportProblemByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the fraud office report problem by Id", ex);
+                return Task.FromResult(new Result<FraudOfficeReportProblemResponse>
+                {
+                    Error = $"There was an error retrieving the fraud office report problem by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.PublicServantSeriousFraudOffices.Queries
 {
-    public class GetPublicServantSeriousFraudOfficeByIdQuery : IRequest<PublicServantSeriousFraudOfficeResponse>
+    public class GetPublicServantSeriousFraudOfficeByIdQuery : IRequest<Result<PublicServantSeriousFraudOfficeResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetPublicServantSeriousFraudOfficeQueryHandler : IRequestHandler<GetPublicServantSeriousFraudOfficeByIdQuery, PublicServantSeriousFraudOfficeResponse>
+    public class GetPublicServantSeriousFraudOfficeQueryHandler : IRequestHandler<GetPublicServantSeriousFraudOfficeByIdQuery, Result<PublicServantSeriousFraudOfficeResponse>>
     {
         private readonly IPublicServantSeriousFraudOfficeservice _publicServantSeriousFraudOfficesService;
 
@@ -14,7 +14,7 @@
             _publicServantSeriousFraudOfficesService = publicServantSeriousFraudOfficeService;
         }
 
-        public Task<PublicServantSeriousFraudOfficeResponse> Handle(GetPublicServantSeriousFraudOfficeByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<PublicServantSeriousFraudOfficeResponse>> Handle(GetPublicServantSeriousFraudOfficeByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the public servant of serious fraud office by Id", ex);
+                return Task.FromResult(new Result<PublicServantSeriousFraudOfficeResponse>
+                {
+                    Error = $"There was an error retrieving the public servant of serious fraud office by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

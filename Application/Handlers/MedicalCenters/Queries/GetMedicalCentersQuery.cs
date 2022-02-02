@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.MedicalCenters.Queries
 {
-    public class GetMedicalCentersQuery : IRequest<List<MedicalCenterResponse>>
+    public class GetMedicalCentersQuery : IRequest<Result<MedicalCenterResponse>>
     {
     }
 
-    public class GetMedicalCentersQueryHandler : IRequestHandler<GetMedicalCentersQuery, List<MedicalCenterResponse>>
+    public class GetMedicalCentersQueryHandler : IRequestHandler<GetMedicalCentersQuery, Result<MedicalCenterResponse>>
     {
         private readonly IMedicalCenterService _medicalCenterService;
 
@@ -13,7 +13,7 @@
             _medicalCenterService = medicalCenterService;
         }
 
-        public Task<List<MedicalCenterResponse>> Handle(GetMedicalCentersQuery request, CancellationToken cancellationToken)
+        public Task<Result<MedicalCenterResponse>> Handle(GetMedicalCentersQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the medical centers", ex);
+                return Task.FromResult(new Result<MedicalCenterResponse>
+                {
+                    Error = $"There was an error retrieving the medical centers. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

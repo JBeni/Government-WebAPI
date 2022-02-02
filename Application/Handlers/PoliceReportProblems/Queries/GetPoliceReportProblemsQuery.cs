@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.PoliceReportProblems.Queries
 {
-    public class GetPoliceReportProblemsQuery : IRequest<List<PoliceReportProblemResponse>>
+    public class GetPoliceReportProblemsQuery : IRequest<Result<PoliceReportProblemResponse>>
     {
     }
 
-    public class GetPoliceReportProblemsQueryHandler : IRequestHandler<GetPoliceReportProblemsQuery, List<PoliceReportProblemResponse>>
+    public class GetPoliceReportProblemsQueryHandler : IRequestHandler<GetPoliceReportProblemsQuery, Result<PoliceReportProblemResponse>>
     {
         private readonly IPoliceReportProblemService _policeReportProblemService;
 
@@ -13,7 +13,7 @@
             _policeReportProblemService = policeReportProblemService;
         }
 
-        public Task<List<PoliceReportProblemResponse>> Handle(GetPoliceReportProblemsQuery request, CancellationToken cancellationToken)
+        public Task<Result<PoliceReportProblemResponse>> Handle(GetPoliceReportProblemsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the police report problems", ex);
+                return Task.FromResult(new Result<PoliceReportProblemResponse>
+                {
+                    Error = $"There was an error retrieving the police report problems. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

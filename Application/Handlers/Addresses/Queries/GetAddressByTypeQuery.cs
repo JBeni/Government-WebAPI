@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Addresses.Queries
 {
-    public class GetAddressByTypeQuery : IRequest<List<AddressResponse>>
+    public class GetAddressByTypeQuery : IRequest<Result<AddressResponse>>
     {
         public string Type { get; set; }
     }
 
-    public class GetAddressByTypeQueryHandler : IRequestHandler<GetAddressByTypeQuery, List<AddressResponse>>
+    public class GetAddressByTypeQueryHandler : IRequestHandler<GetAddressByTypeQuery, Result<AddressResponse>>
     {
         private readonly IAddressService _addressService;
 
@@ -14,7 +14,7 @@
             _addressService = addressService;
         }
 
-        public Task<List<AddressResponse>> Handle(GetAddressByTypeQuery request, CancellationToken cancellationToken)
+        public Task<Result<AddressResponse>> Handle(GetAddressByTypeQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the addresses by Type", ex);
+                return Task.FromResult(new Result<AddressResponse>
+                {
+                    Error = $"There was an error retrieving the addresses by Type. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

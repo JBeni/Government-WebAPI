@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Addresses.Queries
 {
-    public class GetAddressByIdQuery : IRequest<AddressResponse>
+    public class GetAddressByIdQuery : IRequest<Result<AddressResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetAddressByIdQueryHandler : IRequestHandler<GetAddressByIdQuery, AddressResponse>
+    public class GetAddressByIdQueryHandler : IRequestHandler<GetAddressByIdQuery, Result<AddressResponse>>
     {
         private readonly IAddressService _addressService;
 
@@ -14,7 +14,7 @@
             _addressService = addressService;
         }
 
-        public Task<AddressResponse> Handle(GetAddressByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<AddressResponse>> Handle(GetAddressByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the address by Id", ex);
+                return Task.FromResult(new Result<AddressResponse>
+                {
+                    Error = $"There was an error retrieving the address by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

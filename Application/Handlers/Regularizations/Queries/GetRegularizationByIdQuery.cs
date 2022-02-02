@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Regularizations.Queries
 {
-    public class GetRegularizationByIdQuery : IRequest<RegularizationResponse>
+    public class GetRegularizationByIdQuery : IRequest<Result<RegularizationResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetRegularizationByIdQueryHandler : IRequestHandler<GetRegularizationByIdQuery, RegularizationResponse>
+    public class GetRegularizationByIdQueryHandler : IRequestHandler<GetRegularizationByIdQuery, Result<RegularizationResponse>>
     {
         private readonly IRegularizationService _regularizationService;
 
@@ -14,7 +14,7 @@
             _regularizationService = regularizationService;
         }
 
-        public Task<RegularizationResponse> Handle(GetRegularizationByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<RegularizationResponse>> Handle(GetRegularizationByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the regularization by Id", ex);
+                return Task.FromResult(new Result<RegularizationResponse>
+                {
+                    Error = $"There was an error retrieving the regularization by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

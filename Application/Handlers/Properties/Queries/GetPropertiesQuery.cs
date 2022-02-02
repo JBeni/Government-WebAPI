@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Properties.Queries
 {
-    public class GetPropertiesQuery : IRequest<List<PropertyResponse>>
+    public class GetPropertiesQuery : IRequest<Result<PropertyResponse>>
     {
     }
 
-    public class GetPropertiesQueryHandler : IRequestHandler<GetPropertiesQuery, List<PropertyResponse>>
+    public class GetPropertiesQueryHandler : IRequestHandler<GetPropertiesQuery, Result<PropertyResponse>>
     {
         private readonly IPropertyService _propertyService;
 
@@ -13,7 +13,7 @@
             _propertyService = propertyService;
         }
 
-        public Task<List<PropertyResponse>> Handle(GetPropertiesQuery request, CancellationToken cancellationToken)
+        public Task<Result<PropertyResponse>> Handle(GetPropertiesQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the properties", ex);
+                return Task.FromResult(new Result<PropertyResponse>
+                {
+                    Error = $"There was an error retrieving the properties. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

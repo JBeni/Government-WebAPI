@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.MedicalCenterProcedures.Queries
 {
-    public class GetMedicalCenterProcedureByIdQuery : IRequest<MedicalCenterProcedureResponse>
+    public class GetMedicalCenterProcedureByIdQuery : IRequest<Result<MedicalCenterProcedureResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetMedicalCenterProcedureByIdQueryHandler : IRequestHandler<GetMedicalCenterProcedureByIdQuery, MedicalCenterProcedureResponse>
+    public class GetMedicalCenterProcedureByIdQueryHandler : IRequestHandler<GetMedicalCenterProcedureByIdQuery, Result<MedicalCenterProcedureResponse>>
     {
         private readonly IMedicalCenterProcedureService _medicalCenterProcedureService;
 
@@ -14,7 +14,7 @@
             _medicalCenterProcedureService = medicalCenterProcedureService;
         }
 
-        public Task<MedicalCenterProcedureResponse> Handle(GetMedicalCenterProcedureByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<MedicalCenterProcedureResponse>> Handle(GetMedicalCenterProcedureByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the medical center procedure by Id", ex);
+                return Task.FromResult(new Result<MedicalCenterProcedureResponse>
+                {
+                    Error = $"There was an error retrieving the medical center procedure by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

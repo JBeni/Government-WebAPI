@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Taxes.Queries
 {
-    public class GetTaxesQuery : IRequest<List<TaxResponse>>
+    public class GetTaxesQuery : IRequest<Result<TaxResponse>>
     {
     }
 
-    public class GetTaxesQueryHandler : IRequestHandler<GetTaxesQuery, List<TaxResponse>>
+    public class GetTaxesQueryHandler : IRequestHandler<GetTaxesQuery, Result<TaxResponse>>
     {
         private readonly ITaxService _taxService;
 
@@ -13,7 +13,7 @@
             _taxService = taxService;
         }
 
-        public Task<List<TaxResponse>> Handle(GetTaxesQuery request, CancellationToken cancellationToken)
+        public Task<Result<TaxResponse>> Handle(GetTaxesQuery request, CancellationToken cancellationToken)
         {
             try
             {

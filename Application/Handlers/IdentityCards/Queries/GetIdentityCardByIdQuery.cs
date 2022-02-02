@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.IdentityCards.Queries
 {
-    public class GetIdentityCardByIdQuery : IRequest<IdentityCardResponse>
+    public class GetIdentityCardByIdQuery : IRequest<Result<IdentityCardResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetIdentityCardByIdQueryHandler : IRequestHandler<GetIdentityCardByIdQuery, IdentityCardResponse>
+    public class GetIdentityCardByIdQueryHandler : IRequestHandler<GetIdentityCardByIdQuery, Result<IdentityCardResponse>>
     {
         private readonly IIdentityCardService _identityCardService;
 
@@ -14,7 +14,7 @@
             _identityCardService = identityCardService;
         }
 
-        public Task<IdentityCardResponse> Handle(GetIdentityCardByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<IdentityCardResponse>> Handle(GetIdentityCardByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the identity card by Id", ex);
+                return Task.FromResult(new Result<IdentityCardResponse>
+                {
+                    Error = $"There was an error retrieving the identity card by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

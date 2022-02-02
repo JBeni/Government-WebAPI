@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Companies.Queries
 {
-    public class GetCompanyByIdQuery : IRequest<CompanyResponse>
+    public class GetCompanyByIdQuery : IRequest<Result<CompanyResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetCompanyByIdQueryHandler : IRequestHandler<GetCompanyByIdQuery, CompanyResponse>
+    public class GetCompanyByIdQueryHandler : IRequestHandler<GetCompanyByIdQuery, Result<CompanyResponse>>
     {
         private readonly ICompanyService _companyService;
 
@@ -14,7 +14,7 @@
             _companyService = companyService;
         }
 
-        public Task<CompanyResponse> Handle(GetCompanyByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<CompanyResponse>> Handle(GetCompanyByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the company by Id", ex);
+                return Task.FromResult(new Result<CompanyResponse>
+                {
+                    Error = $"There was an error retrieving the company by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

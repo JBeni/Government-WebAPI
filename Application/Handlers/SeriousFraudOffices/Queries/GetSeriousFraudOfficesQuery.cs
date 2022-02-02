@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.SeriousFraudOffices.Queries
 {
-    public class GetSeriousFraudOfficesQuery : IRequest<List<SeriousFraudOfficeResponse>>
+    public class GetSeriousFraudOfficesQuery : IRequest<Result<SeriousFraudOfficeResponse>>
     {
     }
 
-    public class GetSeriousFraudOfficesQueryHandler : IRequestHandler<GetSeriousFraudOfficesQuery, List<SeriousFraudOfficeResponse>>
+    public class GetSeriousFraudOfficesQueryHandler : IRequestHandler<GetSeriousFraudOfficesQuery, Result<SeriousFraudOfficeResponse>>
     {
         private readonly ISeriousFraudOfficeService _seriousFraudOfficeService;
 
@@ -13,7 +13,7 @@
             _seriousFraudOfficeService = seriousFraudOfficeService;
         }
 
-        public Task<List<SeriousFraudOfficeResponse>> Handle(GetSeriousFraudOfficesQuery request, CancellationToken cancellationToken)
+        public Task<Result<SeriousFraudOfficeResponse>> Handle(GetSeriousFraudOfficesQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the serious fraud offices", ex);
+                return Task.FromResult(new Result<SeriousFraudOfficeResponse>
+                {
+                    Error = $"There was an error retrieving the serious fraud offices. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

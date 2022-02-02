@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.DriverLicenses.Queries
 {
-    public class GetDriverLicensesQuery : IRequest<List<DriverLicenseResponse>>
+    public class GetDriverLicensesQuery : IRequest<Result<DriverLicenseResponse>>
     {
     }
 
-    public class GetDriverLicensesQueryHandler : IRequestHandler<GetDriverLicensesQuery, List<DriverLicenseResponse>>
+    public class GetDriverLicensesQueryHandler : IRequestHandler<GetDriverLicensesQuery, Result<DriverLicenseResponse>>
     {
         private readonly IDriverLicenseService _driverLicenseService;
 
@@ -13,7 +13,7 @@
             _driverLicenseService = driverLicenseService;
         }
 
-        public Task<List<DriverLicenseResponse>> Handle(GetDriverLicensesQuery request, CancellationToken cancellationToken)
+        public Task<Result<DriverLicenseResponse>> Handle(GetDriverLicensesQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the driver licenses", ex);
+                return Task.FromResult(new Result<DriverLicenseResponse>
+                {
+                    Error = $"There was an error retrieving the driver licenses. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

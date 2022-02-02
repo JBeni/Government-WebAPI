@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Passports.Queries
 {
-    public class GetPassportsQuery : IRequest<List<PassportResponse>>
+    public class GetPassportsQuery : IRequest<Result<PassportResponse>>
     {
     }
 
-    public class GetPassportsQueryHandler : IRequestHandler<GetPassportsQuery, List<PassportResponse>>
+    public class GetPassportsQueryHandler : IRequestHandler<GetPassportsQuery, Result<PassportResponse>>
     {
         private readonly IPassportService _passportService;
 
@@ -13,7 +13,7 @@
             _passportService = passportService;
         }
 
-        public Task<List<PassportResponse>> Handle(GetPassportsQuery request, CancellationToken cancellationToken)
+        public Task<Result<PassportResponse>> Handle(GetPassportsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the passports", ex);
+                return Task.FromResult(new Result<PassportResponse>
+                {
+                    Error = $"There was an error retrieving the passports. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

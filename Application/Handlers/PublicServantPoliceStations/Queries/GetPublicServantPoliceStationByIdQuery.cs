@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.PublicServantPoliceStations.Queries
 {
-    public class GetPublicServantPoliceStationByIdQuery : IRequest<PublicServantPoliceStationResponse>
+    public class GetPublicServantPoliceStationByIdQuery : IRequest<Result<PublicServantPoliceStationResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetPublicServantPoliceStationByIdQueryHandler : IRequestHandler<GetPublicServantPoliceStationByIdQuery, PublicServantPoliceStationResponse>
+    public class GetPublicServantPoliceStationByIdQueryHandler : IRequestHandler<GetPublicServantPoliceStationByIdQuery, Result<PublicServantPoliceStationResponse>>
     {
         private readonly IPublicServantPoliceStationService _publicServantPoliceService;
 
@@ -14,7 +14,7 @@
             _publicServantPoliceService = publicServantPoliceService;
         }
 
-        public Task<PublicServantPoliceStationResponse> Handle(GetPublicServantPoliceStationByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<PublicServantPoliceStationResponse>> Handle(GetPublicServantPoliceStationByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the public servant of police by Id", ex);
+                return Task.FromResult(new Result<PublicServantPoliceStationResponse>
+                {
+                    Error = $"There was an error retrieving the public servant of police by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

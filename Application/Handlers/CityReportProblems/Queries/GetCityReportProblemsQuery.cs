@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.CityReportProblems.Queries
 {
-    public class GetCityReportProblemsQuery : IRequest<List<CityReportProblemResponse>>
+    public class GetCityReportProblemsQuery : IRequest<Result<CityReportProblemResponse>>
     {
     }
 
-    public class GetCityReportProblemsQueryHandler : IRequestHandler<GetCityReportProblemsQuery, List<CityReportProblemResponse>>
+    public class GetCityReportProblemsQueryHandler : IRequestHandler<GetCityReportProblemsQuery, Result<CityReportProblemResponse>>
     {
         private readonly ICityReportProblemService _cityReportProblemService;
 
@@ -13,7 +13,7 @@
             _cityReportProblemService = cityReportProblemService;
         }
 
-        public Task<List<CityReportProblemResponse>> Handle(GetCityReportProblemsQuery request, CancellationToken cancellationToken)
+        public Task<Result<CityReportProblemResponse>> Handle(GetCityReportProblemsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the report problems", ex);
+                return Task.FromResult(new Result<CityReportProblemResponse>
+                {
+                    Error = $"There was an error retrieving the report problems. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

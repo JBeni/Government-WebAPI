@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.MedicalPayments.Queries
 {
-    public class GetMedicalPaymentsQuery : IRequest<List<MedicalPaymentResponse>>
+    public class GetMedicalPaymentsQuery : IRequest<Result<MedicalPaymentResponse>>
     {
     }
 
-    public class GetMedicalPaymentsQueryHandler : IRequestHandler<GetMedicalPaymentsQuery, List<MedicalPaymentResponse>>
+    public class GetMedicalPaymentsQueryHandler : IRequestHandler<GetMedicalPaymentsQuery, Result<MedicalPaymentResponse>>
     {
         private readonly IMedicalPaymentService _medicalPaymentyService;
 
@@ -13,7 +13,7 @@
             _medicalPaymentyService = medicalPaymentyService;
         }
 
-        public Task<List<MedicalPaymentResponse>> Handle(GetMedicalPaymentsQuery request, CancellationToken cancellationToken)
+        public Task<Result<MedicalPaymentResponse>> Handle(GetMedicalPaymentsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the medical payments", ex);
+                return Task.FromResult(new Result<MedicalPaymentResponse>
+                {
+                    Error = $"There was an error retrieving the medical payments. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

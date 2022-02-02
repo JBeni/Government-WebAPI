@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.MedicalPayments.Queries
 {
-    public class GetMedicalPaymentByIdQuery : IRequest<MedicalPaymentResponse>
+    public class GetMedicalPaymentByIdQuery : IRequest<Result<MedicalPaymentResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetMedicalPaymentByIdQueryHandler : IRequestHandler<GetMedicalPaymentByIdQuery, MedicalPaymentResponse>
+    public class GetMedicalPaymentByIdQueryHandler : IRequestHandler<GetMedicalPaymentByIdQuery, Result<MedicalPaymentResponse>>
     {
         private readonly IMedicalPaymentService _medicalPaymentyService;
 
@@ -14,7 +14,7 @@
             _medicalPaymentyService = medicalPaymentyService;
         }
 
-        public Task<MedicalPaymentResponse> Handle(GetMedicalPaymentByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<MedicalPaymentResponse>> Handle(GetMedicalPaymentByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the medical payment by Id", ex);
+                return Task.FromResult(new Result<MedicalPaymentResponse>
+                {
+                    Error = $"There was an error retrieving the medical payment by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

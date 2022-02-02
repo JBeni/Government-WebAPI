@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Citizens.Queries
 {
-    public class GetCitizensQuery : IRequest<List<CitizenResponse>>
+    public class GetCitizensQuery : IRequest<Result<CitizenResponse>>
     {
     }
 
-    public class GetCitizensQueryHandler : IRequestHandler<GetCitizensQuery, List<CitizenResponse>>
+    public class GetCitizensQueryHandler : IRequestHandler<GetCitizensQuery, Result<CitizenResponse>>
     {
         private readonly ICitizenService _citizenService;
 
@@ -13,7 +13,7 @@
             _citizenService = citizenService;
         }
 
-        public Task<List<CitizenResponse>> Handle(GetCitizensQuery request, CancellationToken cancellationToken)
+        public Task<Result<CitizenResponse>> Handle(GetCitizensQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the citizens", ex);
+                return Task.FromResult(new Result<CitizenResponse>
+                {
+                    Error = $"There was an error retrieving the citizens. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

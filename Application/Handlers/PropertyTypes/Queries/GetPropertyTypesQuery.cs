@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.PropertyTypes.Queries
 {
-    public class GetPropertyTypesQuery : IRequest<List<PropertyTypeResponse>>
+    public class GetPropertyTypesQuery : IRequest<Result<PropertyTypeResponse>>
     {
     }
 
-    public class GetPropertyTypesQueryHandler : IRequestHandler<GetPropertyTypesQuery, List<PropertyTypeResponse>>
+    public class GetPropertyTypesQueryHandler : IRequestHandler<GetPropertyTypesQuery, Result<PropertyTypeResponse>>
     {
         private readonly IPropertyTypeService _propertyTypeService;
 
@@ -13,7 +13,7 @@
             _propertyTypeService = propertyTypeService;
         }
 
-        public Task<List<PropertyTypeResponse>> Handle(GetPropertyTypesQuery request, CancellationToken cancellationToken)
+        public Task<Result<PropertyTypeResponse>> Handle(GetPropertyTypesQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the property types", ex);
+                return Task.FromResult(new Result<PropertyTypeResponse>
+                {
+                    Error = $"There was an error retrieving the property types. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

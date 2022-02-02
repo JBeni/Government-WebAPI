@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.CityPayments.Queries
 {
-    public class GetCityPaymentByIdQuery : IRequest<CityPaymentResponse>
+    public class GetCityPaymentByIdQuery : IRequest<Result<CityPaymentResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetCityPaymentByIdQueryHandler : IRequestHandler<GetCityPaymentByIdQuery, CityPaymentResponse>
+    public class GetCityPaymentByIdQueryHandler : IRequestHandler<GetCityPaymentByIdQuery, Result<CityPaymentResponse>>
     {
         private readonly ICityPaymentService _cityPaymentService;
 
@@ -14,7 +14,7 @@
             _cityPaymentService = cityPaymentService;
         }
 
-        public Task<CityPaymentResponse> Handle(GetCityPaymentByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<CityPaymentResponse>> Handle(GetCityPaymentByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the city payment by Id", ex);
+                return Task.FromResult(new Result<CityPaymentResponse>
+                {
+                    Error = $"There was an error retrieving the city payment by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

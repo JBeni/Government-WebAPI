@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Properties.Queries
 {
-    public class GetPropertyByIdQuery : IRequest<PropertyResponse>
+    public class GetPropertyByIdQuery : IRequest<Result<PropertyResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetPropertyByIdQueryHandler : IRequestHandler<GetPropertyByIdQuery, PropertyResponse>
+    public class GetPropertyByIdQueryHandler : IRequestHandler<GetPropertyByIdQuery, Result<PropertyResponse>>
     {
         private readonly IPropertyService _propertyService;
 
@@ -14,7 +14,7 @@
             _propertyService = propertyService;
         }
 
-        public Task<PropertyResponse> Handle(GetPropertyByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<PropertyResponse>> Handle(GetPropertyByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the property by Id", ex);
+                return Task.FromResult(new Result<PropertyResponse>
+                {
+                    Error = $"There was an error retrieving the property by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

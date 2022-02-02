@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.BirthCertificates.Queries
 {
-    public class GetBirthCertificateByIdQuery : IRequest<BirthCertificateResponse>
+    public class GetBirthCertificateByIdQuery : IRequest<Result<BirthCertificateResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetBirthCertificateByIdQueryHandler : IRequestHandler<GetBirthCertificateByIdQuery, BirthCertificateResponse>
+    public class GetBirthCertificateByIdQueryHandler : IRequestHandler<GetBirthCertificateByIdQuery, Result<BirthCertificateResponse>>
     {
         private readonly IBirthCertificateService _birthCertificateService;
 
@@ -14,7 +14,7 @@
             _birthCertificateService = birthCertificateService;
         }
 
-        public Task<BirthCertificateResponse> Handle(GetBirthCertificateByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<BirthCertificateResponse>> Handle(GetBirthCertificateByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the birth certificate by Id", ex);
+                return Task.FromResult(new Result<BirthCertificateResponse>
+                {
+                    Error = $"There was an error retrieving the birth certificate by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

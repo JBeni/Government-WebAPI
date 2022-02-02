@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.CitizenMedicalHistories.Queries
 {
-    public class GetCitizenMedicalHistoriesQuery : IRequest<List<CitizenMedicalHistoryResponse>>
+    public class GetCitizenMedicalHistoriesQuery : IRequest<Result<CitizenMedicalHistoryResponse>>
     {
     }
 
-    public class GetCitizenMedicalHistoriesQueryHandler : IRequestHandler<GetCitizenMedicalHistoriesQuery, List<CitizenMedicalHistoryResponse>>
+    public class GetCitizenMedicalHistoriesQueryHandler : IRequestHandler<GetCitizenMedicalHistoriesQuery, Result<CitizenMedicalHistoryResponse>>
     {
         private readonly ICitizenMedicalHistoryService _citizenMedicalHistoryService;
 
@@ -13,7 +13,7 @@
             _citizenMedicalHistoryService = citizenMedicalHistoryService;
         }
 
-        public Task<List<CitizenMedicalHistoryResponse>> Handle(GetCitizenMedicalHistoriesQuery request, CancellationToken cancellationToken)
+        public Task<Result<CitizenMedicalHistoryResponse>> Handle(GetCitizenMedicalHistoriesQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the citizen medical histories", ex);
+                return Task.FromResult(new Result<CitizenMedicalHistoryResponse>
+                {
+                    Error = $"There was an error retrieving the citizen medical histories. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

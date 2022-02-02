@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Invoices.Queries
 {
-    public class GetInvoiceByIdQuery : IRequest<InvoiceResponse>
+    public class GetInvoiceByIdQuery : IRequest<Result<InvoiceResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetInvoiceByIdQueryHandler : IRequestHandler<GetInvoiceByIdQuery, InvoiceResponse>
+    public class GetInvoiceByIdQueryHandler : IRequestHandler<GetInvoiceByIdQuery, Result<InvoiceResponse>>
     {
         private readonly IInvoiceService _invoiceService;
 
@@ -14,7 +14,7 @@
             _invoiceService = invoiceService;
         }
 
-        public Task<InvoiceResponse> Handle(GetInvoiceByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<InvoiceResponse>> Handle(GetInvoiceByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the invoice by Id", ex);
+                return Task.FromResult(new Result<InvoiceResponse>
+                {
+                    Error = $"There was an error retrieving the invoice by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.CityHalls.Queries
 {
-    public class GetCityHallByIdQuery : IRequest<CityHallResponse>
+    public class GetCityHallByIdQuery : IRequest<Result<CityHallResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetCityHallByIdQueryHandler : IRequestHandler<GetCityHallByIdQuery, CityHallResponse>
+    public class GetCityHallByIdQueryHandler : IRequestHandler<GetCityHallByIdQuery, Result<CityHallResponse>>
     {
         private readonly ICityHallService _cityHallService;
 
@@ -14,7 +14,7 @@
             _cityHallService = cityHallService;
         }
 
-        public Task<CityHallResponse> Handle(GetCityHallByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<CityHallResponse>> Handle(GetCityHallByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the city hall by Id", ex);
+                return Task.FromResult(new Result<CityHallResponse>
+                {
+                    Error = $"There was an error retrieving the city hall by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

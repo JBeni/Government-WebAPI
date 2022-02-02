@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Passports.Queries
 {
-    public class GetPassportByIdQuery : IRequest<PassportResponse>
+    public class GetPassportByIdQuery : IRequest<Result<PassportResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetPassportByIdQueryHandler : IRequestHandler<GetPassportByIdQuery, PassportResponse>
+    public class GetPassportByIdQueryHandler : IRequestHandler<GetPassportByIdQuery, Result<PassportResponse>>
     {
         private readonly IPassportService _passportService;
 
@@ -14,7 +14,7 @@
             _passportService = passportService;
         }
 
-        public Task<PassportResponse> Handle(GetPassportByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<PassportResponse>> Handle(GetPassportByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the passport by Id", ex);
+                return Task.FromResult(new Result<PassportResponse>
+                {
+                    Error = $"There was an error retrieving the passport by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

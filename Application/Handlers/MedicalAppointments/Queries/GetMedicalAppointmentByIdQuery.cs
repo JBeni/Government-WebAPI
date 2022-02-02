@@ -1,11 +1,11 @@
 ﻿namespace GovernmentSystem.Application.Handlers.MedicalAppointments.Queries
 {
-    public class GetMedicalAppointmentByIdQuery : IRequest<MedicalAppointmentResponse>
+    public class GetMedicalAppointmentByIdQuery : IRequest<Result<MedicalAppointmentResponse>>
     {
         public Guid Identifier { get; set; }
     }
 
-    public class GetMedicalAppointmentByIdQueryHandler : IRequestHandler<GetMedicalAppointmentByIdQuery, MedicalAppointmentResponse>
+    public class GetMedicalAppointmentByIdQueryHandler : IRequestHandler<GetMedicalAppointmentByIdQuery, Result<MedicalAppointmentResponse>>
     {
         private readonly IMedicalAppointmentService _medicalAppointmentService;
 
@@ -14,7 +14,7 @@
             _medicalAppointmentService = medicalAppointmentService;
         }
 
-        public Task<MedicalAppointmentResponse> Handle(GetMedicalAppointmentByIdQuery request, CancellationToken cancellationToken)
+        public Task<Result<MedicalAppointmentResponse>> Handle(GetMedicalAppointmentByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the medical appointment by Id", ex);
+                return Task.FromResult(new Result<MedicalAppointmentResponse>
+                {
+                    Error = $"There was an error retrieving the medical appointment by Id. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

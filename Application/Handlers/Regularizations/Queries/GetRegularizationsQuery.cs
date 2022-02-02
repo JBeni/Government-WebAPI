@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Regularizations.Queries
 {
-    public class GetRegularizationsQuery : IRequest<List<RegularizationResponse>>
+    public class GetRegularizationsQuery : IRequest<Result<RegularizationResponse>>
     {
     }
 
-    public class GetRegularizationsQueryHandler : IRequestHandler<GetRegularizationsQuery, List<RegularizationResponse>>
+    public class GetRegularizationsQueryHandler : IRequestHandler<GetRegularizationsQuery, Result<RegularizationResponse>>
     {
         private readonly IRegularizationService _regularizationService;
 
@@ -13,7 +13,7 @@
             _regularizationService = regularizationService;
         }
 
-        public Task<List<RegularizationResponse>> Handle(GetRegularizationsQuery request, CancellationToken cancellationToken)
+        public Task<Result<RegularizationResponse>> Handle(GetRegularizationsQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the regularizations", ex);
+                return Task.FromResult(new Result<RegularizationResponse>
+                {
+                    Error = $"There was an error retrieving the regularizations. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }

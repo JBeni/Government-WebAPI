@@ -1,10 +1,10 @@
 ﻿namespace GovernmentSystem.Application.Handlers.Invoices.Queries
 {
-    public class GetInvoicesQuery : IRequest<List<InvoiceResponse>>
+    public class GetInvoicesQuery : IRequest<Result<InvoiceResponse>>
     {
     }
 
-    public class GetInvoicesQueryHandler : IRequestHandler<GetInvoicesQuery, List<InvoiceResponse>>
+    public class GetInvoicesQueryHandler : IRequestHandler<GetInvoicesQuery, Result<InvoiceResponse>>
     {
         private readonly IInvoiceService _invoiceService;
 
@@ -13,7 +13,7 @@
             _invoiceService = invoiceService;
         }
 
-        public Task<List<InvoiceResponse>> Handle(GetInvoicesQuery request, CancellationToken cancellationToken)
+        public Task<Result<InvoiceResponse>> Handle(GetInvoicesQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -22,7 +22,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error retrieving the invoices", ex);
+                return Task.FromResult(new Result<InvoiceResponse>
+                {
+                    Error = $"There was an error retrieving the invoices. {ex.Message}. {ex.InnerException?.Message}"
+                });
             }
         }
     }
