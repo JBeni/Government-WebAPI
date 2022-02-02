@@ -2,7 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>GovernmentSystem.Domain</RootNamespace>
+	<Nullable>enable</Nullable>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<RootNamespace>GovernmentSystem.Domain</RootNamespace>
     <AssemblyName>GovernmentSystem.Domain</AssemblyName>
   </PropertyGroup>
 
