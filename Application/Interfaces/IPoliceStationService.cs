@@ -4,8 +4,8 @@
     {
         Task<RequestResponse> CreatePoliceStation(CreatePoliceStationCommand command, CancellationToken cancellationToken);
         Task<RequestResponse> DeletePoliceStation(DeletePoliceStationCommand command, CancellationToken cancellationToken);
-        PoliceStationResponse GetPoliceStationById(GetPoliceStationByIdQuery query);
-        List<PoliceStationResponse> GetPoliceStations(GetPoliceStationsQuery query);
+        Result<PoliceStationResponse> GetPoliceStationById(GetPoliceStationByIdQuery query);
+        Result<PoliceStationResponse> GetPoliceStations(GetPoliceStationsQuery query);
         Task<RequestResponse> UpdatePoliceStation(UpdatePoliceStationCommand command, CancellationToken cancellationToken);
     }
 }

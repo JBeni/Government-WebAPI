@@ -2,7 +2,7 @@
 {
     public interface IDriverLicenseCategoryService
     {
-        DriverLicenseCategoryResponse GetDriverLicenseCategoryById(GetDriverLicenseCategoryByIdQuery query);
-        List<DriverLicenseCategoryResponse> GetDriverLicenseCategories(GetDriverLicenseCategoriesQuery query);
+        Result<DriverLicenseCategoryResponse> GetDriverLicenseCategoryById(GetDriverLicenseCategoryByIdQuery query);
+        Result<DriverLicenseCategoryResponse> GetDriverLicenseCategories(GetDriverLicenseCategoriesQuery query);
     }
 }

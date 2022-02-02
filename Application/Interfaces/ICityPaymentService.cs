@@ -4,8 +4,8 @@
     {
         Task<RequestResponse> CreateCityPayment(CreateCityPaymentCommand command, CancellationToken cancellationToken);
         Task<RequestResponse> DeleteCityPayment(DeleteCityPaymentCommand command, CancellationToken cancellationToken);
-        CityPaymentResponse GetCityPaymentById(GetCityPaymentByIdQuery query);
-        List<CityPaymentResponse> GetCityPayments(GetCityPaymentsQuery query);
+        Result<CityPaymentResponse> GetCityPaymentById(GetCityPaymentByIdQuery query);
+        Result<CityPaymentResponse> GetCityPayments(GetCityPaymentsQuery query);
         Task<RequestResponse> UpdateCityPayment(UpdateCityPaymentCommand command, CancellationToken cancellationToken);
     }
 }

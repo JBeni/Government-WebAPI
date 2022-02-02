@@ -4,8 +4,8 @@
     {
         Task<RequestResponse> CreatePublicServantCityHall(CreatePublicServantCityHallCommand command, CancellationToken cancellationToken);
         Task<RequestResponse> DeletePublicServantCityHall(DeletePublicServantCityHallCommand command, CancellationToken cancellationToken);
-        PublicServantCityHallResponse GetPublicServantCityHallById(GetPublicServantCityHallByIdQuery query);
-        List<PublicServantCityHallResponse> GetPublicServantCityHalls(GetPublicServantCityHallsQuery query);
+        Result<PublicServantCityHallResponse> GetPublicServantCityHallById(GetPublicServantCityHallByIdQuery query);
+        Result<PublicServantCityHallResponse> GetPublicServantCityHalls(GetPublicServantCityHallsQuery query);
         Task<RequestResponse> UpdatePublicServantCityHall(UpdatePublicServantCityHallCommand command, CancellationToken cancellationToken);
     }
 }

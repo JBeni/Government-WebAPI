@@ -2,7 +2,7 @@
 {
     public interface IAddressTypeService
     {
-        AddressTypeResponse GetAddressTypeById(GetAddressTypeByIdQuery query);
-        List<AddressTypeResponse> GetAddressTypes(GetAddressTypesQuery query);
+        Result<AddressTypeResponse> GetAddressTypeById(GetAddressTypeByIdQuery query);
+        Result<AddressTypeResponse> GetAddressTypes(GetAddressTypesQuery query);
     }
 }

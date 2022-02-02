@@ -4,10 +4,10 @@
     {
         Task<RequestResponse> CreateAddress(CreateAddressCommand command, CancellationToken cancellationToken);
         Task<RequestResponse> DeleteAddress(DeleteAddressCommand command, CancellationToken cancellationToken);
-        List<AddressResponse> GetAddresses(GetAddressesQuery query);
-        List<AddressResponse> GetAddressByType(GetAddressByTypeQuery query);
-        AddressResponse GetAddressById(GetAddressByIdQuery query);
-        List<AddressResponse> GetAddressByCounty(GetAddressByCountyQuery query);
+        Result<AddressResponse> GetAddresses(GetAddressesQuery query);
+        Result<AddressResponse> GetAddressByType(GetAddressByTypeQuery query);
+        Result<AddressResponse> GetAddressById(GetAddressByIdQuery query);
+        Result<AddressResponse> GetAddressByCounty(GetAddressByCountyQuery query);
         Task<RequestResponse> UpdateAddress(UpdateAddressCommand command, CancellationToken cancellationToken);
     }
 }

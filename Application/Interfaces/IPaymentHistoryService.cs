@@ -4,8 +4,8 @@
     {
         Task<RequestResponse> CreatePaymentHistory(CreatePaymentHistoryCommand command, CancellationToken cancellationToken);
         Task<RequestResponse> DeletePaymentHistory(DeletePaymentHistoryCommand command, CancellationToken cancellationToken);
-        PaymentHistoryResponse GetPaymentHistoryById(GetPaymentHistoryByIdQuery query);
-        List<PaymentHistoryResponse> GetPaymentHistories(GetPaymentHistoriesQuery query);
+        Result<PaymentHistoryResponse> GetPaymentHistoryById(GetPaymentHistoryByIdQuery query);
+        Result<PaymentHistoryResponse> GetPaymentHistories(GetPaymentHistoriesQuery query);
         Task<RequestResponse> UpdatePaymentHistory(UpdatePaymentHistoryCommand command, CancellationToken cancellationToken);
     }
 }

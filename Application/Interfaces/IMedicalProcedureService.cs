@@ -4,8 +4,8 @@
     {
         Task<RequestResponse> CreateMedicalProcedure(CreateMedicalProcedureCommand command, CancellationToken cancellationToken);
         Task<RequestResponse> DeleteMedicalProcedure(DeleteMedicalProcedureCommand command, CancellationToken cancellationToken);
-        MedicalProcedureResponse GetMedicalProcedureById(GetMedicalProcedureByIdQuery query);
-        List<MedicalProcedureResponse> GetMedicalProcedures(GetMedicalProceduresQuery query);
+        Result<MedicalProcedureResponse> GetMedicalProcedureById(GetMedicalProcedureByIdQuery query);
+        Result<MedicalProcedureResponse> GetMedicalProcedures(GetMedicalProceduresQuery query);
         Task<RequestResponse> UpdateMedicalProcedure(UpdateMedicalProcedureCommand command, CancellationToken cancellationToken);
     }
 }

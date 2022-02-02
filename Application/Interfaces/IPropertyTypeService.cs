@@ -2,7 +2,7 @@
 {
     public interface IPropertyTypeService
     {
-        PropertyTypeResponse GetPropertyTypeById(GetPropertyTypeByIdQuery query);
-        List<PropertyTypeResponse> GetPropertyTypes(GetPropertyTypesQuery query);
+        Result<PropertyTypeResponse> GetPropertyTypeById(GetPropertyTypeByIdQuery query);
+        Result<PropertyTypeResponse> GetPropertyTypes(GetPropertyTypesQuery query);
     }
 }
