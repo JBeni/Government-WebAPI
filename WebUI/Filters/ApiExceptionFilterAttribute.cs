@@ -8,6 +8,7 @@ namespace GovernmentSystem.WebUI.Filters
 
         public ApiExceptionFilterAttribute()
         {
+            // Register known exception types and handlers.
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
                 { typeof(ValidationException), HandleValidationException },
@@ -28,18 +29,45 @@ namespace GovernmentSystem.WebUI.Filters
                 _exceptionHandlers[type].Invoke(context);
                 return;
             }
+            if (!context.ModelState.IsValid)
+            {
+                HandleInvalidModelStateException(context);
+                return;
+            }
 
             HandleUnknownException(context);
         }
 
         private void HandleValidationException(ExceptionContext context)
         {
-            var exception = context.Exception as ValidationException;
+            var exception = (ValidationException)context.Exception;
 
             var details = new ValidationProblemDetails(exception.Errors)
             {
-                Title = context.Exception.Message ?? "An error occurred while processing your request",
-                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+                Title = "Fluent Validation",
+                Detail = $"{exception.Message}. {exception.InnerException?.Message}"
+            };
+            foreach (var item in exception.Errors)
+            {
+                foreach (var value in item.Value)
+                {
+                    details.Detail += ". " + value;
+                }
+            }
+
+            context.Result = new BadRequestObjectResult(details);
+
+            context.ExceptionHandled = true;
+        }
+
+        private void HandleInvalidModelStateException(ExceptionContext context)
+        {
+            var details = new ValidationProblemDetails(context.ModelState)
+            {
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+                Title = "Invalid Model State",
+                Detail = $"{context.Exception.Message}. {context.Exception?.InnerException?.Message}"
             };
 
             context.Result = new BadRequestObjectResult(details);
@@ -52,10 +80,10 @@ namespace GovernmentSystem.WebUI.Filters
             var details = new ProblemDetails
             {
                 Status = StatusCodes.Status500InternalServerError,
-                Title = context.Exception.Message ?? "An error occurred while processing your request",
+                Title = "An error occurred while processing your request",
+                Detail = $"{context.Exception.Message}. {context.Exception?.InnerException?.Message}",
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1"
             };
-
             context.Result = new ObjectResult(details)
             {
                 StatusCode = StatusCodes.Status500InternalServerError
