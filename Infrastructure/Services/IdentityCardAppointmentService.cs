@@ -25,13 +25,13 @@
             {
                 AdditionalInformation = command.AdditionalInformation,
                 AppointmentDay = command.AppointmentDay,
-                Citizen = citizen,
+                Citizen = citizen.Item,
                 Reason = command.Reason
             };
 
             _dbContext.IdentityCardAppointments.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteIdentityCardAppointment(DeleteIdentityCardAppointmentCommand command, CancellationToken cancellationToken)
@@ -44,24 +44,24 @@
 
             _dbContext.IdentityCardAppointments.Remove(identityCardAppointment);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(identityCardAppointment.Identifier);
         }
 
-        public IdentityCardAppointmentResponse GetIdentityCardAppointmentById(GetIdentityCardAppointmentByIdQuery query)
+        public Result<IdentityCardAppointmentResponse> GetIdentityCardAppointmentById(GetIdentityCardAppointmentByIdQuery query)
         {
             var result = _dbContext.IdentityCardAppointments
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<IdentityCardAppointmentResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<IdentityCardAppointmentResponse> { Successful = true, Item = result ?? new IdentityCardAppointmentResponse() };
         }
 
-        public List<IdentityCardAppointmentResponse> GetIdentityCardAppointments(GetIdentityCardAppointmentsQuery query)
+        public Result<IdentityCardAppointmentResponse> GetIdentityCardAppointments(GetIdentityCardAppointmentsQuery query)
         {
             var result = _dbContext.IdentityCardAppointments
                 .ProjectTo<IdentityCardAppointmentResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<IdentityCardAppointmentResponse> { Successful = true, Items = result ?? new List<IdentityCardAppointmentResponse>() };
         }
 
         public async Task<RequestResponse> UpdateIdentityCardAppointment(UpdateIdentityCardAppointmentCommand command, CancellationToken cancellationToken)
@@ -75,12 +75,12 @@
 
             identityCardAppointment.AdditionalInformation = command.AdditionalInformation;
             identityCardAppointment.AppointmentDay = command.AppointmentDay;
-            identityCardAppointment.Citizen = citizen;
+            identityCardAppointment.Citizen = citizen.Item;
             identityCardAppointment.Reason = command.Reason;
 
             _dbContext.IdentityCardAppointments.Update(identityCardAppointment);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(identityCardAppointment.Identifier);
         }
     }
 }

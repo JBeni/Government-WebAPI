@@ -11,21 +11,21 @@
             _mapper = mapper;
         }
 
-        public PropertyTypeResponse GetPropertyTypeById(GetPropertyTypeByIdQuery query)
+        public Result<PropertyTypeResponse> GetPropertyTypeById(GetPropertyTypeByIdQuery query)
         {
             var result = _dbContext.PropertyTypes
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<PropertyTypeResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<PropertyTypeResponse> { Successful = true, Item = result ?? new PropertyTypeResponse() };
         }
 
-        public List<PropertyTypeResponse> GetPropertyTypes(GetPropertyTypesQuery query)
+        public Result<PropertyTypeResponse> GetPropertyTypes(GetPropertyTypesQuery query)
         {
             var result = _dbContext.PropertyTypes
                 .ProjectTo<PropertyTypeResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<PropertyTypeResponse> { Successful = true, Items = result ?? new List<PropertyTypeResponse>() };
         }
     }
 }

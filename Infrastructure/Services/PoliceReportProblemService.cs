@@ -26,12 +26,12 @@
                 Title = command.Title,
                 Description = command.Description,
                 IsProcessed = false,
-                PoliceStation = policeStation
+                PoliceStation = policeStation.Item
             };
 
             _dbContext.PoliceReportProblems.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeletePoliceReportProblem(DeletePoliceReportProblemCommand command, CancellationToken cancellationToken)
@@ -44,24 +44,24 @@
 
             _dbContext.PoliceReportProblems.Remove(policeReportProblem);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(policeReportProblem.Identifier);
         }
 
-        public PoliceReportProblemResponse GetPoliceReportProblemById(GetPoliceReportProblemByIdQuery query)
+        public Result<PoliceReportProblemResponse> GetPoliceReportProblemById(GetPoliceReportProblemByIdQuery query)
         {
             var result = _dbContext.PoliceReportProblems
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<PoliceReportProblemResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<PoliceReportProblemResponse> { Successful = true, Item = result ?? new PoliceReportProblemResponse() };
         }
 
-        public List<PoliceReportProblemResponse> GetPoliceReportProblems(GetPoliceReportProblemsQuery query)
+        public Result<PoliceReportProblemResponse> GetPoliceReportProblems(GetPoliceReportProblemsQuery query)
         {
             var result = _dbContext.PoliceReportProblems
                 .ProjectTo<PoliceReportProblemResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<PoliceReportProblemResponse> { Successful = true, Items = result ?? new List<PoliceReportProblemResponse>() };
         }
 
         public async Task<RequestResponse> UpdatePoliceReportProblem(UpdatePoliceReportProblemCommand command, CancellationToken cancellationToken)
@@ -76,11 +76,11 @@
             policeReportProblem.Title = command.Title;
             policeReportProblem.Description = command.Description;
             policeReportProblem.IsProcessed = command.IsProcessed;
-            policeReportProblem.PoliceStation = policeStation;
+            policeReportProblem.PoliceStation = policeStation.Item;
 
             _dbContext.PoliceReportProblems.Update(policeReportProblem);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(policeReportProblem.Identifier);
         }
     }
 }

@@ -23,7 +23,7 @@
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
             var entity = new PublicServantMedicalCenter
             {
-                MedicalCenter = medicalCenter,
+                MedicalCenter = medicalCenter.Item,
                 CNP = command.CNP,
                 ContractYears = command.ContractYears,
                 DutyRole = command.DutyRole,
@@ -35,7 +35,7 @@
 
             _dbContext.PublicServantMedicalCenters.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeletePublicServantMedicalCenter(DeletePublicServantMedicalCenterCommand command, CancellationToken cancellationToken)
@@ -48,24 +48,32 @@
 
             _dbContext.PublicServantMedicalCenters.Remove(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(publicServant.Identifier);
         }
 
-        public PublicServantMedicalCenterResponse GetPublicServantMedicalCenterById(GetPublicServantMedicalCenterByIdQuery query)
+        public Result<PublicServantMedicalCenterResponse> GetPublicServantMedicalCenterById(GetPublicServantMedicalCenterByIdQuery query)
         {
             var result = _dbContext.PublicServantMedicalCenters
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<PublicServantMedicalCenterResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<PublicServantMedicalCenterResponse>
+            {
+                Successful = true,
+                Item = result ?? new PublicServantMedicalCenterResponse()
+            };
         }
 
-        public List<PublicServantMedicalCenterResponse> GetPublicServantMedicalCenters(GetPublicServantMedicalCentersQuery query)
+        public Result<PublicServantMedicalCenterResponse> GetPublicServantMedicalCenters(GetPublicServantMedicalCentersQuery query)
         {
             var result = _dbContext.PublicServantMedicalCenters
                 .ProjectTo<PublicServantMedicalCenterResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<PublicServantMedicalCenterResponse>
+            {
+                Successful = true,
+                Items = result ?? new List<PublicServantMedicalCenterResponse>()
+            };
         }
 
         public async Task<RequestResponse> UpdatePublicServantMedicalCenter(UpdatePublicServantMedicalCenterCommand command, CancellationToken cancellationToken)
@@ -77,7 +85,7 @@
             }
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
 
-            publicServant.MedicalCenter = medicalCenter;
+            publicServant.MedicalCenter = medicalCenter.Item;
             publicServant.CNP = command.CNP;
             publicServant.ContractYears = command.ContractYears;
             publicServant.DutyRole = command.DutyRole;
@@ -88,7 +96,7 @@
 
             _dbContext.PublicServantMedicalCenters.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(publicServant.Identifier);
         }
     }
 }

@@ -35,7 +35,7 @@
 
             _dbContext.BirthCertificates.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteBirthCertificate(DeleteBirthCertificateCommand command, CancellationToken cancellationToken)
@@ -48,24 +48,24 @@
 
             _dbContext.BirthCertificates.Remove(birthCertificate);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(birthCertificate.Identifier);
         }
 
-        public BirthCertificateResponse GetBirthCertificateById(GetBirthCertificateByIdQuery query)
+        public Result<BirthCertificateResponse> GetBirthCertificateById(GetBirthCertificateByIdQuery query)
         {
             var result = _dbContext.BirthCertificates
                 .Where(v => v.Identifier == query.Identifier)
                 .ProjectTo<BirthCertificateResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<BirthCertificateResponse> { Successful = true, Item = result ?? new BirthCertificateResponse() };
         }
 
-        public List<BirthCertificateResponse> GetBirthCertificates(GetBirthCertificatesQuery query)
+        public Result<BirthCertificateResponse> GetBirthCertificates(GetBirthCertificatesQuery query)
         {
             var result = _dbContext.BirthCertificates
                 .ProjectTo<BirthCertificateResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<BirthCertificateResponse> { Successful = true, Items = result ?? new List<BirthCertificateResponse>() };
         }
 
         public async Task<RequestResponse> UpdateBirthCertificate(UpdateBirthCertificateCommand command, CancellationToken cancellationToken)
@@ -89,7 +89,7 @@
 
             _dbContext.BirthCertificates.Update(birthCertificate);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(birthCertificate.Identifier);
         }
     }
 }

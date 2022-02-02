@@ -32,7 +32,7 @@
 
             _dbContext.CitizenRequests.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteCitizenRequest(DeleteCitizenRequestCommand command, CancellationToken cancellationToken)
@@ -45,24 +45,24 @@
 
             _dbContext.CitizenRequests.Remove(citizenRequest);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(citizenRequest.Identifier);
         }
 
-        public CitizenRequestResponse GetCitizenRequestById(GetCitizenRequestByIdQuery query)
+        public Result<CitizenRequestResponse> GetCitizenRequestById(GetCitizenRequestByIdQuery query)
         {
             var result = _dbContext.CitizenRequests
                 .Where(v => v.Identifier == query.Identifier)
                 .ProjectTo<CitizenRequestResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<CitizenRequestResponse> { Successful = true, Item = result ?? new CitizenRequestResponse() };
         }
 
-        public List<CitizenRequestResponse> GetCitizenRequests(GetCitizenRequestsQuery query)
+        public Result<CitizenRequestResponse> GetCitizenRequests(GetCitizenRequestsQuery query)
         {
             var result = _dbContext.CitizenRequests
                 .ProjectTo<CitizenRequestResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<CitizenRequestResponse> { Successful = true, Items = result ?? new List<CitizenRequestResponse>() };
         }
 
         public async Task<RequestResponse> UpdateCitizenRequest(UpdateCitizenRequestCommand command, CancellationToken cancellationToken)
@@ -82,7 +82,7 @@
 
             _dbContext.CitizenRequests.Update(citizenRequest);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(citizenRequest.Identifier);
         }
     }
 }

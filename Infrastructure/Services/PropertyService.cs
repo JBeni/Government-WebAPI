@@ -26,18 +26,18 @@
 
             var entity = new Property
             {
-                Address = address,
+                Address = address.Item,
                 ValueAtBuying = command.ValueAtBuying,
-                CityHall = cityHall,
+                CityHall = cityHall.Item,
                 CurrentValue = command.CurrentValue,
                 Size = command.Size,
-                Type = propertyType,
+                Type = propertyType.Item,
                 UnitOfMeasure = command.UnitOfMeasure
             };
 
             _dbContext.Properties.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteProperty(DeletePropertyCommand command, CancellationToken cancellationToken)
@@ -50,24 +50,24 @@
 
             _dbContext.Properties.Remove(property);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(property.Identifier);
         }
 
-        public List<PropertyResponse> GetProperties(GetPropertiesQuery query)
+        public Result<PropertyResponse> GetProperties(GetPropertiesQuery query)
         {
             var result = _dbContext.Properties
                 .ProjectTo<PropertyResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<PropertyResponse> { Successful = true, Items = result ?? new List<PropertyResponse>() };
         }
 
-        public PropertyResponse GetPropertyById(GetPropertyByIdQuery query)
+        public Result<PropertyResponse> GetPropertyById(GetPropertyByIdQuery query)
         {
             var result = _dbContext.Properties
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<PropertyResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<PropertyResponse> { Successful = true, Item = result ?? new PropertyResponse() };
         }
 
         public async Task<RequestResponse> UpdateProperty(UpdatePropertyCommand command, CancellationToken cancellationToken)
@@ -81,17 +81,17 @@
             var address = _insideEntityService.GetAddressById(command.AddressId);
             var propertyType = _insideEntityService.GetPropertyTypeById(command.TypeId);
 
-            property.Address = address;
+            property.Address = address.Item;
             property.ValueAtBuying = command.ValueAtBuying;
-            property.CityHall = cityHall;
+            property.CityHall = cityHall.Item;
             property.CurrentValue = command.CurrentValue;
             property.Size = command.Size;
-            property.Type = propertyType;
+            property.Type = propertyType.Item;
             property.UnitOfMeasure = command.UnitOfMeasure;
 
             _dbContext.Properties.Update(property);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(property.Identifier);
         }
     }
 }

@@ -20,7 +20,7 @@
         public async Task<RequestResponse> CreateCitizen(CreateCitizenCommand command, CancellationToken cancellationToken)
         {
             var birthCertificate = _insideEntityService.GetBirthCertificateById(command.BirthCertificateId);
-            var userCNP = GenerateCNP(birthCertificate.BirthDate, command.Gender);
+            var userCNP = GenerateCNP(birthCertificate.Item.BirthDate, command.Gender);
             var citizen = _dbContext.Citizens.SingleOrDefault(x => x.CNP == userCNP);
             if (citizen != null)
             {
@@ -43,19 +43,19 @@
                 Gender = command.Gender,
                 DateOfBirth = command.DateOfBirth,
                 DateOfDeath = command.DateOfDeath,
-                BirthCertificate = birthCertificate,
-                HomeAddress = address,
-                IdentityCard = identityCard,
-                Passport = passport,
-                DriverLicense = driverLicense,
-                CityHallResidence = cityHallResidence,
-                MedicalCenter = medicalCenter,
-                PublicServantMedicalCenter = publicServantMedicalCenter
+                BirthCertificate = birthCertificate.Item,
+                HomeAddress = address.Item,
+                IdentityCard = identityCard.Item,
+                Passport = passport.Item,
+                DriverLicense = driverLicense.Item,
+                CityHallResidence = cityHallResidence.Item,
+                MedicalCenter = medicalCenter.Item,
+                PublicServantMedicalCenter = publicServantMedicalCenter.Item
             };
 
             _dbContext.Citizens.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteCitizen(DeleteCitizenCommand command, CancellationToken cancellationToken)
@@ -68,7 +68,7 @@
 
             _dbContext.Citizens.Remove(citizen);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(citizen.Identifier);
         }
 
         public async Task<ExportCitizensVm> ExportCitizensQuery(ExportCitizensQuery query)
@@ -97,21 +97,21 @@
             return userCNP;
         }
 
-        public CitizenResponse GetCitizenById(GetCitizenByIdQuery query)
+        public Result<CitizenResponse> GetCitizenById(GetCitizenByIdQuery query)
         {
             var result = _dbContext.Citizens
                 .Where(v => v.Identifier == query.Identifier)
                 .ProjectTo<CitizenResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<CitizenResponse> { Successful = true, Item = result ?? new CitizenResponse() };
         }
 
-        public List<CitizenResponse> GetCitizens(GetCitizensQuery query)
+        public Result<CitizenResponse> GetCitizens(GetCitizensQuery query)
         {
             var result = _dbContext.Citizens
                 .ProjectTo<CitizenResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<CitizenResponse> { Successful = true, Items = result ?? new List<CitizenResponse>() };
         }
 
         public async Task<RequestResponse> UpdateCitizen(UpdateCitizenCommand command, CancellationToken cancellationToken)
@@ -136,18 +136,18 @@
             citizen.Gender = command.Gender;
             citizen.DateOfBirth = command.DateOfBirth;
             citizen.DateOfDeath = command.DateOfDeath;
-            citizen.BirthCertificate = birthCertificate;
-            citizen.HomeAddress = address;
-            citizen.IdentityCard = identityCard;
-            citizen.Passport = passport;
-            citizen.DriverLicense = driverLicense;
-            citizen.CityHallResidence = cityHallResidence;
-            citizen.MedicalCenter = medicalCenter;
-            citizen.PublicServantMedicalCenter = publicServantMedicalCenter;
+            citizen.BirthCertificate = birthCertificate.Item;
+            citizen.HomeAddress = address.Item;
+            citizen.IdentityCard = identityCard.Item;
+            citizen.Passport = passport.Item;
+            citizen.DriverLicense = driverLicense.Item;
+            citizen.CityHallResidence = cityHallResidence.Item;
+            citizen.MedicalCenter = medicalCenter.Item;
+            citizen.PublicServantMedicalCenter = publicServantMedicalCenter.Item;
 
             _dbContext.Citizens.Update(citizen);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(citizen.Identifier);
         }
     }
 }

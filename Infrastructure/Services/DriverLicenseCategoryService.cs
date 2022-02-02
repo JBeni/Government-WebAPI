@@ -11,21 +11,21 @@
             _mapper = mapper;
         }
 
-        public List<DriverLicenseCategoryResponse> GetDriverLicenseCategories(GetDriverLicenseCategoriesQuery query)
+        public Result<DriverLicenseCategoryResponse> GetDriverLicenseCategories(GetDriverLicenseCategoriesQuery query)
         {
             var result = _dbContext.AddressTypes
                 .ProjectTo<DriverLicenseCategoryResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<DriverLicenseCategoryResponse> { Successful = true, Items = result ?? new List<DriverLicenseCategoryResponse>() };
         }
 
-        public DriverLicenseCategoryResponse GetDriverLicenseCategoryById(GetDriverLicenseCategoryByIdQuery query)
+        public Result<DriverLicenseCategoryResponse> GetDriverLicenseCategoryById(GetDriverLicenseCategoryByIdQuery query)
         {
             var result = _dbContext.AddressTypes
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<DriverLicenseCategoryResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<DriverLicenseCategoryResponse> { Successful = true, Item = result ?? new DriverLicenseCategoryResponse() };
         }
     }
 }

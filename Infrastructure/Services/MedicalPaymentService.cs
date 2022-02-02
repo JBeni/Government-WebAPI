@@ -32,17 +32,17 @@
                 AmountPaid = command.AmountPaid,
                 AmountToPay = command.AmountToPay,
                 DateOfPayment = command.DateOfPayment,
-                CitizenWhoBenefit = citizenWhoBenefit,
-                CitizenWhoPaid = citizenWhoPaid,
-                Invoice = invoice,
-                MedicalCenter = medicalCenter,
-                MedicalProcedure = medicalProcedure,
-                PublicServantMedicalCenter = publicServantMedicalCenter
+                CitizenWhoBenefit = citizenWhoBenefit.Item,
+                CitizenWhoPaid = citizenWhoPaid.Item,
+                Invoice = invoice.Item,
+                MedicalCenter = medicalCenter.Item,
+                MedicalProcedure = medicalProcedure.Item,
+                PublicServantMedicalCenter = publicServantMedicalCenter.Item
             };
 
             _dbContext.MedicalPayments.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteMedicalPayment(DeleteMedicalPaymentCommand command, CancellationToken cancellationToken)
@@ -55,24 +55,24 @@
 
             _dbContext.MedicalPayments.Remove(medicalPayment);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(medicalPayment.Identifier);
         }
 
-        public List<MedicalPaymentResponse> GetMedicalPayments(GetMedicalPaymentsQuery query)
+        public Result<MedicalPaymentResponse> GetMedicalPayments(GetMedicalPaymentsQuery query)
         {
             var result = _dbContext.MedicalPayments
                 .ProjectTo<MedicalPaymentResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<MedicalPaymentResponse> { Successful = true, Items = result ?? new List<MedicalPaymentResponse>() };
         }
 
-        public MedicalPaymentResponse GetMedicalPaymentById(GetMedicalPaymentByIdQuery query)
+        public Result<MedicalPaymentResponse> GetMedicalPaymentById(GetMedicalPaymentByIdQuery query)
         {
             var result = _dbContext.MedicalPayments
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<MedicalPaymentResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<MedicalPaymentResponse> { Successful = true, Item = result ?? new MedicalPaymentResponse() };
         }
 
         public async Task<RequestResponse> UpdateMedicalPayment(UpdateMedicalPaymentCommand command, CancellationToken cancellationToken)
@@ -92,16 +92,16 @@
             medicalPayment.AmountPaid = command.AmountPaid;
             medicalPayment.AmountToPay = command.AmountToPay;
             medicalPayment.DateOfPayment = command.DateOfPayment;
-            medicalPayment.CitizenWhoBenefit = citizenWhoBenefit;
-            medicalPayment.CitizenWhoPaid = citizenWhoPaid;
-            medicalPayment.Invoice = invoice;
-            medicalPayment.MedicalCenter = medicalCenter;
-            medicalPayment.MedicalProcedure = medicalProcedure;
-            medicalPayment.PublicServantMedicalCenter = publicServantMedicalCenter;
+            medicalPayment.CitizenWhoBenefit = citizenWhoBenefit.Item;
+            medicalPayment.CitizenWhoPaid = citizenWhoPaid.Item;
+            medicalPayment.Invoice = invoice.Item;
+            medicalPayment.MedicalCenter = medicalCenter.Item;
+            medicalPayment.MedicalProcedure = medicalProcedure.Item;
+            medicalPayment.PublicServantMedicalCenter = publicServantMedicalCenter.Item;
 
             _dbContext.MedicalPayments.Update(medicalPayment);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(medicalPayment.Identifier);
         }
     }
 }

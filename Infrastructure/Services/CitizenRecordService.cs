@@ -30,13 +30,13 @@
                 Description = command.Description,
                 Witnesses = command.Witnesses,
                 CriminalityType = command.CriminalityType,
-                PoliceStation = policeStation,
-                Citizen = citizen
+                PoliceStation = policeStation.Item,
+                Citizen = citizen.Item
             };
 
             _dbContext.CitizenRecords.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteCitizenRecord(DeleteCitizenRecordCommand command, CancellationToken cancellationToken)
@@ -49,24 +49,24 @@
 
             _dbContext.CitizenRecords.Remove(citizenRecord);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(citizenRecord.Identifier);
         }
 
-        public CitizenRecordResponse GetCitizenRecordById(GetCitizenRecordByIdQuery query)
+        public Result<CitizenRecordResponse> GetCitizenRecordById(GetCitizenRecordByIdQuery query)
         {
             var result = _dbContext.CitizenRecords
                 .Where(v => v.Identifier == query.Identifier)
                 .ProjectTo<CitizenRecordResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<CitizenRecordResponse> { Successful = true, Item = result ?? new CitizenRecordResponse() };
         }
 
-        public List<CitizenRecordResponse> GetCitizenRecords(GetCitizenRecordsQuery query)
+        public Result<CitizenRecordResponse> GetCitizenRecords(GetCitizenRecordsQuery query)
         {
             var result = _dbContext.CitizenRecords
                 .ProjectTo<CitizenRecordResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<CitizenRecordResponse> { Successful = true, Items = result ?? new List<CitizenRecordResponse>() };
         }
 
         public async Task<RequestResponse> UpdateCitizenRecord(UpdateCitizenRecordCommand command, CancellationToken cancellationToken)
@@ -84,12 +84,12 @@
             citizenRecord.Description = command.Description;
             citizenRecord.Witnesses = command.Witnesses;
             citizenRecord.CriminalityType = command.CriminalityType;
-            citizenRecord.PoliceStation = policeStation;
-            citizenRecord.Citizen = citizen;
+            citizenRecord.PoliceStation = policeStation.Item;
+            citizenRecord.Citizen = citizen.Item;
 
             _dbContext.CitizenRecords.Update(citizenRecord);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(citizenRecord.Identifier);
         }
     }
 }

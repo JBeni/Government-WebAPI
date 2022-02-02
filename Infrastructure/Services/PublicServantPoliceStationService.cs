@@ -23,7 +23,7 @@
             var policeStation = _insideEntityService.GetPoliceStationById(command.PoliceStationId);
             var entity = new PublicServantPoliceStation
             {
-                PoliceStation = policeStation,
+                PoliceStation = policeStation.Item,
                 CNP = command.CNP,
                 ContractYears = command.ContractYears,
                 DutyRole = command.DutyRole,
@@ -35,7 +35,7 @@
 
             _dbContext.PublicServantPoliceStations.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeletePublicServantPoliceStation(DeletePublicServantPoliceStationCommand command, CancellationToken cancellationToken)
@@ -48,24 +48,24 @@
 
             _dbContext.PublicServantPoliceStations.Remove(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(publicServant.Identifier);
         }
 
-        public PublicServantPoliceStationResponse GetPublicServantPoliceStationById(GetPublicServantPoliceStationByIdQuery query)
+        public Result<PublicServantPoliceStationResponse> GetPublicServantPoliceStationById(GetPublicServantPoliceStationByIdQuery query)
         {
             var result = _dbContext.PublicServantPoliceStations
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<PublicServantPoliceStationResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<PublicServantPoliceStationResponse> { Successful = true, Item = result ?? new PublicServantPoliceStationResponse() };
         }
 
-        public List<PublicServantPoliceStationResponse> GetPublicServantPoliceStations(GetPublicServantPoliceStationsQuery query)
+        public Result<PublicServantPoliceStationResponse> GetPublicServantPoliceStations(GetPublicServantPoliceStationsQuery query)
         {
             var result = _dbContext.PublicServantPoliceStations
                 .ProjectTo<PublicServantPoliceStationResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<PublicServantPoliceStationResponse> { Successful = true, Items = result ?? new List<PublicServantPoliceStationResponse>() };
         }
 
         public async Task<RequestResponse> UpdatePublicServantPoliceStation(UpdatePublicServantPoliceStationCommand command, CancellationToken cancellationToken)
@@ -77,7 +77,7 @@
             }
             var policeStation = _insideEntityService.GetPoliceStationById(command.PoliceStationId);
 
-            publicServant.PoliceStation = policeStation;
+            publicServant.PoliceStation = policeStation.Item;
             publicServant.CNP = command.CNP;
             publicServant.ContractYears = command.ContractYears;
             publicServant.DutyRole = command.DutyRole;
@@ -88,7 +88,7 @@
 
             _dbContext.PublicServantPoliceStations.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(publicServant.Identifier);
         }
     }
 }

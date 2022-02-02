@@ -30,7 +30,7 @@
 
             _dbContext.Invoices.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteInvoice(DeleteInvoiceCommand command, CancellationToken cancellationToken)
@@ -43,24 +43,24 @@
 
             _dbContext.Invoices.Remove(invoice);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(invoice.Identifier);
         }
 
-        public InvoiceResponse GetInvoiceById(GetInvoiceByIdQuery query)
+        public Result<InvoiceResponse> GetInvoiceById(GetInvoiceByIdQuery query)
         {
             var result = _dbContext.Invoices
                 .Where(v => v.Identifier == query.Identifier)
                 .ProjectTo<InvoiceResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<InvoiceResponse> { Successful = true, Item = result ?? new InvoiceResponse() };
         }
 
-        public List<InvoiceResponse> GetInvoices(GetInvoicesQuery query)
+        public Result<InvoiceResponse> GetInvoices(GetInvoicesQuery query)
         {
             var result = _dbContext.Invoices
                 .ProjectTo<InvoiceResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<InvoiceResponse> { Successful = true, Items = result ?? new List<InvoiceResponse>() };
         }
 
         public async Task<RequestResponse> UpdateInvoice(UpdateInvoiceCommand command, CancellationToken cancellationToken)
@@ -79,7 +79,7 @@
 
             _dbContext.Invoices.Update(invoice);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(invoice.Identifier);
         }
     }
 }

@@ -28,7 +28,7 @@
 
             _dbContext.IdentityCards.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteIdentityCard(DeleteIdentityCardCommand command, CancellationToken cancellationToken)
@@ -41,24 +41,24 @@
 
             _dbContext.IdentityCards.Remove(identityCard);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(identityCard.Identifier);
         }
 
-        public IdentityCardResponse GetIdentityCardById(GetIdentityCardByIdQuery query)
+        public Result<IdentityCardResponse> GetIdentityCardById(GetIdentityCardByIdQuery query)
         {
             var result = _dbContext.IdentityCards
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<IdentityCardResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<IdentityCardResponse> { Successful = true, Item = result ?? new IdentityCardResponse() };
         }
 
-        public List<IdentityCardResponse> GetIdentityCards(GetIdentityCardsQuery query)
+        public Result<IdentityCardResponse> GetIdentityCards(GetIdentityCardsQuery query)
         {
             var result = _dbContext.IdentityCards
                 .ProjectTo<IdentityCardResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<IdentityCardResponse> { Successful = true, Items = result ?? new List<IdentityCardResponse>() };
         }
 
         public async Task<RequestResponse> UpdateIdentityCard(UpdateIdentityCardCommand command, CancellationToken cancellationToken)
@@ -75,7 +75,7 @@
 
             _dbContext.IdentityCards.Update(identityCard);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(identityCard.Identifier);
         }
     }
 }

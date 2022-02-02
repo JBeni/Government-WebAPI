@@ -26,12 +26,12 @@
                 Title = command.Title,
                 Description = command.Description,
                 IsProcessed = false,
-                SeriousFraudOffice = seriousFraudOffice
+                SeriousFraudOffice = seriousFraudOffice.Item
             };
 
             _dbContext.FraudOfficeReportProblems.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteFraudOfficeReportProblem(DeleteFraudOfficeReportProblemCommand command, CancellationToken cancellationToken)
@@ -44,24 +44,24 @@
 
             _dbContext.FraudOfficeReportProblems.Remove(fraudOfficeReportProblem);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(fraudOfficeReportProblem.Identifier);
         }
 
-        public FraudOfficeReportProblemResponse GetFraudOfficeReportProblemById(GetFraudOfficeReportProblemByIdQuery query)
+        public Result<FraudOfficeReportProblemResponse> GetFraudOfficeReportProblemById(GetFraudOfficeReportProblemByIdQuery query)
         {
             var result = _dbContext.FraudOfficeReportProblems
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<FraudOfficeReportProblemResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<FraudOfficeReportProblemResponse> { Successful = true, Item = result ?? new FraudOfficeReportProblemResponse() };
         }
 
-        public List<FraudOfficeReportProblemResponse> GetFraudOfficeReportProblems(GetFraudOfficeReportProblemsQuery query)
+        public Result<FraudOfficeReportProblemResponse> GetFraudOfficeReportProblems(GetFraudOfficeReportProblemsQuery query)
         {
             var result = _dbContext.FraudOfficeReportProblems
                 .ProjectTo<FraudOfficeReportProblemResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<FraudOfficeReportProblemResponse> { Successful = true, Items = result ?? new List<FraudOfficeReportProblemResponse>() };
         }
 
         public async Task<RequestResponse> UpdateFraudOfficeReportProblem(UpdateFraudOfficeReportProblemCommand command, CancellationToken cancellationToken)
@@ -76,11 +76,11 @@
             fraudOfficeReportProblem.Title = command.Title;
             fraudOfficeReportProblem.Description = command.Description;
             fraudOfficeReportProblem.IsProcessed = command.IsProcessed;
-            fraudOfficeReportProblem.SeriousFraudOffice = seriousFraudOffice;
+            fraudOfficeReportProblem.SeriousFraudOffice = seriousFraudOffice.Item;
 
             _dbContext.FraudOfficeReportProblems.Update(fraudOfficeReportProblem);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(fraudOfficeReportProblem.Identifier);
         }
     }
 }

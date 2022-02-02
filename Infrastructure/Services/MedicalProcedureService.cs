@@ -28,7 +28,7 @@
 
             _dbContext.MedicalProcedures.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteMedicalProcedure(DeleteMedicalProcedureCommand command, CancellationToken cancellationToken)
@@ -41,24 +41,24 @@
 
             _dbContext.MedicalProcedures.Remove(medicalProcedure);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(medicalProcedure.Identifier);
         }
 
-        public MedicalProcedureResponse GetMedicalProcedureById(GetMedicalProcedureByIdQuery query)
+        public Result<MedicalProcedureResponse> GetMedicalProcedureById(GetMedicalProcedureByIdQuery query)
         {
             var result = _dbContext.MedicalProcedures
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<MedicalProcedureResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<MedicalProcedureResponse> { Successful = true, Item = result ?? new MedicalProcedureResponse() };
         }
 
-        public List<MedicalProcedureResponse> GetMedicalProcedures(GetMedicalProceduresQuery query)
+        public Result<MedicalProcedureResponse> GetMedicalProcedures(GetMedicalProceduresQuery query)
         {
             var result = _dbContext.MedicalProcedures
                 .ProjectTo<MedicalProcedureResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<MedicalProcedureResponse> { Successful = true, Items = result ?? new List<MedicalProcedureResponse>() };
         }
 
         public async Task<RequestResponse> UpdateMedicalProcedure(UpdateMedicalProcedureCommand command, CancellationToken cancellationToken)
@@ -75,7 +75,7 @@
 
             _dbContext.MedicalProcedures.Update(medicalProcedure);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(medicalProcedure.Identifier);
         }
     }
 }

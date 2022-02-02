@@ -23,7 +23,7 @@
             var seriousFraudOffice = _insideEntityService.GetSeriousFraudOfficeById(command.SeriousFraudOfficeId);
             var entity = new PublicServantSeriousFraudOffice
             {
-                SeriousFraudOffice = seriousFraudOffice,
+                SeriousFraudOffice = seriousFraudOffice.Item,
                 CNP = command.CNP,
                 ContractYears = command.ContractYears,
                 DutyRole = command.DutyRole,
@@ -35,7 +35,7 @@
 
             _dbContext.PublicServantSeriousFraudOffices.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeletePublicServantSeriousFraudOffice(DeletePublicServantSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
@@ -48,24 +48,24 @@
 
             _dbContext.PublicServantSeriousFraudOffices.Remove(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(publicServant.Identifier);
         }
 
-        public PublicServantSeriousFraudOfficeResponse GetPublicServantSeriousFraudOfficeById(GetPublicServantSeriousFraudOfficeByIdQuery query)
+        public Result<PublicServantSeriousFraudOfficeResponse> GetPublicServantSeriousFraudOfficeById(GetPublicServantSeriousFraudOfficeByIdQuery query)
         {
             var result = _dbContext.PublicServantSeriousFraudOffices
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<PublicServantSeriousFraudOfficeResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<PublicServantSeriousFraudOfficeResponse> { Successful = true, Item = result ?? new PublicServantSeriousFraudOfficeResponse() };
         }
 
-        public List<PublicServantSeriousFraudOfficeResponse> GetPublicServantSeriousFraudOffices(GetPublicServantSeriousFraudOfficesQuery query)
+        public Result<PublicServantSeriousFraudOfficeResponse> GetPublicServantSeriousFraudOffices(GetPublicServantSeriousFraudOfficesQuery query)
         {
             var result = _dbContext.PublicServantSeriousFraudOffices
                 .ProjectTo<PublicServantSeriousFraudOfficeResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<PublicServantSeriousFraudOfficeResponse> { Successful = true, Items = result ?? new List<PublicServantSeriousFraudOfficeResponse>() };
         }
 
         public async Task<RequestResponse> UpdatePublicServantSeriousFraudOffice(UpdatePublicServantSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
@@ -77,7 +77,7 @@
             }
             var seriousFraudOffice = _insideEntityService.GetSeriousFraudOfficeById(command.SeriousFraudOfficeId);
 
-            publicServant.SeriousFraudOffice = seriousFraudOffice;
+            publicServant.SeriousFraudOffice = seriousFraudOffice.Item;
             publicServant.CNP = command.CNP;
             publicServant.ContractYears = command.ContractYears;
             publicServant.DutyRole = command.DutyRole;
@@ -88,7 +88,7 @@
 
             _dbContext.PublicServantSeriousFraudOffices.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(publicServant.Identifier);
 
         }
     }

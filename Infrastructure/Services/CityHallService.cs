@@ -25,13 +25,13 @@
             {
                 Identifier = command.Identifier,
                 CityHallName = command.CityHallName,
-                Address = address,
+                Address = address.Item,
                 ConstructionDate = command.ConstructionDate
             };
 
             _dbContext.CityHalls.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteCityHall(DeleteCityHallCommand command, CancellationToken cancellationToken)
@@ -44,24 +44,24 @@
 
             _dbContext.CityHalls.Remove(cityHall);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(cityHall.Identifier);
         }
 
-        public CityHallResponse GetCityHallById(GetCityHallByIdQuery query)
+        public Result<CityHallResponse> GetCityHallById(GetCityHallByIdQuery query)
         {
             var result = _dbContext.CityHalls
                 .Where(v => v.Identifier == query.Identifier)
                 .ProjectTo<CityHallResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<CityHallResponse> { Successful = true, Item = result ?? new CityHallResponse() };
         }
 
-        public List<CityHallResponse> GetCityHalls(GetCityHallsQuery query)
+        public Result<CityHallResponse> GetCityHalls(GetCityHallsQuery query)
         {
             var result = _dbContext.CityHalls
                 .ProjectTo<CityHallResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<CityHallResponse> { Successful = true, Items = result ?? new List<CityHallResponse>() };
         }
 
         public async Task<RequestResponse> UpdateCityHall(UpdateCityHallCommand command, CancellationToken cancellationToken)
@@ -73,12 +73,12 @@
             }
             var address = _insideEntityService.GetAddressById(command.AddressId);
             cityHall.CityHallName = command.CityHallName;
-            cityHall.Address = address;
+            cityHall.Address = address.Item;
             cityHall.ConstructionDate = command.ConstructionDate;
 
             _dbContext.CityHalls.Update(cityHall);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(cityHall.Identifier);
         }
     }
 }

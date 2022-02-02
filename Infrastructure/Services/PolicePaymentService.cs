@@ -30,14 +30,14 @@
                 AmountPaid = command.AmountPaid,
                 AmountToPay = command.AmountToPay,
                 DateOfPayment = command.DateOfPayment,
-                Citizen = citizen,
-                PoliceStation = policeStation,
-                Invoice = invoice,
+                Citizen = citizen.Item,
+                PoliceStation = policeStation.Item,
+                Invoice = invoice.Item,
             };
 
             _dbContext.PolicePayments.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeletePolicePayment(DeletePolicePaymentCommand command, CancellationToken cancellationToken)
@@ -50,24 +50,24 @@
 
             _dbContext.PolicePayments.Remove(policePayment);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(policePayment.Identifier);
         }
 
-        public PolicePaymentResponse GetPolicePaymentById(GetPolicePaymentByIdQuery query)
+        public Result<PolicePaymentResponse> GetPolicePaymentById(GetPolicePaymentByIdQuery query)
         {
             var result = _dbContext.PolicePayments
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<PolicePaymentResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<PolicePaymentResponse> { Successful = true, Item = result ?? new PolicePaymentResponse() };
         }
 
-        public List<PolicePaymentResponse> GetPolicePayments(GetPolicePaymentsQuery query)
+        public Result<PolicePaymentResponse> GetPolicePayments(GetPolicePaymentsQuery query)
         {
             var result = _dbContext.PolicePayments
                 .ProjectTo<PolicePaymentResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<PolicePaymentResponse> { Successful = true, Items = result ?? new List<PolicePaymentResponse>() };
         }
 
         public async Task<RequestResponse> UpdatePolicePayment(UpdatePolicePaymentCommand command, CancellationToken cancellationToken)
@@ -85,13 +85,13 @@
             policePayment.AmountPaid = command.AmountPaid;
             policePayment.AmountToPay = command.AmountToPay;
             policePayment.DateOfPayment = command.DateOfPayment;
-            policePayment.Citizen = citizen;
-            policePayment.PoliceStation = policeStation;
-            policePayment.Invoice = invoice;
+            policePayment.Citizen = citizen.Item;
+            policePayment.PoliceStation = policeStation.Item;
+            policePayment.Invoice = invoice.Item;
 
             _dbContext.PolicePayments.Update(policePayment);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(policePayment.Identifier);
         }
     }
 }

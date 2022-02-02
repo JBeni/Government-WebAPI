@@ -25,7 +25,7 @@
 
             _dbContext.DriverLicenses.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteDriverLicense(DeleteDriverLicenseCommand command, CancellationToken cancellationToken)
@@ -38,24 +38,24 @@
 
             _dbContext.DriverLicenses.Remove(driverLicense);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(driverLicense.Identifier);
         }
 
-        public DriverLicenseResponse GetDriverLicenseById(GetDriverLicenseByIdQuery query)
+        public Result<DriverLicenseResponse> GetDriverLicenseById(GetDriverLicenseByIdQuery query)
         {
             var result = _dbContext.DriverLicenses
                 .Where(v => v.Identifier == query.Identifier)
                 .ProjectTo<DriverLicenseResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<DriverLicenseResponse> { Successful = true, Item = result ?? new DriverLicenseResponse() };
         }
 
-        public List<DriverLicenseResponse> GetDriverLicenses(GetDriverLicensesQuery query)
+        public Result<DriverLicenseResponse> GetDriverLicenses(GetDriverLicensesQuery query)
         {
             var result = _dbContext.DriverLicenses
                 .ProjectTo<DriverLicenseResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<DriverLicenseResponse> { Successful = true, Items = result ?? new List<DriverLicenseResponse>() };
         }
 
         public async Task<RequestResponse> UpdateDriverLicense(UpdateDriverLicenseCommand command, CancellationToken cancellationToken)
@@ -69,7 +69,7 @@
 
             _dbContext.DriverLicenses.Update(driverLicense);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(driverLicense.Identifier);
         }
     }
 }

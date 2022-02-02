@@ -9,7 +9,7 @@
             _dbContext = dbContext;
         }
 
-        public Address GetAddressById(Guid identifier)
+        public Result<Address> GetAddressById(Guid identifier)
         {
             var result = _dbContext.Addresses
                 .Where(v => v.Identifier == identifier)
@@ -18,10 +18,10 @@
             {
                 throw new Exception("The address does not exists");
             }
-            return result;
+            return new Result<Address> { Successful = true, Item = result ?? new Address() };
         }
 
-        public AddressType GetAddressTypeById(Guid identifier)
+        public Result<AddressType> GetAddressTypeById(Guid identifier)
         {
             var result = _dbContext.AddressTypes
                 .Where(v => v.Identifier == identifier)
@@ -30,10 +30,10 @@
             {
                 throw new Exception("The address type does not exists");
             }
-            return result;
+            return new Result<AddressType> { Successful = true, Item = result ?? new AddressType() };
         }
 
-        public BirthCertificate GetBirthCertificateById(Guid identifier)
+        public Result<BirthCertificate> GetBirthCertificateById(Guid identifier)
         {
             var result = _dbContext.BirthCertificates
                 .Where(v => v.Identifier == identifier)
@@ -42,10 +42,10 @@
             {
                 throw new Exception("The birth certificate does not exists");
             }
-            return result;
+            return new Result<BirthCertificate> { Successful = true, Item = result ?? new BirthCertificate() };
         }
 
-        public Citizen GetCitizenById(Guid identifier)
+        public Result<Citizen> GetCitizenById(Guid identifier)
         {
             var result = _dbContext.Citizens
                 .Where(v => v.Identifier == identifier)
@@ -54,10 +54,10 @@
             {
                 throw new Exception("The citizen does not exists");
             }
-            return result;
+            return new Result<Citizen> { Successful = true, Item = result ?? new Citizen() };
         }
 
-        public CitizenDriverLicenseCategory GetCitizenDriverLicenseCategoryById(Guid identifier)
+        public Result<CitizenDriverLicenseCategory> GetCitizenDriverLicenseCategoryById(Guid identifier)
         {
             var result = _dbContext.CitizenDriverLicenseCategories
                 .Where(v => v.Identifier == identifier)
@@ -66,10 +66,10 @@
             {
                 throw new Exception("The citizen driver license categories does not exists");
             }
-            return result;
+            return new Result<CitizenDriverLicenseCategory> { Successful = true, Item = result ?? new CitizenDriverLicenseCategory() };
         }
 
-        public CitizenMedicalHistory GetCitizenMedicalHistoryById(Guid identifier)
+        public Result<CitizenMedicalHistory> GetCitizenMedicalHistoryById(Guid identifier)
         {
             var result = _dbContext.CitizenMedicalHistories
                 .Where(v => v.Identifier == identifier)
@@ -78,10 +78,10 @@
             {
                 throw new Exception("The citizen medical history does not exists");
             }
-            return result;
+            return new Result<CitizenMedicalHistory> { Successful = true, Item = result ?? new CitizenMedicalHistory() };
         }
 
-        public CitizenRequest GetCitizenRequestById(Guid identifier)
+        public Result<CitizenRequest> GetCitizenRequestById(Guid identifier)
         {
             var result = _dbContext.CitizenRequests
                 .Where(v => v.Identifier == identifier)
@@ -90,10 +90,10 @@
             {
                 throw new Exception("The citizen request does not exists");
             }
-            return result;
+            return new Result<CitizenRequest> { Successful = true, Item = result ?? new CitizenRequest() };
         }
 
-        public CityHall GetCityHallById(Guid identifier)
+        public Result<CityHall> GetCityHallById(Guid identifier)
         {
             var result = _dbContext.CityHalls
                 .Where(v => v.Identifier == identifier)
@@ -102,10 +102,10 @@
             {
                 throw new Exception("The city hall does not exists");
             }
-            return result;
+            return new Result<CityHall> { Successful = true, Item = result ?? new CityHall() };
         }
 
-        public DriverLicense GetDriverLicenseById(Guid identifier)
+        public Result<DriverLicense> GetDriverLicenseById(Guid identifier)
         {
             var result = _dbContext.DriverLicenses
                 .Where(v => v.Identifier == identifier)
@@ -114,10 +114,10 @@
             {
                 throw new Exception("The driver license does not exists");
             }
-            return result;
+            return new Result<DriverLicense> { Successful = true, Item = result ?? new DriverLicense() };
         }
 
-        public DriverLicenseCategory GetDriverLicenseCategoryById(Guid identifier)
+        public Result<DriverLicenseCategory> GetDriverLicenseCategoryById(Guid identifier)
         {
             var result = _dbContext.DriverLicenseCategories
                 .Where(v => v.Identifier == identifier)
@@ -126,10 +126,10 @@
             {
                 throw new Exception("The driver license category does not exists");
             }
-            return result;
+            return new Result<DriverLicenseCategory> { Successful = true, Item = result ?? new DriverLicenseCategory() };
         }
 
-        public IdentityCard GetIdentityCardById(Guid identifier)
+        public Result<IdentityCard> GetIdentityCardById(Guid identifier)
         {
             var result = _dbContext.IdentityCards
                 .Where(v => v.Identifier == identifier)
@@ -138,10 +138,10 @@
             {
                 throw new Exception("The identity card does not exists");
             }
-            return result;
+            return new Result<IdentityCard> { Successful = true, Item = result ?? new IdentityCard() };
         }
 
-        public MedicalAppointment GetMedicalAppointmentById(Guid identifier)
+        public Result<MedicalAppointment> GetMedicalAppointmentById(Guid identifier)
         {
             var result = _dbContext.MedicalAppointments
                 .Where(v => v.Identifier == identifier)
@@ -150,10 +150,10 @@
             {
                 throw new Exception("The medical appointment does not exists");
             }
-            return result;
+            return new Result<MedicalAppointment> { Successful = true, Item = result ?? new MedicalAppointment() };
         }
 
-        public MedicalCenter GetMedicalCenterById(Guid identifier)
+        public Result<MedicalCenter> GetMedicalCenterById(Guid identifier)
         {
             var result = _dbContext.MedicalCenters
                 .Where(v => v.Identifier == identifier)
@@ -162,10 +162,10 @@
             {
                 throw new Exception("The medical center does not exists");
             }
-            return result;
+            return new Result<MedicalCenter> { Successful = true, Item = result ?? new MedicalCenter() };
         }
 
-        public MedicalCenterProcedure GetMedicalCenterProcedureById(Guid identifier)
+        public Result<MedicalCenterProcedure> GetMedicalCenterProcedureById(Guid identifier)
         {
             var result = _dbContext.MedicalCenterProcedures
                 .Where(v => v.Identifier == identifier)
@@ -174,10 +174,10 @@
             {
                 throw new Exception("The medical center procedure does not exists");
             }
-            return result;
+            return new Result<MedicalCenterProcedure> { Successful = true, Item = result ?? new MedicalCenterProcedure() };
         }
 
-        public MedicalPayment GetMedicalPaymentById(Guid identifier)
+        public Result<MedicalPayment> GetMedicalPaymentById(Guid identifier)
         {
             var result = _dbContext.MedicalPayments
                 .Where(v => v.Identifier == identifier)
@@ -186,10 +186,10 @@
             {
                 throw new Exception("The medical payment does not exists");
             }
-            return result;
+            return new Result<MedicalPayment> { Successful = true, Item = result ?? new MedicalPayment() };
         }
 
-        public MedicalProcedure GetMedicalProcedureById(Guid identifier)
+        public Result<MedicalProcedure> GetMedicalProcedureById(Guid identifier)
         {
             var result = _dbContext.MedicalProcedures
                 .Where(v => v.Identifier == identifier)
@@ -198,10 +198,10 @@
             {
                 throw new Exception("The medical procedure does not exists");
             }
-            return result;
+            return new Result<MedicalProcedure> { Successful = true, Item = result ?? new MedicalProcedure() };
         }
 
-        public Passport GetPassportById(Guid identifier)
+        public Result<Passport> GetPassportById(Guid identifier)
         {
             var result = _dbContext.Passports
                 .Where(v => v.Identifier == identifier)
@@ -210,10 +210,10 @@
             {
                 throw new Exception("The passport does not exists");
             }
-            return result;
+            return new Result<Passport> { Successful = true, Item = result ?? new Passport() };
         }
 
-        public PoliceStation GetPoliceStationById(Guid identifier)
+        public Result<PoliceStation> GetPoliceStationById(Guid identifier)
         {
             var result = _dbContext.PoliceStations
                 .Where(v => v.Identifier == identifier)
@@ -222,10 +222,10 @@
             {
                 throw new Exception("The police station does not exists");
             }
-            return result;
+            return new Result<PoliceStation> { Successful = true, Item = result ?? new PoliceStation() };
         }
 
-        public Property GetPropertyById(Guid identifier)
+        public Result<Property> GetPropertyById(Guid identifier)
         {
             var result = _dbContext.Properties
                 .Where(v => v.Identifier == identifier)
@@ -234,10 +234,10 @@
             {
                 throw new Exception("The property does not exists");
             }
-            return result;
+            return new Result<Property> { Successful = true, Item = result ?? new Property() };
         }
 
-        public PropertyType GetPropertyTypeById(Guid identifier)
+        public Result<PropertyType> GetPropertyTypeById(Guid identifier)
         {
             var result = _dbContext.PropertyTypes
                 .Where(v => v.Identifier == identifier)
@@ -246,10 +246,10 @@
             {
                 throw new Exception("The property type does not exists");
             }
-            return result;
+            return new Result<PropertyType> { Successful = true, Item = result ?? new PropertyType() };
         }
 
-        public PublicServantCityHall GetPublicServantCityHallById(Guid identifier)
+        public Result<PublicServantCityHall> GetPublicServantCityHallById(Guid identifier)
         {
             var result = _dbContext.PublicServantCityHalls
                 .Where(v => v.Identifier == identifier)
@@ -258,10 +258,10 @@
             {
                 throw new Exception("The public servant city hall does not exists");
             }
-            return result;
+            return new Result<PublicServantCityHall> { Successful = true, Item = result ?? new PublicServantCityHall() };
         }
 
-        public PublicServantMedicalCenter GetPublicServantMedicalCenterById(Guid identifier)
+        public Result<PublicServantMedicalCenter> GetPublicServantMedicalCenterById(Guid identifier)
         {
             var result = _dbContext.PublicServantMedicalCenters
                 .Where(v => v.Identifier == identifier)
@@ -270,10 +270,10 @@
             {
                 throw new Exception("The public servant medical center does not exists");
             }
-            return result;
+            return new Result<PublicServantMedicalCenter> { Successful = true, Item = result ?? new PublicServantMedicalCenter() };
         }
 
-        public PublicServantPoliceStation GetPublicServantPoliceStationById(Guid identifier)
+        public Result<PublicServantPoliceStation> GetPublicServantPoliceStationById(Guid identifier)
         {
             var result = _dbContext.PublicServantPoliceStations
                 .Where(v => v.Identifier == identifier)
@@ -282,10 +282,10 @@
             {
                 throw new Exception("The public servant police does not exists");
             }
-            return result;
+            return new Result<PublicServantPoliceStation> { Successful = true, Item = result ?? new PublicServantPoliceStation() };
         }
 
-        public PublicServantSeriousFraudOffice GetPublicServantSeriousFraudOfficeById(Guid identifier)
+        public Result<PublicServantSeriousFraudOffice> GetPublicServantSeriousFraudOfficeById(Guid identifier)
         {
             var result = _dbContext.PublicServantSeriousFraudOffices
                 .Where(v => v.Identifier == identifier)
@@ -294,10 +294,10 @@
             {
                 throw new Exception("The public servant serious fraud office does not exists");
             }
-            return result;
+            return new Result<PublicServantSeriousFraudOffice> { Successful = true, Item = result ?? new PublicServantSeriousFraudOffice() };
         }
 
-        public CityReportProblem GetCityReportProblemById(Guid identifier)
+        public Result<CityReportProblem> GetCityReportProblemById(Guid identifier)
         {
             var result = _dbContext.CityReportProblems
                 .Where(v => v.Identifier == identifier)
@@ -306,10 +306,10 @@
             {
                 throw new Exception("The city hall report problem does not exists");
             }
-            return result;
+            return new Result<CityReportProblem> { Successful = true, Item = result ?? new CityReportProblem() };
         }
 
-        public SeriousFraudOffice GetSeriousFraudOfficeById(Guid identifier)
+        public Result<SeriousFraudOffice> GetSeriousFraudOfficeById(Guid identifier)
         {
             var result = _dbContext.SeriousFraudOffices
                 .Where(v => v.Identifier == identifier)
@@ -318,10 +318,10 @@
             {
                 throw new Exception("The serious fraud office does not exists");
             }
-            return result;
+            return new Result<SeriousFraudOffice> { Successful = true, Item = result ?? new SeriousFraudOffice() };
         }
 
-        public Invoice GetInvoiceById(Guid identifier)
+        public Result<Invoice> GetInvoiceById(Guid identifier)
         {
             var result = _dbContext.Invoices
                 .Where(v => v.Identifier == identifier)
@@ -330,10 +330,10 @@
             {
                 throw new Exception("The invoice does not exists");
             }
-            return result;
+            return new Result<Invoice> { Successful = true, Item = result ?? new Invoice() };
         }
 
-        public Company GetCompanyById(Guid identifier)
+        public Result<Company> GetCompanyById(Guid identifier)
         {
             var result = _dbContext.Companies
                 .Where(v => v.Identifier == identifier)
@@ -342,7 +342,7 @@
             {
                 throw new Exception("The company does not exists");
             }
-            return result;
+            return new Result<Company> { Successful = true, Item = result ?? new Company() };
         }
     }
 }

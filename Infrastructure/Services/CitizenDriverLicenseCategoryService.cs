@@ -25,15 +25,15 @@
 
             var entity = new CitizenDriverLicenseCategory
             {
-                Citizen = citizen,
-                DriverLicenseCategory = driverLicenseCategory,
+                Citizen = citizen.Item,
+                DriverLicenseCategory = driverLicenseCategory.Item,
                 DateOfExpiry = command.DateOfExpiry,
                 DateOfIssue = command.DateOfIssue,
             };
 
             _dbContext.CitizenDriverLicenseCategories.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteCitizenDriverLicenseCategory(DeleteCitizenDriverLicenseCategoryCommand command, CancellationToken cancellationToken)
@@ -46,24 +46,24 @@
 
             _dbContext.CitizenDriverLicenseCategories.Remove(citizenDriverLicenseCategory);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(citizenDriverLicenseCategory.Identifier);
         }
 
-        public List<CitizenDriverLicenseCategoryResponse> GetCitizenDriverLicenseCategories(GetCitizenDriverLicenseCategoriesQuery query)
+        public Result<CitizenDriverLicenseCategoryResponse> GetCitizenDriverLicenseCategories(GetCitizenDriverLicenseCategoriesQuery query)
         {
             var result = _dbContext.AddressTypes
                 .ProjectTo<CitizenDriverLicenseCategoryResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<CitizenDriverLicenseCategoryResponse> { Successful = true, Items = result ?? new List<CitizenDriverLicenseCategoryResponse>() };
         }
 
-        public CitizenDriverLicenseCategoryResponse GetCitizenDriverLicenseCategoryById(GetCitizenDriverLicenseCategoryByIdQuery query)
+        public Result<CitizenDriverLicenseCategoryResponse> GetCitizenDriverLicenseCategoryById(GetCitizenDriverLicenseCategoryByIdQuery query)
         {
             var result = _dbContext.AddressTypes
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<CitizenDriverLicenseCategoryResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<CitizenDriverLicenseCategoryResponse> { Successful = true, Item = result ?? new CitizenDriverLicenseCategoryResponse() };
         }
 
         public async Task<RequestResponse> UpdateCitizenDriverLicenseCategory(UpdateCitizenDriverLicenseCategoryCommand command, CancellationToken cancellationToken)
@@ -76,14 +76,14 @@
             var citizen = _insideEntityService.GetCitizenById(command.CitizenId);
             var driverLicenseCategory = _insideEntityService.GetDriverLicenseCategoryById(command.DriverLicenseCategoryId);
 
-            citizenDriverLicenseCategory.Citizen = citizen;
-            citizenDriverLicenseCategory.DriverLicenseCategory = driverLicenseCategory;
+            citizenDriverLicenseCategory.Citizen = citizen.Item;
+            citizenDriverLicenseCategory.DriverLicenseCategory = driverLicenseCategory.Item;
             citizenDriverLicenseCategory.DateOfExpiry = command.DateOfExpiry;
             citizenDriverLicenseCategory.DateOfIssue = command.DateOfIssue;
 
             _dbContext.CitizenDriverLicenseCategories.Update(citizenDriverLicenseCategory);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(citizenDriverLicenseCategory.Identifier);
         }
     }
 }

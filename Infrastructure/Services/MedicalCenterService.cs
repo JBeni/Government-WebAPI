@@ -23,14 +23,14 @@
             var address = _insideEntityService.GetAddressById(command.AddressId);
             var entity = new MedicalCenter
             {
-                Address = address,
+                Address = address.Item,
                 CenterName = command.CenterName,
                 ConstructionDate = command.ConstructionDate,
             };
 
             _dbContext.MedicalCenters.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteMedicalCenter(DeleteMedicalCenterCommand command, CancellationToken cancellationToken)
@@ -43,24 +43,24 @@
 
             _dbContext.MedicalCenters.Remove(medicalCenter);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(medicalCenter.Identifier);
         }
 
-        public MedicalCenterResponse GetMedicalCenterById(GetMedicalCenterByIdQuery query)
+        public Result<MedicalCenterResponse> GetMedicalCenterById(GetMedicalCenterByIdQuery query)
         {
             var result = _dbContext.MedicalCenters
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<MedicalCenterResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<MedicalCenterResponse> { Successful = true, Item = result ?? new MedicalCenterResponse() };
         }
 
-        public List<MedicalCenterResponse> GetMedicalCenters(GetMedicalCentersQuery query)
+        public Result<MedicalCenterResponse> GetMedicalCenters(GetMedicalCentersQuery query)
         {
             var result = _dbContext.MedicalCenters
                 .ProjectTo<MedicalCenterResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<MedicalCenterResponse> { Successful = true, Items = result ?? new List<MedicalCenterResponse>() };
         }
 
         public async Task<RequestResponse> UpdateMedicalCenter(UpdateMedicalCenterCommand command, CancellationToken cancellationToken)
@@ -71,13 +71,14 @@
                 throw new Exception("The medical center does not exists");
             }
             var address = _insideEntityService.GetAddressById(command.AddressId);
-            medicalCenter.Address = address;
+
+            medicalCenter.Address = address.Item;
             medicalCenter.CenterName = command.CenterName;
             medicalCenter.ConstructionDate = command.ConstructionDate;
 
             _dbContext.MedicalCenters.Update(medicalCenter);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(medicalCenter.Identifier);
         }
     }
 }

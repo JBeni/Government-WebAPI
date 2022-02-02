@@ -28,12 +28,12 @@
                 Description = command.Description,
                 IsProcessed = false,
                 Title = command.Title,
-                CityHall = cityHall
+                CityHall = cityHall.Item
             };
 
             _dbContext.CityReportProblems.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteCityReportProblem(DeleteCityReportProblemCommand command, CancellationToken cancellationToken)
@@ -46,24 +46,24 @@
 
             _dbContext.CityReportProblems.Remove(CityReportProblem);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(CityReportProblem.Identifier);
         }
 
-        public CityReportProblemResponse GetCityReportProblemById(GetCityReportProblemByIdQuery query)
+        public Result<CityReportProblemResponse> GetCityReportProblemById(GetCityReportProblemByIdQuery query)
         {
             var result = _dbContext.CityReportProblems
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<CityReportProblemResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<CityReportProblemResponse> { Successful = true, Item = result ?? new CityReportProblemResponse() };
         }
 
-        public List<CityReportProblemResponse> GetCityReportProblems(GetCityReportProblemsQuery query)
+        public Result<CityReportProblemResponse> GetCityReportProblems(GetCityReportProblemsQuery query)
         {
             var result = _dbContext.CityReportProblems
                 .ProjectTo<CityReportProblemResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<CityReportProblemResponse> { Successful = true, Items = result ?? new List<CityReportProblemResponse>() };
         }
 
         public async Task<RequestResponse> UpdateCityReportProblem(UpdateCityReportProblemCommand command, CancellationToken cancellationToken)
@@ -80,11 +80,11 @@
             CityReportProblem.Description = command.Description;
             CityReportProblem.Title = command.Title;
             CityReportProblem.IsProcessed = command.IsProcessed;
-            CityReportProblem.CityHall = cityHall;
+            CityReportProblem.CityHall = cityHall.Item;
 
             _dbContext.CityReportProblems.Update(CityReportProblem);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(CityReportProblem.Identifier);
         }
     }
 }

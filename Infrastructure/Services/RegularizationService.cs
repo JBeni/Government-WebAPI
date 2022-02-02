@@ -30,7 +30,7 @@
 
             _dbContext.Regularizations.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteRegularization(DeleteRegularizationCommand command, CancellationToken cancellationToken)
@@ -43,24 +43,24 @@
 
             _dbContext.Regularizations.Remove(regularization);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(regularization.Identifier);
         }
 
-        public List<RegularizationResponse> GetRegularizations(GetRegularizationsQuery query)
+        public Result<RegularizationResponse> GetRegularizations(GetRegularizationsQuery query)
         {
             var result = _dbContext.Regularizations
                 .ProjectTo<RegularizationResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<RegularizationResponse> { Successful = true, Items = result ?? new List<RegularizationResponse>() };
         }
 
-        public RegularizationResponse GetRegularizationById(GetRegularizationByIdQuery query)
+        public Result<RegularizationResponse> GetRegularizationById(GetRegularizationByIdQuery query)
         {
             var result = _dbContext.Regularizations
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<RegularizationResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<RegularizationResponse> { Successful = true, Item = result ?? new RegularizationResponse() };
         }
 
         public async Task<RequestResponse> UpdateRegularization(UpdateRegularizationCommand command, CancellationToken cancellationToken)
@@ -78,7 +78,7 @@
 
             _dbContext.Regularizations.Update(regularization);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(regularization.Identifier);
         }
     }
 }

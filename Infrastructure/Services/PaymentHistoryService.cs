@@ -29,12 +29,12 @@
                 AmountToPay = command.AmountToPay,
                 AmountPaid = command.AmountPaid,
                 DateOfPayment = command.DateOfPayment,
-                CitizenWhoPaid = citizen,
+                CitizenWhoPaid = citizen.Item,
             };
 
             _dbContext.PaymentHistories.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeletePaymentHistory(DeletePaymentHistoryCommand command, CancellationToken cancellationToken)
@@ -47,24 +47,24 @@
 
             _dbContext.PaymentHistories.Remove(paymentHistory);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(paymentHistory.Identifier);
         }
 
-        public PaymentHistoryResponse GetPaymentHistoryById(GetPaymentHistoryByIdQuery query)
+        public Result<PaymentHistoryResponse> GetPaymentHistoryById(GetPaymentHistoryByIdQuery query)
         {
             var result = _dbContext.PaymentHistories
                 .Where(v => v.Identifier == query.Identifier)
                 .ProjectTo<PaymentHistoryResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<PaymentHistoryResponse> { Successful = true, Item = result ?? new PaymentHistoryResponse() };
         }
 
-        public List<PaymentHistoryResponse> GetPaymentHistories(GetPaymentHistoriesQuery query)
+        public Result<PaymentHistoryResponse> GetPaymentHistories(GetPaymentHistoriesQuery query)
         {
             var result = _dbContext.PaymentHistories
                 .ProjectTo<PaymentHistoryResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<PaymentHistoryResponse> { Successful = true, Items = result ?? new List<PaymentHistoryResponse>() };
         }
 
         public async Task<RequestResponse> UpdatePaymentHistory(UpdatePaymentHistoryCommand command, CancellationToken cancellationToken)
@@ -82,11 +82,11 @@
             paymentHistory.AmountToPay = command.AmountToPay;
             paymentHistory.AmountPaid = command.AmountPaid;
             paymentHistory.DateOfPayment = command.DateOfPayment;
-            paymentHistory.CitizenWhoPaid = citizen;
+            paymentHistory.CitizenWhoPaid = citizen.Item;
 
             _dbContext.PaymentHistories.Update(paymentHistory);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(paymentHistory.Identifier);
         }
     }
 }

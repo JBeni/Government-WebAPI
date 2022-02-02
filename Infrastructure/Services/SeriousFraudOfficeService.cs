@@ -23,14 +23,14 @@
             var address = _insideEntityService.GetAddressById(command.AddressId);
             var entity = new SeriousFraudOffice
             {
-                Address = address,
+                Address = address.Item,
                 ConstructionDate = command.ConstructionDate,
                 OfficeName = command.OfficeName
             };
 
             _dbContext.SeriousFraudOffices.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteSeriousFraudOffice(DeleteSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
@@ -43,24 +43,24 @@
 
             _dbContext.SeriousFraudOffices.Remove(seriousFraudOffice);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(seriousFraudOffice.Identifier);
         }
 
-        public SeriousFraudOfficeResponse GetSeriousFraudOfficeById(GetSeriousFraudOfficeByIdQuery query)
+        public Result<SeriousFraudOfficeResponse> GetSeriousFraudOfficeById(GetSeriousFraudOfficeByIdQuery query)
         {
             var result = _dbContext.SeriousFraudOffices
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<SeriousFraudOfficeResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<SeriousFraudOfficeResponse> { Successful = true, Item = result ?? new SeriousFraudOfficeResponse() };
         }
 
-        public List<SeriousFraudOfficeResponse> GetSeriousFraudOffices(GetSeriousFraudOfficesQuery query)
+        public Result<SeriousFraudOfficeResponse> GetSeriousFraudOffices(GetSeriousFraudOfficesQuery query)
         {
             var result = _dbContext.SeriousFraudOffices
                 .ProjectTo<SeriousFraudOfficeResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<SeriousFraudOfficeResponse> { Successful = true, Items = result ?? new List<SeriousFraudOfficeResponse>() };
         }
 
         public async Task<RequestResponse> UpdateSeriousFraudOffice(UpdateSeriousFraudOfficeCommand command, CancellationToken cancellationToken)
@@ -72,13 +72,13 @@
             }
             var address = _insideEntityService.GetAddressById(command.AddressId);
 
-            seriousFraudOffice.Address = address;
+            seriousFraudOffice.Address = address.Item;
             seriousFraudOffice.ConstructionDate = command.ConstructionDate;
             seriousFraudOffice.OfficeName = command.OfficeName;
 
             _dbContext.SeriousFraudOffices.Update(seriousFraudOffice);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(seriousFraudOffice.Identifier);
         }
     }
 }

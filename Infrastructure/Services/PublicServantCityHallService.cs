@@ -23,7 +23,7 @@
             var cityHall = _insideEntityService.GetCityHallById(command.CityHallId);
             var entity = new PublicServantCityHall
             {
-                CityHall = cityHall,
+                CityHall = cityHall.Item,
                 CNP = command.CNP,
                 ContractYears = command.ContractYears,
                 DutyRole = command.DutyRole,
@@ -35,7 +35,7 @@
 
             _dbContext.PublicServantCityHalls.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeletePublicServantCityHall(DeletePublicServantCityHallCommand command, CancellationToken cancellationToken)
@@ -48,24 +48,24 @@
 
             _dbContext.PublicServantCityHalls.Remove(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(publicServant.Identifier);
         }
 
-        public PublicServantCityHallResponse GetPublicServantCityHallById(GetPublicServantCityHallByIdQuery query)
+        public Result<PublicServantCityHallResponse> GetPublicServantCityHallById(GetPublicServantCityHallByIdQuery query)
         {
             var result = _dbContext.PublicServantCityHalls
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<PublicServantCityHallResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<PublicServantCityHallResponse> { Successful = true, Item = result ?? new PublicServantCityHallResponse() };
         }
 
-        public List<PublicServantCityHallResponse> GetPublicServantCityHalls(GetPublicServantCityHallsQuery query)
+        public Result<PublicServantCityHallResponse> GetPublicServantCityHalls(GetPublicServantCityHallsQuery query)
         {
             var result = _dbContext.PublicServantCityHalls
                 .ProjectTo<PublicServantCityHallResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<PublicServantCityHallResponse> { Successful = true, Items = result ?? new List<PublicServantCityHallResponse>() };
         }
 
         public async Task<RequestResponse> UpdatePublicServantCityHall(UpdatePublicServantCityHallCommand command, CancellationToken cancellationToken)
@@ -77,7 +77,7 @@
             }
             var cityHall = _insideEntityService.GetCityHallById(command.CityHallId);
 
-            publicServant.CityHall = cityHall;
+            publicServant.CityHall = cityHall.Item;
             publicServant.CNP = command.CNP;
             publicServant.ContractYears = command.ContractYears;
             publicServant.DutyRole = command.DutyRole;
@@ -88,7 +88,7 @@
 
             _dbContext.PublicServantCityHalls.Update(publicServant);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(publicServant.Identifier);
         }
     }
 }

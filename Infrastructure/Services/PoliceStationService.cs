@@ -25,15 +25,15 @@
 
             var entity = new PoliceStation
             {
-                Address = address,
-                CityHall = cityHall,
+                Address = address.Item,
+                CityHall = cityHall.Item,
                 ConstructionDate = command.ConstructionDate,
                 StationName = command.StationName
             };
 
             _dbContext.PoliceStations.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeletePoliceStation(DeletePoliceStationCommand command, CancellationToken cancellationToken)
@@ -46,24 +46,24 @@
 
             _dbContext.PoliceStations.Remove(policeStation);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(policeStation.Identifier);
         }
 
-        public PoliceStationResponse GetPoliceStationById(GetPoliceStationByIdQuery query)
+        public Result<PoliceStationResponse> GetPoliceStationById(GetPoliceStationByIdQuery query)
         {
             var result = _dbContext.PoliceStations
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<PoliceStationResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<PoliceStationResponse> { Successful = true, Item = result ?? new PoliceStationResponse() };
         }
 
-        public List<PoliceStationResponse> GetPoliceStations(GetPoliceStationsQuery query)
+        public Result<PoliceStationResponse> GetPoliceStations(GetPoliceStationsQuery query)
         {
             var result = _dbContext.PoliceStations
                 .ProjectTo<PoliceStationResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<PoliceStationResponse> { Successful = true, Items = result ?? new List<PoliceStationResponse>() };
         }
 
         public async Task<RequestResponse> UpdatePoliceStation(UpdatePoliceStationCommand command, CancellationToken cancellationToken)
@@ -76,14 +76,14 @@
             var cityHall = _insideEntityService.GetCityHallById(command.CityHallId);
             var address = _insideEntityService.GetAddressById(command.AddressId);
 
-            policeStation.Address = address;
-            policeStation.CityHall = cityHall;
+            policeStation.Address = address.Item;
+            policeStation.CityHall = cityHall.Item;
             policeStation.ConstructionDate = command.ConstructionDate;
             policeStation.StationName = command.StationName;
 
             _dbContext.PoliceStations.Update(policeStation);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(policeStation.Identifier);
         }
     }
 }

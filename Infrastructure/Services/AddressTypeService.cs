@@ -11,21 +11,21 @@
             _mapper = mapper;
         }
 
-        public AddressTypeResponse GetAddressTypeById(GetAddressTypeByIdQuery query)
+        public Result<AddressTypeResponse> GetAddressTypeById(GetAddressTypeByIdQuery query)
         {
             var result = _dbContext.AddressTypes
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<AddressTypeResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<AddressTypeResponse> { Successful = true, Item = result ?? new AddressTypeResponse() };
         }
 
-        public List<AddressTypeResponse> GetAddressTypes(GetAddressTypesQuery query)
+        public Result<AddressTypeResponse> GetAddressTypes(GetAddressTypesQuery query)
         {
             var result = _dbContext.AddressTypes
                 .ProjectTo<AddressTypeResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<AddressTypeResponse> { Successful = true, Items = result ?? new List<AddressTypeResponse>() };
         }
     }
 }

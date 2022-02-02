@@ -26,13 +26,13 @@
                 Country = command.Country,
                 County = command.County,
                 Street = command.Street,
-                Type = addressType,
+                Type = addressType.Item,
                 ZipCode = command.ZipCode
             };
 
             _dbContext.Addresses.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteAddress(DeleteAddressCommand command, CancellationToken cancellationToken)
@@ -45,42 +45,42 @@
 
             _dbContext.Addresses.Remove(address);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(address.Identifier);
         }
 
-        public List<AddressResponse> GetAddressByCounty(GetAddressByCountyQuery query)
+        public Result<AddressResponse> GetAddressByCounty(GetAddressByCountyQuery query)
         {
             var result = _dbContext.Addresses
                 .Where(v => v.County == query.County)
                 .ProjectTo<AddressResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<AddressResponse> { Successful = true, Items = result ?? new List<AddressResponse>() };
         }
 
-        public AddressResponse GetAddressById(GetAddressByIdQuery query)
+        public Result<AddressResponse> GetAddressById(GetAddressByIdQuery query)
         {
             var result = _dbContext.Addresses
                 .Where(v => v.Identifier == query.Identifier)
                 .ProjectTo<AddressResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<AddressResponse> { Successful = true, Item = result ?? new AddressResponse() };
         }
 
-        public List<AddressResponse> GetAddressByType(GetAddressByTypeQuery query)
+        public Result<AddressResponse> GetAddressByType(GetAddressByTypeQuery query)
         {
             var result = _dbContext.Addresses
                 .Where(v => v.Type.Type == query.Type)
                 .ProjectTo<AddressResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<AddressResponse> { Successful = true, Items = result ?? new List<AddressResponse>() };
         }
 
-        public List<AddressResponse> GetAddresses(GetAddressesQuery query)
+        public Result<AddressResponse> GetAddresses(GetAddressesQuery query)
         {
             var result = _dbContext.Addresses
                 .ProjectTo<AddressResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<AddressResponse> { Successful = true, Items = result ?? new List<AddressResponse>() };
         }
 
         public async Task<RequestResponse> UpdateAddress(UpdateAddressCommand command, CancellationToken cancellationToken)
@@ -95,11 +95,11 @@
             address.County = command.County;
             address.Street = command.Street;
             address.ZipCode = command.ZipCode;
-            address.Type = addressType;
+            address.Type = addressType.Item;
 
             _dbContext.Addresses.Update(address);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(address.Identifier);
         }
     }
 }

@@ -29,15 +29,15 @@
             {
                 AppointmentDay = command.AppointmentDay,
                 Symptoms = command.Symptoms,
-                Citizen = citizen,
-                MedicalCenter = medicalCenter,
-                MedicalProcedure = medicalProcedure,
-                PublicServantMedicalCenter = publicServantMedicalCenter,
+                Citizen = citizen.Item,
+                MedicalCenter = medicalCenter.Item,
+                MedicalProcedure = medicalProcedure.Item,
+                PublicServantMedicalCenter = publicServantMedicalCenter.Item,
             };
 
             _dbContext.MedicalAppointments.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteMedicalAppointment(DeleteMedicalAppointmentCommand command, CancellationToken cancellationToken)
@@ -50,24 +50,24 @@
 
             _dbContext.MedicalAppointments.Remove(medicalAppointment);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(medicalAppointment.Identifier);
         }
 
-        public MedicalAppointmentResponse GetMedicalAppointmentById(GetMedicalAppointmentByIdQuery query)
+        public Result<MedicalAppointmentResponse> GetMedicalAppointmentById(GetMedicalAppointmentByIdQuery query)
         {
             var result = _dbContext.MedicalAppointments
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<MedicalAppointmentResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<MedicalAppointmentResponse> { Successful = true, Item = result ?? new MedicalAppointmentResponse() };
         }
 
-        public List<MedicalAppointmentResponse> GetMedicalAppointments(GetMedicalAppointmentsQuery query)
+        public Result<MedicalAppointmentResponse> GetMedicalAppointments(GetMedicalAppointmentsQuery query)
         {
             var result = _dbContext.MedicalAppointments
                 .ProjectTo<MedicalAppointmentResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<MedicalAppointmentResponse> { Successful = true, Items = result ?? new List<MedicalAppointmentResponse>() };
         }
 
         public async Task<RequestResponse> UpdateMedicalAppointment(UpdateMedicalAppointmentCommand command, CancellationToken cancellationToken)
@@ -84,13 +84,13 @@
 
             medicalAppointment.AppointmentDay = command.AppointmentDay;
             medicalAppointment.Symptoms = command.Symptoms;
-            medicalAppointment.MedicalCenter = medicalCenter;
-            medicalAppointment.MedicalProcedure = medicalProcedure;
-            medicalAppointment.PublicServantMedicalCenter = publicServantMedicalCenter;
+            medicalAppointment.MedicalCenter = medicalCenter.Item;
+            medicalAppointment.MedicalProcedure = medicalProcedure.Item;
+            medicalAppointment.PublicServantMedicalCenter = publicServantMedicalCenter.Item;
 
             _dbContext.MedicalAppointments.Update(medicalAppointment);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(medicalAppointment.Identifier);
         }
     }
 }

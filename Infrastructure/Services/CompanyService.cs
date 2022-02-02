@@ -32,13 +32,13 @@
                 Description = command.Description,
                 Status = command.Status,
                 DeletionDate = command.DeletionDate,
-                Founder = founder,
-                OfficeAddress = officeAddress
+                Founder = founder.Item,
+                OfficeAddress = officeAddress.Item
             };
 
             _dbContext.Companies.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteCompany(DeleteCompanyCommand command, CancellationToken cancellationToken)
@@ -51,24 +51,24 @@
 
             _dbContext.Companies.Remove(company);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(company.Identifier);
         }
 
-        public CompanyResponse GetCompanyById(GetCompanyByIdQuery query)
+        public Result<CompanyResponse> GetCompanyById(GetCompanyByIdQuery query)
         {
             var result = _dbContext.Companies
                 .Where(v => v.Identifier == query.Identifier)
                 .ProjectTo<CompanyResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<CompanyResponse> { Successful = true, Item = result ?? new CompanyResponse() };
         }
 
-        public List<CompanyResponse> GetCompanies(GetCompaniesQuery query)
+        public Result<CompanyResponse> GetCompanies(GetCompaniesQuery query)
         {
             var result = _dbContext.Companies
                 .ProjectTo<CompanyResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<CompanyResponse> { Successful = true, Items = result ?? new List<CompanyResponse>() };
         }
 
         public async Task<RequestResponse> UpdateCompany(UpdateCompanyCommand command, CancellationToken cancellationToken)
@@ -88,12 +88,12 @@
             company.Description = command.Description;
             company.Status = command.Status;
             company.DeletionDate = command.DeletionDate;
-            company.Founder = founder;
-            company.OfficeAddress = officeAddress;
+            company.Founder = founder.Item;
+            company.OfficeAddress = officeAddress.Item;
 
             _dbContext.Companies.Update(company);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(company.Identifier);
         }
     }
 }

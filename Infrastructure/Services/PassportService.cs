@@ -29,7 +29,7 @@
 
             _dbContext.Passports.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeletePassport(DeletePassportCommand command, CancellationToken cancellationToken)
@@ -42,24 +42,24 @@
 
             _dbContext.Passports.Remove(passport);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(passport.Identifier);
         }
 
-        public PassportResponse GetPassportById(GetPassportByIdQuery query)
+        public Result<PassportResponse> GetPassportById(GetPassportByIdQuery query)
         {
             var result = _dbContext.Passports
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<PassportResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<PassportResponse> { Successful = true, Item = result ?? new PassportResponse() };
         }
 
-        public List<PassportResponse> GetPassports(GetPassportsQuery query)
+        public Result<PassportResponse> GetPassports(GetPassportsQuery query)
         {
             var result = _dbContext.Passports
                 .ProjectTo<PassportResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<PassportResponse> { Successful = true, Items = result ?? new List<PassportResponse>() };
         }
 
         public async Task<RequestResponse> UpdatePassport(UpdatePassportCommand command, CancellationToken cancellationToken)
@@ -77,7 +77,7 @@
 
             _dbContext.Passports.Update(passport);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(passport.Identifier);
         }
     }
 }

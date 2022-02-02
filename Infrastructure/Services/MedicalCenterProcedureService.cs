@@ -25,13 +25,13 @@
 
             var entity = new MedicalCenterProcedure
             {
-                MedicalCenter = medicalCenter,
-                MedicalProcedure = medicalProcedure
+                MedicalCenter = medicalCenter.Item,
+                MedicalProcedure = medicalProcedure.Item
             };
 
             _dbContext.MedicalCenterProcedures.Add(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(entity.Identifier);
         }
 
         public async Task<RequestResponse> DeleteMedicalCenterProcedure(DeleteMedicalCenterProcedureCommand command, CancellationToken cancellationToken)
@@ -44,24 +44,24 @@
 
             _dbContext.MedicalCenterProcedures.Remove(medicalCenterProcedure);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(medicalCenterProcedure.Identifier);
         }
 
-        public MedicalCenterProcedureResponse GetMedicalCenterProcedureById(GetMedicalCenterProcedureByIdQuery query)
+        public Result<MedicalCenterProcedureResponse> GetMedicalCenterProcedureById(GetMedicalCenterProcedureByIdQuery query)
         {
             var result = _dbContext.MedicalCenterProcedures
                 .Where(x => x.Identifier == query.Identifier)
                 .ProjectTo<MedicalCenterProcedureResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefault();
-            return result;
+            return new Result<MedicalCenterProcedureResponse> { Successful = true, Item = result ?? new MedicalCenterProcedureResponse() };
         }
 
-        public List<MedicalCenterProcedureResponse> GetMedicalCenterProcedures(GetMedicalCenterProceduresQuery query)
+        public Result<MedicalCenterProcedureResponse> GetMedicalCenterProcedures(GetMedicalCenterProceduresQuery query)
         {
             var result = _dbContext.MedicalCenterProcedures
                 .ProjectTo<MedicalCenterProcedureResponse>(_mapper.ConfigurationProvider)
                 .ToList();
-            return result;
+            return new Result<MedicalCenterProcedureResponse> { Successful = true, Items = result ?? new List<MedicalCenterProcedureResponse>() };
         }
 
         public async Task<RequestResponse> UpdateMedicalCenterProcedure(UpdateMedicalCenterProcedureCommand command, CancellationToken cancellationToken)
@@ -74,12 +74,12 @@
             var medicalCenter = _insideEntityService.GetMedicalCenterById(command.MedicalCenterId);
             var medicalProcedure = _insideEntityService.GetMedicalProcedureById(command.MedicalProcedureId);
 
-            medicalCenterProcedure.MedicalCenter = medicalCenter;
-            medicalCenterProcedure.MedicalProcedure = medicalProcedure;
+            medicalCenterProcedure.MedicalCenter = medicalCenter.Item;
+            medicalCenterProcedure.MedicalProcedure = medicalProcedure.Item;
 
             _dbContext.MedicalCenterProcedures.Update(medicalCenterProcedure);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return RequestResponse.Success();
+            return RequestResponse.Success(medicalCenterProcedure.Identifier);
 
         }
     }
